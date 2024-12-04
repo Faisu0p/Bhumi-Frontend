@@ -1,0 +1,1132 @@
+/* Reset browser defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* HTML: Base setup */
+html {
+  font-size: 10px; 
+  scroll-behavior: smooth; 
+  background-color: #f4f4f4; 
+}
+
+/* Body: General layout and responsiveness */
+body {
+  font-family: 'Arial', sans-serif; 
+  line-height: 1.6; 
+  color: #333;
+  background-color: #ffffff; 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: stretch;
+}
+
+/* Container: Centered and responsive */
+.container {
+  width: 100%; 
+  margin: 0 auto; 
+}
+
+
+
+
+/* Header: General Layout */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 0.1rem solid #ddd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%; 
+  z-index: 10; 
+  height: 8rem; 
+}
+
+/* Logo: Positioned to the left with spacing */
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem; 
+}
+
+.logo img {
+  height: 7rem; 
+  width: auto; 
+}
+
+/* Left Section: Search bar and buttons */
+.left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: 0.5rem; 
+}
+
+/* Search Container: Compact and capsule-shaped */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  width: 3.5rem; 
+  height: 3.5rem;
+  transition: width 0.4s ease, background-color 0.2s ease;
+  border: 0.1rem solid #ccc;
+  border-radius: 50rem; 
+  overflow: hidden;
+  background-color: white;
+}
+
+/* On hover or focus, expand the width */
+.search-container:hover,
+.search-container:focus-within {
+  width: 25rem; 
+  background-color: #f9f9f9;
+  border-color: #888; 
+}
+
+/* Search Input: Hidden initially, slides into view */
+.search-container .search {
+  width: 0; 
+  opacity: 0;
+  padding: 0;
+  border: none; 
+  outline: none; 
+  background: transparent;
+  transition: width 0.4s ease, opacity 0.2s ease 0.2s; 
+  color: #333; 
+  font-size: 1rem;
+  text-align: left;
+}
+
+.search-container:hover .search,
+.search-container:focus-within .search {
+  width: 100%; 
+  opacity: 1; 
+  padding: 0.5rem 1rem;
+}
+
+/* Placeholder alignment */
+.search-container .search::placeholder {
+  color: #aaa;
+  font-size: 1rem;
+  text-align: left; 
+}
+
+/* Search Icon: Initially centered, moves to the right */
+.search-container .search-icon {
+  position: absolute;
+  right: 50%; 
+  transform: translateX(50%); 
+  font-size: 1.5rem;
+  color: #888;
+  pointer-events: none; 
+  transition: transform 0.4s ease, right 0.4s ease;
+}
+
+/* Icon moves to the right when expanded */
+.search-container:hover .search-icon,
+.search-container:focus-within .search-icon {
+  right: 1rem;
+  transform: translateX(0);
+}
+
+/* General Button Styling */
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto; /* Adjusted to fit content */
+  height: auto; /* Adjusted to fit content */
+  background: none;
+  border: none; /* Remove border */
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button Hover Effect */
+.menu-button:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Icon Styling */
+.menu-button i {
+  font-size: 2rem; /* Icon size */
+  color: #555; /* Default icon color */
+  margin-bottom: 0.3rem;
+  transition: color 0.3s ease;
+}
+
+/* Text Styling */
+.menu-button span {
+  font-size: 1rem; /* Text size */
+  color: #555; /* Default text color */
+  font-weight: 500;
+}
+
+/* Button Hover Effect on Icon and Text */
+.menu-button:hover i,
+.menu-button:hover span {
+  color: #000000; /* Highlight color on hover */
+}
+
+
+
+
+
+.left button {
+  height: 2.5rem;
+  padding: 0.5rem 1rem; 
+  background-color: #f0f0f0;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  color: black;
+}
+
+.left button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Right Section: Aligned to the end */
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 2rem; 
+}
+
+.right button {
+  height: 2.5rem;
+  padding: 0.5rem 1rem; 
+  background-color: #f0f0f0;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  color: black;
+}
+
+.right button:hover {
+  background-color: #e0e0e0; 
+}
+
+/*________________________________________________________________________*/
+
+
+
+
+
+
+/* Sidebar (right) styling */
+.sidebar-right {
+  position: fixed;
+  top: 8rem; 
+  right: -24%; 
+  width: 24%;
+  height: calc(100vh - 8rem); 
+  background-color: #fff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+/* When the sidebar is open */
+.sidebar-right.open {
+  right: 0; 
+}
+
+.sidebar-container {
+  width: 100%;
+  max-width: 40rem;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.profile-section {
+  padding: 2rem;
+  background: linear-gradient(135deg, #6b46c1 0%, #4834b8 100%);
+  color: white;
+  text-align: center;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 0.3rem solid rgba(255, 255, 255, 0.3);
+  object-fit: cover;
+}
+
+.profile-status {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: #ffd700;
+  color: #000;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.profile-name {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.profile-subtitle {
+  font-size: 1.4rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.stat-label {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.menu-section {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem;
+  background: none;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.menu-icon {
+  font-size: 2rem;
+  margin-right: 1.5rem;
+  width: 2.4rem;
+  text-align: center;
+}
+
+.menu-label {
+  flex: 1;
+  font-size: 1.6rem;
+}
+
+.menu-arrow {
+  font-size: 1.6rem;
+  opacity: 0.5;
+}
+
+/* Natural responsiveness without media queries */
+.sidebar-container {
+  min-height: 100vh;
+  height: 100%;
+}
+
+.profile-stats,
+.menu-section {
+  max-width: 100%;
+}
+
+.menu-item {
+  max-width: 100%;
+}
+
+/* Ensure text doesn't overflow */
+.profile-name,
+.profile-subtitle,
+.menu-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+/*________________________________________________________________________*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+.left-section {
+  position: absolute; 
+  top: 8rem; 
+  left: 0;
+  min-width: 250px;
+  max-width: 25%;
+  height: calc(100vh - 8rem); 
+  background-color: #fafafa;
+  overflow-y: auto; 
+  box-sizing: border-box; 
+}
+
+
+
+/* User Profile Card */
+.user-profile-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1rem 1rem 1rem 1rem;
+  width: 100%;
+  max-width: 75%;
+  box-sizing: border-box;
+  
+  
+}
+
+
+/* User Profile Header */
+.user-profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* User Avatar Container */
+.user-avatar-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* User Profile Info */
+.user-profile-info {
+  text-align: center;
+  color: #333;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.user-website {
+  color: #0073e6;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 6px;
+  display: block;
+  transition: color 0.3s;
+}
+
+.user-website:hover {
+  color: #005bb5;
+}
+
+.user-location {
+  color: #666;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* User Profile Stats */
+.user-profile-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 16px;
+}
+
+/* User Stat Item */
+.user-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-stat-value {
+  font-weight: 600;
+  font-size: 18px;
+  color: #333;
+}
+
+.user-stat-label {
+  font-size: 12px;
+  color: #666;
+}
+
+/* User View More */
+.user-view-more {
+  text-align: center;
+  color: #0073e6;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+  margin-top: 12px;
+}
+
+.user-view-more:hover {
+  color: #005bb5;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*________________________________________________________________________*/
+
+
+/* Feed Section (centered under the header) */
+.feed-section {
+  position: absolute;
+  top: 8rem;
+  left: calc(min(250px, 25%));
+  width: calc(100% - min(250px, 25%) - 25%);
+  height: calc(100vh - 8rem);
+  background-color: #ffffff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Feed Container with two columns */
+.feed-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 1rem; /* Reduced gap to fit more content */
+  box-sizing: border-box;
+}
+
+/* Feed Tile */
+.feed-tile {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1rem; /* Reduced margin between tiles */
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+}
+
+/* Image Carousel */
+.image-carousel {
+  position: relative;
+  height: 160px; /* Reduced height */
+  overflow: hidden;
+}
+
+.image-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: white;
+}
+
+/* Status Tags */
+.status-tags {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.tag {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.tag.sell { background: #2196f3; }
+.tag.flat { background: #4caf50; }
+.tag.urgent { background: #f44336; }
+
+/* Property Information */
+.property-info {
+  padding: 12px; 
+  text-align: left;
+}
+
+
+.property-header h2 {
+  font-size: 1.3rem; 
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.poster-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 32px; 
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Property Details */
+.property-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-item {
+  flex: 1;
+  text-align: center;
+}
+
+.detail-value {
+  display: block;
+  font-size: 1.6rem; 
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.detail-label {
+  font-size: 1.2rem; 
+  color: #666;
+}
+
+/* Features Section */
+.property-features {
+  display: flex;
+  gap: 16px; 
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.4rem; 
+}
+
+/* Property Tags */
+.property-tags {
+  display: flex;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.property-tag {
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 1.2rem; /* Smaller font */
+  font-weight: 500;
+}
+
+/* Action Buttons */
+.property-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px; /* Reduced padding */
+  border-top: 1px solid #eee;
+}
+
+.action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 12px;
+}
+
+.action-icon {
+  
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s;
+}
+
+.action-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.action-button.chat {
+  color: #2196f3;
+}
+
+.expanded-content {
+  margin-top: 12px; /* Reduced margin-top */
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Right Section */
+.right-section {
+  position: absolute;
+  top: 8rem;
+  left: 75%;
+  width: 25%;
+  height: calc(100vh - 8rem);
+  background-color: #f0f0f0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Top Cities Section */
+.top-cities {
+  text-align: center;
+  width: 100%;
+  padding: 5rem 2rem;
+  background-color: #f9f9f9;
+  border-bottom: 0.2rem solid #e0e0e0;
+}
+
+.top-cities-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #5a5a5a;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.top-cities-heading {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 4rem;
+}
+
+/* City Cards Grid */
+.city-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Show 2 cards per row */
+  gap: 1.5rem;
+  justify-items: center;
+  width: 100%;
+}
+
+/* Individual City Card */
+.city-card {
+  background: #ffffff;
+  border: 0.1rem solid #e0e0e0;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 20rem;
+  height: auto;
+}
+
+.city-card:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.city-image {
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+}
+
+.city-info {
+  padding: 1rem;
+}
+
+.city-name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2b2b2b;
+  margin-bottom: 0.4rem;
+}
+
+.city-properties {
+  font-size: 1.2rem;
+  color: #6c6c6c;
+}
+
+/* Arrow Buttons */
+.arrow-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.arrow-btn:hover {
+  color: #1a1a1a;
+}
+
+.left-btn {
+  margin-right: 1rem;
+}
+
+.right-btn {
+  margin-left: 1rem;
+}
+
+.arrow-btn:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+
+
+
+
+/* Upcoming Projects Section */
+.upcoming-projects {
+  width: 100%;
+  padding: 2rem;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.upcoming-projects h2 {
+  font-size: 1.8rem;
+  color: #222;
+  margin: 0;
+  font-weight: 600;
+}
+
+.upcoming-projects p {
+  font-size: 1.1rem;
+  color: #000000;
+  text-align: center;
+}
+
+/* Projects Container */
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Project Card Styling */
+.project-card {
+  width: 90%;
+  max-width: 420px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Section */
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.project-info h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.project-info p {
+  font-size: 0.85rem;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Details Section */
+.project-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.project-type {
+  color: #007BFF;
+  text-transform: uppercase;
+}
+
+.project-price {
+  color: #000;
+  font-weight: 600;
+}
+
+/* Footer Section */
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(90deg, #004080, #007BFF);
+  color: #fff;
+}
+
+.project-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.view-number-btn {
+  background-color: #fff;
+  color: #007BFF;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid #007BFF;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-number-btn:hover {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+.chat-button {
+  position: fixed;
+  bottom: 2rem; /* Distance from the bottom */
+  right: 2rem; /* Distance from the right */
+  background-color: #4CAF50; /* Button background color */
+  color: white; /* Icon color */
+  border: none;
+  border-radius: 50%;
+  padding: 1.5rem;
+  font-size: 2rem; /* Icon size */
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.chat-button:hover {
+  background-color: #45a049; /* Darker shade on hover */
+}
+
+.si-chat {
+  font-size: inherit; /* Match icon size to button font size */
+}
+
+
+
+
+
+

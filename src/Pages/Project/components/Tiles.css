@@ -1,0 +1,161 @@
+/* Using 1rem = 10px as requested */
+html {
+  font-size: 62.5%;
+}
+
+.property-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.property-tile {
+  display: flex;
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  max-height: 25rem;
+}
+
+.property-tile:hover {
+  transform: translateY(-0.2rem);
+}
+
+.property-image {
+  flex: 0 0 40%;
+  position: relative;
+  width: 250px; 
+  height: 250px; 
+}
+
+.property-image img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+}
+
+
+.property-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  height: 100%;
+  width: 100%;
+}
+
+.property-header h2 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.verified-badge {
+  width: 2rem;
+  height: 2rem;
+  color: #2563eb;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #666;
+  font-size: 1.4rem;
+  margin-bottom: auto;
+}
+
+.icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.property-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  border-bottom: 0.1rem solid #eee;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.6rem;
+}
+
+.price-range {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.property-config {
+  display: flex;
+  gap: 2rem;
+  margin-top: -1rem;
+}
+
+.config-badge {
+  padding: 0.6rem 1.2rem;
+  background: #f5f5f5;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  color: #1a1a1a;
+}
+
+
+
+
+
+/*____________________________________________*/
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .property-tile {
+    flex-direction: column;
+  }
+
+  .property-image {
+    height: 24rem;
+  }
+
+  .property-meta {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .property-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .property-content {
+    padding: 1.6rem;
+  }
+
+  .property-header h2 {
+    font-size: 2rem;
+  }
+
+  .property-config {
+    flex-wrap: wrap;
+  }
+}
+

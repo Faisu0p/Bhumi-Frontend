@@ -1,0 +1,39 @@
+.radio-group {
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+}
+
+.radio-group h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.radio-group label {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid red;
+  border-radius: 1.5rem; /* Capsule shape */
+  font-size: 1.2rem;
+  color: #000000;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.radio-group label:hover {
+  background-color: #eaf4ff; /* Light blue hover */
+}
+
+.radio-group input[type="radio"] {
+  display: none; /* Hide the actual radio buttons */
+}
+
+.radio-group input[type="radio"]:checked + label {
+  background-color: red;
+  color: white; /* White text on selection */
+  border-color: red; /* Darker border on selection */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Glow effect */
+}

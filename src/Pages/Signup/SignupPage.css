@@ -1,0 +1,359 @@
+/* General Styling */
+/* Ensure the body or wrapper takes full height */
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.signup-container  {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  padding: 200px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+}
+
+.signup-container h2,
+.signup-container h3 {
+  text-align: center;
+  color: #333;
+}
+
+.signup-container input[type="text"],
+.signup-container input[type="email"],
+.signup-container input[type="number"],
+.signup-container input[type="file"] {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* More rounded corners */
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+/* Focus Styling */
+.signup-container input[type="text"]:focus,
+.signup-container input[type="email"]:focus,
+.signup-container input[type="number"]:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Added box-shadow */
+}
+
+.signup-container button {
+  width: 50%;
+  padding: 12px;
+  background-color: #4CAF50; /* Changed to green for consistency */
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.signup-container button:hover {
+  background-color: #45a049;
+}
+
+/* Check & OTP Button inside Input */
+.signup-container .input-with-btn {
+  position: relative;
+  width: 100%;
+}
+
+.signup-container .input-with-btn input {
+  width: calc(100% - 0px);  /* Reduces width to accommodate the button */
+}
+
+.signup-container .input-with-btn button {
+  position: absolute;
+  right: 3px;
+  top: 20%;
+  transform: translateY(-50%);
+  width: 80px;  /* Adjust button width */
+  padding: 6px 10px;  /* Adjust padding for better alignment */
+}
+
+.signup-container .otp-section {
+  margin-top: 0px;
+}
+
+.signup-container .otp-section input {
+  width: 100%;
+}
+
+.signup-container .success-message,
+.signup-container .error-message {
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.signup-container .success-message {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.signup-container .error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+/* Step 2 Specific Styling */
+.signup-container.step-2 {
+  max-width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+
+
+/* Profile Picture Container */
+.signup-container .profile-picture-container {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%; /* Ensure the container takes full available width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide the file input */
+.signup-container .profile-picture-container input[type="file"] {
+  display: none;
+}
+
+/* Label for Profile Picture Upload */
+.signup-container .profile-picture-container label {
+  position: relative; /* Needed for positioning the plus icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 36px; /* Larger font size for the "+" sign */
+  font-weight: bold;
+  color: #4CAF50;
+  transition: background-color 0.3s ease;
+}
+
+/* Plus Icon inside the label */
+.signup-container .profile-picture-container label .plus-icon {
+  position: absolute; /* Position inside the circle */
+  font-size: 36px; /* Same size as the label text */
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+/* Hover effect for the profile picture label */
+.signup-container .profile-picture-container label:hover {
+  background-color: #e0e0e0;
+}
+
+/* Profile Picture Text */
+.signup-container .profile-picture-container p {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+/* Company/Office/Shop Details */
+.signup-container .company-details {
+  margin-top: 20px;
+}
+
+.signup-container .company-details label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: -20px;
+  display: block;
+}
+
+.signup-container .company-details input[type="text"],
+.signup-container .company-details input[type="email"] {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.signup-container .company-details input[type="text"]:focus,
+.signup-container .company-details input[type="email"]:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+
+
+
+/* RERA Number Section */
+.signup-container .company-details .rera-section {
+  margin-top: 20px;
+}
+
+/* Label for the RERA Number Section */
+.signup-container .company-details .rera-section label {
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Flex container for the radio buttons */
+.signup-container .company-details .rera-section .radio-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add some space between radio buttons */
+}
+
+/* Style for the radio buttons */
+.signup-container .company-details .rera-section input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Rera Number Input Field */
+.signup-container .company-details .rera-section input[type="text"] {
+  margin-top: 10px;
+  padding: 12px 16px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.signup-container .company-details .rera-section input[type="text"]:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+
+
+.signup-container .company-details input {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+/* General styling for the upload section */
+.file-upload {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.file-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.file-upload-icon {
+  width: 120px;
+  height: 120px;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.file-upload-icon:hover {
+  background-color: #e0e0e0;
+}
+
+.plus-icon {
+  font-size: 36px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.file-upload-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 5px;
+}
+
+.file-upload-description {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+/* Styled Button for Step 2 */
+.signup-container .submit-button {
+  margin-top: 20px;
+  width: 50%;
+  background-color: #4CAF50;
+}
+
+.signup-container .submit-button:hover {
+  background-color: #45a049;
+}

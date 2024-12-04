@@ -1,0 +1,3668 @@
+/* Home Container */
+.home-container {
+  font-size: 62.5%; /* 1rem = 10px */
+  width: 100%; 
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Header Wrapper */
+.header-wrapper {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Home Header */
+.home-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+/* Company Logo */
+.company-logo {
+  width: 10rem;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Buttons Container */
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Download Button Container */
+.download-container {
+  width: 20rem;
+  height: 10rem;
+  margin: auto;
+  color: #d32f2f;
+  font-size: 1.6rem;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.download-container p {
+  text-align: center;
+  margin-top: 1rem;
+  color: #d32f2f;
+}
+
+/* Download Button */
+.download-button {
+  font-size: 2rem;
+  border: 0.2rem solid #d32f2f;
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+  margin: auto;
+  background-color: white;
+  color: #d32f2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  cursor: pointer;
+}
+
+/* Download Icon */
+.download-icon {
+  font-size: 2.5rem;
+  color: #d32f2f;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+/* Hover Effects for Download Button */
+.download-button:hover {
+  width: 15rem;
+  height: 6rem;
+  border-radius: 3rem;
+  background-color: #d32f2f;
+  box-shadow: 0px 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+  color: white;
+  transition: 0.3s;
+}
+
+/* Keep the icon color red when hovered */
+.download-button:hover .download-icon {
+  color: white;
+}
+
+/* Get Started Button */
+.get-started-button {
+  min-width: 25rem;  /* 250px = 25rem */
+  min-height: 7rem;  /* 70px = 7rem */
+  font-family: 'Arial', Helvetica;
+  font-size: 2rem;  /* 20px = 2rem */
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;  /* 1.5px = 0.15rem */
+  font-weight: 600;
+  color: #FFFFFF;
+  background: linear-gradient(90deg, rgba(0,74,173) 0%, rgba(53,51,205) 100%);
+  border: none;
+  border-radius: 120rem;  /* 1200px = 120rem */
+  transition: all 0.4s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 1rem;  /* 10px = 1rem */
+}
+
+/* Get Started Button Hover Effects */
+.get-started-button:hover,
+.get-started-button:focus {
+  color: #FFFFFF;
+  transform: translateY(-0.6rem);  /* 6px = 0.6rem */
+}
+
+/* Get Started Button Ring (Before Pseudo-element) */
+.get-started-button::before {
+  content: '';
+  border-radius: 120rem;  /* 1200px = 120rem */
+  min-width: calc(25rem + 1.2rem);  /* 250px + 12px = 25rem + 1.2rem */
+  min-height: calc(7rem + 1.2rem);  /* 70px + 12px = 7rem + 1.2rem */
+  border: 0.4rem solid #004AAD;  /* 4px = 0.4rem */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+/* Get Started Button Ring on Hover */
+.get-started-button:hover::before,
+.get-started-button:focus::before {
+  opacity: 1.2;
+}
+
+/* Get Started Button Ring (Animation) */
+.get-started-button::after {
+  content: '';
+  width: 4rem;  /* 40px = 4rem */
+  height: 4rem;  /* 40px = 4rem */
+  border-radius: 50%;
+  border: 0.5rem solid #004AAD;  /* 5px = 0.5rem */
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.6s infinite; /* Loop the ring animation by default */
+  opacity: 1;
+}
+
+/* No need to stop the animation after hover */
+.get-started-button:hover::after,
+.get-started-button:focus::after {
+  opacity: 1; /* Keep ring visible */
+}
+
+/* Keyframes for Ring Animation */
+@keyframes ring {
+  0% {
+    width: 4rem;  /* 40px = 4rem */
+    height: 4rem;  /* 40px = 4rem */
+    opacity: 1;
+  }
+  100% {
+    width: 32rem;  /* 320px = 32rem */
+    height: 32rem;  /* 320px = 32rem */
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.store-container {
+  display: flex;
+  justify-content: flex-start; 
+  gap: 1rem; 
+  max-width: 20%;
+  margin-left: 5rem;
+  margin-top: 5rem;
+}
+
+.market-btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem; 
+  padding-left: 3.5rem;
+  transition: border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+  border: 1px solid #e7e7e7;
+  background-color: #fff;
+  background-position: center left 1rem;
+  background-size: 2rem 2rem; 
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+
+.market-btn .market-button-title {
+  display: block;
+  color: #222;
+  font-size: 1.5rem; 
+}
+
+.market-btn .market-button-subtitle {
+  display: block;
+  margin-bottom: auto;
+  color: #888;
+  font-size: 1rem; 
+}
+
+.market-btn:hover {
+  background-color: #f7f7f7;
+  text-decoration: none;
+}
+
+.apple-btn {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png);
+}
+
+.google-btn {
+  background-image: url(https://www.logo.wine/a/logo/Google_Play/Google_Play-Icon-Logo.wine.svg);
+}
+
+
+
+
+.mobile_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5%; /* Space between text and video */
+  max-width: 90%; /* Adjust for wider content including video */
+  margin-left: 4rem;
+  margin-top: 4rem;
+}
+
+.motto {
+  flex: 1; /* Text section takes equal space */
+  margin: 0;
+}
+
+.motto h2 {
+  font-family: 'Inria Sans', sans-serif;
+  font-size: 6.4rem; /* Maintain readability */
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  color: #000;
+  margin: 0;
+}
+
+.motto .highlight {
+  color: #FF0000;
+}
+
+.motto p {
+  font-family: 'Inria Sans', sans-serif;
+  font-size: 3.6rem;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: #000;
+  margin: 0;
+  margin-top: auto;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: 
+    typing 2s steps(29),
+    cursor .4s step-end infinite alternate;
+  animation-iteration-count: infinite;
+}
+
+.video-container-top {
+  flex: 1; 
+  max-width: 600px; 
+}
+
+video {
+  width: 100%; 
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+
+.phone-input-section {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin: 2rem 10rem;
+  align-items: center;
+}
+
+.country-code-input,
+.phone-number-input {
+  padding: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 2rem;
+  font-size: 1.6rem;
+  background-color: white; 
+  color: black;
+}
+
+.country-code-input {
+  width: 6rem;
+  text-align: center;
+}
+
+.phone-number-input {
+  width: 25rem;
+}
+
+.get-app-button {
+  padding: 1.2rem 2.4rem;
+  background-color: #FF0000;
+  color: white;
+  border: none;
+  border-radius: 3rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  transition: background-color 0.3s ease;
+}
+
+.get-app-button:hover {
+  background-color: #45a049;
+}
+
+
+
+
+/* Text Styles */
+.services-text {
+  width: 10.2rem;
+  height: 2.9rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  color: #000000;
+  margin-left: 5rem;
+  margin-top: 15rem;
+  margin-bottom: 2rem;
+  opacity: 0; /* Initially hidden */
+  transform: translateX(-10rem); /* Initially off-screen */
+  animation: appear 1s forwards; /* Animation with forwards to keep the final state */
+}
+
+.capability-text {
+  width: 28.4rem;
+  height: 4.4rem;
+  opacity: 0; /* Initially hidden */
+  font-family: 'Inter', sans-serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  color: #000;
+  margin-left: 5rem;
+  margin-bottom: 2rem;
+  transform: translateX(-10rem); /* Initially off-screen */
+  animation: appear 1s forwards; /* Apply the same animation */
+}
+
+/* Keyframe for the appear animation */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-10rem); /* Start off-screen */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* End in the original position */
+  }
+}
+
+/* Grid Wrapper */
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  margin-top: 4rem;
+  box-sizing: border-box;
+}
+
+/* Grid for image and text overlay */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Always 4 equal columns */
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Individual image containers */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Allow height to adjust based on content */
+  overflow: hidden;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+/* Image styling */
+.hover-image {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 3rem 3rem 0 0;
+}
+
+/* Bottom text styling */
+.bottom-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5.7rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  line-height: 5.7rem;
+  transition: height 0.3s ease;
+  border-radius: 2rem 2rem 0 0;
+  font-size: 1.5rem;
+}
+
+/* Hover effect on grid items */
+.bottom-text:hover {
+  height: 21.5rem;
+  line-height: 1.5;
+  padding: 2rem;
+}
+
+/* Universal default styling */
+.Quote-container {
+  width: 100%;
+  max-width: 192rem;
+  height: auto;
+  background-color: #000000;
+  border: 0.2rem solid #010101;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.text {
+  font-family: 'Inria Sans', sans-serif;
+  font-size: 4.8rem;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.highlight {
+  color: red;
+}
+
+
+
+/* Video container styling */
+.video-container {
+  width: 100%;
+  max-width: 240rem;
+  min-height: 40rem;
+  padding: 4rem 2rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+
+.description {
+  font-family: Inter, sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 2rem;
+}
+
+/* Styling for video slider */
+.video-slider {
+  display: flex;
+  overflow-x: scroll;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.video-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Basic styling for videos */
+.slider-video {
+  width: 50rem;
+  height: 30rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.video-slider .slider-video:first-child {
+  margin-left: 2rem;
+}
+
+.slider-video:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+/* Main container for "Our Team" */
+.team-container {
+  width: 100%;
+  height: 100vh; /* Cover 100% of viewport height */
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: black;
+}
+
+
+
+/* Heading styling */
+.team-heading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.36;
+  text-align: left;
+  margin-bottom: 3rem;
+  color: #ffffff;
+}
+
+/* Team slider styling */
+.team-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  scrollbar-width: none;
+  height: calc(100vh - 10rem); /* Adjust slider height to fit within container */
+}
+
+.team-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual team tile */
+.team-tile {
+  flex: 0 0 auto;
+  width: 50rem; /* Increase width of team tile */
+  height: 100%; /* Make tile take full height */
+  border-radius: 5rem 5rem 0 0;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+/* Image styling */
+.team-image {
+  width: 100%;
+  height: 100%; /* Ensure the image takes full height */
+  object-fit: cover;
+}
+
+/* Bottom text overlay */
+.image-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  line-height: 6rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8rem;
+  transition: height 0.3s ease;
+  border-radius: 2rem 2rem 0 0;
+}
+
+/* Hover effect to expand text */
+.team-tile:hover .image-text {
+  height: 24rem;
+  line-height: 1.5;
+}
+
+/* Focusing effect on hover */
+.team-tile:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* Scaling down other tiles when one is hovered */
+.team-slider:hover .team-tile:not(:hover) {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+
+
+
+
+
+/* News media container styling */
+.news-media-container {
+  width: 100%;
+  max-width: 240rem;
+  height: 60rem;
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-media-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+/* Heading styling */
+.news-heading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1.36;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Description styling */
+.news-description {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8rem;
+  color: #666;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* Horizontal scroll container for news blocks */
+.news-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  scrollbar-width: none;
+}
+
+.news-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual news block styling */
+.news-block {
+  flex: 0 0 auto;
+  width: 50rem;
+  height: 40rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+/* Image styling */
+.news-image {
+  width: 100%;
+  height: 20rem;
+  border-radius: 0.8rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* Text description styling */
+.news-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.6rem;
+  color: #333;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+/* "Learn More" button styling */
+.learn-more-button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+  background-color: #0056b3;
+}
+
+/* Hover effect to slightly enlarge news block */
+.news-block:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* Content container styling */
+.content-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 240rem;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 4rem;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  background-color: #000000;
+  gap: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+/* Text section styling */
+.text-section {
+  flex: 1;
+  width: 50%;
+  color: #ffffff;
+  text-align: left;
+  padding-right: 2rem;
+}
+
+.text-section h1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 6.4rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.text-section h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 3.6rem;
+  font-weight: 600;
+  margin-top: 7rem;
+  color: #ffffff;
+}
+
+.text-section p {
+  font-family: 'Arial', sans-serif;
+  font-size: 2.4rem;
+  color: #ffffff;
+  margin: 0.5rem 0;
+  margin-top: -1rem;
+  line-height: 1.6;
+}
+
+/* Image section styling */
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-image {
+  max-width: 70%;
+  height: auto;
+  margin-top: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+/* Custom Section Styling */
+.custom-section {
+  width: 70%;
+  max-width: 150rem;
+  height: 70rem;
+  margin: 5rem auto;
+  border-radius: 3rem;
+  border: 0.2rem solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+/* Header Text Styling */
+.header-text {
+  width: 100%;
+  max-width: 90rem;
+  font-family: 'Inria Sans', sans-serif;
+  font-size: 6.4rem;
+  color: red;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Description Text Styling */
+.description-text {
+  width: 100%;
+  max-width: 78.9rem;
+  font-family: 'Inria Sans', sans-serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: black;
+}
+
+/* Email and Button Container */
+.email-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 90rem;
+  margin-top: 3rem;
+}
+
+/* Email Input Field Styling */
+.email-input {
+  width: 100%;
+  max-width: 65.9rem;
+  height: 7.2rem;
+  border-radius: 2rem;
+  border: 0.1rem solid #ccc;
+  padding: 0 1.5rem;
+  font-size: 1.6rem;
+  opacity: 1;
+}
+
+/* Subscribe Button Styling */
+.subscribe-btn {
+  width: 21.4rem;
+  height: 7.2rem;
+  border-radius: 2rem;
+  background-color: red;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
+/*Banner*/
+
+/* Container styling to hold the animated image */
+.invest_container {
+  position: relative;
+  width: 100%; /* Ensure it takes full width of the parent container */
+  overflow: hidden; /* Hide the image when it moves out of view */
+  height: auto; /* Adjust height as needed */
+}
+
+/* Animation for the image */
+@keyframes moveRightToLeft {
+  0% {
+    transform: translateX(100%); /* Start off-screen to the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Move off-screen to the left */
+  }
+}
+
+.invest_style {
+  width: 100%;
+  max-width: 240rem; /* Image width as per your requirement */
+  height: auto;
+  animation: moveRightToLeft 10s linear infinite; /* Smooth infinite animation */
+  position: relative; /* Keep it within the flow of its container */
+}
+
+
+
+
+
+
+
+
+.footer {
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  font-size: 1.4rem;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.nav-link {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #1f2937;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 3rem;
+  padding: 4rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.footer-section h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 1rem;
+}
+
+.footer-section ul li a {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #1f2937;
+}
+
+.footer-bottom {
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.app-downloads {
+  display: flex;
+  gap: 2rem;
+}
+
+.app-link {
+  transition: opacity 0.3s ease;
+}
+
+.app-link:hover {
+  opacity: 0.8;
+}
+
+.social-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.social-link {
+  color: #4b5563;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: #1f2937;
+}
+
+.copyright {
+  text-align: center;
+  color: #4b5563;
+  font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*___________________________________________________*/
+
+
+
+/* 4xl */
+@media (min-width: 1921px) {
+  .home-container {
+    max-width: 100%;
+  }
+
+
+.header-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+  .company-logo {
+    width: 50rem;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4rem;
+  }
+  .download-button {
+    font-size: 2rem;
+    border: 0.2rem solid #d32f2f;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    margin: auto;
+    background-color: white;
+    color: #d32f2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+  }
+  .get-started-button {
+    min-width: 15rem;  
+    min-height: 6rem; 
+    margin-bottom: 4rem;
+    font-family: 'Arial', Helvetica;
+    font-size: 1.6rem;  
+    text-transform: uppercase;
+    letter-spacing: 0.15rem; 
+    font-weight: 600;
+    color: #FFFFFF;
+    background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 77, 77, 1) 100%);
+    border: none;
+    border-radius: 120rem;  
+    transition: all 0.4s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 1rem;  
+  }
+
+  /* Get Started Button Hover Effects */
+.get-started-button:hover,
+.get-started-button:focus {
+  color: #FFFFFF;
+  transform: translateY(-0.4rem);  
+}
+
+/* Get Started Button Ring (Before Pseudo-element) */
+.get-started-button::before {
+  content: '';
+  border-radius: 120rem;  
+  min-width: calc(15rem + 1.2rem);  
+  min-height: calc(6rem + 1.2rem); 
+  border: 0.4rem solid red; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+/* Get Started Button Ring on Hover */
+.get-started-button:hover::before,
+.get-started-button:focus::before {
+  opacity: 1.2;
+}
+
+/* Get Started Button Ring (Animation) */
+.get-started-button::after {
+  content: '';
+  width: 1rem;  
+  height: 4rem;  
+  border-radius: 50%;
+  border: 0.5rem solid red;  
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.6s infinite;
+  opacity: 1;
+}
+
+/* No need to stop the animation after hover */
+.get-started-button:hover::after,
+.get-started-button:focus::after {
+  opacity: 1; 
+}
+
+/* Keyframes for Ring Animation */
+@keyframes ring {
+  0% {
+    width: 4rem;  
+    height: 4rem;  
+    opacity: 1;
+  }
+  100% {
+    width: 20rem;  
+    height: 20rem;  
+    opacity: 0;
+  }
+}
+
+
+  
+
+
+  .store-container {
+    max-width: 50%;
+    gap: 2rem; 
+    margin-left: 8rem; 
+    margin-top: 15rem;
+  }
+
+  .market-btn {
+    padding: 3rem 2rem; 
+    padding-left: 10rem; 
+    background-position: center left 1.5rem; 
+    background-size: 6rem 6rem;
+  }
+
+  .market-btn .market-button-title {
+    font-size: 2.2rem; 
+  }
+
+  .market-btn .market-button-subtitle {
+    font-size: 1.5rem; 
+  }
+
+  .video-container-top {
+    flex: 1; 
+    max-width: 800px; 
+  }
+  
+  video {
+    width: 100%; 
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .motto{
+    max-width: 150rem;
+  }
+
+  .motto h2 {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 12rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .motto .highlight {
+    color: #FF0000;
+  }
+  
+  .motto p {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-top: auto;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 
+      typing 2s steps(29),
+      cursor .4s step-end infinite alternate;
+    animation-iteration-count: infinite;
+  }
+
+  .phone-input-section {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    margin: 2rem 2rem; 
+    gap: 1rem;
+    margin-left: 7rem;
+    margin-top: 3rem;
+  }
+  
+  .country-code-input,
+  .phone-number-input {
+    padding: 1.5rem; 
+    font-size: 1.2rem; 
+  }
+  .country-code-input{
+    font-size: 1.6rem;
+  }
+
+  .country-code-input {
+    width: 8rem;
+  }
+
+  .phone-number-input {
+    width: 33rem;
+    font-size: 2rem;
+  }
+
+  .get-app-button {
+    padding: 1.3rem 1.3rem;
+    font-size: 2rem;
+  }
+
+  .Quote-container {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    background-color: #000000;
+    border: 0.2rem solid #010101;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem auto;
+  }
+  .text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 13rem;
+    line-height: 1.5;
+    color: rgb(255, 255, 255);
+    position: relative;
+    overflow: hidden; /* Ensures clipping works */
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); /* Hidden initially */
+    animation: diagonal-reveal-text 3s ease-in-out forwards;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes diagonal-reveal-text {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+  
+  .highlight {
+    color: red;
+  }
+  .video-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+  }
+
+  .description {
+    font-size: 5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .video-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .slider-video {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    max-width: 70rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+  }
+
+  
+/* Main container for "Our Team" */
+.team-container {
+  width: 100%;
+  height: 100vh; /* Cover 100% of viewport height */
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: black;
+}
+
+
+
+/* Heading styling */
+.team-heading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.36;
+  text-align: left;
+  margin-bottom: 3rem;
+  color: #ffffff;
+}
+
+/* Team slider styling */
+.team-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  scrollbar-width: none;
+  height: calc(100vh - 10rem); /* Adjust slider height to fit within container */
+}
+
+.team-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual team tile */
+.team-tile {
+  flex: 0 0 auto;
+  min-width: 100rem; /* Increase width of team tile */
+  height: 100%; /* Make tile take full height */
+  border-radius: 5rem 5rem 0 0;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+/* Image styling */
+.team-image {
+  width: 100%;
+  height: 100%; /* Ensure the image takes full height */
+  object-fit: cover;
+}
+
+/* Bottom text overlay */
+.image-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  line-height: 6rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8rem;
+  transition: height 0.3s ease;
+  border-radius: 2rem 2rem 0 0;
+}
+
+/* Hover effect to expand text */
+.team-tile:hover .image-text {
+  height: 24rem;
+  line-height: 1.5;
+}
+
+/* Focusing effect on hover */
+.team-tile:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* Scaling down other tiles when one is hovered */
+.team-slider:hover .team-tile:not(:hover) {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+
+
+
+.container {
+  max-width: 140rem; 
+  padding: 0 4rem; 
+}
+
+.nav-links {
+  justify-content: flex-start; 
+  gap: 3rem; 
+}
+
+.footer-content {
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 4rem; 
+}
+
+.footer-section h3 {
+  font-size: 2.8rem; 
+  margin-bottom: 2rem;
+}
+
+.footer-section ul li {
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+}
+
+.footer-section ul li a {
+  font-size: 1.6rem; 
+}
+
+.footer-bottom {
+  gap: 4rem; 
+}
+
+.app-downloads {
+  gap: 3rem; 
+}
+
+.social-links {
+  gap: 3rem; 
+}
+
+.copyright {
+  font-size: 1.8rem; 
+}
+
+.nav-link {
+  font-size: 1.6rem; 
+}
+
+}
+
+/* 3xl */
+@media (min-width: 1537px) and (max-width: 1920px) {
+  .home-container {
+    max-width: 100%;
+  }
+}
+
+/* 2xl */
+@media (max-width: 1536px) {
+  .home-container {
+    max-width: 100%;
+  }
+  .header-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .home-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .company-logo {
+    width: 35rem;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4rem;
+  }
+  .download-button {
+    font-size: 2rem;
+    border: 0.2rem solid #d32f2f;
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: auto;
+    background-color: white;
+    color: #d32f2f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+  }
+  .download-button:hover {
+    width: 15rem;
+    height: 4.5rem;
+    border-radius: 3rem;
+    background-color: #d32f2f;
+    box-shadow: 0px 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+    color: white;
+    transition: 0.3s;
+  }
+  .get-started-button {
+    min-width: 15rem;  
+    min-height: 6rem; 
+    margin-bottom: 4rem;
+    font-family: 'Arial', Helvetica;
+    font-size: 1.6rem;  
+    text-transform: uppercase;
+    letter-spacing: 0.15rem; 
+    font-weight: 600;
+    color: #FFFFFF;
+    background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 77, 77, 1) 100%);
+    border: none;
+    border-radius: 120rem;  
+    transition: all 0.4s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 1rem;  
+  }
+  
+  /* Get Started Button Hover Effects */
+  .get-started-button:hover,
+  .get-started-button:focus {
+    color: #FFFFFF;
+    transform: translateY(-0.4rem);  
+  }
+  
+  /* Get Started Button Ring (Before Pseudo-element) */
+  .get-started-button::before {
+    content: '';
+    border-radius: 120rem;  
+    min-width: calc(15rem + 1.2rem);  
+    min-height: calc(6rem + 1.2rem); 
+    border: 0.4rem solid red; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.4s ease-in-out 0s;
+  }
+  
+  /* Get Started Button Ring on Hover */
+  .get-started-button:hover::before,
+  .get-started-button:focus::before {
+    opacity: 1.2;
+  }
+  
+  /* Get Started Button Ring (Animation) */
+  .get-started-button::after {
+    content: '';
+    width: 1rem;  
+    height: 4rem;  
+    border-radius: 50%;
+    border: 0.5rem solid red;  
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.6s infinite;
+    opacity: 1;
+  }
+  
+  /* No need to stop the animation after hover */
+  .get-started-button:hover::after,
+  .get-started-button:focus::after {
+    opacity: 1; 
+  }
+  
+  /* Keyframes for Ring Animation */
+  @keyframes ring {
+    0% {
+      width: 4rem;  
+      height: 4rem;  
+      opacity: 1;
+    }
+    100% {
+      width: 20rem;  
+      height: 20rem;  
+      opacity: 0;
+    }
+  }
+  video {
+    width: 80%; 
+    height: auto;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  }
+  .mobile_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%; /* Space between text and video */
+    max-width: 100%; /* Adjust for wider content including video */
+    margin-left: 4rem;
+    margin-top: 4rem;
+  }
+  .Quote-container {
+    width: 100%;
+    max-width: 1536rem;
+    height: auto;
+    background-color: #000000;
+    border: 0.2rem solid #010101;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem auto;
+  }
+  .text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 6rem;
+    line-height: 1.5;
+    color: rgb(255, 255, 255);
+    position: relative;
+    overflow: hidden; /* Ensures clipping works */
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); /* Hidden initially */
+    animation: diagonal-reveal-text 3s ease-in-out forwards;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes diagonal-reveal-text {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+  
+  .highlight {
+    color: red;
+  }
+  .video-container-top {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+  }
+
+  .description {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .video-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .slider-video {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    max-width: 46rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+  }
+
+  /* Main container for "Our Team" */
+.team-container {
+  width: 100%;
+  height: 100vh; /* Cover 100% of viewport height */
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: black;
+}
+
+
+
+/* Heading styling */
+.team-heading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.36;
+  text-align: left;
+  margin-bottom: 3rem;
+  color: #ffffff;
+}
+
+/* Team slider styling */
+.team-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  scrollbar-width: none;
+  height: calc(100vh - 10rem); /* Adjust slider height to fit within container */
+}
+
+.team-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual team tile */
+.team-tile {
+  flex: 0 0 auto;
+  min-width: 60rem; /* Increase width of team tile */
+  height: 100%; /* Make tile take full height */
+  border-radius: 5rem 5rem 0 0;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+/* Image styling */
+.team-image {
+  width: 100%;
+  height: 100%; /* Ensure the image takes full height */
+  object-fit: cover;
+}
+
+/* Bottom text overlay */
+.image-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  line-height: 6rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8rem;
+  transition: height 0.3s ease;
+  border-radius: 2rem 2rem 0 0;
+}
+
+/* Hover effect to expand text */
+.team-tile:hover .image-text {
+  height: 24rem;
+  line-height: 1.5;
+}
+
+/* Focusing effect on hover */
+.team-tile:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* Scaling down other tiles when one is hovered */
+.team-slider:hover .team-tile:not(:hover) {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+
+
+.phone-input-section {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin: 2rem 10rem;
+  align-items: center;
+  margin-left: 3rem;
+}
+
+.country-code-input,
+.phone-number-input {
+  padding: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 2rem;
+  font-size: 1.6rem;
+  background-color: white; 
+  color: black;
+}
+
+.country-code-input {
+  width: 6rem;
+  text-align: center;
+}
+
+.phone-number-input {
+  width: 25rem;
+}
+
+
+
+  
+}
+
+/* xl */
+@media (max-width: 1280px) {
+  .home-container {
+    max-width: 100%;
+  }
+}
+
+/* lg */
+@media (max-width: 1024px) {
+  .home-container {
+    max-width: 100%;
+  }
+  .store-container {
+    max-width: 50%;
+    gap: 1rem; 
+    margin-left: 4rem; 
+    margin-top: 4rem;
+  }
+
+  .market-btn {
+    padding: 0.5rem 1rem; 
+    padding-left: 3rem;
+    background-position: center left 0.75rem; 
+    background-size: 1.5rem 1.5rem; 
+  }
+
+  .market-btn .market-button-title {
+    font-size: 1.2rem; 
+  }
+
+  .market-btn .market-button-subtitle {
+    font-size: 0.8rem; 
+  }
+
+  .motto h2 {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .motto .highlight {
+    color: #FF0000;
+  }
+  
+  .motto p {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 
+      typing 2s steps(29),
+      cursor .4s step-end infinite alternate;
+    animation-iteration-count: infinite;
+  }
+  .phone-input-section {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    margin: 2rem 2rem; 
+    gap: 0.5rem;
+    margin-left: 4rem;
+  }
+  
+  .country-code-input,
+  .phone-number-input {
+    padding: 1rem; 
+    font-size: 1.2rem; 
+  }
+  .country-code-input{
+    font-size: 1rem;
+  }
+
+  .country-code-input {
+    width: 4.5rem;
+  }
+
+  .phone-number-input {
+    width: 17rem;
+    font-size: 1rem;
+  }
+
+  .get-app-button {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+  }
+  .Quote-container {
+    width: 100%;
+    max-width: 1024rem;
+    height: auto;
+    background-color: #000000;
+    border: 0.2rem solid #010101;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem auto;
+  }
+  .text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 4rem;
+    line-height: 1.5;
+    color: rgb(255, 255, 255);
+    position: relative;
+    overflow: hidden; /* Ensures clipping works */
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); /* Hidden initially */
+    animation: diagonal-reveal-text 3s ease-in-out forwards;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes diagonal-reveal-text {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+  
+  .highlight {
+    color: red;
+  }
+
+  .video-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+  }
+
+  .description {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .video-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .slider-video {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    max-width: 48rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+  }
+  
+  
+
+
+}
+
+/* md */
+@media (max-width: 768px) {
+  .home-container {
+    max-width: 100%;
+  }
+
+  .landing-button-header {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  
+  .mobile_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    max-width: 100%;
+    margin-left: 3rem;
+    margin-top: 4rem;
+  }
+  .video-container-top {
+    display: none;
+  }
+  
+  .motto {
+    flex: 1;
+    margin: 0;
+  }
+  
+  .motto h2 {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .motto .highlight {
+    color: #FF0000;
+  }
+  
+  .motto p {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 
+      typing 2s steps(29),
+      cursor .4s step-end infinite alternate;
+    animation-iteration-count: infinite;
+  }
+  .phone-input-section {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    margin: 2rem 2rem; 
+    gap: 0.5rem;
+    margin-bottom: -10rem;
+  }
+  
+  .country-code-input,
+  .phone-number-input {
+    padding: 1rem; 
+    font-size: 1.2rem; 
+  }
+  .country-code-input{
+    font-size: 1rem;
+  }
+
+  .country-code-input {
+    width: 4.5rem;
+  }
+
+  .phone-number-input {
+    width: 17rem;
+    font-size: 1rem;
+  }
+
+  .get-app-button {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+  }
+
+  .services-text {
+    width: 10.2rem;
+    height: 2.9rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+    color: #000000;
+    margin-left: 3rem;
+    margin-top: 17rem;
+    margin-bottom: 1rem;
+    opacity: 0; /* Initially hidden */
+    transform: translateX(-10rem); /* Initially off-screen */
+    animation: appear 1s forwards; /* Animation with forwards to keep the final state */
+  }
+  
+  .capability-text {
+    width: 28.4rem;
+    height: 4.4rem;
+    opacity: 0; /* Initially hidden */
+    font-family: 'Inter', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+    transform: translateX(-10rem); /* Initially off-screen */
+    animation: appear 1s forwards; /* Apply the same animation */
+  }
+
+  /* Grid Wrapper */
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 6rem;
+  padding-right: 6rem;
+  margin-top: 4rem;
+  box-sizing: border-box;
+}
+
+/* Grid for image and text overlay */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Always 4 equal columns */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Individual image containers */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Allow height to adjust based on content */
+  overflow: hidden;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+/* Image styling */
+.hover-image {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 5rem 5rem 0 0;
+}
+
+/* Bottom text styling */
+.bottom-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5.7rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  line-height: 5.7rem;
+  transition: height 0.3s ease;
+  border-radius: 2rem 2rem 0 0;
+  font-size: 1.5rem;
+}
+
+/* Hover effect on grid items */
+.bottom-text:hover {
+  height: 70%;
+  line-height: 1.5;
+  padding: 2rem;
+}
+
+.Quote-container {
+  width: 100%;
+  max-width: 768rem;
+  height: auto;
+  background-color: #000000;
+  border: 0.2rem solid #010101;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem auto;
+}
+.text {
+  font-family: 'Inria Sans', sans-serif;
+  font-size: 2.8rem;
+  line-height: 1.5;
+  color: rgb(255, 255, 255);
+  position: relative;
+  overflow: hidden; /* Ensures clipping works */
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); /* Hidden initially */
+  animation: diagonal-reveal-text 3s ease-in-out forwards;
+  animation-iteration-count: infinite;
+}
+
+@keyframes diagonal-reveal-text {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.highlight {
+  color: red;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.description {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.video-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.slider-video {
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+  max-width: 35rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+
+.content-container {
+  flex-direction: column; /* Stack content vertically */
+  padding: 2rem; /* Reduce padding on small screens */
+  gap: 1rem; /* Reduce gap between elements */
+  max-width: 100%; /* Ensure it doesn't overflow */
+}
+
+/* Text section styling */
+.text-section {
+  width: 100%; /* Full width on mobile */
+  padding-right: 0; /* Remove padding for small screens */
+  text-align: center; /* Center align text */
+}
+
+.text-section h1 {
+  font-size: 4.8rem; /* Smaller font size for mobile */
+  margin-bottom: 1.5rem; /* Adjust spacing */
+}
+
+.text-section h2 {
+  font-size: 2.8rem; /* Smaller font size for mobile */
+  margin-top: 4rem; /* Adjust spacing */
+}
+
+.text-section p {
+  font-size: 1.6rem; /* Smaller font size for mobile */
+  margin-top: 0.5rem; /* Adjust spacing */
+}
+
+/* Image section styling */
+.image-section {
+  width: 100%; /* Ensure the image section takes full width */
+  margin-top: 2rem; /* Add margin to separate image */
+}
+
+.content-image {
+  max-width: 90%; /* Adjust image size */
+  margin-top: 0; /* No extra margin */
+}
+
+
+
+.custom-section {
+  width: 90%; /* Ensure section fits within smaller screen width */
+  max-width: 100%; /* Full width on mobile */
+  height: auto; /* Allow height to adjust based on content */
+  margin: 2rem auto; /* Reduce margin */
+  border-radius: 1.5rem; /* Smaller border radius */
+  padding: 1.5rem; /* Reduced padding */
+  gap: 1rem; /* Reduce gap between elements */
+}
+
+/* Header Text Styling */
+.header-text {
+  font-size: 4.8rem; /* Smaller font size for mobile */
+  line-height: 1.3; /* Adjust line height */
+}
+
+/* Description Text Styling */
+.description-text {
+  font-size: 2rem; /* Smaller font size for mobile */
+  line-height: 1.3; /* Adjust line height */
+}
+
+/* Email and Button Container */
+.email-container {
+  flex-direction: column; /* Stack email input and button vertically */
+  gap: 1.5rem; /* Adjust gap between email input and button */
+}
+
+/* Email Input Field Styling */
+.email-input {
+  width: 50%; 
+  max-width: 100%;
+  height: 4rem; 
+  font-size: 1.4rem;
+  padding: 0 1rem; 
+}
+
+.subscribe-btn {
+  width: 20%;
+  max-width: 100%;
+  height: 4rem;
+  font-size: 1.8rem;
+  border-radius: 2rem; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+}
+
+
+/* xs */
+@media (max-width: 475px) {
+  .home-container {
+    max-width: 100%;
+  }
+/* Header Wrapper */
+.header-wrapper {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Home Header */
+.home-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+  max-width: 120rem; /* Max width to prevent stretching */
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+/* Company Logo */
+.company-logo {
+  width: 15rem;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Landing Button Header */
+.landing-button-header {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 1px solid red;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.highlight-slash {
+  color: #000000;
+}
+
+/* Buttons Container */
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Basic button style */
+.download-btn {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: none;
+}
+
+/* Arrow styling */
+.arrow {
+  margin-left: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 2rem;
+}
+
+/* Hover effect */
+.download-btn:hover {
+  background-color: #45a049;
+}
+
+.download-btn:hover .arrow {
+  opacity: 1;
+}
+
+
+  .store-container {
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    max-width: 100%; 
+    margin-left: 0; 
+    margin-top: 2rem;
+    gap: 0.5rem; 
+  }
+
+  .market-btn {
+    padding: 0.5rem 1rem; 
+    padding-left: 3rem;
+    background-position: center left 0.75rem; 
+    background-size: 1.5rem 1.5rem; 
+  }
+
+  .market-btn .market-button-title {
+    font-size: 1.2rem; 
+  }
+
+  .market-btn .market-button-subtitle {
+    font-size: 0.8rem; 
+  }
+
+  .mobile_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    max-width: 100%;
+    margin-left: 3rem;
+    margin-top: 4rem;
+  }
+  .video-container-top {
+    display: none;
+  }
+  
+  .motto {
+    flex: 1;
+    margin: 0;
+  }
+  
+  .motto h2 {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 3.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+  }
+  
+  .motto .highlight {
+    color: #FF0000;
+  }
+  
+  .motto p {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 
+      typing 2s steps(29),
+      cursor .4s step-end infinite alternate;
+    animation-iteration-count: infinite;
+  }
+  .phone-input-section {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    margin: 2rem 2rem; 
+    gap: 0.5rem;
+  }
+  
+  .country-code-input,
+  .phone-number-input {
+    padding: 1rem; 
+    font-size: 1.2rem; 
+  }
+  .country-code-input{
+    font-size: 1rem;
+  }
+
+  .country-code-input {
+    width: 4.5rem;
+  }
+
+  .phone-number-input {
+    width: 17rem;
+    font-size: 1rem;
+  }
+
+  .get-app-button {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+  }
+
+  
+    /* Adjust services text */
+    .services-text {
+      width: 7rem; 
+      height: 2rem; 
+      font-size: 1.5rem; 
+      margin-left: 2rem;
+      margin-top: 8rem;
+      margin-bottom: 0.5rem; 
+    }
+  
+    /* Adjust capability text */
+    .capability-text {
+      width: 18rem; 
+      height: 3rem;
+      font-size: 1.8rem; 
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+  
+    /* Keyframe adjustment for the appear animation */
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateX(-5rem); 
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+  .grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 4rem;
+    box-sizing: border-box;
+  }
+
+  /* Adjust the grid to 1 column for mobile screens */
+  .image-grid {
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1rem; 
+    padding-left: 2rem; 
+    padding-right: 2rem;
+  }
+
+  /* Adjust image container height and alignment for smaller screens */
+  .image-container {
+    height: auto; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    max-width: 100%;
+  }
+
+  /* Make sure the image fits within the container without overflow */
+  .hover-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+    border-radius: 3rem 3rem 0 0; 
+  }
+
+  /* Adjust bottom text position for mobile */
+  .bottom-text {
+    height: 4rem; 
+    line-height: 4rem;
+    font-size: 1.4rem; 
+  }
+
+  /* Hover effect adjustment */
+  .bottom-text:hover {
+    height: 70%;
+    padding: 1rem;
+    font-size: 1.6rem;
+  }
+  .Quote-container {
+    width: 100%;
+    max-width: 475rem;
+    height: auto;
+    background-color: #000000;
+    border: 0.2rem solid #010101;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem auto;
+  }
+  .text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 2.8rem;
+    line-height: 1.5;
+    color: rgb(255, 255, 255);
+    position: relative;
+    overflow: hidden; /* Ensures clipping works */
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); /* Hidden initially */
+    animation: diagonal-reveal-text 3s ease-in-out forwards;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes diagonal-reveal-text {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+  
+  .highlight {
+    color: red;
+  }
+
+  .video-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+  }
+
+  .description {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .video-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .slider-video {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    max-width: 32rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+  }
+
+
+  .team-container {
+    height: auto;
+    padding: 3rem; 
+  }
+  
+  .team-heading {
+    font-size: 4.2rem;
+    margin-bottom: 2rem; 
+  }
+  
+  .team-slider {
+    gap: 2rem; 
+    padding-bottom: 2rem;
+    height: 30rem; 
+  }
+  
+  .team-tile {
+    width: 90%; 
+    height: auto; 
+    border-radius: 2rem;
+    transition: transform 0.3s ease; 
+  }
+  
+  .team-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4rem 4rem 0 0;
+  }
+  
+  .image-text {
+    font-size: 1.8rem;
+    height: 5.5rem; 
+    line-height: 5.5rem;
+  }
+  
+  .team-tile:hover .image-text {
+    height: 15rem;
+    line-height: 1.8;
+  }
+  
+  .team-tile:hover {
+    transform: scale(1.1); 
+  }
+  
+  .team-slider:hover .team-tile:not(:hover) {
+    transform: scale(0.9);
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 2rem; /* Adjust gap for better spacing */
+  }
+  
+  .footer-section h3 {
+    font-size: 1.4rem; /* Slightly smaller headings */
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 0.8rem;
+  }
+  
+  .footer-bottom {
+    gap: 2rem;
+  }
+  
+  .app-downloads {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .social-links {
+    flex-direction: row; 
+    justify-content: center; 
+    gap: 1rem; 
+  }
+  
+  .copyright {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .content-container {
+    flex-direction: column; /* Stack content vertically */
+    padding: 2rem; /* Reduce padding on small screens */
+    gap: 1rem; /* Reduce gap between elements */
+    max-width: 100%; /* Ensure it doesn't overflow */
+  }
+  
+  /* Text section styling */
+  .text-section {
+    width: 100%; /* Full width on mobile */
+    padding-right: 0; /* Remove padding for small screens */
+    text-align: center; /* Center align text */
+  }
+  
+  .text-section h1 {
+    font-size: 4.8rem; /* Smaller font size for mobile */
+    margin-bottom: 1.5rem; /* Adjust spacing */
+  }
+  
+  .text-section h2 {
+    font-size: 2.8rem; /* Smaller font size for mobile */
+    margin-top: 4rem; /* Adjust spacing */
+  }
+  
+  .text-section p {
+    font-size: 1.6rem; /* Smaller font size for mobile */
+    margin-top: 0.5rem; /* Adjust spacing */
+  }
+  
+  /* Image section styling */
+  .image-section {
+    width: 100%; /* Ensure the image section takes full width */
+    margin-top: 2rem; /* Add margin to separate image */
+  }
+  
+  .content-image {
+    max-width: 90%; /* Adjust image size */
+    margin-top: 0; /* No extra margin */
+  }
+  
+  
+  
+  
+  .custom-section {
+    width: 90%; /* Ensure section fits within smaller screen width */
+    max-width: 100%; /* Full width on mobile */
+    height: auto; /* Allow height to adjust based on content */
+    margin: 2rem auto; /* Reduce margin */
+    border-radius: 1.5rem; /* Smaller border radius */
+    padding: 1.5rem; /* Reduced padding */
+    gap: 1rem; /* Reduce gap between elements */
+  }
+  
+  /* Header Text Styling */
+  .header-text {
+    font-size: 4.8rem; /* Smaller font size for mobile */
+    line-height: 1.3; /* Adjust line height */
+  }
+  
+  /* Description Text Styling */
+  .description-text {
+    font-size: 2rem; /* Smaller font size for mobile */
+    line-height: 1.3; /* Adjust line height */
+  }
+  
+  /* Email and Button Container */
+  .email-container {
+    flex-direction: column; /* Stack email input and button vertically */
+    gap: 1.5rem; /* Adjust gap between email input and button */
+  }
+  
+  /* Email Input Field Styling */
+  .email-input {
+    width: 100%; 
+    max-width: 100%;
+    height: 4rem; 
+    font-size: 1.4rem;
+    padding: 0 1rem; 
+  }
+  
+  .subscribe-btn {
+    width: 50%;
+    max-width: 100%;
+    height: 4rem;
+    font-size: 1.8rem;
+    border-radius: 2rem; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 320px) {
+  .home-container {
+    max-width: 100%;
+  }
+
+/* Header Wrapper */
+.header-wrapper {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Home Header */
+.home-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%;
+  max-width: 120rem; /* Max width to prevent stretching */
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+/* Company Logo */
+.company-logo {
+  width: 10rem;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Landing Button Header */
+.landing-button-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 1px solid red;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.highlight-slash {
+  color: #000000;
+}
+
+/* Buttons Container */
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Basic button style */
+.download-btn {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: none;
+}
+
+/* Arrow styling */
+.arrow {
+  margin-left: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 2rem;
+}
+
+/* Hover effect */
+.download-btn:hover {
+  background-color: #45a049;
+}
+
+.download-btn:hover .arrow {
+  opacity: 1;
+}
+
+
+  .store-container {
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    max-width: 100%; 
+    margin-left: 0; 
+    margin-top: 2rem;
+    gap: 0.5rem; 
+  }
+
+  .market-btn {
+    padding: 0.5rem 1rem; 
+    padding-left: 3rem;
+    background-position: center left 0.75rem; 
+    background-size: 1.5rem 1.5rem; 
+  }
+
+  .market-btn .market-button-title {
+    font-size: 1.2rem; 
+  }
+
+  .market-btn .market-button-subtitle {
+    font-size: 0.8rem; 
+  }
+
+  .mobile_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    max-width: 100%;
+    margin-left: 3rem;
+    margin-top: 4rem;
+  }
+  .video-container-top {
+    display: none; 
+  }
+  
+  .motto {
+    flex: 1;
+    margin: 0;
+  }
+  
+  .motto h2 {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+  
+  .motto .highlight {
+    color: #FF0000;
+  }
+  
+  .motto p {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    color: #000;
+    margin: 0;
+    margin-top: auto;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 
+      typing 2s steps(29),
+      cursor .4s step-end infinite alternate;
+    animation-iteration-count: infinite;
+  }
+
+  .phone-input-section {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    margin: 1rem 2rem; 
+    gap: 0.5rem;
+  }
+  
+
+  .country-code-input,
+  .phone-number-input {
+    padding: 0.5rem; 
+    font-size: 1.2rem; 
+  }
+  .country-code-input{
+    font-size: 1rem;
+  }
+
+  .country-code-input {
+    width: 4.5rem;
+  }
+
+  .phone-number-input {
+    width: 12rem;
+    font-size: 1rem;
+  }
+
+  .get-app-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+
+    /* Adjust services text */
+    .services-text {
+      width: 7rem; 
+      height: 2rem; 
+      font-size: 1.5rem; 
+      margin-left: 2rem;
+      margin-top: 8rem;
+      margin-bottom: 0.5rem; 
+    }
+  
+    /* Adjust capability text */
+    .capability-text {
+      width: 18rem; 
+      height: 3rem;
+      font-size: 1.8rem; 
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+  
+    /* Keyframe adjustment for the appear animation */
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateX(-5rem); 
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+  .grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 4rem;
+    box-sizing: border-box;
+  }
+
+  /* Adjust the grid to 1 column for mobile screens */
+  .image-grid {
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1rem; 
+    padding-left: 2rem; 
+    padding-right: 2rem;
+  }
+
+  /* Adjust image container height and alignment for smaller screens */
+  .image-container {
+    height: auto; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    max-width: 100%;
+  }
+
+  /* Make sure the image fits within the container without overflow */
+  .hover-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+    border-radius: 3rem 3rem 0 0; 
+  }
+
+  /* Adjust bottom text position for mobile */
+  .bottom-text {
+    height: 4rem; 
+    line-height: 4rem;
+    font-size: 1.4rem; 
+  }
+
+  /* Hover effect adjustment */
+  .bottom-text:hover {
+    height: 12rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .Quote-container {
+    width: 100%;
+    max-width: 32rem;
+    height: auto;
+    background-color: #000000;
+    border: 0.2rem solid #010101;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem auto;
+  }
+  
+  .text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 2rem;
+    line-height: 1.5;
+    color: rgb(255, 255, 255);
+    position: relative;
+    overflow: hidden; /* Ensures clipping works */
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); /* Hidden initially */
+    animation: diagonal-reveal-text 3s ease-in-out forwards;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes diagonal-reveal-text {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+  
+  .highlight {
+    color: red;
+  }
+
+  .video-container {
+    width: 100%;
+    max-width: 100%;
+    height: 10rem;
+    padding: 0.5rem 1rem;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  .description {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  
+  .video-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    height: 70%; 
+  }
+  
+  .slider-video {
+    flex-shrink: 0;
+    width: 80%;
+    height: 100%; 
+    max-width: 24rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.1);
+    object-fit: cover; 
+  }
+  
+  
+  
+  .team-container {
+    height: auto;
+    padding: 3rem; 
+  }
+  
+  .team-heading {
+    font-size: 4.2rem;
+    margin-bottom: 2rem; 
+  }
+  
+  .team-slider {
+    gap: 2rem; 
+    padding-bottom: 2rem;
+    height: 30rem; 
+  }
+  
+  .team-tile {
+    width: 90%; 
+    height: auto; 
+    border-radius: 2rem;
+    transition: transform 0.3s ease; 
+  }
+  
+  .team-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4rem 4rem 0 0;
+  }
+  
+  .image-text {
+    font-size: 1.8rem;
+    height: 5.5rem; 
+    line-height: 5.5rem;
+  }
+  
+  .team-tile:hover .image-text {
+    height: 15rem;
+    line-height: 1.8;
+  }
+  
+  .team-tile:hover {
+    transform: scale(1.1); 
+  }
+  
+  .team-slider:hover .team-tile:not(:hover) {
+    transform: scale(0.9);
+  }
+
+  
+/* News media container styling */
+.news-media-container {
+  width: 100%;
+  max-width: 240rem;
+  height: 60rem;
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-media-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+/* Heading styling */
+.news-heading {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  line-height: 1.36;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Description styling */
+.news-description {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.8rem;
+  color: #666;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* Horizontal scroll container for news blocks */
+.news-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  scrollbar-width: none;
+}
+
+.news-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual news block styling */
+.news-block {
+  flex: 0 0 auto;
+  width: 50rem;
+  height: 40rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+/* Image styling */
+.news-image {
+  width: 100%;
+  height: 20rem;
+  border-radius: 0.8rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* Text description styling */
+.news-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.6rem;
+  color: #333;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+/* "Learn More" button styling */
+.learn-more-button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+  background-color: #0056b3;
+}
+
+/* Hover effect to slightly enlarge news block */
+.news-block:hover {
+  transform: scale(1.05);
+}
+
+
+
+.content-container {
+  flex-direction: column; /* Stack content vertically */
+  padding: 2rem; /* Reduce padding on small screens */
+  gap: 1rem; /* Reduce gap between elements */
+  max-width: 100%; /* Ensure it doesn't overflow */
+}
+
+/* Text section styling */
+.text-section {
+  width: 100%; /* Full width on mobile */
+  padding-right: 0; /* Remove padding for small screens */
+  text-align: center; /* Center align text */
+}
+
+.text-section h1 {
+  font-size: 4.8rem; /* Smaller font size for mobile */
+  margin-bottom: 1.5rem; /* Adjust spacing */
+}
+
+.text-section h2 {
+  font-size: 2.8rem; /* Smaller font size for mobile */
+  margin-top: 4rem; /* Adjust spacing */
+}
+
+.text-section p {
+  font-size: 1.6rem; /* Smaller font size for mobile */
+  margin-top: 0.5rem; /* Adjust spacing */
+}
+
+/* Image section styling */
+.image-section {
+  width: 100%; /* Ensure the image section takes full width */
+  margin-top: 2rem; /* Add margin to separate image */
+}
+
+.content-image {
+  max-width: 90%; /* Adjust image size */
+  margin-top: 0; /* No extra margin */
+}
+
+
+
+
+.custom-section {
+  width: 90%; /* Ensure section fits within smaller screen width */
+  max-width: 100%; /* Full width on mobile */
+  height: auto; /* Allow height to adjust based on content */
+  margin: 2rem auto; /* Reduce margin */
+  border-radius: 1.5rem; /* Smaller border radius */
+  padding: 1.5rem; /* Reduced padding */
+  gap: 1rem; /* Reduce gap between elements */
+}
+
+/* Header Text Styling */
+.header-text {
+  font-size: 4.8rem; /* Smaller font size for mobile */
+  line-height: 1.3; /* Adjust line height */
+}
+
+/* Description Text Styling */
+.description-text {
+  font-size: 2rem; /* Smaller font size for mobile */
+  line-height: 1.3; /* Adjust line height */
+}
+
+/* Email and Button Container */
+.email-container {
+  flex-direction: column; /* Stack email input and button vertically */
+  gap: 1.5rem; /* Adjust gap between email input and button */
+}
+
+/* Email Input Field Styling */
+.email-input {
+  width: 100%; 
+  max-width: 100%;
+  height: 4rem; 
+  font-size: 1.4rem;
+  padding: 0 1rem; 
+}
+
+.subscribe-btn {
+  width: 50%;
+  max-width: 100%;
+  height: 4rem;
+  font-size: 1.8rem;
+  border-radius: 2rem; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.invest_style {
+  width: 100%; 
+  max-width: 100%; 
+  height: auto; 
+}
+
+
+.container {
+  padding: 0 1rem;
+}
+
+.nav-links {
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-content {
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 2rem; /* Adjust gap for better spacing */
+}
+
+.footer-section h3 {
+  font-size: 1.4rem; /* Slightly smaller headings */
+  margin-bottom: 1rem;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-bottom {
+  gap: 2rem;
+}
+
+.app-downloads {
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-links {
+  flex-direction: row; 
+  justify-content: center; 
+  gap: 1rem; 
+}
+
+.copyright {
+  font-size: 1rem;
+  text-align: center;
+}
+
+  
+}
+
+
+
+
