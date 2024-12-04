@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Faisu0p.github.io/BhumiBazar",
+  "homepage": "https://Faisu0p.github.io/bhumi_website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
