@@ -89,10 +89,10 @@ const HomePage = () => {
                   <i className="fas fa-download"></i>
                 </div>
               </div>
-              <p>Download Project/Map</p>
+              <p className="d-btn">Download Project/Map</p>
             </div>
 
-            <button className="get-started-button" onClick={redirectToLogin}>
+            <button className="login-button" onClick={redirectToLogin}>
               Login
             </button>
           </div>
