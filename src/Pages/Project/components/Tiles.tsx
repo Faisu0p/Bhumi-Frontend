@@ -3,26 +3,36 @@ import axios from 'axios';
 import { Building2, MapPin, Maximize2, BadgeCheck } from 'lucide-react';
 import './Tiles.css';
 
-export default function PropertyTiles() {
+export default function PropertyTiles({ searchQuery }) {
   const [propertyData, setPropertyData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     // Fetch property data from the backend
     axios.get('http://localhost:5000/api/properties')
       .then(response => {
         setPropertyData(response.data);
+        setFilteredData(response.data);
       })
       .catch(error => {
         console.error('Error fetching property data:', error);
       });
-  }, []);  // Empty array to run once when the component mounts
+  }, []);
+
+  useEffect(() => {
+    const filtered = propertyData.filter(property =>
+      property.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      property.location.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [searchQuery, propertyData]);
 
   return (
     <div className="property-container">
-      {propertyData.length === 0 ? (
-        <p>No properties available</p>
+      {filteredData.length === 0 ? (
+        <p>No properties match your search.</p>
       ) : (
-        propertyData.map((property) => (
+        filteredData.map((property) => (
           <div key={property.id} className="property-tile">
             <div className="property-image">
               <img src={property.image} alt={property.name} />
