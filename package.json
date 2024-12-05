@@ -19,6 +19,7 @@
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slider": "^1.2.1",
     "@tailwindcss/forms": "^0.5.9",
+    "axios": "^1.7.9",
     "bhumi_website": "file:",
     "font-awesome": "^4.7.0",
     "framer-motion": "^11.11.17",
