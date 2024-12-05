@@ -11,7 +11,7 @@ import ProjectPage from './Pages/Project/ProjectPage';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router basename="/bhumi_website">
+    <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
