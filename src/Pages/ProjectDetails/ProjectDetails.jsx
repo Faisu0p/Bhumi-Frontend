@@ -1,40 +1,43 @@
-import React from 'react';
-import './ProjectDetails.css';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';  // Import useParams to access the id from the URL
+import axios from 'axios';
 import html2pdf from 'html2pdf.js';
-
-const projectData = {
-  id: "prop001",
-  city: "Gurgaon",
-  locality: "Sohna Road",
-  sublocality: "Sector 33",
-  builderName: "Antriksh Group",
-  projectName: "Antriksh Central Avenue",
-  companyName: "Antriksh Developers Ltd",
-  launchDate: "2023-01-15",
-  shortCode: "ACA-S33",
-  deliveryStatus: "Under Construction",
-  deliveryDate: "2025-12-31",
-  reraNumber: "RERA2023GRG001",
-  totalTowers: 2,
-  totalFlats: 114,
-  towerPhaseWise: "Phase 1: Tower A & B",
-  constructionType: "Premium High-Rise",
-  propertyCategory: "Residential",
-  propertyType: "Apartment",
-  sectorBriefing: "Prime location in Sector-33 on Sohna Road, offering excellent connectivity",
-  projectBriefing: "Discover the epitome of luxury living at Central Avenue, Gurugram's most sought-after residential project. Nestled in the prime location of Sector-33 on Sohna Road, this project offers unparalleled connectivity and convenience.",
-  masterLayoutPlan: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg"
-};
+import './ProjectDetails.css';
 
 function ProjectDetails() {
+  const { id } = useParams();  // Get the project ID from the URL
+  const [projectData, setProjectData] = useState(null);  // Store project data
+  const [loading, setLoading] = useState(true);  // Loading state
+
+  useEffect(() => {
+    // Fetch project data based on the ID
+    axios.get(`http://localhost:5000/api/projects/${id}`)
+      .then((response) => {
+        setProjectData(response.data);  // Set fetched data
+        setLoading(false);  // Stop loading
+      })
+      .catch((error) => {
+        console.error('Error fetching project data:', error);
+        setLoading(false);  // Stop loading even in case of an error
+      });
+  }, [id]);
 
   const downloadPDF = (e) => {
     e.preventDefault();
-    const element = document.body; // You can specify any part of the page here
+    const element = document.body; // Specify the content to include in the PDF
     html2pdf()
       .from(element)
-      .save("page.pdf");
+      .save(`${projectData?.projectName || 'project'}.pdf`);
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!projectData) {
+    return <p>Project not found.</p>;
+  }
+
   return (
     <div className="property-details-container">
       <div className="property-hero-section">

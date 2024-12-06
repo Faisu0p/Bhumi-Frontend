@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import { Building2, MapPin, Maximize2, BadgeCheck } from 'lucide-react';
 import './Tiles.css';
 
 export default function PropertyTiles({ searchQuery }) {
   const [propertyData, setPropertyData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const navigate = useNavigate();  // Initialize navigate function
 
   useEffect(() => {
     // Fetch property data from the backend
@@ -27,13 +29,21 @@ export default function PropertyTiles({ searchQuery }) {
     setFilteredData(filtered);
   }, [searchQuery, propertyData]);
 
+  const handleTileClick = (id) => {
+    navigate(`/project-details/${id}`);  // Navigate to the details page with the selected ID
+  };
+
   return (
     <div className="property-container">
       {filteredData.length === 0 ? (
         <p>No properties match your search.</p>
       ) : (
         filteredData.map((property) => (
-          <div key={property.id} className="property-tile">
+          <div 
+            key={property.id} 
+            className="property-tile"
+            onClick={() => handleTileClick(property.id)}  // Handle tile click
+          >
             <div className="property-image">
               <img src={property.image} alt={property.name} />
             </div>

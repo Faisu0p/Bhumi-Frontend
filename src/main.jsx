@@ -19,8 +19,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/feed" element={<FeedPage />} />
         <Route path="/post" element={<PostPage />} />
-        <Route path="/project" element={<ProjectPage />} />
-        <Route path="/projectDetails" element={<ProjectDetailsPage />} />
+        <Route path="/projects" element={<ProjectPage />} />
+        <Route path="/project-details/:id" element={<ProjectDetailsPage />} /> {/* Updated route */}
       </Routes>
     </Router>
   </React.StrictMode>
