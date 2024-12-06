@@ -23,6 +23,7 @@
     "bhumi_website": "file:",
     "font-awesome": "^4.7.0",
     "framer-motion": "^11.11.17",
+    "html2pdf.js": "^0.10.2",
     "lucide-react": "^0.463.0",
     "next": "^15.0.3",
     "react": "^18.3.1",

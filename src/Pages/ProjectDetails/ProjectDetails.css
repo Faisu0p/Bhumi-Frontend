@@ -1,0 +1,213 @@
+/* Reset default styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background-color: #f4f4f4; /* Background color for body */
+  }
+  
+  #root {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Property details container */
+  .property-details-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .property-hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    margin-bottom: 0; /* Remove extra space */
+    overflow: hidden;
+  }
+  
+  .property-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ensure it covers the full height */
+    object-fit: contain; /* Change from 'cover' to 'contain' */
+    object-position: center center; /* Center the image */
+  }
+  
+  
+  
+  .property-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .property-hero-overlay h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .property-hero-overlay p {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .property-download-button {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+    align-self: flex-start;
+    transition: none; /* Removed hover animation */
+  }
+  
+  .property-download-button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Main content */
+  .property-main-content {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    margin-top: 3rem; /* To add space after hero image */
+  }
+  
+  /* Card styles */
+  .property-card {
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.1);
+    padding: 2rem;
+  }
+  
+  .property-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+  }
+  
+  /* Details grid */
+  .property-details-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  
+  .property-details-grid span, .property-status span {
+    font-size: 1.4rem;
+    color: #7f8c8d;
+  }
+  
+  .property-details-grid p, .property-status p {
+    font-weight: bold;
+    margin-top: 0.5rem;
+    font-size: 1.6rem;
+  }
+  
+  .property-status-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Overview styles */
+  .project-overview-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  
+  .project-overview-card p {
+    margin-bottom: 1.5rem;
+  }
+  
+  hr {
+    border: none;
+    border-top: 0.1rem solid #ecf0f1;
+    margin: 1.5rem 0;
+  }
+  
+  /* Responsive Layout Adjustments */
+  @media (min-width: 480px) {
+    .property-details-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .property-hero-section {
+      height: 50rem;
+    }
+  
+    .property-hero-overlay h1 {
+      font-size: 3rem;
+    }
+  
+    .property-hero-overlay p {
+      font-size: 1.6rem;
+    }
+  
+    .property-download-button {
+      font-size: 1.6rem;
+    }
+  
+    .property-main-content {
+      grid-template-columns: 2fr 1fr;
+    }
+  
+    .project-overview-card {
+      grid-column: 1 / -1;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .property-details-container {
+      max-width: 120rem;
+    }
+  
+    .property-hero-section {
+      height: 60rem;
+    }
+  
+    .property-hero-overlay h1 {
+      font-size: 3.6rem;
+    }
+  
+    .property-hero-overlay p {
+      font-size: 1.8rem;
+    }
+  
+    .property-card h2 {
+      font-size: 2.4rem;
+    }
+  
+    .property-details-grid span, .property-status span {
+      font-size: 1.6rem;
+    }
+  
+    .property-details-grid p, .property-status p {
+      font-size: 1.8rem;
+    }
+  
+    .property-status-badge {
+      font-size: 1.6rem;
+    }
+  }
