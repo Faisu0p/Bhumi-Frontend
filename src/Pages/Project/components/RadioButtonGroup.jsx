@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import "./RadioButtonGroup.css";
 
-function RadioButtonGroup() {
+function RadioButtonGroup({ onLocationChange }) {  // Accept the prop
   const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedBHK, setSelectedBHK] = useState("");
 
   const handleLocationChange = (event) => {
     setSelectedLocation(event.target.value);
-  };
-
-  const handleBHKChange = (event) => {
-    setSelectedBHK(event.target.value);
+    onLocationChange(event.target.value);  // Pass value to parent
   };
 
   return (
     <div className="radio-group">
       <h3>Select a Location</h3>
-      {/* Location Options */}
       <input
         type="radio"
         id="option1"
@@ -68,14 +63,12 @@ function RadioButtonGroup() {
       <label htmlFor="option5">DELHI</label>
 
       <h3>Select BHK Type</h3>
-      {/* BHK Options */}
       <input
         type="radio"
         id="bhk1"
         name="bhk"
         value="1 BHK"
-        checked={selectedBHK === "1 BHK"}
-        onChange={handleBHKChange}
+        onChange={handleLocationChange}
       />
       <label htmlFor="bhk1">1 BHK</label>
 
@@ -84,8 +77,7 @@ function RadioButtonGroup() {
         id="bhk2"
         name="bhk"
         value="2 BHK"
-        checked={selectedBHK === "2 BHK"}
-        onChange={handleBHKChange}
+        onChange={handleLocationChange}
       />
       <label htmlFor="bhk2">2 BHK</label>
 
@@ -94,8 +86,7 @@ function RadioButtonGroup() {
         id="bhk3"
         name="bhk"
         value="3 BHK"
-        checked={selectedBHK === "3 BHK"}
-        onChange={handleBHKChange}
+        onChange={handleLocationChange}
       />
       <label htmlFor="bhk3">3 BHK</label>
 
@@ -104,8 +95,7 @@ function RadioButtonGroup() {
         id="bhk4"
         name="bhk"
         value="4 BHK"
-        checked={selectedBHK === "4 BHK"}
-        onChange={handleBHKChange}
+        onChange={handleLocationChange}
       />
       <label htmlFor="bhk4">4 BHK</label>
 
@@ -114,8 +104,7 @@ function RadioButtonGroup() {
         id="bhkMore"
         name="bhk"
         value="More+"
-        checked={selectedBHK === "More+"}
-        onChange={handleBHKChange}
+        onChange={handleLocationChange}
       />
       <label htmlFor="bhkMore">More+</label>
     </div>

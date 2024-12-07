@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { Building2, MapPin, Maximize2, BadgeCheck } from 'lucide-react';
 import './Tiles.css';
 
-export default function PropertyTiles({ searchQuery }) {
+export default function PropertyTiles({ searchQuery, selectedLocation }) {
   const [propertyData, setPropertyData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const navigate = useNavigate();  // Initialize navigate function
@@ -14,20 +14,34 @@ export default function PropertyTiles({ searchQuery }) {
     axios.get('http://localhost:5000/api/properties')
       .then(response => {
         setPropertyData(response.data);
-        setFilteredData(response.data);
+        setFilteredData(response.data); // Initially, no filter applied
       })
       .catch(error => {
         console.error('Error fetching property data:', error);
       });
   }, []);
 
+  // Apply filtering based on search query and selected location
   useEffect(() => {
-    const filtered = propertyData.filter(property =>
-      property.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      property.location.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    let filtered = propertyData;
+
+    // Filter by location if a location is selected
+    if (selectedLocation) {
+      filtered = filtered.filter(property =>
+        property.location.toLowerCase().includes(selectedLocation.toLowerCase())
+      );
+    }
+
+    // Further filter by search query (property name or location)
+    if (searchQuery) {
+      filtered = filtered.filter(property =>
+        property.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        property.location.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
     setFilteredData(filtered);
-  }, [searchQuery, propertyData]);
+  }, [searchQuery, selectedLocation, propertyData]); // Trigger filter on location or search query change
 
   const handleTileClick = (id) => {
     navigate(`/project-details/${id}`);  // Navigate to the details page with the selected ID
@@ -36,7 +50,7 @@ export default function PropertyTiles({ searchQuery }) {
   return (
     <div className="property-container">
       {filteredData.length === 0 ? (
-        <p>No properties match your search.</p>
+        <p>No properties match your filters.</p>
       ) : (
         filteredData.map((property) => (
           <div 
