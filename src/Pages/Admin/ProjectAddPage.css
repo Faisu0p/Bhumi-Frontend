@@ -1,0 +1,127 @@
+/* General body styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Project Add Form Container */
+.project-add-form {
+  background-color: #fff;
+  width: 80%;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styling */
+.project-info-section, .towers-flats-section, .phase-info-section, .society-info-section, .category-selection-section {
+  margin-bottom: 2rem;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input and Textarea Fields */
+input[type="text"], input[type="number"], input[type="date"], input[type="month"], select, textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus effect on input fields */
+input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, input[type="month"]:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Button Styles */
+button {
+  padding: 0.8rem 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Add Phase Button */
+.add-phase-btn {
+  background-color: #28a745;
+}
+
+.add-phase-btn:hover {
+  background-color: #218838;
+}
+
+/* Remove Phase Button */
+button[type="button"] {
+  background-color: #dc3545;
+}
+
+button[type="button"]:hover {
+  background-color: #c82333;
+}
+
+/* Section Headings */
+h3, h4 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Spacer for sections with no phases */
+.project-add-form .phase-info-section p {
+  color: #999;
+}
+
+/* Textarea Fields */
+textarea {
+  resize: vertical;
+  height: 8rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+
+textarea:focus {
+  border-color: #007bff;
+}
+
+/* Style for Category Selection */
+.category-selection-section input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Overall form structure */
+.project-add-form {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Form padding and background */
+.project-add-form {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}

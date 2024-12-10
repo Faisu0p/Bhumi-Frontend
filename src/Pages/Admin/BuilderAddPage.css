@@ -1,0 +1,68 @@
+/* Builder Add Page Styles */
+.builder-add-page-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #f4f4f9; /* Light background */
+  border-radius: 0.8rem;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+.builder-add-page-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #333; /* Dark text color for the title */
+  margin-bottom: 3rem;
+}
+
+.builder-add-page-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.builder-add-page-form-group {
+  margin-bottom: 2rem;
+}
+
+.builder-add-page-form-group label {
+  font-size: 1.1rem;
+  color: #333; /* Dark text color for labels */
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.builder-add-page-form-group input,
+.builder-add-page-form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #333; /* Text color inside input and textarea */
+  background-color: #fff; /* White background for inputs */
+}
+
+.builder-add-page-form-group textarea {
+  height: 10rem;
+  resize: vertical;
+}
+
+.builder-add-page-submit-btn {
+  padding: 1.2rem 2rem;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.builder-add-page-submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.builder-add-page-submit-btn:active {
+  background-color: #00408d;
+}

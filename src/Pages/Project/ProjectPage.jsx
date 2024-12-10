@@ -35,6 +35,7 @@ const ProjectPage = () => {
           </div>
           <div className="project-header-left"></div>
           <div className="project-header-right-section">
+            <button onClick={()=>navigate('/admin')} className="project-login-button">Admin</button>
             <button className="project-login-button">Login</button>
           </div>
         </div>

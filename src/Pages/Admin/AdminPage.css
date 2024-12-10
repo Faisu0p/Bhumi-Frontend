@@ -1,0 +1,33 @@
+/* Admin Page Styles */
+.admin-page-container {
+  text-align: center;
+  margin-top: 5rem; /* Changed from px for consistency */
+  font-family: Arial, sans-serif;
+}
+
+.admin-page-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.admin-page-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.admin-page-button {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  background-color: #007bff; /* Bootstrap Blue */
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-page-button:hover {
+  background-color: #0056b3;
+}

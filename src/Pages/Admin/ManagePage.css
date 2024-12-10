@@ -1,0 +1,68 @@
+/* Container styles */
+.manage-page__container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styles */
+  .manage-page__title {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Dropdown container */
+  .manage-page__dropdown-container {
+    margin-bottom: 20px;
+  }
+  
+  .manage-page__dropdown-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .manage-page__dropdown {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Status container */
+  .manage-page__status-container {
+    margin-bottom: 20px;
+  }
+  
+  .manage-page__status {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .manage-page__status--placeholder {
+    color: #999;
+  }
+  
+  /* Button styles */
+  .manage-page__button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .manage-page__button:hover {
+    background-color: #45a049;
+  }
+  
