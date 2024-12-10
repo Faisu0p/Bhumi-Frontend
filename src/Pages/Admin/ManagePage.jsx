@@ -1,103 +1,92 @@
 import React, { useState, useEffect } from 'react';
 import './ManagePage.css';
 
-function ManagePage() {
-  const [builders, setBuilders] = useState([]); // State to store builder names
+const ManagePage = () => {
   const [selectedBuilder, setSelectedBuilder] = useState('');
-  const [builderStatus, setBuilderStatus] = useState('Unverified');
-  const [message, setMessage] = useState('');
+  const [builders, setBuilders] = useState([]);
+  const [verificationMessage, setVerificationMessage] = useState('');
 
-  // Fetch builder names from the backend
+  // Fetch builders from backend on component mount
   useEffect(() => {
-    async function fetchBuilders() {
+    const fetchBuilders = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/builders'); // Replace with your backend URL
+        const response = await fetch('http://localhost:5000/api/builders');
         const data = await response.json();
         if (data && data.data) {
-          setBuilders(data.data); // Extract the array of builder names
+          setBuilders(data.data);
         }
       } catch (error) {
         console.error('Error fetching builders:', error);
       }
-    }
+    };
 
     fetchBuilders();
   }, []);
 
-  // Handle builder selection
-  const handleBuilderChange = (event) => {
-    setSelectedBuilder(event.target.value);
-    setBuilderStatus('Unverified'); // Reset the status when a new builder is selected
-    setMessage(''); // Reset the message when a new builder is selected
+  const handleBuilderChange = (e) => {
+    setSelectedBuilder(e.target.value);
+    setVerificationMessage('');
   };
 
-  // Handle builder verification
-  const handleVerifyBuilder = async () => {
+  const handleVerify = async () => {
     if (!selectedBuilder) {
-      alert('Please select a builder first!');
+      setVerificationMessage('Please select a builder');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/builders/verify', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ fullName: selectedBuilder }),
-      });
+      const selectedBuilderObj = builders.find(builder => builder.builder_id === parseInt(selectedBuilder));
 
-      const data = await response.json();
+      if (selectedBuilderObj) {
+        const response = await fetch('http://localhost:5000/api/builders/verify', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            fullName: selectedBuilderObj.fullName,
+          }),
+        });
 
-      if (response.ok) {
-        setBuilderStatus('Verified');
-        setMessage('Builder verified successfully.');
-      } else {
-        setMessage(data.message || 'Verification failed.');
+        const data = await response.json();
+
+        if (response.ok) {
+          setVerificationMessage(data.message);  // Success message from backend
+        } else {
+          setVerificationMessage(data.message);  // Error message from backend
+        }
       }
     } catch (error) {
+      setVerificationMessage('An error occurred while verifying the builder');
       console.error('Error verifying builder:', error);
-      setMessage('Error verifying builder.');
     }
   };
 
   return (
-    <div className="manage-page__container">
-      <h2 className="manage-page__title">Builder Management</h2>
-
-      <div className="manage-page__dropdown-container">
-        <label htmlFor="builderDropdown" className="manage-page__dropdown-label">Select Builder:</label>
+    <div className="manage-page">
+      <h1>Manage Builders</h1>
+      <div className="builder-selection">
         <select
-          id="builderDropdown"
           value={selectedBuilder}
           onChange={handleBuilderChange}
-          className="manage-page__dropdown"
+          className="builder-dropdown"
         >
-          <option value="">--Select Builder--</option>
-          {builders.map((builder, index) => (
-            <option key={index} value={builder}>
-              {builder}
+          <option value="">Select a builder</option>
+          {builders.map((builder) => (
+            <option key={builder.builder_id} value={builder.builder_id}>
+              {builder.fullName} (ID: {builder.builder_id})
             </option>
           ))}
         </select>
+        <button onClick={handleVerify} className="verify-button">
+          Verify
+        </button>
       </div>
-
-      <div className="manage-page__status-container">
-        <p className={`manage-page__status ${selectedBuilder ? '' : 'manage-page__status--placeholder'}`}>
-          Builder Status: <strong>{builderStatus}</strong>
-        </p>
-      </div>
-
-      <button
-        onClick={handleVerifyBuilder}
-        className="manage-page__button"
-      >
-        Verify Builder
-      </button>
-
-      {message && <p className="manage-page__message">{message}</p>}
+      {verificationMessage && (
+        <div className="verification-message">{verificationMessage}</div>
+      )}
     </div>
   );
-}
+};
 
 export default ManagePage;

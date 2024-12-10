@@ -2,410 +2,328 @@ import React, { useState, useEffect } from 'react';
 import './ProjectAddPage.css';
 
 const ProjectAddPage = () => {
-  const [phases, setPhases] = useState([]);  // No phases by default
-  const [projectData, setProjectData] = useState({
+  const [formData, setFormData] = useState({
     city: '',
     builderName: '',
+    builderId: '',
     projectName: '',
-    companyUnder: '',
-    launchDate: '',
-    shortCode: '',
-    status: '',
-    deliveryMonthYear: '',
-    reraNo: '',
+    companyUnderProjectLaunched: '',
+    projectLaunchedDate: '',
+    projectShortCode: '',
+    completionStatus: '',
+    reraNumber: '',
     totalTowers: '',
-    totalFlats: '',
+    totalApartments: '',
     sectorBriefing: '',
     projectBriefing: '',
     masterLayout: '',
-    category1: {
-      apartments: false,
-      flats: false,
-      penthouse: false,
-      kothi: false,
-      villa: false,
-      plot: false,
-      builderIndependentFloor: false,
-      farmhouse: false,
-      studio: false,
-      serviceApartment: false,
-    },
-    category2: {
-      apartments: false,
-      flats: false,
-      retail: false,
-      storage: false,
-      industry: false,
-      warehouse: false,
-      hospitality: false,
-    },
-    amenities: {
-      maintenanceStaff: false,
-      waterStorage: false,
-      securityPersonnel: false,
-      park: false,
-      visitorParking: false,
-      ownersParking: false,
-    }
+    residentialUnits: [],
+    commercialUnits: [],
+    amenities: [],
+    phases: []
   });
-  
+
+  // State for storing builder data from the backend
+  const [builders, setBuilders] = useState([]);
+
+    // Fetch builder names and IDs from backend
+    useEffect(() => {
+      const fetchBuilders = async () => {
+        try {
+          const response = await fetch('http://localhost:5000/api/builders/');
+          const data = await response.json();
+          console.log(data); // Log to check the structure
+    
+          if (data && data.data) {
+            // Assuming 'data.data' holds the builders array
+            setBuilders(data.data); 
+          } else {
+            console.error("Builder data not found in response");
+          }
+        } catch (error) {
+          console.error("Error fetching builder names:", error);
+        }
+      };
+    
+      fetchBuilders();
+    }, []);
+    
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target; // Destructure input attributes
-  
-    // Check if it's a checkbox or a regular input field (like text or select)
-    if (type === 'checkbox') {
-      if (name in projectData.category1) {
-        // Handle category1 checkboxes
-        setProjectData((prevData) => ({
-          ...prevData,
-          category1: {
-            ...prevData.category1,
-            [name]: checked,
-          },
-        }));
-      } else if (name in projectData.category2) {
-        // Handle category2 checkboxes
-        setProjectData((prevData) => ({
-          ...prevData,
-          category2: {
-            ...prevData.category2,
-            [name]: checked,
-          },
-        }));
-      } else if (name in projectData.amenities) {
-        // Handle amenities checkboxes
-        setProjectData((prevData) => ({
-          ...prevData,
-          amenities: {
-            ...prevData.amenities,
-            [name]: checked,
-          },
-        }));
-      }
-    } else {
-      // Handle non-checkbox inputs (like text inputs and select)
-      setProjectData((prevData) => ({
-        ...prevData,
-        [name]: value, // Update the value of the specific input field
-      }));
-    }
-  };
-  
-  
-  
-
-  const handlePhaseChange = (index, e) => {
     const { name, value } = e.target;
-    const updatedPhases = [...phases];
-    updatedPhases[index][name] = value;
-    
-    setPhases(updatedPhases);
-    
-    // Update projectData with the new values of towers and apartments if phase is delivered
-    if (updatedPhases[index].status === 'Delivered') {
-      setProjectData((prevData) => ({
-        ...prevData,
-        totalDeliveredPhases: phases.filter((phase) => phase.status === 'Delivered').length, // Update total delivered phases
-        totalTowersCompleted: phases.filter((phase) => phase.status === 'Delivered')
-                                    .reduce((total, phase) => total + parseInt(phase.noOfTowers || 0), 0), // Update towers completed
-        totalApartmentsCompleted: phases.filter((phase) => phase.status === 'Delivered')
-                                         .reduce((total, phase) => total + parseInt(phase.noOfApartments || 0), 0), // Update apartments completed
-      }));
+    if (name !== 'builder') {
+      setFormData({ ...formData, [name]: value });
     }
   };
-  
 
-  const addPhase = () => {
-    const newPhase = {
-      phaseNumber: phases.length + 1,
-      status: '',
-      deliveryDate: '',
-      noOfTowers: 0,
-      noOfApartments: 0,
-    };
+  const handleCheckboxChange = (e, category) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setFormData({ ...formData, [category]: [...formData[category], value] });
+    } else {
+      setFormData({ ...formData, [category]: formData[category].filter(item => item !== value) });
+    }
+  };
+
+  const handleAddPhase = () => {
+    setFormData({
+      ...formData,
+      phases: [
+        ...formData.phases,
+        { status: '', noOfTowers: '', noOfApartments: '' }
+      ]
+    });
+  };
+
+  const handleRemovePhase = (index) => {
+    const newPhases = formData.phases.filter((_, i) => i !== index);
+    setFormData({ ...formData, phases: newPhases });
+  };
+
+  const handlePhaseChange = (index, field, value) => {
+    const newPhases = formData.phases.map((phase, i) => {
+      if (i === index) {
+        return { ...phase, [field]: value };
+      }
+      return phase;
+    });
+    setFormData({ ...formData, phases: newPhases });
+  };
+
+  const handleBuilderChange = (e) => {
+    const builderId = e.target.value;
     
-    setPhases([...phases, newPhase]);
-    
-    setProjectData((prevData) => ({
-      ...prevData,
-      totalPhases: phases.length + 1, // Update total number of phases
-    }));
+    setFormData({
+      ...formData,
+      builderId, // Update builderId with the selected value
+      builderName: builders.find(builder => builder.builder_id === parseInt(builderId))?.fullName || '', // Optional: Update builderName
+    });
   };
   
-
-  const removePhase = (index) => {
-    const updatedPhases = phases.filter((_, i) => i !== index); // Remove phase by index
-    setPhases(updatedPhases);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const newProjectData = {
-      ...projectData,
-      phases: phases,
-    };
+    // Optional: Client-side validation
+    if (!formData.projectName || !formData.builderId) {
+      alert('Please fill in required fields.');
+      return;
+    }
   
     try {
-      const response = await fetch("http://localhost:5000/api/projects", {
-        method: "POST",
+      const response = await fetch('/projects/add', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newProjectData),
+        body: JSON.stringify(formData),
       });
   
-      // Check for non-OK responses
       if (!response.ok) {
-        const errorDetails = await response.text(); // Log the error details
-        console.error("Error response from server:", errorDetails);
-        throw new Error("Failed to add project");
+        const errorData = await response.json();
+        console.error('Server Error:', errorData);
+        alert('Submission failed: ' + (errorData.message || 'Unknown error'));
+      } else {
+        alert('Project added successfully!');
+        setFormData(initialFormState); // Reset form on success
       }
-  
-      const data = await response.json();
-      console.log("Project added successfully:", data);
-      setProjectData({});
-      setPhases([]);
     } catch (error) {
-      console.error("Error submitting project:", error);
+      console.error('Request Error:', error);
+      alert('Error submitting form: ' + error.message);
     }
   };
   
   
 
-  const [builders, setBuilders] = useState([]);
-
-  useEffect(() => {
-    // Fetch builder names from the backend
-    async function fetchBuilders() {
-      try {
-        const response = await fetch("http://localhost:5000/api/builders"); // Your backend URL
-        const data = await response.json();
-        if (data && data.data) {
-          setBuilders(data.data); // Use `data.data` as the builder names array
-        }
-      } catch (error) {
-        console.error("Error fetching builders:", error);
-      }
-    }
-
-    fetchBuilders();
-  }, []);
-
   return (
-    <form onSubmit={handleSubmit} className="project-add-form">
-      {/* General Project Info */}
-      <div className="project-info-section">
-        <label>City</label>
-        <input type="text" name="city" value={projectData.city} onChange={handleInputChange} />
-
-        <label>Builder Name</label>
-          <select
-            name="builderName"
-            value={projectData.builderName}
-            onChange={handleInputChange}
-          >
-            <option value="">Select a builder</option>
-            {builders.map((builder, index) => (
-              <option key={index} value={builder}>
-                {builder}
-              </option>
-            ))}
-          </select>
-
-
-        <label>Project Name</label>
-        <input type="text" name="projectName" value={projectData.projectName} onChange={handleInputChange} />
-
-        <label>Company Under Project Launched</label>
-        <input type="text" name="companyUnder" value={projectData.companyUnder} onChange={handleInputChange} />
-
-        <label>Project Launch Date</label>
-        <input type="date" name="launchDate" value={projectData.launchDate} onChange={handleInputChange} />
-
-        <label>Project Short Code</label>
-        <input type="text" name="shortCode" value={projectData.shortCode} onChange={handleInputChange} />
-
-        <label>Delivered or Under Construction</label>
-        <select name="status" value={projectData.status} onChange={handleInputChange}>
-          <option value="Delivered">Delivered</option>
-          <option value="Under Construction">Under Construction</option>
-        </select>
-
-        {projectData.status === 'Delivered' && (
-          <>
-            <label>Delivery Month and Year</label>
-            <input type="month" name="deliveryMonthYear" value={projectData.deliveryMonthYear} onChange={handleInputChange} />
-          </>
-        )}
-
-        <label>RERA No</label>
-        <input type="text" name="reraNo" value={projectData.reraNo} onChange={handleInputChange} />
-      </div>
-
-      {/* Total Number of Towers and Flats in the Society */}
-      <div className="towers-flats-section">
-        <label>Total No of Towers in the Society</label>
-        <input type="number" name="totalTowers" value={projectData.totalTowers} onChange={handleInputChange} />
-
-        <label>Total No of Flats in the Society</label>
-        <input type="number" name="totalFlats" value={projectData.totalFlats} onChange={handleInputChange} />
-      </div>
-
-      {/* Phases Section */}
-      {phases.length === 0 && <p>No phases added yet. Click "Add Phase" to start.</p>}
-      {phases.map((phase, index) => (
-        <div key={index} className="phase-info-section">
-          <h3>Phase {phase.phaseNumber}</h3>
-
-          <label>Delivered or Under Construction</label>
-          <select name="status" value={phase.status} onChange={(e) => handlePhaseChange(index, e)}>
-            <option value="Delivered">Delivered</option>
-            <option value="Under Construction">Under Construction</option>
-          </select>
-
-          {phase.status === 'Delivered' && (
-            <>
-              <label>Delivery Month and Year</label>
-              <input type="month" name="deliveryDate" value={phase.deliveryDate} onChange={(e) => handlePhaseChange(index, e)} />
-            </>
-          )}
-
-          <label>No of Towers in this Phase</label>
-          <input type="number" name="noOfTowers" onChange={(e) => handlePhaseChange(index, e)} />
-
-          <label>No of Apartments in this Phase</label>
-          <input type="number" name="noOfApartments" onChange={(e) => handlePhaseChange(index, e)} />
-
-          <button type="button" onClick={() => removePhase(index)}>Remove Phase</button>
+    <div className="project-add-page">
+      <h1>Add New Project</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="city">City</label>
+          <input type="text" id="city" name="city" value={formData.city} onChange={handleInputChange} required />
         </div>
-      ))}
-      <button type="button" className="add-phase-btn" onClick={addPhase}>Add Phase</button>
 
-      {/* Total Society Info */}
-      <div className="society-info-section">
-        <label>Sector Briefing</label>
-        <textarea name="sectorBriefing" value={projectData.sectorBriefing} onChange={handleInputChange} />
-
-        <label>Project Briefing</label>
-        <textarea name="projectBriefing" value={projectData.projectBriefing} onChange={handleInputChange} />
-
-        <label>Master Layout Plan (Enter Image URL)</label>
-        <input
-          type="text"
-          name="masterLayout"
-          placeholder="Enter the image URL here"
-          value={projectData.masterLayout}
-          onChange={handleInputChange}
-        />
-      </div>
-
-      {/* Category Selection */}
-      <div className="category-selection-section">
-        <h4>Residential Units</h4>
-        <label>
-          <input type="checkbox" name="apartments" checked={projectData.category1.apartments} onChange={(e) => handleInputChange(e)} />
-          Apartments
-        </label>
-        <label>
-          <input type="checkbox" name="flats" checked={projectData.category1.flats} onChange={(e) => handleInputChange(e)} />
-          Flats
-        </label>
-        <label>
-          <input type="checkbox" name="penthouse" checked={projectData.category1.penthouse} onChange={(e) => handleInputChange(e)} />
-          Penthouse
-        </label>
-        <label>
-          <input type="checkbox" name="kothi" checked={projectData.category1.kothi} onChange={(e) => handleInputChange(e)} />
-          Kothi
-        </label>
-        <label>
-          <input type="checkbox" name="villa" checked={projectData.category1.villa} onChange={(e) => handleInputChange(e)} />
-          Villa
-        </label>
-        <label>
-          <input type="checkbox" name="plot" checked={projectData.category1.plot} onChange={(e) => handleInputChange(e)} />
-          Plot
-        </label>
-        <label>
-          <input type="checkbox" name="builderIndependentFloor" checked={projectData.category1.builderIndependentFloor} onChange={(e) => handleInputChange(e)} />
-          Builder Independent Floor
-        </label>
-        <label>
-          <input type="checkbox" name="farmhouse" checked={projectData.category1.farmhouse} onChange={(e) => handleInputChange(e)} />
-          Farmhouse
-        </label>
-        <label>
-          <input type="checkbox" name="studio" checked={projectData.category1.studio} onChange={(e) => handleInputChange(e)} />
-          Studio
-        </label>
-        <label>
-          <input type="checkbox" name="serviceApartment" checked={projectData.category1.serviceApartment} onChange={(e) => handleInputChange(e)} />
-          Service Apartment
-        </label>
-
-        <h4>Commercial Units</h4>
-
-        <label>
-          <input type="checkbox" name="retail" checked={projectData.category2.retail} onChange={(e) => handleInputChange(e)} />
-          Retail
-        </label>
-        <label>
-          <input type="checkbox" name="storage" checked={projectData.category2.storage} onChange={(e) => handleInputChange(e)} />
-          Storage
-        </label>
-        <label>
-          <input type="checkbox" name="industry" checked={projectData.category2.industry} onChange={(e) => handleInputChange(e)} />
-          Industry
-        </label>
-        <label>
-          <input type="checkbox" name="warehouse" checked={projectData.category2.warehouse} onChange={(e) => handleInputChange(e)} />
-          Warehouse
-        </label>
-        <label>
-          <input type="checkbox" name="hospitality" checked={projectData.category2.hospitality} onChange={(e) => handleInputChange(e)} />
-          Hospitality
-        </label>
-      </div>
+        <div className="form-group">
+          <label htmlFor="builder">Builder</label>
+          <select
+  id="builder"
+  name="builder"
+  value={formData.builderId} // This should be linked to builderId in formData
+  onChange={handleBuilderChange}
+  required
+>
+  <option value="">Select a builder</option>
+  {builders.map((builder) => (
+    <option key={builder.builder_id} value={builder.builder_id}>
+      {builder.fullName}
+    </option>
+  ))}
+</select>
 
 
-
-      {/* Amenities Section */}
-      <div className="amenities-selection-section">
-        <h4>Amenities</h4>
-        <label>
-          <input type="checkbox" name="maintenanceStaff" checked={projectData.amenities.maintenanceStaff} onChange={(e) => handleInputChange(e)} />
-          Maintenance Staff
-        </label>
-        <label>
-          <input type="checkbox" name="waterStorage" checked={projectData.amenities.waterStorage} onChange={(e) => handleInputChange(e)} />
-          Water Storage
-        </label>
-        <label>
-          <input type="checkbox" name="securityPersonnel" checked={projectData.amenities.securityPersonnel} onChange={(e) => handleInputChange(e)} />
-          Security Personnel
-        </label>
-        <label>
-          <input type="checkbox" name="park" checked={projectData.amenities.park} onChange={(e) => handleInputChange(e)} />
-          Park 
-        </label>
-        <label>
-          <input type="checkbox" name="visitorParking" checked={projectData.amenities.visitorParking} onChange={(e) => handleInputChange(e)} />
-          Visitor Parking
-        </label>
-        <label>
-          <input type="checkbox" name="ownersParking" checked={projectData.amenities.ownersParking} onChange={(e) => handleInputChange(e)} />
-          Owners Parking
-        </label>
-      </div>
-      
+        </div>
 
 
+        <div className="form-group">
+          <label htmlFor="projectName">Project Name</label>
+          <input type="text" id="projectName" name="projectName" value={formData.projectName} onChange={handleInputChange} required />
+        </div>
 
-      <button type="submit" className="submit-btn">Submit</button>
-    </form>
+        <div className="form-group">
+          <label htmlFor="companyUnderProjectLaunched">Company under project launched</label>
+          <input type="text" id="companyUnderProjectLaunched" name="companyUnderProjectLaunched" value={formData.companyUnderProjectLaunched} onChange={handleInputChange} required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="projectLaunchedDate">Project launched date</label>
+          <input type="date" id="projectLaunchedDate" name="projectLaunchedDate" value={formData.projectLaunchedDate} onChange={handleInputChange} required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="projectShortCode">Project short code</label>
+          <input type="text" id="projectShortCode" name="projectShortCode" value={formData.projectShortCode} onChange={handleInputChange} required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="completionStatus">Completion status</label>
+          <select id="completionStatus" name="completionStatus" value={formData.completionStatus} onChange={handleInputChange} required>
+            <option value="">Select status</option>
+            <option value="completed">Completed</option>
+            <option value="under construction">Under Construction</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="reraNumber">RERA Number</label>
+          <input type="text" id="reraNumber" name="reraNumber" value={formData.reraNumber} onChange={handleInputChange} required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="totalTowers">Total number of towers</label>
+          <input type="number" id="totalTowers" name="totalTowers" value={formData.totalTowers} onChange={handleInputChange} required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="totalApartments">Total number of apartments</label>
+          <input type="number" id="totalApartments" name="totalApartments" value={formData.totalApartments} onChange={handleInputChange} required />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="sectorBriefing">Sector briefing</label>
+          <textarea id="sectorBriefing" name="sectorBriefing" value={formData.sectorBriefing} onChange={handleInputChange} required></textarea>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="projectBriefing">Project Briefing</label>
+          <textarea id="projectBriefing" name="projectBriefing" value={formData.projectBriefing} onChange={handleInputChange} required></textarea>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="masterLayout">Master layout (enter URL)</label>
+          <input type="url" id="masterLayout" name="masterLayout" value={formData.masterLayout} onChange={handleInputChange} required />
+        </div>
+
+        <div className="form-group">
+          <label>Residential Units</label>
+          <div className="checkbox-group">
+            {['Apartments', 'Flats', 'Penthouse', 'Kothi', 'Villa', 'Plot', 'Builder Independent Floor', 'Farmhouse', 'Studio', 'Service Apartment'].map((unit) => (
+              <label key={unit}>
+                <input
+                  type="checkbox"
+                  value={unit}
+                  checked={formData.residentialUnits.includes(unit)}
+                  onChange={(e) => handleCheckboxChange(e, 'residentialUnits')}
+                />
+                {unit}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Commercial Units</label>
+          <div className="checkbox-group">
+            {['Retail', 'Storage', 'Industry', 'Warehouse', 'Hospitality'].map((unit) => (
+              <label key={unit}>
+                <input
+                  type="checkbox"
+                  value={unit}
+                  checked={formData.commercialUnits.includes(unit)}
+                  onChange={(e) => handleCheckboxChange(e, 'commercialUnits')}
+                />
+                {unit}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Amenities</label>
+          <div className="checkbox-group">
+            {['Pool', 'Maintenance Staff', 'Water Storage', 'Security Personnel', 'Park', 'Visitor Parking', 'Owners Parking'].map((amenity) => (
+              <label key={amenity}>
+                <input
+                  type="checkbox"
+                  value={amenity}
+                  checked={formData.amenities.includes(amenity)}
+                  onChange={(e) => handleCheckboxChange(e, 'amenities')}
+                />
+                {amenity}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="form-group">
+          <h2>Phases</h2>
+          {formData.phases.map((phase, index) => (
+            <div key={index} className="phase">
+              <h3>Phase {index + 1}</h3>
+              <div className="form-group">
+                <label htmlFor={`phase-${index}-status`}>Status</label>
+                <select
+                  id={`phase-${index}-status`}
+                  value={phase.status}
+                  onChange={(e) => handlePhaseChange(index, 'status', e.target.value)}
+                  required
+                >
+                  <option value="">Select status</option>
+                  <option value="completed">Completed</option>
+                  <option value="under construction">Under Construction</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor={`phase-${index}-towers`}>No of towers in this phase</label>
+                <input
+                  type="number"
+                  id={`phase-${index}-towers`}
+                  value={phase.noOfTowers}
+                  onChange={(e) => handlePhaseChange(index, 'noOfTowers', e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor={`phase-${index}-apartments`}>No of apartments in this phase</label>
+                <input
+                  type="number"
+                  id={`phase-${index}-apartments`}
+                  value={phase.noOfApartments}
+                  onChange={(e) => handlePhaseChange(index, 'noOfApartments', e.target.value)}
+                  required
+                />
+              </div>
+              <button type="button" onClick={() => handleRemovePhase(index)}>Remove Phase</button>
+            </div>
+          ))}
+          <button type="button" onClick={handleAddPhase}>Add Phase</button>
+        </div>
+
+        <button type="submit" className="submit-btn">Submit</button>
+      </form>
+    </div>
   );
 };
 
 export default ProjectAddPage;
+
