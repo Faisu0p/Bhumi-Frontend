@@ -1,329 +1,742 @@
-import React, { useState, useEffect } from 'react';
-import './ProjectAddPage.css';
+import React, { useState, useEffect } from "react";
+import { createProject } from "./apis/propertyApi"; // Assuming you have the API functions in api.js file
+
+import ViewProperties from "./components/ProjectList"; // Adjust the path as needed
+import { getAllBuilders } from "./apis/builderApi.jsx";
 
 const ProjectAddPage = () => {
   const [formData, setFormData] = useState({
-    city: '',
-    builderName: '',
-    builderId: '',
-    projectName: '',
-    companyUnderProjectLaunched: '',
-    projectLaunchedDate: '',
-    projectShortCode: '',
-    completionStatus: '',
-    reraNumber: '',
-    totalTowers: '',
-    totalApartments: '',
-    sectorBriefing: '',
-    projectBriefing: '',
-    masterLayout: '',
-    residentialUnits: [],
-    commercialUnits: [],
-    amenities: [],
-    phases: []
+    city: "Mumbai",
+    locality: "Andheri",
+    sublocality: "West",
+    builderName: "XYZ Builders",
+    projectName: "Skyline Heights",
+    companyName: "XYZ Group",
+    launchDate: "2024-01-15",
+    shortCode: "SH123",
+    deliveryStatus: "Ongoing",
+    deliveryDate: "2026-12-31",
+    reraNumber: "RERA12345",
+    totalTowers: 5,
+    totalFlats: 250,
+    towerPhaseWise: "Yes",
+    constructionType: "Residential",
+    propertyCategory: "Luxury",
+    propertyType: "Apartments",
+    sectorBriefing: "Prime location with premium amenities.",
+    projectBriefing: "A modern residential complex with all facilities.",
+    masterLayoutPlan: {
+      layoutUrl: "https://example.com/master-plan.pdf",
+      description: "Detailed master layout plan.",
+    },
+    mediaUrls: [
+      {
+        type: "image",
+        url: "https://example.com/image1.jpg",
+        caption: "Project front view",
+      },
+      {
+        type: "video",
+        url: "https://example.com/video1.mp4",
+        caption: "Walkthrough video",
+      },
+    ],
+    phases: [
+      {
+        phaseNumber: 1,
+        reraNumber: "RERA-PH1",
+        status: "Completed",
+        deliveryDate: "2023-12-31",
+      },
+    ],
+    bedrooms: [
+      {
+        size: "2BHK",
+        superArea: 1200,
+        builtUpArea: 1000,
+        carpetArea: 900,
+        toilets: 2,
+        balconies: 1,
+        servantQuarters: 0,
+        studyRoom: 0,
+        poojaRoom: 1,
+        pricePerSqft: 12000,
+        priceRangeMin: 10000000,
+        priceRangeMax: 12000000,
+      },
+    ],
   });
 
-  // State for storing builder data from the backend
-  const [builders, setBuilders] = useState([]);
+  const [responseMessage, setResponseMessage] = useState({
+    message: "",
+    type: "",
+  });
 
-    // Fetch builder names and IDs from backend
-    useEffect(() => {
-      const fetchBuilders = async () => {
-        try {
-          const response = await fetch('http://localhost:5000/api/builders/');
-          const data = await response.json();
-          console.log(data); // Log to check the structure
-    
-          if (data && data.data) {
-            // Assuming 'data.data' holds the builders array
-            setBuilders(data.data); 
-          } else {
-            console.error("Builder data not found in response");
-          }
-        } catch (error) {
-          console.error("Error fetching builder names:", error);
-        }
-      };
-    
-      fetchBuilders();
-    }, []);
-    
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name !== 'builder') {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const handleCheckboxChange = (e, category) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setFormData({ ...formData, [category]: [...formData[category], value] });
-    } else {
-      setFormData({ ...formData, [category]: formData[category].filter(item => item !== value) });
-    }
-  };
-
-  const handleAddPhase = () => {
+  // Add a phase dynamically
+  const addPhase = () => {
     setFormData({
       ...formData,
       phases: [
         ...formData.phases,
-        { status: '', noOfTowers: '', noOfApartments: '' }
-      ]
+        {
+          phaseNumber: formData.phases.length + 1,
+          reraNumber: "",
+          status: "Ongoing",
+          deliveryDate: "",
+        },
+      ],
     });
   };
 
-  const handleRemovePhase = (index) => {
-    const newPhases = formData.phases.filter((_, i) => i !== index);
-    setFormData({ ...formData, phases: newPhases });
+  // Remove a phase
+  const removePhase = (index) => {
+    const updatedPhases = formData.phases.filter((_, i) => i !== index);
+    setFormData({ ...formData, phases: updatedPhases });
   };
 
-  const handlePhaseChange = (index, field, value) => {
-    const newPhases = formData.phases.map((phase, i) => {
-      if (i === index) {
-        return { ...phase, [field]: value };
-      }
-      return phase;
-    });
-    setFormData({ ...formData, phases: newPhases });
-  };
-
-  const handleBuilderChange = (e) => {
-    const builderId = e.target.value;
-    
+  // Add a bedroom entry
+  const addBedroom = () => {
     setFormData({
       ...formData,
-      builderId, // Update builderId with the selected value
-      builderName: builders.find(builder => builder.builder_id === parseInt(builderId))?.fullName || '', // Optional: Update builderName
+      bedrooms: [
+        ...formData.bedrooms,
+        {
+          size: "2BHK",
+          superArea: 1200,
+          builtUpArea: 1000,
+          carpetArea: 900,
+          toilets: 2,
+          balconies: 1,
+          servantQuarters: 0,
+          studyRoom: 0,
+          poojaRoom: 1,
+          pricePerSqft: 12000,
+          priceRangeMin: 10000000,
+          priceRangeMax: 12000000,
+        },
+      ],
     });
   };
-  
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    // Optional: Client-side validation
-    if (!formData.projectName || !formData.builderId) {
-      alert('Please fill in required fields.');
-      return;
-    }
-  
+  // Remove a bedroom entry
+  const removeBedroom = (index) => {
+    const updatedBedrooms = formData.bedrooms.filter((_, i) => i !== index);
+    setFormData({ ...formData, bedrooms: updatedBedrooms });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await fetch('/projects/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const createdProject = await createProject(formData);
+      console.log("Project created successfully:", createdProject);
+      setResponseMessage({
+        message: "Project created successfully!",
+        type: "success",
       });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Server Error:', errorData);
-        alert('Submission failed: ' + (errorData.message || 'Unknown error'));
-      } else {
-        alert('Project added successfully!');
-        setFormData(initialFormState); // Reset form on success
-      }
     } catch (error) {
-      console.error('Request Error:', error);
-      alert('Error submitting form: ' + error.message);
+      console.error("Error creating project:", error);
+      setResponseMessage({
+        message: "Error creating project. Please try again.",
+        type: "error",
+      });
     }
   };
-  
-  
+
+  // Function to add a new media entry
+  const addMedia = () => {
+    setFormData({
+      ...formData,
+      media: [...(formData.media || []), { type: "", url: "", caption: "" }],
+    });
+  };
+
+  // Function to remove a media entry by index
+  const removeMedia = (index) => {
+    const updatedMedia = formData.media?.filter((_, i) => i !== index) || [];
+    setFormData({ ...formData, media: updatedMedia });
+  };
+
+  const [builders, setBuilders] = useState([]);
+
+  useEffect(() => {
+    const fetchbuilders = async () => {
+      const builderdata = await getAllBuilders();
+      console.log(builderdata);
+      setBuilders(builderdata);
+    };
+
+    fetchbuilders();
+  }, []);
+
+  // Handle the builder name change from the dropdown
+  const handleBuilderNameChange = (e) => {
+    setFormData({ ...formData, builderName: e.target.value });
+  };
 
   return (
-    <div className="project-add-page">
-      <h1>Add New Project</h1>
+    <div className="container mt-5">
+      <h1>Welcome to the Property Management System</h1>
+      <ViewProperties />
+      <h2>Add new project</h2>
+      {responseMessage.message && (
+        <div
+          className={`alert ${
+            responseMessage.type === "success"
+              ? "alert-success"
+              : "alert-danger"
+          }`}
+          role="alert"
+        >
+          {responseMessage.message}
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="city">City</label>
-          <input type="text" id="city" name="city" value={formData.city} onChange={handleInputChange} required />
+        {/* General Information Fields */}
+        <div className="mb-3">
+          <label className="form-label">Project Name</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.projectName}
+            onChange={(e) =>
+              setFormData({ ...formData, projectName: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="builder">Builder</label>
+        <div className="mb-3">
+          <label className="form-label">Builder Name</label>
           <select
-  id="builder"
-  name="builder"
-  value={formData.builderId} // This should be linked to builderId in formData
-  onChange={handleBuilderChange}
-  required
->
-  <option value="">Select a builder</option>
-  {builders.map((builder) => (
-    <option key={builder.builder_id} value={builder.builder_id}>
-      {builder.fullName}
-    </option>
-  ))}
-</select>
-
-
-        </div>
-
-
-        <div className="form-group">
-          <label htmlFor="projectName">Project Name</label>
-          <input type="text" id="projectName" name="projectName" value={formData.projectName} onChange={handleInputChange} required />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="companyUnderProjectLaunched">Company under project launched</label>
-          <input type="text" id="companyUnderProjectLaunched" name="companyUnderProjectLaunched" value={formData.companyUnderProjectLaunched} onChange={handleInputChange} required />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="projectLaunchedDate">Project launched date</label>
-          <input type="date" id="projectLaunchedDate" name="projectLaunchedDate" value={formData.projectLaunchedDate} onChange={handleInputChange} required />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="projectShortCode">Project short code</label>
-          <input type="text" id="projectShortCode" name="projectShortCode" value={formData.projectShortCode} onChange={handleInputChange} required />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="completionStatus">Completion status</label>
-          <select id="completionStatus" name="completionStatus" value={formData.completionStatus} onChange={handleInputChange} required>
-            <option value="">Select status</option>
-            <option value="completed">Completed</option>
-            <option value="under construction">Under Construction</option>
+            className="form-control"
+            value={formData.builderName}
+            onChange={handleBuilderNameChange}
+            required
+          >
+            <option value="">Select Builder</option>
+            {builders.map((builder, index) => (
+              <option key={index} value={builder.id}>
+                {builder.builderCompleteName}
+              </option>
+            ))}
           </select>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="reraNumber">RERA Number</label>
-          <input type="text" id="reraNumber" name="reraNumber" value={formData.reraNumber} onChange={handleInputChange} required />
+        <div className="mb-3">
+          <label className="form-label">Launch Date</label>
+          <input
+            type="date"
+            className="form-control"
+            value={formData.launchDate}
+            onChange={(e) =>
+              setFormData({ ...formData, launchDate: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="totalTowers">Total number of towers</label>
-          <input type="number" id="totalTowers" name="totalTowers" value={formData.totalTowers} onChange={handleInputChange} required />
+        <div className="mb-3">
+          <label className="form-label">City</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.city}
+            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+          />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="totalApartments">Total number of apartments</label>
-          <input type="number" id="totalApartments" name="totalApartments" value={formData.totalApartments} onChange={handleInputChange} required />
+        <div className="mb-3">
+          <label className="form-label">Locality</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.locality}
+            onChange={(e) =>
+              setFormData({ ...formData, locality: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="sectorBriefing">Sector briefing</label>
-          <textarea id="sectorBriefing" name="sectorBriefing" value={formData.sectorBriefing} onChange={handleInputChange} required></textarea>
+        <div className="mb-3">
+          <label className="form-label">SubLocality/Society</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.sublocality}
+            onChange={(e) =>
+              setFormData({ ...formData, sublocality: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="projectBriefing">Project Briefing</label>
-          <textarea id="projectBriefing" name="projectBriefing" value={formData.projectBriefing} onChange={handleInputChange} required></textarea>
+        <div className="mb-3">
+          <label className="form-label">Company Name</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.companyName}
+            onChange={(e) =>
+              setFormData({ ...formData, companyName: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="masterLayout">Master layout (enter URL)</label>
-          <input type="url" id="masterLayout" name="masterLayout" value={formData.masterLayout} onChange={handleInputChange} required />
+        <div className="mb-3">
+          <label className="form-label">Short Code</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.shortCode}
+            onChange={(e) =>
+              setFormData({ ...formData, shortCode: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label>Residential Units</label>
-          <div className="checkbox-group">
-            {['Apartments', 'Flats', 'Penthouse', 'Kothi', 'Villa', 'Plot', 'Builder Independent Floor', 'Farmhouse', 'Studio', 'Service Apartment'].map((unit) => (
-              <label key={unit}>
-                <input
-                  type="checkbox"
-                  value={unit}
-                  checked={formData.residentialUnits.includes(unit)}
-                  onChange={(e) => handleCheckboxChange(e, 'residentialUnits')}
-                />
-                {unit}
-              </label>
-            ))}
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Delivery status</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.deliveryStatus}
+            onChange={(e) =>
+              setFormData({ ...formData, deliveryStatus: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label>Commercial Units</label>
-          <div className="checkbox-group">
-            {['Retail', 'Storage', 'Industry', 'Warehouse', 'Hospitality'].map((unit) => (
-              <label key={unit}>
-                <input
-                  type="checkbox"
-                  value={unit}
-                  checked={formData.commercialUnits.includes(unit)}
-                  onChange={(e) => handleCheckboxChange(e, 'commercialUnits')}
-                />
-                {unit}
-              </label>
-            ))}
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Delivery Date</label>
+          <input
+            type="date"
+            className="form-control"
+            value={formData.deliveryDate}
+            onChange={(e) =>
+              setFormData({ ...formData, deliveryDate: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <label>Amenities</label>
-          <div className="checkbox-group">
-            {['Pool', 'Maintenance Staff', 'Water Storage', 'Security Personnel', 'Park', 'Visitor Parking', 'Owners Parking'].map((amenity) => (
-              <label key={amenity}>
-                <input
-                  type="checkbox"
-                  value={amenity}
-                  checked={formData.amenities.includes(amenity)}
-                  onChange={(e) => handleCheckboxChange(e, 'amenities')}
-                />
-                {amenity}
-              </label>
-            ))}
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Rera Number</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.reraNumber}
+            onChange={(e) =>
+              setFormData({ ...formData, reraNumber: e.target.value })
+            }
+          />
         </div>
 
-        <div className="form-group">
-          <h2>Phases</h2>
+        <div className="mb-3">
+          <label className="form-label">Total towers</label>
+          <input
+            type="number"
+            className="form-control"
+            value={formData.totalTowers}
+            onChange={(e) =>
+              setFormData({ ...formData, totalTowers: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Total Flats</label>
+          <input
+            type="number"
+            className="form-control"
+            value={formData.totalFlats}
+            onChange={(e) =>
+              setFormData({ ...formData, totalFlats: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Tower phase wise</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.towerPhaseWise}
+            onChange={(e) =>
+              setFormData({ ...formData, towerPhaseWise: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Construction Type</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.constructionType}
+            onChange={(e) =>
+              setFormData({ ...formData, constructionType: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Property Category</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.propertyCategory}
+            onChange={(e) =>
+              setFormData({ ...formData, propertyCategory: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Property Type</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.propertyType}
+            onChange={(e) =>
+              setFormData({ ...formData, propertyType: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Sector Briefing</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.sectorBriefing}
+            onChange={(e) =>
+              setFormData({ ...formData, sectorBriefing: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Project Briefing</label>
+          <input
+            type="text"
+            className="form-control"
+            value={formData.projectBriefing}
+            onChange={(e) =>
+              setFormData({ ...formData, projectBriefing: e.target.value })
+            }
+          />
+        </div>
+
+        {/* Phases Section */}
+        <div className="mb-3">
+          <label className="form-label">Phases</label>
           {formData.phases.map((phase, index) => (
-            <div key={index} className="phase">
-              <h3>Phase {index + 1}</h3>
-              <div className="form-group">
-                <label htmlFor={`phase-${index}-status`}>Status</label>
-                <select
-                  id={`phase-${index}-status`}
+            <div key={index} className="mb-3 border p-3">
+              <div className="mb-2">
+                <label className="form-label">Phase Number</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={phase.phaseNumber}
+                  onChange={(e) => {
+                    const updatedPhases = [...formData.phases];
+                    updatedPhases[index].phaseNumber = e.target.value;
+                    setFormData({ ...formData, phases: updatedPhases });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">RERA Number</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={phase.reraNumber}
+                  onChange={(e) => {
+                    const updatedPhases = [...formData.phases];
+                    updatedPhases[index].reraNumber = e.target.value;
+                    setFormData({ ...formData, phases: updatedPhases });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Status</label>
+                <input
+                  type="text"
+                  className="form-control"
                   value={phase.status}
-                  onChange={(e) => handlePhaseChange(index, 'status', e.target.value)}
-                  required
-                >
-                  <option value="">Select status</option>
-                  <option value="completed">Completed</option>
-                  <option value="under construction">Under Construction</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor={`phase-${index}-towers`}>No of towers in this phase</label>
-                <input
-                  type="number"
-                  id={`phase-${index}-towers`}
-                  value={phase.noOfTowers}
-                  onChange={(e) => handlePhaseChange(index, 'noOfTowers', e.target.value)}
-                  required
+                  onChange={(e) => {
+                    const updatedPhases = [...formData.phases];
+                    updatedPhases[index].status = e.target.value;
+                    setFormData({ ...formData, phases: updatedPhases });
+                  }}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor={`phase-${index}-apartments`}>No of apartments in this phase</label>
+              <div className="mb-2">
+                <label className="form-label">Delivery Date</label>
                 <input
-                  type="number"
-                  id={`phase-${index}-apartments`}
-                  value={phase.noOfApartments}
-                  onChange={(e) => handlePhaseChange(index, 'noOfApartments', e.target.value)}
-                  required
+                  type="date"
+                  className="form-control"
+                  value={phase.deliveryDate}
+                  onChange={(e) => {
+                    const updatedPhases = [...formData.phases];
+                    updatedPhases[index].deliveryDate = e.target.value;
+                    setFormData({ ...formData, phases: updatedPhases });
+                  }}
                 />
               </div>
-              <button type="button" onClick={() => handleRemovePhase(index)}>Remove Phase</button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => removePhase(index)}
+              >
+                Remove Phase
+              </button>
             </div>
           ))}
-          <button type="button" onClick={handleAddPhase}>Add Phase</button>
+          <button type="button" className="btn btn-primary" onClick={addPhase}>
+            Add Phase
+          </button>
         </div>
 
-        <button type="submit" className="submit-btn">Submit</button>
+        {/* Bedrooms Section */}
+        <div className="mb-3">
+          <label className="form-label">Bedrooms</label>
+          {formData.bedrooms.map((bedroom, index) => (
+            <div key={index} className="mb-3 border p-3">
+              <div className="mb-2">
+                <label className="form-label">Bedroom Size</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={bedroom.size}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].size = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">SuperArea </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.superArea}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].superArea = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Built-up Area</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.builtUpArea}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].builtUpArea = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Carpet Area</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.carpetArea}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].carpetArea = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Baths</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.toilets}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].toilets = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Balconies</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.balconies}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].balconies = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Servant Quarters</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.servantQuarters}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].servantQuarters = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Study Room</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.studyRoom}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].studyRoom = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Pooja Room</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.poojaRoom}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].poojaRoom = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Price per sq/ft</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.pricePerSqft}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].pricePerSqft = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Price range (Min)</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.priceRangeMin}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].priceRangeMin = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Price range (Max)</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  value={bedroom.priceRangeMax}
+                  onChange={(e) => {
+                    const updatedBedrooms = [...formData.bedrooms];
+                    updatedBedrooms[index].priceRangeMax = e.target.value;
+                    setFormData({ ...formData, bedrooms: updatedBedrooms });
+                  }}
+                />
+              </div>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => removeBedroom(index)}
+              >
+                Remove Bedroom
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={addBedroom}
+          >
+            Add Bedroom
+          </button>
+        </div>
+        {/* Media Section */}
+        <div className="mb-3">
+          <label className="form-label">Media</label>
+          {formData.media?.map((mediaItem, index) => (
+            <div key={index} className="mb-3 border p-3">
+              <div className="mb-2">
+                <label className="form-label">Type</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  value={mediaItem.type || ""}
+                  onChange={(e) => {
+                    const updatedMedia = [...formData.media];
+                    updatedMedia[index].type = e.target.value;
+                    setFormData({ ...formData, media: updatedMedia });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">URL</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={mediaItem.url || ""}
+                  onChange={(e) => {
+                    const updatedMedia = [...formData.media];
+                    updatedMedia[index].url = e.target.value;
+                    setFormData({ ...formData, media: updatedMedia });
+                  }}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="form-label">Caption</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={mediaItem.caption || ""}
+                  onChange={(e) => {
+                    const updatedMedia = [...formData.media];
+                    updatedMedia[index].caption = e.target.value;
+                    setFormData({ ...formData, media: updatedMedia });
+                  }}
+                />
+              </div>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={() => removeMedia(index)}
+              >
+                Remove Media
+              </button>
+            </div>
+          )) || []}
+          <button type="button" className="btn btn-primary" onClick={addMedia}>
+            Add Media
+          </button>
+        </div>
+
+        {/* Submit Button */}
+        <button type="submit" className="btn btn-success">
+          Submit
+        </button>
       </form>
     </div>
   );
 };
 
 export default ProjectAddPage;
-
