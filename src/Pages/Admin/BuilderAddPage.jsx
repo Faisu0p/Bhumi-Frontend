@@ -1,116 +1,195 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './BuilderAddPage.css';
+import React, { useState } from "react";
+import { createBuilder } from "./apis/builderApi"; // Import the API function
+import MediaSection from "./components/MediaSection";
 
-function BuilderAddPage() {
+const BuilderAddPage = () => {
   const [formData, setFormData] = useState({
-    city: '',
-    fullName: '',
-    shortName: '',
-    yearsInRealEstate: '',
-    shortDescription: '',
-    projects: ''
+    city: "",
+    builderCompleteName: "",
+    builderShortName: "",
+    builderLogo: null,
+    yearsInRealEstate: 0,
+    shortDescription: "",
+    listOfProjects: "",
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      setFormData({ ...formData, [name]: files[0] }); // Handle file uploads
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+
+  const handleNumberChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: Math.max(0, Number(value)) }); // Prevent negative values
+  };
+
+  // Function to update builderLogo with the uploaded image URL
+  const updatebuilderLogo = (url) => {
+    setFormData({ ...formData, builderLogo: url });
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Ensure builderLogo is a string, not an array
+    const updatedFormData = {
+      ...formData,
+      builderLogo: Array.isArray(formData.builderLogo)
+        ? formData.builderLogo[0]
+        : formData.builderLogo,
+    };
+
     try {
-      const response = await axios.post('http://localhost:5000/api/builders/add', formData);
-      console.log('Builder added:', response.data);
-      alert('Builder added successfully!');
-    } catch (err) {
-      console.error('Error adding builder:', err);
-      alert('Error adding builder');
+      console.log("Form data before submission:", updatedFormData);
+      const response = await createBuilder(updatedFormData);
+      console.log("Builder Data Submitted:", response);
+      alert("Builder information submitted successfully!");
+
+      // Reset form data after successful submission
+      setFormData({
+        city: "",
+        builderCompleteName: "",
+        builderShortName: "",
+        builderLogo: null,
+        yearsInRealEstate: 0,
+        shortDescription: "",
+        listOfProjects: "",
+      });
+    } catch (error) {
+      console.error("Error submitting builder data:", error);
+      alert("There was an error submitting the builder information.");
     }
   };
 
   return (
-    <div className="builder-add-page-container">
-      <h1 className="builder-add-page-title">Add Builder</h1>
-      <form className="builder-add-page-form" onSubmit={handleSubmit}>
-        <div className="builder-add-page-form-group">
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    <div
+      className="container d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh", backgroundColor: "#f9f9f9" }}
+    >
+      <div
+        className="card shadow p-4 w-100"
+        style={{ maxWidth: "500px", overflowY: "auto" }}
+      >
+        <h2 className="text-center mb-4">Builder Information Form</h2>
+        <form onSubmit={handleSubmit}>
+          {/* City Input */}
+          <div className="mb-3">
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              value={formData.city}
+              onChange={handleChange}
+              required
+              className="form-control"
+            />
+          </div>
 
-        <div className="builder-add-page-form-group">
-          <label htmlFor="fullName">Builder Complete Name</label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Builder Complete Name Input */}
+          <div className="mb-3">
+            <input
+              type="text"
+              name="builderCompleteName"
+              placeholder="Builder Complete Name"
+              value={formData.builderCompleteName}
+              onChange={handleChange}
+              required
+              className="form-control"
+            />
+          </div>
 
-        <div className="builder-add-page-form-group">
-          <label htmlFor="shortName">Builder's Nick/Short Name</label>
-          <input
-            type="text"
-            id="shortName"
-            name="shortName"
-            value={formData.shortName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Builder Short Name Input */}
+          <div className="mb-3">
+            <input
+              type="text"
+              name="builderShortName"
+              placeholder="Builder's Nick/Short Name"
+              value={formData.builderShortName}
+              onChange={handleChange}
+              required
+              className="form-control"
+            />
+          </div>
 
-        <div className="builder-add-page-form-group">
-          <label htmlFor="yearsInRealEstate">No. of Years in Real Estate</label>
-          <input
-            type="number"
-            id="yearsInRealEstate"
-            name="yearsInRealEstate"
-            value={formData.yearsInRealEstate}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Media Section for uploading image */}
+          <div className="mb-3">
+            <label htmlFor="masterLayoutPlan" className="form-label">
+              Upload Media:
+            </label>
+            <MediaSection updateMasterLayoutPlan={updatebuilderLogo} />
+          </div>
 
-        <div className="builder-add-page-form-group">
-          <label htmlFor="shortDescription">Short Description</label>
-          <textarea
-            id="shortDescription"
-            name="shortDescription"
-            value={formData.shortDescription}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Builder Logo Input */}
+          <div className="mb-3">
+            <label htmlFor="builderLogo" className="form-label">
+              Upload Builder Logo URL:
+            </label>
+            <input
+              type="text"
+              id="builderLogo"
+              name="builderLogo"
+              value={formData.builderLogo}
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
 
-        <div className="builder-add-page-form-group">
-          <label htmlFor="projects">List of Projects</label>
-          <textarea
-            id="projects"
-            name="projects"
-            value={formData.projects}
-            onChange={handleChange}
-            required
-          />
-        </div>
 
-        <button type="submit" className="builder-add-page-submit-btn">Submit</button>
-      </form>
+
+          <div className="input-group">
+            <input
+              type="number"
+              id="yearsInRealEstate"
+              name="yearsInRealEstate"
+              placeholder="Enter the number of years"
+              value={formData.yearsInRealEstate}
+              onChange={handleNumberChange}
+              required
+              min="0" // Enforces no negative values
+              className="form-control"
+            />
+            <span className="input-group-text">Years</span>
+          </div>
+
+          {/* Short Description */}
+          <div className="mb-3">
+            <textarea
+              name="shortDescription"
+              placeholder="Short Description"
+              value={formData.shortDescription}
+              onChange={handleChange}
+              rows="3"
+              className="form-control"
+            />
+          </div>
+
+          {/* List of Projects */}
+          <div className="mb-3">
+            <textarea
+              name="listOfProjects"
+              placeholder="List of Projects (comma-separated)"
+              value={formData.listOfProjects}
+              onChange={handleChange}
+              rows="3"
+              className="form-control"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="d-flex justify-content-center">
+            <button type="submit" className="btn btn-primary w-100">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default BuilderAddPage;

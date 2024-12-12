@@ -52,7 +52,7 @@ const HomePage = () => {
     navigate("/login");
   };
   const redirectToProject = () => {
-    navigate("/project");
+    navigate("/projects");
   };
 
   const handlePhoneChange = (e) => {
@@ -83,7 +83,7 @@ const HomePage = () => {
           <img src={companyLogo} alt="Company Logo" className="company-logo" />
 
           <div className="buttons-container">
-            <div className="download-container">
+            <div className="download-container" onClick={redirectToProject}>
               <div className="download-button">
                 <div className="download-icon">
                   <i className="fas fa-download"></i>

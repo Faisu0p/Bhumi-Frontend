@@ -51,9 +51,9 @@ const ManagePage = () => {
         const data = await response.json();
 
         if (response.ok) {
-          setVerificationMessage(data.message);  // Success message from backend
+          setVerificationMessage(data.message); 
         } else {
-          setVerificationMessage(data.message);  // Error message from backend
+          setVerificationMessage(data.message);  
         }
       }
     } catch (error) {
