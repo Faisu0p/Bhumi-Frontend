@@ -10,10 +10,10 @@ const ManagePage = () => {
   useEffect(() => {
     const fetchBuilders = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/builders');
+        const response = await fetch('http://localhost:8021/api/builders');
         const data = await response.json();
-        if (data && data.data) {
-          setBuilders(data.data);
+        if (data) {
+          setBuilders(data); // Assuming your backend returns the array of builders directly
         }
       } catch (error) {
         console.error('Error fetching builders:', error);
@@ -35,16 +35,16 @@ const ManagePage = () => {
     }
 
     try {
-      const selectedBuilderObj = builders.find(builder => builder.builder_id === parseInt(selectedBuilder));
+      const selectedBuilderObj = builders.find(builder => builder.id === parseInt(selectedBuilder));
 
       if (selectedBuilderObj) {
-        const response = await fetch('http://localhost:5000/api/builders/verify', {
+        const response = await fetch('http://localhost:8021/api/builders/verify', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            fullName: selectedBuilderObj.fullName,
+            builderCompleteName: selectedBuilderObj.builderCompleteName, // Changed to builderCompleteName
           }),
         });
 
@@ -73,8 +73,8 @@ const ManagePage = () => {
         >
           <option value="">Select a builder</option>
           {builders.map((builder) => (
-            <option key={builder.builder_id} value={builder.builder_id}>
-              {builder.fullName} (ID: {builder.builder_id})
+            <option key={builder.id} value={builder.id}>
+              {builder.builderCompleteName} (ID: {builder.id}) {/* Changed from fullName to builderCompleteName */}
             </option>
           ))}
         </select>
