@@ -1,0 +1,127 @@
+/* Header container */
+.header-container {
+    background-color: #fff; /* White background */
+    padding: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Light shadow for subtle depth */
+    color: red; /* Red color for text */
+  }
+  
+  /* Navbar wrapper */
+  .navbar-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Logo styles */
+  .logo-img {
+    max-height: 40px; /* Adjust size */
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d32f2f; /* Red color for the logo text */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  
+  /* Navbar links */
+  .navbar-links {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+  
+  .navbar-links .nav-item {
+    position: relative; /* Position for the dropdown */
+    margin-left: 1.5rem;
+  }
+  
+  /* Base styles for links */
+  .navbar-links .nav-link {
+    color: white; /* White text */
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.5rem; /* Rounded corners */
+    background-color: red; /* Red background */
+    transition: all 0.3s ease; /* Smooth transition for hover */
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  
+  .navbar-links .nav-link:hover {
+    background-color: red; /* Darker red on hover */
+    color: #fff; /* Keep the text white */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .navbar-links .nav-link.active {
+    background-color: red; /* Darker red for active state */
+    color: #fff; /* White text for active links */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  /* Dropdown menu */
+  .nav-item:hover .dropdown-menu {
+    display: block; /* Show the dropdown on hover */
+  }
+  
+  /* Dropdown link styles */
+  .dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    color: red; /* Red text for dropdown */
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
+    min-width: 180px;
+    z-index: 1000;
+  }
+  
+  .dropdown-item {
+    padding: 0.8rem 1.2rem;
+    text-transform: uppercase;
+    color: red; /* Red text */
+    font-weight: 500;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f5f5f5; /* Light grey on hover */
+    color: red; /* Darker red for hover effect */
+  }
+  
+  .dropdown-item.active {
+    background-color: #f5f5f5;
+    color: red;
+  }
+  
+  /* Mobile view adjustments */
+  @media (max-width: 991px) {
+    .navbar-links {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navbar-links .nav-item {
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
+  
+    .navbar-toggler {
+      margin-right: 1rem;
+    }
+  }
+  

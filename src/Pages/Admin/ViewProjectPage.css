@@ -1,0 +1,22 @@
+/* ViewProjectPage.css */
+
+.view-project-container {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f4f7fb;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .view-project-container h1 {
+    font-size: 3rem;
+    color: #4a5568;
+  }
+  
+  .view-project-container p {
+    font-size: 1.2rem;
+    color: #718096;
+    margin-top: 10px;
+  }
+  

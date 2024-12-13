@@ -33,40 +33,7 @@ const ViewProperties = () => {
     <div className="container mt-5">
       <h2>View All Properties</h2>
 
-      {/* Display selected property details if any */}
-      {selectedProperty && (
-        <div className="mb-4">
-          <h4>Property Details</h4>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">{selectedProperty.projectName}</h5>
-              <p>
-                <strong>Builder Name:</strong> {selectedProperty.builderName}
-              </p>
-              <p>
-                <strong>Location:</strong> {selectedProperty.locality},{" "}
-                {selectedProperty.city}
-              </p>
-              <p>
-                <strong>Launch Date:</strong> {selectedProperty.launchDate}
-              </p>
-              <p>
-                <strong>Price Range:</strong> ₹{selectedProperty.priceRangeMin}{" "}
-                - ₹{selectedProperty.priceRangeMax}
-              </p>
-              <p>
-                <strong>Status:</strong> {selectedProperty.status}
-              </p>
-              <p>
-                <strong>Short Code:</strong> {selectedProperty.shortCode}
-              </p>
-              {/* Add more fields here as necessary */}
-            </div>
-          </div>
-        </div>
-      )}
 
-      {/* Display properties in a grid layout */}
       {/* Display properties in a grid layout */}
       <div className="row">
         {Array.isArray(properties) && properties.length > 0 ? (

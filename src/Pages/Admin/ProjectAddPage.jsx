@@ -1,71 +1,65 @@
 import React, { useState, useEffect } from "react";
 import { createProject } from "./apis/propertyApi"; // Assuming you have the API functions in api.js file
-
-import ViewProperties from "./components/ProjectList"; // Adjust the path as needed
 import { getAllBuilders } from "./apis/builderApi.jsx";
-
+import './ProjectAddPage.css';
 const ProjectAddPage = () => {
   const [formData, setFormData] = useState({
-    city: "Mumbai",
-    locality: "Andheri",
-    sublocality: "West",
-    builderName: "XYZ Builders",
-    projectName: "Skyline Heights",
-    companyName: "XYZ Group",
-    launchDate: "2024-01-15",
-    shortCode: "SH123",
-    deliveryStatus: "Ongoing",
-    deliveryDate: "2026-12-31",
-    reraNumber: "RERA12345",
-    totalTowers: 5,
-    totalFlats: 250,
-    towerPhaseWise: "Yes",
-    constructionType: "Residential",
-    propertyCategory: "Luxury",
-    propertyType: "Apartments",
-    sectorBriefing: "Prime location with premium amenities.",
-    projectBriefing: "A modern residential complex with all facilities.",
+    city: "",
+    locality: "",
+    sublocality: "",
+    builderName: "",
+    projectName: "",
+    companyName: "",
+    launchDate: "",
+    shortCode: "",
+    deliveryStatus: "",
+    deliveryDate: "",
+    reraNumber: "",
+    totalTowers: "",
+    totalFlats: "",
+    towerPhaseWise: "",
+    constructionType: "",
+    propertyCategory: "",
+    propertyType: "",
+    sectorBriefing: "",
+    projectBriefing: "",
     masterLayoutPlan: {
-      layoutUrl: "https://example.com/master-plan.pdf",
-      description: "Detailed master layout plan.",
+      layoutUrl: "",
+      description: "",
     },
     mediaUrls: [
       {
-        type: "image",
-        url: "https://example.com/image1.jpg",
-        caption: "Project front view",
-      },
-      {
-        type: "video",
-        url: "https://example.com/video1.mp4",
-        caption: "Walkthrough video",
+        type: "",
+        url: "",
+        caption: "",
       },
     ],
     phases: [
       {
-        phaseNumber: 1,
-        reraNumber: "RERA-PH1",
-        status: "Completed",
-        deliveryDate: "2023-12-31",
+        phaseNumber: "",
+        reraNumber: "",
+        status: "",
+        deliveryDate: "",
       },
     ],
     bedrooms: [
       {
-        size: "2BHK",
-        superArea: 1200,
-        builtUpArea: 1000,
-        carpetArea: 900,
-        toilets: 2,
-        balconies: 1,
-        servantQuarters: 0,
-        studyRoom: 0,
-        poojaRoom: 1,
-        pricePerSqft: 12000,
-        priceRangeMin: 10000000,
-        priceRangeMax: 12000000,
+        size: "",
+        superArea: "",
+        builtUpArea: "",
+        carpetArea: "",
+        toilets: "",
+        balconies: "",
+        servantQuarters: "",
+        studyRoom: "",
+        poojaRoom: "",
+        pricePerSqft: "",
+        priceRangeMin: "",
+        priceRangeMax: "",
       },
     ],
   });
+  
 
   const [responseMessage, setResponseMessage] = useState({
     message: "",
@@ -176,7 +170,6 @@ const ProjectAddPage = () => {
   return (
     <div className="container mt-5">
       <h1>Welcome to the Property Management System</h1>
-      <ViewProperties />
       <h2>Add new project</h2>
       {responseMessage.message && (
         <div

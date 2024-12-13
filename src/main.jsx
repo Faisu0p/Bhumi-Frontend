@@ -12,7 +12,19 @@ import ProjectDetailsPage from './Pages/ProjectDetails/ProjectDetails';
 import AdminPage from './Pages/Admin/AdminPage';
 import BuilderAddPage from './Pages/Admin/BuilderAddPage';
 import ProjectAddPage from './Pages/Admin/ProjectAddPage';
-import ManagePage from './Pages/Admin/ManagePage';
+import ManageBuilderPage from './Pages/Admin/ManageBuilderPage';
+import Header from './Pages/Admin/components/Header';
+import ViewProjectPage from './Pages/Admin/ViewProjectPage';
+import ViewBuilderPage from './Pages/Admin/ViewBuilderPage';
+
+function LayoutWithHeader({ children }) {
+  return (
+    <div>
+      <Header />
+      {children}
+    </div>
+  );
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,11 +36,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/feed" element={<FeedPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/projects" element={<ProjectPage />} />
-        <Route path="/project-details/:id" element={<ProjectDetailsPage />} /> 
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/add-builder" element={<BuilderAddPage />} />
-        <Route path="/add-project" element={<ProjectAddPage />} />
-        <Route path="/manage" element={<ManagePage />} />
+        <Route path="/project-details/:id" element={<ProjectDetailsPage />} />
+        
+        {/* Routes with Header */}
+        <Route path="/admin" element={<LayoutWithHeader><AdminPage /></LayoutWithHeader>} />
+        <Route path="/add-builder" element={<LayoutWithHeader><BuilderAddPage /></LayoutWithHeader>} />
+        <Route path="/add-project" element={<LayoutWithHeader><ProjectAddPage /></LayoutWithHeader>} />
+        <Route path="/manage-builder" element={<LayoutWithHeader><ManageBuilderPage /></LayoutWithHeader>} />
+        <Route path="/view-builder" element={<LayoutWithHeader><ViewBuilderPage /></LayoutWithHeader>} />
+        <Route path="/view-project" element={<LayoutWithHeader><ViewProjectPage /></LayoutWithHeader>} />
+        
       </Routes>
     </Router>
   </React.StrictMode>

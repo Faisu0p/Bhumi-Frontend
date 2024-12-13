@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './ManagePage.css';
+import './ManageBuilderPage.css';
 
-const ManagePage = () => {
+const ManageBuilderPage = () => {
   const [selectedBuilder, setSelectedBuilder] = useState('');
   const [builders, setBuilders] = useState([]);
   const [verificationMessage, setVerificationMessage] = useState('');
@@ -89,4 +89,4 @@ const ManagePage = () => {
   );
 };
 
-export default ManagePage;
+export default ManageBuilderPage;

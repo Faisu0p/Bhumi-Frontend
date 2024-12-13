@@ -94,7 +94,7 @@ const MediaSection = ({ updateMasterLayoutPlan }) => {
         <button
           onClick={handleUpload}
           disabled={uploading || images.length === 0}
-          style={{ marginTop: "10px" }}
+          style={{ marginTop: "10px",backgroundColor: "red", color:"white" }}
         >
           {uploading ? "Uploading..." : "Upload"}
         </button>

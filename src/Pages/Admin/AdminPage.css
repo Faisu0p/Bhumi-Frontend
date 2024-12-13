@@ -1,33 +1,45 @@
-/* Admin Page Styles */
-.admin-page-container {
-  text-align: center;
-  margin-top: 5rem; /* Changed from px for consistency */
-  font-family: Arial, sans-serif;
+/* Custom styles for AdminPage */
+
+/* Hero Section */
+.hero-section {
+  background-color: #f8f9fa; /* Light background for the hero section */
+  padding: 5rem 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.admin-page-title {
+.hero-section h2 {
+  font-weight: bold;
+  font-size: 3rem;
+  color: #d32f2f; /* Red color for the hero title */
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #6c757d; /* Muted text */
+}
+
+.hero-section .btn-danger {
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 0.8rem 2rem;
+}
+
+/* About Us Section */
+.about-section {
+  background-color: #fff; /* White background for About Us */
+  padding: 4rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.about-section h3 {
   font-size: 2rem;
-  color: #333;
-  margin-bottom: 2rem;
+  font-weight: bold;
+  color: #d32f2f; /* Red color for About Us title */
 }
 
-.admin-page-button-container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.admin-page-button {
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
-  background-color: #007bff; /* Bootstrap Blue */
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.admin-page-button:hover {
-  background-color: #0056b3;
+.about-section p {
+  font-size: 1.1rem;
+  color: #6c757d; /* Muted text */
 }

@@ -1,0 +1,104 @@
+/* General page styling */
+.manage-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem; /* Increased padding */
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Header styling */
+.manage-page h1 {
+  text-align: center;
+  color: red;
+  font-size: 3rem; /* Increased font size */
+  font-weight: 700;
+  margin-bottom: 3rem; /* Increased margin */
+}
+
+/* Builder selection container styling */
+.builder-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem; /* Increased gap between elements */
+}
+
+/* Dropdown for selecting builder */
+.builder-dropdown {
+  padding: 1rem; /* Increased padding */
+  width: 80%;
+  max-width: 500px; /* Increased max width */
+  border: 2px solid red;
+  border-radius: 5px;
+  font-size: 1.2rem; /* Increased font size */
+  background-color: white; /* White background for clarity */
+  color: red; /* Red text for consistency */
+  appearance: none; /* Remove default dropdown arrow */
+  -webkit-appearance: none; /* Remove default dropdown arrow in Safari */
+  -moz-appearance: none; /* Remove default dropdown arrow in Firefox */
+  transition: border-color 0.3s ease;
+}
+
+/* Custom dropdown arrow */
+.builder-dropdown::after {
+  content: ' ▼';
+  font-size: 1.5rem;
+  color: red; /* Red arrow for consistency */
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Button for verifying builder */
+.verify-button {
+  padding: 1rem 2rem; /* Increased padding */
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem; /* Increased font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.verify-button:hover {
+  background-color: darkred;
+}
+
+/* Verification message styling */
+.verification-message {
+  margin-top: 3rem; /* Increased margin */
+  text-align: center;
+  font-size: 1.5rem; /* Increased font size */
+  font-weight: bold;
+}
+
+/* Verification message for success or error */
+.verification-message.success {
+  color: green;
+}
+
+.verification-message.error {
+  color: red;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .manage-page {
+    padding: 2rem; /* Increased padding */
+  }
+
+  .builder-dropdown {
+    width: 100%;
+    font-size: 1.3rem; /* Increased font size */
+  }
+
+  .verify-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.3rem; /* Increased font size */
+  }
+}

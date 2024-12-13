@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createBuilder } from "./apis/builderApi"; // Import the API function
 import MediaSection from "./components/MediaSection";
+import './BuilderAddPage.css'; // Custom CSS for BuilderAddPage
 
 const BuilderAddPage = () => {
   const [formData, setFormData] = useState({
@@ -32,11 +33,9 @@ const BuilderAddPage = () => {
     setFormData({ ...formData, builderLogo: url });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Ensure builderLogo is a string, not an array
     const updatedFormData = {
       ...formData,
       builderLogo: Array.isArray(formData.builderLogo)
@@ -67,15 +66,9 @@ const BuilderAddPage = () => {
   };
 
   return (
-    <div
-      className="container d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh", backgroundColor: "#f9f9f9" }}
-    >
-      <div
-        className="card shadow p-4 w-100"
-        style={{ maxWidth: "500px", overflowY: "auto" }}
-      >
-        <h2 className="text-center mb-4">Builder Information Form</h2>
+    <div className="container d-flex justify-content-center align-items-center builder-page">
+      <div className="card shadow p-4 w-100 builder-form-card">
+        <h2 className="text-center mb-4 text-danger">Builder Information Form</h2>
         <form onSubmit={handleSubmit}>
           {/* City Input */}
           <div className="mb-3">
@@ -123,7 +116,6 @@ const BuilderAddPage = () => {
             </label>
             <MediaSection updateMasterLayoutPlan={updatebuilderLogo} />
           </div>
-
           {/* Builder Logo Input */}
           <div className="mb-3">
             <label htmlFor="builderLogo" className="form-label">
@@ -139,9 +131,8 @@ const BuilderAddPage = () => {
             />
           </div>
 
-
-
-          <div className="input-group">
+          {/* Years in Real Estate */}
+          <div className="input-group mb-3">
             <input
               type="number"
               id="yearsInRealEstate"
@@ -150,7 +141,7 @@ const BuilderAddPage = () => {
               value={formData.yearsInRealEstate}
               onChange={handleNumberChange}
               required
-              min="0" // Enforces no negative values
+              min="0"
               className="form-control"
             />
             <span className="input-group-text">Years</span>
@@ -182,7 +173,7 @@ const BuilderAddPage = () => {
 
           {/* Submit Button */}
           <div className="d-flex justify-content-center">
-            <button type="submit" className="btn btn-primary w-100">
+            <button type="submit" className="btn btn-danger w-100">
               Submit
             </button>
           </div>
