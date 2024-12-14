@@ -60,11 +60,11 @@ const ProjectAddPage = () => {
     setPhases([
       ...phases,
       {
-        Phase_Number: '1',
-        Rera_Number: '1212',
-        Phase_Status: 'asd',
-        Delivery_Date: '12-12-2024',
-        Total_Towers: '123',
+        Phase_Number: phases.length + 1,
+        Rera_Number: '',
+        Phase_Status: '',
+        Delivery_Date: '',
+        Total_Towers: '',
       },
     ]);
   };
@@ -342,73 +342,77 @@ const ProjectAddPage = () => {
           />
         </div>
 
-        {/* Phases Section */}
-        <h3>Project Phases</h3>
-        {phases.map((phase, index) => (
-          <div key={index}>
-            <h4>Phase {index + 1}</h4>
-            <div className="form-group">
-              <label>Phase Number</label>
-              <input
-                type="number"
-                className="form-control"
-                name="phaseNumber"
-                value={phase.Phase_Number}
-                onChange={(e) => handlePhaseChange(index, e)}
-              />
-            </div>
-            <div className="form-group">
-              <label>RERA Number</label>
-              <input
-                type="text"
-                className="form-control"
-                name="reraNumber"
-                value={phase.Rera_Number}
-                onChange={(e) => handlePhaseChange(index, e)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Phase Status</label>
-              <input
-                type="text"
-                className="form-control"
-                name="phaseStatus"
-                value={phase.Phase_Status}
-                onChange={(e) => handlePhaseChange(index, e)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Delivery Date</label>
-              <input
-                type="date"
-                className="form-control"
-                name="deliveryDate"
-                value={phase.Delivery_Date}
-                onChange={(e) => handlePhaseChange(index, e)}
-              />
-            </div>
-            <div className="form-group">
-              <label>Total Towers</label>
-              <input
-                type="number"
-                className="form-control"
-                name="totalTowers"
-                value={phase.Total_Towers}
-                onChange={(e) => handlePhaseChange(index, e)}
-              />
-            </div>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={() => removePhase(index)}
-            >
-              Remove Phase
-            </button>
-          </div>
-        ))}
-        <button type="button" className="btn btn-primary" onClick={addPhase}>
-          Add Phase
+      {/* Phases Section */}
+    <h3>Project Phases</h3>
+    {phases.map((phase, index) => (
+      <div key={index}>
+        <h4>Phase {phase.Phase_Number}</h4>
+        <div className="form-group">
+          <label>Phase Number</label>
+          <input
+            type="number"
+            className="form-control"
+            name="Phase_Number"
+            value={phase.Phase_Number}
+            readOnly // Make Phase_Number read-only as it auto-calculates
+          />
+        </div>
+        <div className="form-group">
+          <label>RERA Number</label>
+          <input
+            type="text"
+            className="form-control"
+            name="Rera_Number"
+            value={phase.Rera_Number}
+            onChange={(e) => handlePhaseChange(index, e)}
+          />
+        </div>
+        <div className="form-group">
+  <label>Phase Status</label>
+  <select
+    className="form-control"
+    name="Phase_Status"
+    value={phase.Phase_Status} // Dynamically set the selected option
+    onChange={(e) => handlePhaseChange(index, e)} // Update the phase status
+  >
+    <option value="">Select Status</option> {/* Default placeholder */}
+    <option value="Complete">Complete</option>
+    <option value="Under Construction">Under Construction</option>
+  </select>
+</div>
+
+        <div className="form-group">
+          <label>Delivery Date</label>
+          <input
+            type="date"
+            className="form-control"
+            name="Delivery_Date"
+            value={phase.Delivery_Date}
+            onChange={(e) => handlePhaseChange(index, e)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Total Towers</label>
+          <input
+            type="number"
+            className="form-control"
+            name="Total_Towers"
+            value={phase.Total_Towers}
+            onChange={(e) => handlePhaseChange(index, e)}
+          />
+        </div>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => removePhase(index)}
+        >
+          Remove Phase
         </button>
+      </div>
+    ))}
+    <button type="button" className="btn btn-primary" onClick={addPhase}>
+      Add Phase
+    </button>
 
         {/* Residential/Commercial Units Section */}
         {projectDetails.projectType === 'Residential' || projectDetails.projectType === 'Mixed' ? (
