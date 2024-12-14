@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BuilderDropdown from './components/BuilderDropdown'; // Make sure this is correctly imported
 
 const ProjectAddPage = () => {
   const [projectDetails, setProjectDetails] = useState({
@@ -59,7 +60,7 @@ const ProjectAddPage = () => {
     setPhases([
       ...phases,
       {
-        phase_Number: '1',
+        Phase_Number: '1',
         Rera_Number: '1212',
         Phase_Status: 'asd',
         Delivery_Date: '12-12-2024',
@@ -113,7 +114,6 @@ const ProjectAddPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prepare the project data in the same format as in Postman
     const projectData = {
       projectDetails: {
         projectName: projectDetails.projectName || null,
@@ -140,12 +140,13 @@ const ProjectAddPage = () => {
     };
 
     console.log(projectData);
-     try {
+
+    try {
       const response = await axios.post('http://localhost:8021/api/projects/submitProject', projectData);
-       console.log('Project added successfully:', response.data);
-     } catch (error) {
-       console.error('Error adding project:', error.response ? error.response.data : error.message);
-     }
+      console.log('Project added successfully:', response.data);
+    } catch (error) {
+      console.error('Error adding project:', error.response ? error.response.data : error.message);
+    }
   };
   
   
@@ -165,23 +166,25 @@ const ProjectAddPage = () => {
             onChange={handleInputChange}
           />
         </div>
+
+
+
+
+
         <div className="form-group">
-          <label>Select Builder</label>
-          <select
-            className="form-control"
-            name="builderId"
-            value={projectDetails.builderId}
-            onChange={handleInputChange}
-          >
-            <option value="">Select Builder</option>
-            {/* Populate builder options dynamically */}
-            <option value="1">Builder 1</option>
-            <option value="2">Builder 2</option>
-            <option value="3">Builder 3</option>
-            <option value="4">Builder 4</option>
-            <option value="5">Builder 5</option>
-          </select>
+          
+          <BuilderDropdown
+            projectDetails={projectDetails}
+            handleInputChange={handleInputChange}
+          />
         </div>
+
+
+
+
+
+
+
         <div className="form-group">
           <label>Project Launch Date</label>
           <input

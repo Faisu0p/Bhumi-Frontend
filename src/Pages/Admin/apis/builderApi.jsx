@@ -39,3 +39,10 @@ export const verifyBuilder = async (builderData) => {
   const data = await response.json();
   return data;
 };
+
+// Get only verified builders
+export const getVerifiedBuilders = async () => {
+  const response = await fetch(`${BASE_URL}/verified-builders`);
+  const data = await response.json();
+  return data;
+};
