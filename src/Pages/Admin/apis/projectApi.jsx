@@ -10,13 +10,51 @@ const postRequest = async (url, data) => {
     body: JSON.stringify(data),
   });
 
-  const result = await response.json();
-  return result;
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  try {
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+    throw new Error('Failed to parse response as JSON');
+  }
+};
+
+// Helper function to make a GET request
+const getRequest = async (url) => {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  try {
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+    throw new Error('Failed to parse response as JSON');
+  }
 };
 
 // Submit a new project with all its details
 export const submitProject = async (projectData) => {
   const url = `${BASE_URL}/submitProject`;
   const result = await postRequest(url, projectData);
+  return result;
+};
+
+// Fetch all projects
+export const fetchAllProjects = async () => {
+  const url = `${BASE_URL}/all_projects`; // Ensure this matches your backend route
+  const result = await getRequest(url);
   return result;
 };

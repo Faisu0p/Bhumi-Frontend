@@ -1,80 +1,93 @@
 import React, { useState, useEffect } from "react";
-import { getAllProjects } from "../apis/propertyApi"; // Import the API function
+import { fetchAllProjects } from "../apis/projectApi"; // Import the API function
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 
-const ViewProperties = () => {
-  const [properties, setProperties] = useState([]); // State to store properties
-  const [selectedProperty, setSelectedProperty] = useState(null); // State to store the selected property details
+const ViewProjects = () => {
+  const [projects, setProjects] = useState([]); // State to store projects
+  const [selectedProject, setSelectedProject] = useState(null); // State to store the selected project details
+  const [loading, setLoading] = useState(true); // State to handle loading
+  const [error, setError] = useState(null); // State to handle errors
 
-  // Fetch all properties when the component mounts
+  // Fetch all projects when the component mounts
   useEffect(() => {
-    const fetchProperties = async () => {
+    const fetchProjects = async () => {
       try {
-        const response = await getAllProjects();
+        const response = await fetchAllProjects(); // Call the fetchAllProjects API function
         if (response && response.success) {
-          setProperties(response.data); // Assuming the response has a 'data' field
+          setProjects(response.data); // Assuming the response has a 'data' field
         } else {
-          console.error("Error: Invalid response data");
+          setError("Error: Invalid response data");
         }
       } catch (error) {
-        console.error("Error fetching properties:", error);
+        console.error("Error fetching projects:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchProperties();
+    fetchProjects();
   }, []);
 
-  // Handle click event to show more details of a property
-  const handlePropertyClick = (property) => {
-    setSelectedProperty(property);
+  // Handle click event to show more details of a project
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
   };
+
+  if (loading) {
+    return <div>Loading projects...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="container mt-5">
-      <h2>View All Properties</h2>
+      <h2>View All Projects</h2>
 
 
-      {/* Display properties in a grid layout */}
+
+      {/* Display projects in a grid layout */}
       <div className="row">
-        {Array.isArray(properties) && properties.length > 0 ? (
-          properties.map((property) => (
-            <div key={property.id} className="col-md-4 mb-4">
+        {Array.isArray(projects) && projects.length > 0 ? (
+          projects.map((project) => (
+            <div key={project.Project_Name} className="col-md-4 mb-4">
               <div
                 className="card h-100"
-                onMouseEnter={() => setSelectedProperty(property)} // Show details on hover
-                onClick={() => handlePropertyClick(property)} // Show details on click
+                onMouseEnter={() => setSelectedProject(project)} // Show details on hover
+                onClick={() => handleProjectClick(project)} // Show details on click
               >
                 <img
                   src={
-                    property.imageUrl ||
-                    "https://via.placeholder.com/300x200?text=Property+Image"
+                    project.imageUrl ||
+                    "https://via.placeholder.com/300x200?text=Project+Image"
                   }
                   className="card-img-top"
-                  alt={property.projectName}
+                  alt={project.Project_Name}
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{property.projectName}</h5>
-                  <p className="card-text">Builder: {property.builderName}</p>
+                  <h5 className="card-title">{project.Project_Name}</h5>
+                  <p className="card-text">Builder: {project.Company_Name}</p>
                   <p className="card-text">
-                    Location: {property.locality}, {property.city}
+                    Location: {project.City}
                   </p>
                   <p className="card-text">
-                    Launch Date: {property.launchDate}
+                    Total Towers: {project.Total_Towers}
                   </p>
                   <p className="card-text">
-                    Price Range: ₹{property.priceRangeMin} - ₹
-                    {property.priceRangeMax}
+                    Briefing: {project.Project_Briefing}
                   </p>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <p>No properties available.</p>
+          <p>No projects available.</p>
         )}
       </div>
     </div>
   );
 };
 
-export default ViewProperties;
+export default ViewProjects;
