@@ -4,23 +4,23 @@ import BuilderDropdown from './components/BuilderDropdown'; // Make sure this is
 
 const ProjectAddPage = () => {
   const [projectDetails, setProjectDetails] = useState({
-    projectName: 'Project A',
-    builderId: '5',
-    launchDate: '12-12-2025',
-    city: 'Delhi',
-    locality: 'Delhi',
-    sublocality: 'asd',
-    companyName: 'asd',
-    shortCode: 'sad',
-    deliveryStatus: 'asd',
-    deliveryDate: '12-11-2024',
-    reraNumber: '12',
-    totalTowers: '12',
-    totalResidentialUnits: '12',
-    totalCommercialUnits: '12',
-    projectType: 'asd', // Residential, Commercial, Mixed
-    sectorBriefing: 'sada',
-    projectBriefing: 'sada',
+    projectName: '',
+    builderId: '',
+    launchDate: '',
+    city: '',
+    locality: '',
+    sublocality: '',
+    companyName: '',
+    shortCode: '',
+    deliveryStatus: '',
+    deliveryDate: '',
+    reraNumber: '',
+    totalTowers: '',
+    totalResidentialUnits: '',
+    totalCommercialUnits: '',
+    projectType: '', // Residential, Commercial, Mixed
+    sectorBriefing: '',
+    projectBriefing: '',
   });
 
   const [phases, setPhases] = useState([]);
@@ -78,13 +78,13 @@ const ProjectAddPage = () => {
     setResidentialUnits([
       ...residentialUnits,
       {
-        unitType: 'asd',
-        size: '123',
-        layout: 'sad',
-        facing: 'ad',
-        bedrooms: '1',
-        bathrooms: '1',
-        balconies: '1',
+        unitType: '',
+        size: '',
+        layout: '',
+        facing: '',
+        bedrooms: '',
+        bathrooms: '',
+        balconies: '',
         studyRoom: false,
         servantRoom: false,
         poojaRoom: false,
@@ -99,12 +99,12 @@ const ProjectAddPage = () => {
     setCommercialUnits([
       ...commercialUnits,
       {
-        unitType: 'ad',
-        size: '11',
-        layout: 'ad',
-        floorArea: '11',
-        facing: 'asd',
-        parkingSpaces: '2',
+        unitType: '',
+        size: '',
+        layout: '',
+        floorArea: '',
+        facing: '',
+        parkingSpaces: '',
         isRenovated: false,
         commercialFurnishings: false,
       },
@@ -148,6 +148,19 @@ const ProjectAddPage = () => {
       console.error('Error adding project:', error.response ? error.response.data : error.message);
     }
   };
+
+
+  const removeResidentialUnit = (index) => {
+    const updatedUnits = residentialUnits.filter((_, i) => i !== index);
+    setResidentialUnits(updatedUnits);
+  };
+
+  const removeCommercialUnit = (index) => {
+    const updatedUnits = commercialUnits.filter((_, i) => i !== index);
+    setCommercialUnits(updatedUnits);
+  };
+  
+  
   
   
 
