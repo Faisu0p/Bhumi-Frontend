@@ -247,14 +247,18 @@ const ProjectAddPage = () => {
         </div>
         <div className="form-group">
           <label>Delivery Status</label>
-          <input
-            type="text"
+          <select
             className="form-control"
             name="deliveryStatus"
             value={projectDetails.deliveryStatus}
             onChange={handleInputChange}
-          />
+          >
+            <option value="">Select Delivery Status</option>
+            <option value="Completed">Completed</option>
+            <option value="Under Construction">Under Construction</option>
+          </select>
         </div>
+
         <div className="form-group">
           <label>Delivery Date</label>
           <input
