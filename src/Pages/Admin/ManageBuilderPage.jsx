@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { getBuilders, verifyBuilder } from './apis/builderApi'; // Importing the updated API functions
 import './ManageBuilderPage.css';
 
 const ManageBuilderPage = () => {
@@ -6,14 +7,15 @@ const ManageBuilderPage = () => {
   const [builders, setBuilders] = useState([]);
   const [verificationMessage, setVerificationMessage] = useState('');
 
-  // Fetch builders from backend on component mount
+  // Fetch builders' names and IDs from backend on component mount
   useEffect(() => {
     const fetchBuilders = async () => {
       try {
-        const response = await fetch('http://localhost:8021/api/builders');
-        const data = await response.json();
-        if (data) {
-          setBuilders(data); // Assuming your backend returns the array of builders directly
+        const response = await getBuilders(); // Using getBuilders function from builderApi
+        if (response && Array.isArray(response.data)) { // Ensure data is in the correct format
+          setBuilders(response.data); // Set builders if data is an array
+        } else {
+          console.error('Expected an array of builders but got:', response);
         }
       } catch (error) {
         console.error('Error fetching builders:', error);
@@ -33,27 +35,21 @@ const ManageBuilderPage = () => {
       setVerificationMessage('Please select a builder');
       return;
     }
-
+  
     try {
-      const selectedBuilderObj = builders.find(builder => builder.id === parseInt(selectedBuilder));
-
+      const selectedBuilderObj = builders.find(builder => builder.Builder_id === parseInt(selectedBuilder));
+  
       if (selectedBuilderObj) {
-        const response = await fetch('http://localhost:8021/api/builders/verify', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            builderCompleteName: selectedBuilderObj.builderCompleteName, // Changed to builderCompleteName
-          }),
+        const response = await verifyBuilder({
+          builderId: selectedBuilderObj.Builder_id,  // Ensure this matches the field expected by the backend (builderId)
         });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          setVerificationMessage(data.message); 
+  
+        console.log("Response from verifyBuilder:", response);
+  
+        if (response && response.message) {
+          setVerificationMessage(response.message);
         } else {
-          setVerificationMessage(data.message);  
+          setVerificationMessage('Unexpected response format from server');
         }
       }
     } catch (error) {
@@ -61,6 +57,9 @@ const ManageBuilderPage = () => {
       console.error('Error verifying builder:', error);
     }
   };
+  
+
+  
 
   return (
     <div className="manage-page">
@@ -73,8 +72,8 @@ const ManageBuilderPage = () => {
         >
           <option value="">Select a builder</option>
           {builders.map((builder) => (
-            <option key={builder.id} value={builder.id}>
-              {builder.builderCompleteName} (ID: {builder.id}) {/* Changed from fullName to builderCompleteName */}
+            <option key={builder.Builder_id} value={builder.Builder_id}>
+              {builder.FullName} (ID: {builder.Builder_id})
             </option>
           ))}
         </select>

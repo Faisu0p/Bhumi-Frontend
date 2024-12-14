@@ -159,18 +159,6 @@ const BuilderAddPage = () => {
             />
           </div>
 
-          {/* List of Projects */}
-          <div className="mb-3">
-            <textarea
-              name="listOfProjects"
-              placeholder="List of Projects (comma-separated)"
-              value={formData.listOfProjects}
-              onChange={handleChange}
-              rows="3"
-              className="form-control"
-            />
-          </div>
-
           {/* Submit Button */}
           <div className="d-flex justify-content-center">
             <button type="submit" className="btn btn-danger w-100">

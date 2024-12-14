@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllBuilders } from "./apis/builderApi";
+import { getAllBuildersInfo } from "./apis/builderApi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './ViewBuilderPage.css'
 
@@ -11,9 +11,11 @@ const ViewBuilderPage = () => {
   useEffect(() => {
     const fetchBuilders = async () => {
       try {
-        const data = await getAllBuilders();
-        console.log(data); // Debugging API response
-        setBuilders(data);
+        const response = await getAllBuildersInfo();
+        console.log(response); // Debugging API response
+        if (response.data) {
+          setBuilders(response.data); // Ensure you get the correct data from the response
+        }
         setLoading(false);
       } catch (err) {
         setError(err);
@@ -36,7 +38,7 @@ const ViewBuilderPage = () => {
   if (error) {
     return (
       <div className="alert alert-danger text-center my-5">
-        Error fetching builders: {error}
+        Error fetching builders: {error.message}
       </div>
     );
   }
@@ -64,16 +66,16 @@ const ViewBuilderPage = () => {
           </thead>
           <tbody>
             {builders.map((builder) => (
-              <tr key={builder.id}>
-                <td>{builder.id}</td>
-                <td>{builder.city}</td>
-                <td>{builder.builderCompleteName}</td>
-                <td>{builder.builderShortName}</td>
+              <tr key={builder.Builder_id}>
+                <td>{builder.Builder_id}</td>
+                <td>{builder.City}</td>
+                <td>{builder.FullName}</td>
+                <td>{builder.NickName}</td>
                 <td>
-                  {builder.builderLogo ? (
+                  {builder.Builder_logo ? (
                     <img
-                      src={builder.builderLogo}
-                      alt={`${builder.builderShortName} logo`}
+                      src={builder.Builder_logo}
+                      alt={`${builder.NickName} logo`}
                       className="img-thumbnail"
                       style={{ width: "50px", height: "50px" }}
                     />
@@ -81,8 +83,8 @@ const ViewBuilderPage = () => {
                     "No Logo"
                   )}
                 </td>
-                <td>{builder.yearsInRealEstate}</td>
-                <td>{builder.shortDescription}</td>
+                <td>{builder.Years_of_experience}</td>
+                <td>{builder.Short_Description}</td>
                 <td>
                   {Array.isArray(builder.listOfProjects)
                     ? builder.listOfProjects.join(", ")
