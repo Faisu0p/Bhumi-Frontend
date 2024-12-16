@@ -16,7 +16,7 @@ const ProjectAddPage = () => {
     deliveryDate: '',
     reraNumber: '',
     totalTowers: '',
-    totalResidentialUnits: '',
+    totalUnitDeclaration: '',
     totalCommercialUnits: '',
     projectType: '', // Residential, Commercial, Mixed
     sectorBriefing: '',
@@ -24,7 +24,7 @@ const ProjectAddPage = () => {
   });
 
   const [phases, setPhases] = useState([]);
-  const [residentialUnits, setResidentialUnits] = useState([]);
+  const [UnitDeclaration, setUnitDeclaration] = useState([]);
   const [commercialUnits, setCommercialUnits] = useState([]);
 
   const handleInputChange = (e) => {
@@ -42,11 +42,11 @@ const ProjectAddPage = () => {
     setPhases(updatedPhases);
   };
 
-  const handleResidentialUnitChange = (index, e) => {
+  const handleUnitDeclarationChange = (index, e) => {
     const { name, value } = e.target;
-    const updatedUnits = [...residentialUnits];
+    const updatedUnits = [...UnitDeclaration];
     updatedUnits[index][name] = value;
-    setResidentialUnits(updatedUnits);
+    setUnitDeclaration(updatedUnits);
   };
 
   const handleCommercialUnitChange = (index, e) => {
@@ -65,6 +65,7 @@ const ProjectAddPage = () => {
         Phase_Status: '',
         Delivery_Date: '',
         Total_Towers: '',
+        Description: '',
       },
     ]);
   };
@@ -74,10 +75,11 @@ const ProjectAddPage = () => {
     setPhases(updatedPhases);
   };
 
-  const addResidentialUnit = () => {
-    setResidentialUnits([
-      ...residentialUnits,
+  const addUnitDeclaration = () => {
+    setUnitDeclaration([
+      ...UnitDeclaration,
       {
+        unitCategory:'',
         unitType: '',
         size: '',
         layout: '',
@@ -95,21 +97,7 @@ const ProjectAddPage = () => {
     ]);
   };
 
-  const addCommercialUnit = () => {
-    setCommercialUnits([
-      ...commercialUnits,
-      {
-        unitType: '',
-        size: '',
-        layout: '',
-        floorArea: '',
-        facing: '',
-        parkingSpaces: '',
-        isRenovated: false,
-        commercialFurnishings: false,
-      },
-    ]);
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -128,15 +116,14 @@ const ProjectAddPage = () => {
         deliveryDate: projectDetails.deliveryDate || null,
         reraNumber: projectDetails.reraNumber || null,
         totalTowers: projectDetails.totalTowers || null,
-        totalResidentialUnits: projectDetails.totalResidentialUnits || null,
+        totalUnitDeclaration: projectDetails.totalUnitDeclaration || null,
         totalCommercialUnits: projectDetails.totalCommercialUnits || null,
         projectType: projectDetails.projectType || null,
         sectorBriefing: projectDetails.sectorBriefing || null,
         projectBriefing: projectDetails.projectBriefing || null,
       },
       phases: phases,
-      residentialUnits: residentialUnits,
-      commercialUnits: commercialUnits,
+      UnitDeclaration: UnitDeclaration,
     };
 
     console.log(projectData);
@@ -150,15 +137,12 @@ const ProjectAddPage = () => {
   };
 
 
-  const removeResidentialUnit = (index) => {
-    const updatedUnits = residentialUnits.filter((_, i) => i !== index);
-    setResidentialUnits(updatedUnits);
+  const removeUnitDeclaration = (index) => {
+    const updatedUnits = UnitDeclaration.filter((_, i) => i !== index);
+    setUnitDeclaration(updatedUnits);
   };
 
-  const removeCommercialUnit = (index) => {
-    const updatedUnits = commercialUnits.filter((_, i) => i !== index);
-    setCommercialUnits(updatedUnits);
-  };
+
   
   
   
@@ -307,21 +291,12 @@ const ProjectAddPage = () => {
           <input
             type="number"
             className="form-control"
-            name="totalResidentialUnits"
-            value={projectDetails.totalResidentialUnits}
+            name="totalUnitDeclaration"
+            value={projectDetails.totalUnitDeclaration}
             onChange={handleInputChange}
           />
         </div>
-        <div className="form-group">
-          <label>Total Commercial Units</label>
-          <input
-            type="number"
-            className="form-control"
-            name="totalCommercialUnits"
-            value={projectDetails.totalCommercialUnits}
-            onChange={handleInputChange}
-          />
-        </div>
+      
         <div className="form-group">
           <label>Project Type</label>
           <select
@@ -381,18 +356,18 @@ const ProjectAddPage = () => {
           />
         </div>
         <div className="form-group">
-  <label>Phase Status</label>
-  <select
-    className="form-control"
-    name="Phase_Status"
-    value={phase.Phase_Status} // Dynamically set the selected option
-    onChange={(e) => handlePhaseChange(index, e)} // Update the phase status
-  >
-    <option value="">Select Status</option> {/* Default placeholder */}
-    <option value="Complete">Complete</option>
-    <option value="Under Construction">Under Construction</option>
-  </select>
-</div>
+          <label>Phase Status</label>
+          <select
+            className="form-control"
+            name="Phase_Status"
+            value={phase.Phase_Status} // Dynamically set the selected option
+            onChange={(e) => handlePhaseChange(index, e)} // Update the phase status
+          >
+            <option value="">Select Status</option> {/* Default placeholder */}
+            <option value="Complete">Complete</option>
+            <option value="Under Construction">Under Construction</option>
+          </select>
+        </div>
 
         <div className="form-group">
           <label>Delivery Date</label>
@@ -414,6 +389,16 @@ const ProjectAddPage = () => {
             onChange={(e) => handlePhaseChange(index, e)}
           />
         </div>
+        <div className="form-group">
+          <label>Phase Description</label>
+          <input
+            type="text"
+            className="form-control"
+            name="Description"
+            value={phase.Description}
+            onChange={(e) => handlePhaseChange(index, e)}
+          />
+        </div>
         <button
           type="button"
           className="btn btn-danger"
@@ -421,19 +406,25 @@ const ProjectAddPage = () => {
         >
           Remove Phase
         </button>
-      </div>
-    ))}
-    <button type="button" className="btn btn-primary" onClick={addPhase}>
-      Add Phase
-    </button>
-
-        {/* Residential/Commercial Units Section */}
-        {projectDetails.projectType === 'Residential' || projectDetails.projectType === 'Mixed' ? (
-          <>
-            <h3>Residential Units</h3>
-            {residentialUnits.map((unit, index) => (
+            <h3> Unit Declaration</h3>
+            {UnitDeclaration.map((unit, index) => (
               <div key={index}>
                 <h4>Unit {index + 1}</h4>
+
+
+                <div className="form-group">
+                  <label>Unit Category</label>
+                  <select
+                    className="form-control"
+                    name="uniCategory"
+                    value={phase.unitCategory} // Dynamically set the selected option
+                    onChange={(e) => handlePhaseChange(index, e)} // Update the phase status
+                  >
+                    <option value="">Select Status</option> {/* Default placeholder */}
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                  </select>
+                </div>
                 <div className="form-group">
                   <label>Unit Type</label>
                   <input
@@ -441,9 +432,11 @@ const ProjectAddPage = () => {
                     className="form-control"
                     name="unitType"
                     value={unit.unitType}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
+
+                
                 <div className="form-group">
                   <label>Size (sq. ft.)</label>
                   <input
@@ -451,9 +444,25 @@ const ProjectAddPage = () => {
                     className="form-control"
                     name="size"
                     value={unit.size}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
+
+                <div className="form-group">
+                  <label>Furnished Status</label>
+                  <select
+                    className="form-control"
+                    name="furnishedStatus"
+                    value={phase.furnishedStatus} // Dynamically set the selected option
+                    onChange={(e) => handlePhaseChange(index, e)} // Update the phase status
+                  >
+                    <option value="">Select Status</option> {/* Default placeholder */}
+                    <option value="Completed">Completed</option>
+                    <option value="Under Construction">Under Construction</option>
+                  </select>
+                </div>
+
+
                 <div className="form-group">
                   <label>Layout</label>
                   <input
@@ -461,7 +470,7 @@ const ProjectAddPage = () => {
                     className="form-control"
                     name="layout"
                     value={unit.layout}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -471,7 +480,7 @@ const ProjectAddPage = () => {
                     className="form-control"
                     name="facing"
                     value={unit.facing}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -481,7 +490,7 @@ const ProjectAddPage = () => {
                     className="form-control"
                     name="bedrooms"
                     value={unit.bedrooms}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -491,7 +500,7 @@ const ProjectAddPage = () => {
                     className="form-control"
                     name="bathrooms"
                     value={unit.bathrooms}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -501,7 +510,7 @@ const ProjectAddPage = () => {
                     className="form-control"
                     name="balconies"
                     value={unit.balconies}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -510,7 +519,7 @@ const ProjectAddPage = () => {
                     type="checkbox"
                     name="studyRoom"
                     checked={unit.studyRoom}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -519,7 +528,7 @@ const ProjectAddPage = () => {
                     type="checkbox"
                     name="servantRoom"
                     checked={unit.servantRoom}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -528,7 +537,7 @@ const ProjectAddPage = () => {
                     type="checkbox"
                     name="poojaRoom"
                     checked={unit.poojaRoom}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -537,7 +546,7 @@ const ProjectAddPage = () => {
                     type="checkbox"
                     name="fullyFurnished"
                     checked={unit.fullyFurnished}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -546,7 +555,7 @@ const ProjectAddPage = () => {
                     type="checkbox"
                     name="semiFurnished"
                     checked={unit.semiFurnished}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <div className="form-group">
@@ -555,13 +564,13 @@ const ProjectAddPage = () => {
                     type="checkbox"
                     name="unfurnished"
                     checked={unit.unfurnished}
-                    onChange={(e) => handleResidentialUnitChange(index, e)}
+                    onChange={(e) => handleUnitDeclarationChange(index, e)}
                   />
                 </div>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => removeResidentialUnit(index)}
+                  onClick={() => removeUnitDeclaration(index)}
                 >
                   Remove Unit
                 </button>
@@ -570,115 +579,17 @@ const ProjectAddPage = () => {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={addResidentialUnit}
+              onClick={addUnitDeclaration}
             >
-              Add Residential Unit
+              Add A Unit
             </button>
-          </>
-        ) : null}
+      </div>
+    ))}
+    <button type="button" className="btn btn-primary" onClick={addPhase}>
+      Add Phase
+    </button>
 
-        {projectDetails.projectType === 'Commercial' || projectDetails.projectType === 'Mixed' ? (
-          <>
-            <h3>Commercial Units</h3>
-            {commercialUnits.map((unit, index) => (
-              <div key={index}>
-                <h4>Unit {index + 1}</h4>
-                <div className="form-group">
-                  <label>Unit Type</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="unitType"
-                    value={unit.unitType}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Size (sq. ft.)</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="size"
-                    value={unit.size}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Layout</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="layout"
-                    value={unit.layout}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Floor Area</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="floorArea"
-                    value={unit.floorArea}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Facing</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="facing"
-                    value={unit.facing}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Parking Spaces</label>
-                  <input
-                    type="number"
-                    className="form-control"
-                    name="parkingSpaces"
-                    value={unit.parkingSpaces}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Renovated</label>
-                  <input
-                    type="checkbox"
-                    name="isRenovated"
-                    checked={unit.isRenovated}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Commercial Furnishings</label>
-                  <input
-                    type="checkbox"
-                    name="commercialFurnishings"
-                    checked={unit.commercialFurnishings}
-                    onChange={(e) => handleCommercialUnitChange(index, e)}
-                  />
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => removeCommercialUnit(index)}
-                >
-                  Remove Unit
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={addCommercialUnit}
-            >
-              Add Commercial Unit
-            </button>
-          </>
-        ) : null}
+        
 
         <button type="submit" className="btn btn-success">
           Submit Project
