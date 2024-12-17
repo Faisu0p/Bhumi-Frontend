@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import BuilderDropdown from './components/BuilderDropdown'; 
 import AmenitiesSection from './components/AmenitiesSection';
+import MediaSection from './components/MediaSection';
 
 const ProjectAddPage = () => {
   const [projectDetails, setProjectDetails] = useState({
@@ -23,6 +24,7 @@ const ProjectAddPage = () => {
     sectorBriefing: '',
     projectBriefing: '',
     projectIsVerified: 0,
+    uploadedMedia:'',
     selectedAmenities:[],
   });
 
@@ -123,6 +125,7 @@ const ProjectAddPage = () => {
         sectorBriefing: projectDetails.sectorBriefing || null,
         projectBriefing: projectDetails.projectBriefing || null,
         projectIsVerified: projectDetails.projectIsVerified ? 1 : 0,
+        uploadedMedia: projectDetails.uploadedMedia || null,
       },
       amenities: [
         {
@@ -257,7 +260,17 @@ const ProjectAddPage = () => {
     setUnitDeclaration(updatedUnitDeclaration);
   };
   
-  
+    // Function to handle MediaSection callback
+    const updateMediaUrl = (uploadedUrls) => {
+      if (uploadedUrls.length > 0) {
+        const url = uploadedUrls[0]; // Assuming a single file is uploaded
+        setProjectDetails((prevDetails) => ({
+          ...prevDetails,
+          uploadedMedia: url, // Update the uploaded media URL
+        }));
+      }
+    };
+    
   
 
   return (
@@ -484,6 +497,30 @@ const ProjectAddPage = () => {
             onChange={handleInputChange}
           />
         </div>
+
+
+
+      {/* MediaSection Component */}
+      <div className="mb-3">
+        <label>Upload Media</label>
+        <MediaSection updateMasterLayoutPlan={updateMediaUrl} />
+      </div>
+
+      {/* Uploaded Media URL Input Field */}
+      <div className="mb-3">
+        <label>Uploaded Media URL</label>
+        <input
+          type="text"
+          name="uploadedMedia"
+          value={projectDetails.uploadedMedia}
+          onChange={handleInputChange}
+          className="form-control"
+          placeholder="Uploaded media URL will appear here"
+          readOnly
+        />
+      </div>
+
+
       
 
         <div className="form-group">
