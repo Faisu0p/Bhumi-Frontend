@@ -68,17 +68,17 @@ const ViewProjects = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{project.Project_Name}</h5>
-                  <p className="card-text">Builder: {project.Company_Name}</p>
+                  <p className="card-text">Builder: {project.BuilderName || "N/A"}</p>
+                  <p className="card-text">Company: {project.Company_Name || "N/A"}</p>
+                  <p className="card-text">Location: {project.City || "N/A"}</p>
                   <p className="card-text">
-                    Location: {project.City}
+                    Total Towers: {project.Total_Towers || "N/A"}
                   </p>
                   <p className="card-text">
-                    Total Towers: {project.Total_Towers}
-                  </p>
-                  <p className="card-text">
-                    Briefing: {project.Project_Briefing}
+                    Briefing: {project.Project_Briefing || "N/A"}
                   </p>
                 </div>
+
               </div>
             </div>
           ))
