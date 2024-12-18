@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { BlobServiceClient } from "@azure/storage-blob";
 
 const MediaSection = ({ updateMasterLayoutPlan }) => {
-  const [images, setImages] = useState([]); // State to store selected images
-  const [imageUrls, setImageUrls] = useState([]); // State to store uploaded image URLs
-  const [uploading, setUploading] = useState(false); // State to manage uploading status
+  const [images, setImages] = useState([]); 
+  const [imageUrls, setImageUrls] = useState([]); 
+  const [uploading, setUploading] = useState(false); 
 
   // Function to upload the image to Azure Blob Storage
   const uploadToAzure = async (file) => {
     const accountName = "bhoomistorage2024";
-    const containerName = "newbhumidata"; // Ensure this is the correct container name
+    const containerName = "newbhumidata"; 
     const blobSasToken =
       "sp=racwdli&st=2024-12-04T14:25:54Z&se=2025-12-04T22:25:54Z&sv=2022-11-02&sr=c&sig=yY3GKRKA9mX8N4BtwK%2F0t5v%2B%2BkgiPaAMQX%2FMDUmY6is%3D";
 
@@ -35,25 +35,25 @@ const MediaSection = ({ updateMasterLayoutPlan }) => {
   // Handle image selection
   const handleImageChange = (e) => {
     const selectedImages = Array.from(e.target.files);
-    setImages(selectedImages); // Set the selected images
+    setImages(selectedImages); 
   };
 
   // Handle image upload
   const handleUpload = async () => {
     if (images.length > 0) {
-      setUploading(true); // Set uploading state to true
+      setUploading(true); 
 
       const uploadedUrls = [];
       for (const image of images) {
-        const uploadedUrl = await uploadToAzure(image); // Upload each image
+        const uploadedUrl = await uploadToAzure(image); 
         if (uploadedUrl) {
-          uploadedUrls.push(uploadedUrl); // Add URL to the array
+          uploadedUrls.push(uploadedUrl); 
         }
       }
 
-      setImageUrls(uploadedUrls); // Set all uploaded image URLs
-      updateMasterLayoutPlan(uploadedUrls); // Update masterLayoutPlan field in parent component
-      setUploading(false); // Set uploading state to false
+      setImageUrls(uploadedUrls); 
+      updateMasterLayoutPlan(uploadedUrls); 
+      setUploading(false); 
     }
   };
 

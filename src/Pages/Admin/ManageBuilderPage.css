@@ -33,7 +33,7 @@
   border-radius: 5px;
   font-size: 1.2rem; /* Increased font size */
   background-color: white; /* White background for clarity */
-  color: red; /* Red text for consistency */
+  color: rgb(0, 0, 0); /* Red text for consistency */
   appearance: none; /* Remove default dropdown arrow */
   -webkit-appearance: none; /* Remove default dropdown arrow in Safari */
   -moz-appearance: none; /* Remove default dropdown arrow in Firefox */
