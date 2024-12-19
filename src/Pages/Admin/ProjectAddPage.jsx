@@ -503,7 +503,7 @@ const ProjectAddPage = () => {
       {/* MediaSection Component */}
       <div className="mb-3">
         <label>Upload Media</label>
-        <MediaSection updateMasterLayoutPlan={updateMediaUrl} />
+        <MediaSection updateMasterLayoutPlan={updateMediaUrl} maxSize={500 * 1024} />
       </div>
 
       {/* Uploaded Media URL Input Field */}

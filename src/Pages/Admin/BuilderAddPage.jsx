@@ -114,7 +114,7 @@ const BuilderAddPage = () => {
             <label htmlFor="masterLayoutPlan" className="form-label">
               Upload Media:
             </label>
-            <MediaSection updateMasterLayoutPlan={updatebuilderLogo} />
+            <MediaSection updateMasterLayoutPlan={updatebuilderLogo} maxSize={100 * 1024} /> 
           </div>
           {/* Builder Logo Input */}
           <div className="mb-3">

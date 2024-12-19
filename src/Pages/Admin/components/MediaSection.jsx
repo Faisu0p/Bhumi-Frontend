@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { BlobServiceClient } from "@azure/storage-blob";
 
-const MediaSection = ({ updateMasterLayoutPlan }) => {
-  const [images, setImages] = useState([]); 
-  const [imageUrls, setImageUrls] = useState([]); 
-  const [uploading, setUploading] = useState(false); 
+const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 }) => {  // Default size is 5MB
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
 
   // Function to upload the image to Azure Blob Storage
   const uploadToAzure = async (file) => {
@@ -18,11 +19,10 @@ const MediaSection = ({ updateMasterLayoutPlan }) => {
     );
     const containerClient = blobServiceClient.getContainerClient(containerName);
 
-    const blobName = `photos/${Date.now()}-${file.name}`; // Unique file name
+    const blobName = `photos/${Date.now()}-${file.name}`;
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
     try {
-      // Upload the file to Azure Blob Storage
       await blockBlobClient.uploadBrowserData(file);
       const uploadedUrl = `https://${accountName}.blob.core.windows.net/${containerName}/${blobName}`;
       return uploadedUrl;
@@ -34,73 +34,73 @@ const MediaSection = ({ updateMasterLayoutPlan }) => {
 
   // Handle image selection
   const handleImageChange = (e) => {
-    const selectedImages = Array.from(e.target.files);
-    setImages(selectedImages); 
+    const selectedImage = e.target.files[0];  // Only the first file will be taken (single image)
+
+    if (selectedImage) {
+      // Check file size against the maxSize prop
+      if (selectedImage.size > maxSize) {
+        setError(`File size exceeds the limit of ${maxSize / (1024 * 1024)}MB. Please select a smaller image.`);
+        setImage(null); // Clear the selected image
+        return;
+      } else {
+        setError(""); // Clear error if the file is valid
+        setImage(selectedImage);  // Set the selected image
+      }
+    }
   };
 
   // Handle image upload
   const handleUpload = async () => {
-    if (images.length > 0) {
-      setUploading(true); 
-
-      const uploadedUrls = [];
-      for (const image of images) {
-        const uploadedUrl = await uploadToAzure(image); 
-        if (uploadedUrl) {
-          uploadedUrls.push(uploadedUrl); 
-        }
+    if (image) {
+      setUploading(true);
+      const uploadedUrl = await uploadToAzure(image); 
+      if (uploadedUrl) {
+        setImageUrl(uploadedUrl);  // Store the uploaded image URL
+        updateMasterLayoutPlan([uploadedUrl]);  // Update the parent component with the URL
       }
-
-      setImageUrls(uploadedUrls); 
-      updateMasterLayoutPlan(uploadedUrls); 
-      setUploading(false); 
+      setUploading(false);
     }
   };
 
   return (
     <section className="form-section">
-      {/* File input for selecting images */}
       <div className="input-group">
         <input
           type="file"
           id="imageUpload"
           accept="image/*"
-          multiple // Allow multiple file selection
-          onChange={handleImageChange}
+          onChange={handleImageChange}  // Single image selection
         />
       </div>
 
-      {/* Show image previews after selection */}
-      {images.length > 0 && (
+      {error && <div style={{ color: "red" }}>{error}</div>}
+
+      {image && !error && (
         <div className="image-preview">
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={URL.createObjectURL(image)}
-              alt={`Selected ${index + 1}`}
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-                margin: "5px",
-              }}
-            />
-          ))}
+          <img
+            src={URL.createObjectURL(image)}
+            alt="Selected"
+            style={{
+              width: "100px",
+              height: "100px",
+              objectFit: "cover",
+              margin: "5px",
+            }}
+          />
         </div>
       )}
 
-      {/* Upload button */}
       <div className="input-group">
         <button
           onClick={handleUpload}
-          disabled={uploading || images.length === 0}
-          style={{ marginTop: "10px",backgroundColor: "red", color:"white" }}
+          disabled={uploading || !image}
+          style={{ marginTop: "10px", backgroundColor: "red", color: "white" }}
         >
           {uploading ? "Uploading..." : "Upload"}
         </button>
       </div>
 
-
+      {imageUrl && <div>Uploaded Image URL: {imageUrl}</div>}
     </section>
   );
 };
