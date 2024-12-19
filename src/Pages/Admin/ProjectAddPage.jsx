@@ -858,12 +858,12 @@ const ProjectAddPage = () => {
 
 
 
-{/* Amenities Section */}
-<h3>Amenities</h3>
-        <AmenitiesSection
-          selectedAmenities={projectDetails.selectedAmenities}
-          setAmenities={setAmenities}
-        />
+          {/* Amenities Section */}
+          <h3>Amenities</h3>
+          <AmenitiesSection
+            selectedAmenities={projectDetails.selectedAmenities}
+            setAmenities={setAmenities}
+          />
 
         
 
