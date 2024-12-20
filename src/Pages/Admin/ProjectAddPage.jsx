@@ -5,7 +5,9 @@ import AmenitiesSection from './components/AmenitiesSection';
 import MediaSection from './components/MediaSection';
 
 const ProjectAddPage = () => {
-  const [projectDetails, setProjectDetails] = useState({
+  const [projectDetails, setProjectDetails] = useState(
+    
+    { //Projects
     projectName: '',
     builderId: '',
     launchDate: '',
@@ -23,8 +25,8 @@ const ProjectAddPage = () => {
     totalCommercialUnits: '',
     sectorBriefing: '',
     projectBriefing: '',
-    projectIsVerified: 0,
-    uploadedMedia:'',
+    projectIsVerified:'',
+    projectMedia:'',
     selectedAmenities:[],
   });
 
@@ -103,7 +105,6 @@ const ProjectAddPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-  
     // Prepare project data for submission
     const projectData = {
       projectDetails: {
@@ -119,31 +120,17 @@ const ProjectAddPage = () => {
         deliveryDate: projectDetails.deliveryDate || null,
         reraNumber: projectDetails.reraNumber || null,
         totalTowers: projectDetails.totalTowers || null,
-        totalResidentialUnits: projectDetails.totalResidentialUnits || null, // Fixed key
+        totalResidentialUnits: projectDetails.totalResidentialUnits || null,
         totalCommercialUnits: projectDetails.totalCommercialUnits || null,
         projectType: projectDetails.projectType || null,
         sectorBriefing: projectDetails.sectorBriefing || null,
         projectBriefing: projectDetails.projectBriefing || null,
-        projectIsVerified: projectDetails.projectIsVerified ? 1 : 0,
-        uploadedMedia: projectDetails.uploadedMedia || null,
+        projectIsVerified: projectDetails.projectIsVerified ? 1 : 0, // Convert to 1 for true
+        projectMedia: projectDetails.projectMedia || null,
       },
-      amenities: [
-        {
-          Swimming_Pool: projectDetails.selectedAmenities.includes('Swimming_Pool') ? 1 : 0,
-          Gymnasium: projectDetails.selectedAmenities.includes('Gymnasium') ? 1 : 0,
-          Clubhouse: projectDetails.selectedAmenities.includes('Clubhouse') ? 1 : 0,
-          Children_Play_Area: projectDetails.selectedAmenities.includes('Children_Play_Area') ? 1 : 0,
-          Parking: projectDetails.selectedAmenities.includes('Parking') ? 1 : 0,
-          Security_Guards: projectDetails.selectedAmenities.includes('Security_Guards') ? 1 : 0,
-          CCTV_Surveillance: projectDetails.selectedAmenities.includes('CCTV_Surveillance') ? 1 : 0,
-          Power_Backup: projectDetails.selectedAmenities.includes('Power_Backup') ? 1 : 0,
-          Water_Supply: projectDetails.selectedAmenities.includes('Water_Supply') ? 1 : 0,
-          Elevator: projectDetails.selectedAmenities.includes('Elevator') ? 1 : 0,
-        },
-      ],
-      
-      phases: phases.map(phase => ({
-        ...phase,
+  
+      // Map phases to match the API format
+      phases: phases.map((phase) => ({
         Rera_Number: phase.Rera_Number || null,
         Phase_Status: phase.Phase_Status || null,
         Start_Date: phase.Start_Date || null,
@@ -151,8 +138,9 @@ const ProjectAddPage = () => {
         Total_Towers: phase.Total_Towers || null,
         Phase_Description: phase.Phase_Description || null,
       })),
-      units: UnitDeclaration.map(unit => ({
-        ...unit,
+  
+      // Map units to match the API format
+      units: UnitDeclaration.map((unit) => ({
         phase_id: unit.phase_id || (phases[0] ? phases[0].Phase_id : null),
         unitCategory: unit.unitCategory || null,
         unitType: unit.unitType || null,
@@ -162,7 +150,7 @@ const ProjectAddPage = () => {
         carpet_area: unit.carpetArea || null,
         furnished: unit.unitFurnishedStatus || null,
         layout: unit.unitLayout || null,
-        unitDetails: unit.unitDetails.map(space => ({
+        unitDetails: unit.unitDetails.map((space) => ({
           spaceType: space.spaceType || null,
           spaceArea: space.spaceArea || null,
           furnished_status: space.furnished_status || null,
@@ -187,6 +175,8 @@ const ProjectAddPage = () => {
       alert(`Error submitting project: ${error.response?.data?.message || error.message}`);
     }
   };
+  
+  
   
 
 
@@ -215,32 +205,12 @@ const ProjectAddPage = () => {
     return selectedDate > launchDate && selectedDate <= maxDate;
   };
 
-
-
-    const [unitCategory, setUnitCategory] = useState('');
-    const [unitType, setUnitType] = useState('');
-  
-    // Handle change in unit category
-    const handleCategoryChange = (e) => {
-      setUnitCategory(e.target.value);
-      setUnitType(''); // Reset unit type when category changes
-    };
-  
-    // Handle change in unit type
-    const handleTypeChange = (e) => {
-      setUnitType(e.target.value);
-    };
-
-
-
     const setAmenities = (newAmenities) => {
       setProjectDetails({
         ...projectDetails,
         selectedAmenities: newAmenities
       });
     };
-
-
 
       // Add a space to each unit
   const addSpaceToUnit = (unitIndex) => {
@@ -266,7 +236,7 @@ const ProjectAddPage = () => {
         const url = uploadedUrls[0]; // Assuming a single file is uploaded
         setProjectDetails((prevDetails) => ({
           ...prevDetails,
-          uploadedMedia: url, // Update the uploaded media URL
+          projectMedia: url, // Update the uploaded media URL
         }));
       }
     };
@@ -511,8 +481,8 @@ const ProjectAddPage = () => {
         <label>Uploaded Media URL</label>
         <input
           type="text"
-          name="uploadedMedia"
-          value={projectDetails.uploadedMedia}
+          name="projectMedia"
+          value={projectDetails.projectMedia}
           onChange={handleInputChange}
           className="form-control"
           placeholder="Uploaded media URL will appear here"

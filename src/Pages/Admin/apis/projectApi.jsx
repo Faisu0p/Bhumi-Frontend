@@ -46,15 +46,15 @@ const getRequest = async (url) => {
 };
 
 // Submit a new project with all its details
-export const submitProject = async (projectData) => {
-  const url = `${BASE_URL}/submitProject`;
+export const createProject = async (projectData) => {
+  const url = `${BASE_URL}/submitProject`;  // Corrected API endpoint
   const result = await postRequest(url, projectData);
   return result;
 };
 
 // Fetch all projects
 export const fetchAllProjects = async () => {
-  const url = `${BASE_URL}/all_projects`; // Ensure this matches your backend route
+  const url = `${BASE_URL}/all_projects`;  // Corrected API endpoint
   const result = await getRequest(url);
   return result;
 };
