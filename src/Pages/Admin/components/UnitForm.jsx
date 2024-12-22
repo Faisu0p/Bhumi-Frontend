@@ -4,25 +4,16 @@ import './UnitForm.css';
 
 const UnitForm = ({ onNext, units }) => {
   const [unitData, setUnitData] = useState({
-    // unitCategory: '',
-    // unitType: '',
-    // superArea: '',
-    // unitFurnishedStatus: '',
-    // unitFriendlyName: '',
-    // buildUpArea: '',
-    // carpetArea: '',
-    // unitLayout: ''
-     unitCategory: '1BHK',
-  unitType: 'Apartment',
-  superArea: '1000',
-  unitFurnishedStatus: 'Unfurnished',
-  unitFriendlyName: 'Unit 1A',
-  buildUpArea: '1200',
-  carpetArea: '800',
-  unitLayout: 'Layout details here.',
+    unitCategory: '',
+    unitType: '',
+    superArea: '',
+    unitFurnishedStatus: '',
+    unitFriendlyName: '',
+    buildUpArea: '',
+    carpetArea: '',
+    unitLayout: '',
+    unitDetails: []  // Add unitDetails to unitData state
   });
-
-  const [unitDetails, setUnitDetails] = useState([]); // State to track UnitDetailForm data
 
   // Handle the change in the main unit form
   const handleChange = (e) => {
@@ -32,14 +23,17 @@ const UnitForm = ({ onNext, units }) => {
 
   // Handle the change in a specific UnitDetailForm
   const handleUnitDetailChange = (index, name, value) => {
-    const updatedUnitDetails = [...unitDetails];
+    const updatedUnitDetails = [...unitData.unitDetails];
     updatedUnitDetails[index] = { ...updatedUnitDetails[index], [name]: value };
-    setUnitDetails(updatedUnitDetails);
+    setUnitData((prev) => ({ ...prev, unitDetails: updatedUnitDetails }));
   };
 
   // Add a new UnitDetailForm
   const addUnitDetail = () => {
-    setUnitDetails([...unitDetails, { unitSize: '', unitFurnishedStatus: '', spaceType: '' }]);
+    setUnitData((prev) => ({
+      ...prev,
+      unitDetails: [...prev.unitDetails, { unitSize: '', unitFurnishedStatus: '', spaceType: '' }]
+    }));
   };
 
   // Handle form submission
@@ -53,7 +47,7 @@ const UnitForm = ({ onNext, units }) => {
     }
 
     // Ensure all UnitDetailForm fields are filled
-    const allDetailsValid = unitDetails.every(
+    const allDetailsValid = unitData.unitDetails.every(
       (detail) => detail.unitSize && detail.unitFurnishedStatus && detail.spaceType
     );
     if (!allDetailsValid) {
@@ -62,7 +56,7 @@ const UnitForm = ({ onNext, units }) => {
     }
 
     // Combine unit data and unit details, then pass to the next step
-    onNext([...units, { ...unitData, unitDetails }]);
+    onNext([...units, unitData]);
 
     // Reset form after submission
     setUnitData({
@@ -73,9 +67,9 @@ const UnitForm = ({ onNext, units }) => {
       unitFriendlyName: '',
       buildUpArea: '',
       carpetArea: '',
-      unitLayout: ''
+      unitLayout: '',
+      unitDetails: []  // Reset unitDetails as well
     });
-    setUnitDetails([]); // Clear the unit details
   };
 
   return (
@@ -170,7 +164,7 @@ const UnitForm = ({ onNext, units }) => {
 
       {/* Dynamic Unit Detail Forms */}
       <h3>Unit Details</h3>
-      {unitDetails.map((unitDetail, index) => (
+      {unitData.unitDetails.map((unitDetail, index) => (
         <UnitDetailForm
           key={index}
           index={index}
@@ -182,8 +176,6 @@ const UnitForm = ({ onNext, units }) => {
       <button type="button" onClick={addUnitDetail}>
         Add Unit Details
       </button>
-
-      <button type="submit">Next</button>
     </form>
   );
 };

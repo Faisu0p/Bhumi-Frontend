@@ -6,35 +6,29 @@ const PhaseForm = ({ onNext }) => {
   const [phases, setPhases] = useState([]);
 
   const [phaseData, setPhaseData] = useState({
-    // phaseNumber: '',
-    // reraNumber: '',
-    // phaseStatus: '',
-    // deliveryDate: '',
-    // totalTowers: '',
-    // phaseDescription: '',
-    // startDate: ''
-     phaseNumber: '1',
-  reraNumber: 'RERA789012',
-  phaseStatus: 'Under Development',
-  deliveryDate: '2025-06-30',
-  totalTowers: '3',
-  phaseDescription: 'Phase 1 of the project.',
-  startDate: '2024-06-01',
+    phaseNumber: '1',
+    reraNumber: 'RERA789012',
+    phaseStatus: 'Under Development',
+    deliveryDate: '2025-06-30',
+    totalTowers: '3',
+    phaseDescription: 'Phase 1 of the project.',
+    startDate: '2024-06-01',
+    units: []
   });
 
   const handlePhaseChange = (e, phaseIndex) => {
     const { name, value } = e.target;
     const updatedPhases = [...phases];
-    updatedPhases[phaseIndex][name] = value;
+    updatedPhases[phaseIndex] = {
+      ...updatedPhases[phaseIndex],
+      [name]: value
+    };
     setPhases(updatedPhases);
   };
 
   const handleAddPhase = () => {
-    // Add the current phase data to the phases array
-    setPhases((prevPhases) => [
-      ...prevPhases,
-      { ...phaseData, units: [] } // Adding an empty array for units inside each phase
-    ]);
+    const newPhase = { ...phaseData, units: [] }; // Start with empty units array
+    setPhases((prevPhases) => [...prevPhases, newPhase]);
     setPhaseData({
       phaseNumber: '',
       reraNumber: '',
@@ -42,36 +36,41 @@ const PhaseForm = ({ onNext }) => {
       deliveryDate: '',
       totalTowers: '',
       phaseDescription: '',
-      startDate: ''
-    }); // Reset form for the next phase
+      startDate: '',
+      units: []
+    });
   };
 
   const handleAddUnit = (phaseIndex) => {
+    const newUnit = {
+      unitCategory: '',
+      unitType: '',
+      superArea: '',
+      unitFurnishedStatus: '',
+      unitFriendlyName: '',
+      buildUpArea: '',
+      carpetArea: '',
+      unitLayout: '',
+      unitDetails: []
+    };
     const newPhases = [...phases];
-    newPhases[phaseIndex].units.push({}); // Add a new unit in the units array for this phase
+    newPhases[phaseIndex].units.push(newUnit);
     setPhases(newPhases);
   };
 
   const handleNext = () => {
-    // Pass the phase data to the next form
-    onNext(phases);
+    onNext(phases); // Pass the full phases data
   };
 
   return (
     <form>
       <h2>Phases</h2>
+      <button type="button" onClick={handleAddPhase}>Add Phase</button>
 
-      {/* Button to add a new phase */}
-      <button type="button" onClick={handleAddPhase}>
-        Add Phase
-      </button>
-
-      {/* Render phases */}
       {phases.map((phase, index) => (
         <div key={index} className="phase">
           <h3>Phase {phase.phaseNumber}</h3>
 
-          {/* Phase Number */}
           <input
             type="number"
             name="phaseNumber"
@@ -80,8 +79,6 @@ const PhaseForm = ({ onNext }) => {
             placeholder="Phase Number"
             required
           />
-
-          {/* RERA Number */}
           <input
             type="text"
             name="reraNumber"
@@ -90,8 +87,6 @@ const PhaseForm = ({ onNext }) => {
             placeholder="RERA Number"
             required
           />
-
-          {/* Phase Status */}
           <select
             name="phaseStatus"
             value={phase.phaseStatus}
@@ -103,7 +98,6 @@ const PhaseForm = ({ onNext }) => {
             <option value="Under Construction">Under Construction</option>
           </select>
 
-          {/* Display Delivery Date only if the Phase has a status */}
           {phase.phaseStatus && (
             <div>
               <label>
@@ -121,7 +115,6 @@ const PhaseForm = ({ onNext }) => {
             </div>
           )}
 
-          {/* Total Towers */}
           <input
             type="number"
             name="totalTowers"
@@ -131,7 +124,6 @@ const PhaseForm = ({ onNext }) => {
             required
           />
 
-          {/* Phase Description */}
           <textarea
             name="phaseDescription"
             value={phase.phaseDescription}
@@ -139,25 +131,23 @@ const PhaseForm = ({ onNext }) => {
             placeholder="Phase Description"
           />
 
-          {/* Add Units button */}
           <button type="button" onClick={() => handleAddUnit(index)}>
             Add Unit
           </button>
 
-          {/* Render units for this phase */}
           {phase.units.map((unit, unitIndex) => (
             <div key={unitIndex} className="unit">
               <h4>Unit {unitIndex + 1}</h4>
-              <UnitForm /> {/* Render UnitForm component for each unit */}
+              <UnitForm
+                onNext={(unitData) => handleAddUnit(index, unitData)}
+                units={phase.units}
+              />
             </div>
           ))}
         </div>
       ))}
 
-      {/* "Next" button to go to the next page */}
-      <button type="button" onClick={handleNext}>
-        Next
-      </button>
+      <button type="button" onClick={handleNext}>Next</button>
     </form>
   );
 };
