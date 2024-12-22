@@ -1,182 +1,88 @@
 import React, { useState } from 'react';
 import UnitDetailForm from './UnitDetailForm';
-import './UnitForm.css';
 
-const UnitForm = ({ onNext, units }) => {
-  const [unitData, setUnitData] = useState({
-    unitCategory: '',
-    unitType: '',
-    superArea: '',
-    unitFurnishedStatus: '',
-    unitFriendlyName: '',
-    buildUpArea: '',
-    carpetArea: '',
-    unitLayout: '',
-    unitDetails: []  // Add unitDetails to unitData state
-  });
+const UnitForm = ({ onUnitChange, unit }) => {
+  const [unitDetails, setUnitDetails] = useState(unit.unitDetails || []);
 
-  // Handle the change in the main unit form
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUnitData((prev) => ({ ...prev, [name]: value }));
+    onUnitChange(name, value);
   };
 
-  // Handle the change in a specific UnitDetailForm
   const handleUnitDetailChange = (index, name, value) => {
-    const updatedUnitDetails = [...unitData.unitDetails];
-    updatedUnitDetails[index] = { ...updatedUnitDetails[index], [name]: value };
-    setUnitData((prev) => ({ ...prev, unitDetails: updatedUnitDetails }));
+    const updatedDetails = [...unitDetails];
+    updatedDetails[index] = { ...updatedDetails[index], [name]: value };
+    setUnitDetails(updatedDetails);
+    onUnitChange('unitDetails', updatedDetails);
   };
 
-  // Add a new UnitDetailForm
   const addUnitDetail = () => {
-    setUnitData((prev) => ({
-      ...prev,
-      unitDetails: [...prev.unitDetails, { unitSize: '', unitFurnishedStatus: '', spaceType: '' }]
-    }));
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Basic validation for required fields
-    if (!unitData.unitCategory || !unitData.unitType || !unitData.superArea) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
-    // Ensure all UnitDetailForm fields are filled
-    const allDetailsValid = unitData.unitDetails.every(
-      (detail) => detail.unitSize && detail.unitFurnishedStatus && detail.spaceType
-    );
-    if (!allDetailsValid) {
-      alert('Please fill in all unit detail fields');
-      return;
-    }
-
-    // Combine unit data and unit details, then pass to the next step
-    onNext([...units, unitData]);
-
-    // Reset form after submission
-    setUnitData({
-      unitCategory: '',
-      unitType: '',
-      superArea: '',
-      unitFurnishedStatus: '',
-      unitFriendlyName: '',
-      buildUpArea: '',
-      carpetArea: '',
-      unitLayout: '',
-      unitDetails: []  // Reset unitDetails as well
-    });
+    const newDetail = { spaceType: '', unitSize: '', unitFurnishedStatus: '' };
+    setUnitDetails((prev) => [...prev, newDetail]);
+    onUnitChange('unitDetails', [...unitDetails, newDetail]);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Unit Details</h2>
+    <div className="unit-form">
+      <h4>Unit Information</h4>
 
-      {/* Unit Category */}
-      <select
-        name="unitCategory"
-        value={unitData.unitCategory}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Select Unit Category</option>
-        <option value="1BHK">1BHK</option>
-        <option value="2BHK">2BHK</option>
-        <option value="3BHK">3BHK</option>
-        <option value="Studio">Studio</option>
-        <option value="Commercial">Commercial</option>
-      </select>
-
-      {/* Unit Type */}
-      <select
-        name="unitType"
-        value={unitData.unitType}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Select Unit Type</option>
-        <option value="Apartment">Apartment</option>
-        <option value="Villa">Villa</option>
-        <option value="Office">Office</option>
-        <option value="Shop">Shop</option>
-      </select>
-
-      {/* Friendly Name */}
+      {/* Unit Fields */}
       <input
         type="text"
-        name="unitFriendlyName"
-        value={unitData.unitFriendlyName}
+        name="unitCategory"
+        value={unit.unitCategory || ''}
         onChange={handleChange}
-        placeholder="Friendly Name"
+        placeholder="Unit Category"
       />
-
-      {/* Super Area */}
+      <input
+        type="text"
+        name="unitType"
+        value={unit.unitType || ''}
+        onChange={handleChange}
+        placeholder="Unit Type"
+      />
       <input
         type="number"
         name="superArea"
-        value={unitData.superArea}
+        value={unit.superArea || ''}
         onChange={handleChange}
         placeholder="Super Area (sq. ft.)"
-        required
       />
-
-      {/* Built-up Area */}
       <input
         type="number"
         name="buildUpArea"
-        value={unitData.buildUpArea}
+        value={unit.buildUpArea || ''}
         onChange={handleChange}
         placeholder="Built-up Area (sq. ft.)"
       />
-
-      {/* Carpet Area */}
       <input
         type="number"
         name="carpetArea"
-        value={unitData.carpetArea}
+        value={unit.carpetArea || ''}
         onChange={handleChange}
         placeholder="Carpet Area (sq. ft.)"
       />
-
-      {/* Furnished Status */}
-      <select
-        name="unitFurnishedStatus"
-        value={unitData.unitFurnishedStatus}
-        onChange={handleChange}
-      >
-        <option value="">Select Furnished Status</option>
-        <option value="Fully Furnished">Fully Furnished</option>
-        <option value="Semi Furnished">Semi Furnished</option>
-        <option value="Unfurnished">Unfurnished</option>
-      </select>
-
-      {/* Unit Layout */}
       <textarea
         name="unitLayout"
-        value={unitData.unitLayout}
+        value={unit.unitLayout || ''}
         onChange={handleChange}
-        placeholder="Unit Layout Description"
+        placeholder="Unit Layout"
       />
 
-      {/* Dynamic Unit Detail Forms */}
-      <h3>Unit Details</h3>
-      {unitData.unitDetails.map((unitDetail, index) => (
+      {/* Unit Details */}
+      <h4>Unit Details</h4>
+      {unitDetails.map((detail, index) => (
         <UnitDetailForm
           key={index}
           index={index}
-          unitDetailData={unitDetail}
+          unitDetailData={detail}
           onChange={handleUnitDetailChange}
         />
       ))}
-
       <button type="button" onClick={addUnitDetail}>
-        Add Unit Details
+        Add Unit Detail
       </button>
-    </form>
+    </div>
   );
 };
 
