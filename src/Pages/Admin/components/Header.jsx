@@ -48,6 +48,7 @@ const Header = () => {
                 <div className="nav-link">Project</div>
                 <div className="dropdown-menu">
                   <Link to="/add-project" className="dropdown-item">Add Project</Link>
+                  <Link to="/manage-project" className="dropdown-item">Manage Project</Link>
                   <Link to="/view-project" className="dropdown-item">View Project</Link>
                 </div>
               </li>
