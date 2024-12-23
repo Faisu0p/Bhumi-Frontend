@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProjectForm from './components/ProjectForm';
 import PhaseForm from './components/PhaseForm';
 import AmenityForm from './components/AmenityForm';
+import { createProject } from './apis/projectApi';
 
 const ProjectAddPage = () => {
   const [step, setStep] = useState(1);
@@ -14,7 +15,7 @@ const ProjectAddPage = () => {
     setStep(step + 1);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // Create the data in the required structure
     console.log(projectData)
     console.log(phases)
@@ -70,6 +71,16 @@ const ProjectAddPage = () => {
     console.log('Project Data for submission:', projectSubmissionData);
     
     // Here you would send the projectSubmissionData to your backend via a POST request
+
+    try {
+      const response = await createProject(projectSubmissionData);
+      console.log('Project created successfully:', response);
+      alert('Project created successfully!');
+    } catch (error) {
+      console.error('Error creating project:', error);
+      alert('Failed to create project. Please try again.');
+    }
+
   };
 
   return (
