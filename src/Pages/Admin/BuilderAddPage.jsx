@@ -66,12 +66,12 @@ const BuilderAddPage = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center builder-page">
-      <div className="card shadow p-4 w-100 builder-form-card">
-        <h2 className="text-center mb-4 text-danger">Builder Information Form</h2>
+    <div className="builder-container builder-flex-center builder-page">
+      <div className="builder-card builder-shadow builder-form-card">
+        <h2 className="builder-text-center builder-text-danger">Builder Information Form</h2>
         <form onSubmit={handleSubmit}>
           {/* City Input */}
-          <div className="mb-3">
+          <div className="builder-form-group">
             <input
               type="text"
               name="city"
@@ -79,12 +79,12 @@ const BuilderAddPage = () => {
               value={formData.city}
               onChange={handleChange}
               required
-              className="form-control"
+              className="builder-form-control"
             />
           </div>
 
           {/* Builder Complete Name Input */}
-          <div className="mb-3">
+          <div className="builder-form-group">
             <input
               type="text"
               name="builderCompleteName"
@@ -92,12 +92,12 @@ const BuilderAddPage = () => {
               value={formData.builderCompleteName}
               onChange={handleChange}
               required
-              className="form-control"
+              className="builder-form-control"
             />
           </div>
 
           {/* Builder Short Name Input */}
-          <div className="mb-3">
+          <div className="builder-form-group">
             <input
               type="text"
               name="builderShortName"
@@ -105,20 +105,20 @@ const BuilderAddPage = () => {
               value={formData.builderShortName}
               onChange={handleChange}
               required
-              className="form-control"
+              className="builder-form-control"
             />
           </div>
 
           {/* Media Section for uploading image */}
-          <div className="mb-3">
-            <label htmlFor="masterLayoutPlan" className="form-label">
+          <div className="builder-form-group">
+            <label htmlFor="masterLayoutPlan" className="builder-form-label">
               Upload Media:
             </label>
             <MediaSection updateMasterLayoutPlan={updatebuilderLogo} maxSize={100 * 1024} /> 
           </div>
           {/* Builder Logo Input */}
-          <div className="mb-3">
-            <label htmlFor="builderLogo" className="form-label">
+          <div className="builder-form-group">
+            <label htmlFor="builderLogo" className="builder-form-label">
               Upload Builder Logo URL:
             </label>
             <input
@@ -127,12 +127,12 @@ const BuilderAddPage = () => {
               name="builderLogo"
               value={formData.builderLogo}
               onChange={handleChange}
-              className="form-control"
+              className="builder-form-control"
             />
           </div>
 
           {/* Years in Real Estate */}
-          <div className="input-group mb-3">
+          <div className="builder-input-group">
             <input
               type="number"
               id="yearsInRealEstate"
@@ -142,26 +142,26 @@ const BuilderAddPage = () => {
               onChange={handleNumberChange}
               required
               min="0"
-              className="form-control"
+              className="builder-form-control"
             />
-            <span className="input-group-text">Years</span>
+            <span className="builder-input-group-text">Years</span>
           </div>
 
           {/* Short Description */}
-          <div className="mb-3">
+          <div className="builder-form-group">
             <textarea
               name="shortDescription"
               placeholder="Short Description"
               value={formData.shortDescription}
               onChange={handleChange}
               rows="3"
-              className="form-control"
+              className="builder-form-control"
             />
           </div>
 
           {/* Submit Button */}
-          <div className="d-flex justify-content-center">
-            <button type="submit" className="btn btn-danger w-100">
+          <div className="builder-flex-center">
+            <button type="submit" className="builder-btn builder-btn-danger">
               Submit
             </button>
           </div>

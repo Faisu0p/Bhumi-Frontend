@@ -3,64 +3,113 @@
 /* Container for centering content */
 .builder-page {
   min-height: 100vh;
-  background-color: #f9f9f9;
+  background-color: #fdf2f2;
   padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Card containing the form */
 .builder-form-card {
   max-width: 600px;
-  margin-top: 50px;
-  border-radius: 8px;
+  width: 100%;
+  border-radius: 12px;
   background-color: #fff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
 }
 
 /* Form heading */
-.builder-form-card h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: red; /* Red color */
-  margin-bottom: 20px;
+.builder-text-center {
+  text-align: center;
 }
 
-/* Form inputs */
-.builder-form-card .form-control {
-  border-radius: 8px;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Input group for years in real estate */
-.builder-form-card .input-group-text {
-  background-color: red;
-  color: #fff;
-  border-radius: 0 8px 8px 0;
-}
-
-/* Button styling */
-.builder-form-card .btn-danger {
-  background-color: red;
-  border: none;
-  padding: 1rem;
-  border-radius: 8px;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.builder-form-card .btn-danger:hover {
-  background-color: red;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Input sections */
-.mb-3 {
+.builder-text-danger {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #d90429; /* Bold red theme */
   margin-bottom: 1.5rem;
 }
 
-textarea.form-control {
-  border-radius: 8px;
+/* Form inputs */
+.builder-form-control {
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out;
+}
+
+.builder-form-control:focus {
+  border-color: #d90429;
+  outline: none;
+}
+
+/* Input group for years in real estate */
+.builder-input-group {
+  display: flex;
+  align-items: center;
+}
+
+.builder-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Remove increment/decrement buttons */
+}
+
+.builder-input-group input[type="number"]::-webkit-inner-spin-button, 
+.builder-input-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Remove increment/decrement buttons */
+  margin: 0;
+}
+
+.builder-input-group-text {
+  background-color: #d90429;
+  color: #fff;
+  border-radius: 0 10px 10px 0;
+  padding: 0.8rem 1rem;
+}
+
+/* Button styling */
+.builder-btn {
+  display: block;
+  width: 100%;
   padding: 0.8rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  background-color: #d90429;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.builder-btn-danger:hover {
+  background-color: #b90320;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* General spacing and layout adjustments */
+.builder-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.builder-form-group {
+  margin-bottom: 1.5rem;
+}
+
+textarea.builder-form-control {
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 120px;
+}
+
+/* Add media section styling */
+.builder-form-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
 }
