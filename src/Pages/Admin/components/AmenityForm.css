@@ -1,0 +1,142 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f8fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* Title */
+  h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #b30000;
+    margin-bottom: 20px;
+  }
+  
+  /* Category Section */
+  .amenity-category-0,
+  .amenity-category-1,
+  .amenity-category-2,
+  .amenity-category-3,
+  .amenity-category-4,
+  .amenity-category-5,
+  .amenity-category-6,
+  .amenity-category-7,
+  .amenity-category-8,
+  .amenity-category-9,
+  .amenity-category-10,
+  .amenity-category-11,
+  .amenity-category-12,
+  .amenity-category-13 {
+    margin-bottom: 20px;
+  }
+  
+  .amenity-category-title-0,
+  .amenity-category-title-1,
+  .amenity-category-title-2,
+  .amenity-category-title-3,
+  .amenity-category-title-4,
+  .amenity-category-title-5,
+  .amenity-category-title-6,
+  .amenity-category-title-7,
+  .amenity-category-title-8,
+  .amenity-category-title-9,
+  .amenity-category-title-10,
+  .amenity-category-title-11,
+  .amenity-category-title-12,
+  .amenity-category-title-13 {
+    font-size: 1.5rem;
+    color: #b30000; /* Red category titles */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  
+  /* Checkbox Styling */
+  .amenity-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    font-size: 1rem;
+    color: #666;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #b30000; /* Red color for checkbox */
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    background-color: #b30000; /* Red button */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .submit-button:hover {
+    background-color: #990000; /* Darker red on hover */
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    form {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 1.6rem;
+    }
+  
+    .amenity-category-title-0,
+    .amenity-category-title-1,
+    .amenity-category-title-2,
+    .amenity-category-title-3,
+    .amenity-category-title-4,
+    .amenity-category-title-5,
+    .amenity-category-title-6,
+    .amenity-category-title-7,
+    .amenity-category-title-8,
+    .amenity-category-title-9,
+    .amenity-category-title-10,
+    .amenity-category-title-11,
+    .amenity-category-title-12,
+    .amenity-category-title-13 {
+      font-size: 1.3rem;
+    }
+  
+    label {
+      font-size: 0.9rem;
+    }
+  
+    .submit-button {
+      font-size: 1.1rem;
+    }
+  }
+  

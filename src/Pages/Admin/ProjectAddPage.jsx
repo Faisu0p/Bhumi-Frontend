@@ -40,6 +40,10 @@ const ProjectAddPage = () => {
       projectBriefing: projectData.projectBriefing,
       projectIsVerified: projectData.projectIsVerified,
       projectMedia: projectData.projectMedia,
+      state: projectData.state,
+      completeAddress: projectData.completeAddress,
+      landmark: projectData.landmark,
+      pinCode: projectData.pinCode,
       amenities: amenities,
       phases: phases.map(phase => ({
         phaseNumber: phase.phaseNumber,

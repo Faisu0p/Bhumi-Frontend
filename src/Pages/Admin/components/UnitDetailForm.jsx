@@ -17,10 +17,18 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
         onChange={handleFieldChange}
       >
         <option value="">Select Space Type</option>
-        <option value="Living">Living</option>
-        <option value="Office">Office</option>
-        <option value="Commercial">Commercial</option>
+        <option value="Living Room">Living Room</option>
+        <option value="Dining Room">Dining Room</option>
+        <option value="Kitchen">Kitchen</option>
+        <option value="Bedroom">Bedroom</option>
+        <option value="Study Room">Study Room</option>
+        <option value="Servant Room">Servant Room</option>
+        <option value="Bathroom">Bathroom</option>
+        <option value="Pooja Room">Pooja Room</option>
+        <option value="Balcony">Balcony</option>
+        <option value="Storage">Storage</option>
       </select>
+
 
       {/* Unit Size */}
       <input

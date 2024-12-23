@@ -8,25 +8,29 @@ const ProjectForm = ({ onNext }) => {
 
   const [projectData, setProjectData] = useState({
 
-    projectName: '',
-    builderId: '',
-    launchDate: '',
-    city: '',
-    locality: '',
-    sublocality: '',
-    companyName: '',
-    shortCode: '',
-    deliveryStatus: '',
-    deliveryDate: '',
-    reraNumber: '',
-    totalTowers: '',
-    totalResidentialUnits: '',
-    totalCommercialUnits: '',
-    projectType: '',
-    sectorBriefing: '',
-    projectBriefing: '',
+    projectName: 'New ',
+    builderId: '1',
+    launchDate: '12-12-2012',
+    city: 'New ',
+    locality: 'New ',
+    sublocality: 'New ',
+    companyName: 'New ',
+    shortCode: 'New ',
+    deliveryStatus: 'New ',
+    deliveryDate: '12-12-2020',
+    reraNumber: 'New ',
+    totalTowers: '12',
+    totalResidentialUnits: '12',
+    totalCommercialUnits: '12',
+    projectType: 'New ',
+    sectorBriefing: 'New ',
+    projectBriefing: 'New ',
     projectIsVerified: false,
-    projectMedia: '',
+    projectMedia: 'New ',
+    state: 'New ',
+    completeAddress: 'New ',
+    landmark: 'New ',
+    pinCode: '12345',
   });
 
   const handleChange = (e) => {
@@ -73,9 +77,20 @@ const ProjectForm = ({ onNext }) => {
   };
 
     // Media URL update function
-    const updateMediaUrl = (url) => {
-      setProjectData((prev) => ({ ...prev, projectMedia: url }));
-    };
+    // const updateMediaUrl = (url) => {
+    //   setProjectData((prev) => ({ ...prev, projectMedia: url }));
+    // };
+
+    // Media URL update function
+  const updateMediaUrl = (urls) => {
+    if (Array.isArray(urls)) {
+      const mediaString = urls.join(', '); // Combine the array into a single string
+      setProjectData((prev) => ({ ...prev, projectMedia: mediaString }));
+    } else {
+      setProjectData((prev) => ({ ...prev, projectMedia: urls }));
+    }
+  };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -104,6 +119,15 @@ const ProjectForm = ({ onNext }) => {
         onChange={handleChange}
         placeholder="Launch Date"
       />
+
+      <input
+        type="text"
+        name="state"
+        value={projectData.state}
+        onChange={handleChange}
+        placeholder="State"
+      />
+      
       <select
         name="city"
         value={projectData.city}
@@ -130,6 +154,32 @@ const ProjectForm = ({ onNext }) => {
         onChange={handleChange}
         placeholder="Sublocality"
       />
+
+      <input
+        type="text"
+        name="completeAddress"
+        value={projectData.completeAddress}
+        onChange={handleChange}
+        placeholder="Complete Address"
+      />
+      <input
+        type="text"
+        name="landmark"
+        value={projectData.landmark}
+        onChange={handleChange}
+        placeholder="Landmark"
+      />
+      <input
+        type="number"
+        name="pinCode"
+        value={projectData.pinCode}
+        onChange={handleChange}
+        placeholder="Pin Code"
+      />
+
+
+
+      
       <input
         type="text"
         name="companyName"

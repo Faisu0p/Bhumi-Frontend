@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AmenityForm.css';
 
 const AmenityForm = ({ onNext, amenities }) => {
   const [amenityData, setAmenityData] = useState({
@@ -90,21 +91,136 @@ const AmenityForm = ({ onNext, amenities }) => {
     onNext([...amenities, amenityData]);
   };
 
+  const categorizedAmenities = {
+    "Basic Amenities": [
+      "waterSupply",
+      "powerBackup",
+      "adequateParkingCoveredUncovered",
+      "gatedSecurityWithCctvSurveillance",
+      "highSpeedElevators",
+      "fireSafetySystems",
+    ],
+    "Lifestyle & Recreation Amenities": [
+      "landscapedGardensParks",
+      "joggingAndCyclingTracks",
+      "indoorGamesRoom",
+      "sportsFacilities",
+      "multipurposeHallForEvents",
+    ],
+    "Green & Sustainable Features": [
+      "rainwaterHarvesting",
+      "solarPowerPanels",
+      "sewageTreatmentPlant",
+      "organicWasteComposting",
+      "energyEfficientLightingInCommonAreas",
+    ],
+    "Advanced Safety & Technology Features": [
+      "videoDoorPhones",
+      "digitalSmartLocks",
+      "wiFiConnectivityInCommonAreas",
+      "intercomFacility",
+      "earthquakeResistantDesign",
+    ],
+    "Convenience Features": [
+      "shoppingArcadeConvenienceStore",
+      "pharmacyClinic",
+      "cafeteriaRestaurant",
+      "visitorParking",
+      "dedicatedServiceElevators",
+    ],
+    "Premium/High-end Features": [
+      "infinityPool",
+      "skyLoungeTerraceGarden",
+      "privateTheaterMediaRoom",
+      "businessCenterCoWorkingSpaces",
+    ],
+    "Community-oriented Features": [
+      "petFriendlyZones",
+      "amphitheaterOpenAirSeating",
+      "templePrayerRoom",
+      "seniorCitizenArea",
+      "communityLibrary",
+      "barbecuePicnicZones",
+    ],
+    "Health & Wellness Amenities": [
+      "spaAndSauna",
+      "meditationYogaDeck",
+      "openGymFitnessStationsInThePark",
+      "walkingReflexologyPath",
+      "healthCheckUpKiosk",
+    ],
+    "Technology & Automation Amenities": [
+      "electricVehicleEvChargingStations",
+      "smartHomeAutomationFeatures",
+      "automatedParkingSystems",
+      "smartWasteManagementSystem",
+      "appBasedVisitorManagementSystem",
+    ],
+    "Luxury Lifestyle Features": [
+      "exclusivePrivatePoolsForPenthouses",
+      "helipad",
+      "wineCellarOrTastingLounge",
+      "golfSimulatorPuttingGreen",
+    ],
+    "Work & Study Amenities": [
+      "servicedApartmentsForGuests",
+      "dedicatedWorkFromHomeCabins",
+      "soundproofStudyPodsForStudents",
+      "conferenceRoomsWithAvFacilities",
+      "elearningZoneForKids",
+      "artAndCraftStudioForHobbies",
+    ],
+    "Sports & Adventure Amenities": [
+      "cricketNets",
+      "skatingRink",
+      "futsalCourt",
+      "archeryRange",
+      "outdoorAdventureActivities",
+    ],
+    "Social & Cultural Amenities": [
+      "artGalleryOrExhibitionHall",
+      "culturalAmphitheater",
+      "danceAndMusicStudios",
+      "cookingClassZoneOrOpenKitchen",
+      "eventPlazaForFestivals",
+    ],
+    "Specialized Premium Amenities": [
+      "skywalkOrObservationDeck",
+      "waterfrontWithBoatingFacilities",
+      "privateCabanasOrGazebos",
+      "luxuryConciergeServices",
+    ],
+    "Security and Accessibility Features": [
+      "rooftopSolarObservatory",
+      "emergencyPanicButtonsInCommonAreas",
+      "physicallyDisabledFriendlyPathwaysAndFacilities",
+      "dedicatedSpaceForAmbulanceParking",
+      "dedicatedDeliveryLockersForEcommerceParcels",
+      "droneDeliveryLandingZones",
+    ],
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Amenities</h2>
-      {Object.keys(amenityData).map((key) => (
-        <label key={key}>
-          {key.replace(/([A-Z])/g, ' $1').toUpperCase()}
-          <input
-            type="checkbox"
-            name={key}
-            checked={amenityData[key]}
-            onChange={handleChange}
-          />
-        </label>
+      {Object.keys(categorizedAmenities).map((category, index) => (
+        <div key={index} className={`amenity-category-${index}`}>
+          <h3 className={`amenity-category-title-${index}`}>{category}</h3>
+          {categorizedAmenities[category].map((key) => (
+            <label key={key} className={`amenity-checkbox-${key}`}>
+              {key.replace(/([A-Z])/g, ' $1').toUpperCase()}
+              <input
+                type="checkbox"
+                name={key}
+                checked={amenityData[key]}
+                onChange={handleChange}
+                className={`amenity-input-${key}`}
+              />
+            </label>
+          ))}
+        </div>
       ))}
-      <button type="submit">Next</button>
+      <button type="submit" className="submit-button">Next</button>
     </form>
   );
 };
