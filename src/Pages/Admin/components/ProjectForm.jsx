@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ProjectForm.css';
 import MediaSection from './MediaSection';
+import BuilderDropdown from './BuilderDropdown';
 
 const ProjectForm = ({ onNext }) => {
 
@@ -88,14 +89,14 @@ const ProjectForm = ({ onNext }) => {
         placeholder="Project Name"
         required
       />
-      <input
-        type="text"
-        name="builderId"
-        value={projectData.builderId}
-        onChange={handleChange}
-        placeholder="Builder ID"
-        required
-      />
+
+     
+        <BuilderDropdown
+          projectDetails={projectData} 
+          handleInputChange={handleChange}
+        />
+      
+
       <input
         type="date"
         name="launchDate"
