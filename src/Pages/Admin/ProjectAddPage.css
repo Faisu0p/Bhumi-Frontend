@@ -1,0 +1,75 @@
+/* Styles for Project Add Page */
+
+/* General container for the page */
+.project-add-container {
+  padding: 2rem;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Change from flex-start to center */
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the container takes full height */
+  text-align: center;
+}
+
+/* Title styling */
+.project-add-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* White box container for the form */
+.project-add-form-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+/* Spacing between form sections */
+.project-add-form-container > * {
+  margin-bottom: 1.5rem;
+}
+
+/* Button styling */
+.project-add-submit-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  background-color: #d90429;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  width: 100%;
+  max-width: 320px;
+  margin-top: 1.5rem;
+}
+
+.project-add-submit-button:hover {
+  background-color: #b90320;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .project-add-container {
+    padding: 1.5rem;
+  }
+
+  .project-add-form-container {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .project-add-submit-button {
+    max-width: 100%;
+  }
+}

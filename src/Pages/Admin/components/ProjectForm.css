@@ -1,112 +1,136 @@
-/* ProjectForm.css */
-
-/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Container for the form */
-  form {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title styling */
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-  }
-  
-  /* Styling for input fields and textareas */
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    color: #333;
-  }
-  
-  /* Specific styling for textarea */
-  textarea {
-    height: 120px;
-    resize: vertical;
-  }
-  
-  /* Styling for checkbox label */
-  label {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 10px;
-    display: block;
-  }
-  
-  /* Styling for buttons */
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Focus styles for inputs */
-  input:focus, textarea:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  /* Add spacing between inputs */
-  input[type="text"], input[type="number"], input[type="date"], input[type="url"], textarea {
-    margin-bottom: 10px;
-  }
-  
-  /* Styling for the submit button */
-  button[type="submit"] {
-    margin-top: 10px;
-  }
-  
-  /* Error message styling */
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-
-  /* Styling for the select dropdown */
-select {
+/* Container for each form element to ensure proper alignment */
+.project-form-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  color: #333;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-/* Focus styles for select */
-select:focus {
-  border-color: #007bff;
+.project-form-title {
+  font-size: 2.5rem;  /* Increased size for a more prominent title */
+  font-weight: bold;
+  color: #000;  /* Black color */
+  text-align: center;  /* Centered alignment */
+  margin-bottom: 2rem;  /* Adjust space below the title */
+}
+
+
+
+
+.project-form-label {
+  font-size: 1.3rem;  /* Increased label size */
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.6rem;  /* Adjusted space below the label */
+  text-align: left; /* Ensures labels align to the left */
+}
+
+/* Style for the input fields */
+.project-form-input, .project-form-select, .project-form-textarea, .project-form-media-url {
+  background-color: white;  /* Set background to white */
+  color: #333;  /* Set text color to dark for readability */
+  border: 1px solid #ccc;  /* Light border for input fields */
+  border-radius: 8px;
+  padding: 1rem;  /* Increased padding for larger input field */
+  font-size: 1.1rem;  /* Increased font size for better readability */
+  width: 100%;  /* Make sure the input takes up full width */
+  box-sizing: border-box;  /* Include padding and border in width */
+}
+
+/* Focus styles for input fields */
+.project-form-input:focus, .project-form-select:focus, .project-form-textarea:focus {
+  border-color: #d90429;  /* Border color change on focus */
+  outline: none;  /* Remove the default focus outline */
+}
+
+/* Style for date input fields (to ensure the calendar icon is visible) */
+.project-form-input[type="date"] {
+  background-color: white;  /* Keep the background white */
+  color: #333;  /* Text color */
+  border: 1px solid #ccc;  /* Light border */
+}
+
+.project-form-input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);  /* Inverts the icon color to black for visibility */
+}
+
+/* Focus styles for date input */
+.project-form-input[type="date"]:focus {
+  border-color: #d90429;
+}
+
+/* Style for the select input field */
+.project-form-select {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;  /* Increased padding */
+  font-size: 1.1rem;  /* Increased font size */
+}
+
+/* Style for the textarea */
+.project-form-textarea {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;  /* Increased padding */
+  font-size: 1.1rem;  /* Increased font size */
+  resize: vertical;
+}
+
+/* Style for the media URL input */
+.project-form-media-url {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;  /* Increased padding */
+  font-size: 1.1rem;  /* Increased font size */
+  width: 100%;
+  box-sizing: border-box;
+  cursor: not-allowed;  /* Makes the URL input read-only */
+}
+
+/* Styling for input fields when they are in focus */
+.project-form-input:focus, .project-form-select:focus, .project-form-textarea:focus {
+  border-color: #d90429;
   outline: none;
 }
 
+.project-form-submit-button {
+  padding: 1.2rem 2.5rem;  /* Slightly larger padding */
+  font-size: 1.3rem;  /* Increased button text size */
+  background-color: #d90429;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  width: 100%;
+  max-width: 320px;
+  margin-top: 1.5rem;
+}
+
+.project-form-submit-button:hover {
+  background-color: #b90320;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for form elements to ensure proper spacing */
+.project-form-container > * {
+  margin-bottom: 1.5rem;  
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
+  .project-form-container {
+    padding: 1.5rem;
+  }
   
+  .project-form-submit-button {
+    max-width: 100%;
+  }
+}

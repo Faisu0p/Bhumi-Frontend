@@ -3,6 +3,7 @@ import ProjectForm from './components/ProjectForm';
 import PhaseForm from './components/PhaseForm';
 import AmenityForm from './components/AmenityForm';
 import { createProject } from './apis/projectApi';
+import './ProjectAddPage.css';
 
 const ProjectAddPage = () => {
   const [step, setStep] = useState(1);
@@ -15,11 +16,7 @@ const ProjectAddPage = () => {
     setStep(step + 1);
   };
 
-  const handleSubmit = async() => {
-    // Create the data in the required structure
-    console.log(projectData)
-    console.log(phases)
-    console.log(amenities)
+  const handleSubmit = async () => {
     const projectSubmissionData = {
       projectName: projectData.projectName,
       builderId: projectData.builderId,
@@ -71,11 +68,6 @@ const ProjectAddPage = () => {
       }))
     };
 
-    // Log the structured data
-    console.log('Project Data for submission:', projectSubmissionData);
-    
-    // Here you would send the projectSubmissionData to your backend via a POST request
-
     try {
       const response = await createProject(projectSubmissionData);
       console.log('Project created successfully:', response);
@@ -84,16 +76,17 @@ const ProjectAddPage = () => {
       console.error('Error creating project:', error);
       alert('Failed to create project. Please try again.');
     }
-
   };
 
   return (
-    <div>
+    <div className="project-add-container">
       {step === 1 && <ProjectForm onNext={(data) => handleNextStep(data, setProjectData)} />}
       {step === 2 && <PhaseForm onNext={(data) => handleNextStep(data, setPhases)} />}
       {step === 3 && <AmenityForm onNext={(data) => handleNextStep(data, setAmenities)} amenities={amenities} />}
       {step === 4 && (
-        <button onClick={handleSubmit}>Submit Project</button>
+        <button onClick={handleSubmit} className="project-add-submit-button">
+          Submit Project
+        </button>
       )}
     </div>
   );

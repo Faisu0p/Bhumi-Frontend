@@ -40,7 +40,6 @@ const BuilderDropdown = ({ projectDetails, handleInputChange }) => {
 
   return (
     <div className="form-group">
-      <label>Select Builder</label>
       <select
         className="form-control"
         name="builderId"
