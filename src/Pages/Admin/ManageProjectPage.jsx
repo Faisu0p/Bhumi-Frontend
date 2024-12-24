@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { fetchProjectNamesAndIds, verifyProject } from './apis/projectApi'; // Importing the correct API functions
-
+import { fetchProjectNamesAndIds, verifyProject } from './apis/projectApi';
+import './ManageProjectPage.css';
 
 const ManageProjectPage = () => {
   const [selectedProject, setSelectedProject] = useState('');
   const [projects, setProjects] = useState([]);
   const [verificationMessage, setVerificationMessage] = useState('');
 
-  // Fetch project names and IDs from the backend on component mount
+  // Fetch project names and IDs from backend on component mount
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -25,24 +25,20 @@ const ManageProjectPage = () => {
     fetchProjects();
   }, []);
 
-  // Handle project selection change
   const handleProjectChange = (e) => {
     setSelectedProject(e.target.value);
     setVerificationMessage('');
   };
 
-  // Handle project verification
   const handleVerify = async () => {
     if (!selectedProject) {
       setVerificationMessage('Please select a project');
       return;
     }
-
+  
     try {
       const response = await verifyProject(selectedProject); // Send the selected project ID to verify
-
-      console.log("Response from verifyProject:", response);
-
+  
       if (response && response.message) {
         setVerificationMessage(response.message); // Show the verification message
       } else {
@@ -55,28 +51,35 @@ const ManageProjectPage = () => {
   };
 
   return (
-    <div className="manage-page">
-      <h1>Manage Projects</h1>
-      <div className="project-selection">
-        <select
-          value={selectedProject}
-          onChange={handleProjectChange}
-          className="project-dropdown"
-        >
-          <option value="">Select a project</option>
-          {projects.map((project) => (
-            <option key={project.Project_id} value={project.Project_id}>
-              {project.Project_Name} (ID: {project.Project_id})
-            </option>
-          ))}
-        </select>
-        <button onClick={handleVerify} className="verify-button">
-          Verify
-        </button>
+    <div className="manage-project-page">
+      <div className="manage-project-form-container">
+        <h1 className="manage-project-title">Manage Projects</h1>
+        <div className="manage-project-selection-container">
+          {/* Label above the dropdown */}
+          <label htmlFor="projectSelect" className="manage-project-selection-label">
+            Select a project to verify
+          </label>
+          <select
+            id="projectSelect"
+            value={selectedProject}
+            onChange={handleProjectChange}
+            className="manage-project-selection-dropdown"
+          >
+            <option value="">Select a project</option>
+            {projects.map((project) => (
+              <option key={project.Project_id} value={project.Project_id}>
+                {project.Project_Name}
+              </option>
+            ))}
+          </select>
+          <button onClick={handleVerify} className="manage-project-verify-button">
+            Verify
+          </button>
+        </div>
+        {verificationMessage && (
+          <div className="manage-project-verification-message">{verificationMessage}</div>
+        )}
       </div>
-      {verificationMessage && (
-        <div className="verification-message">{verificationMessage}</div>
-      )}
     </div>
   );
 };

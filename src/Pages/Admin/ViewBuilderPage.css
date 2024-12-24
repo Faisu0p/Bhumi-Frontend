@@ -1,81 +1,110 @@
-/* General container styling */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Custom styles for ViewBuilderPage */
+
+/* Container for the entire builder view */
+.view-builder-container {
+  padding: 3rem;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+/* Title styling for the page */
+.view-builder-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: black; /* Red color for title */
+  margin-bottom: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* No builders found message styling */
+.view-builder-alert-no-builders {
+  font-size: 1.2rem;
+  color: #d90429; /* Red color for text */
+  background-color: #f8d7da; /* Light red background */
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-bottom: 2rem;
+}
+
+/* Table styling */
+.view-builder-table {
+  width: 100%;
+  margin-top: 3rem;
+  border-collapse: separate; /* Use separate borders */
+  border-spacing: 0 10px; /* Spacing between rows */
+}
+
+/* Header row styling for table */
+.view-builder-table th {
+  background-color: red; /* Red background */
+  color: white; /* White text for contrast */
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 1.1rem;
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
+  text-transform: uppercase;
+}
+
+/* Body row styling for table */
+.view-builder-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Add subtle shadow */
+}
+
+.view-builder-table tr:hover td {
+  background-color: #f1f1f1; /* Hover effect */
+  cursor: pointer;
+}
+
+/* Logo styling */
+.view-builder-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Loading spinner styling */
+.view-builder-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Error message styling */
+.view-builder-alert-error {
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #b90320; /* Dark red error background */
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+/* Ensure responsiveness for the page */
+@media (max-width: 768px) {
+  .view-builder-container {
     padding: 2rem;
   }
-  
-  /* Header Styling */
-  h1 {
-    color: red;
-    font-size: 2.5rem;
-    font-weight: 700;
+
+  /* Make table scrollable on smaller screens */
+  .view-builder-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-  
-  /* Loading spinner styling */
-  .spinner-border {
-    width: 3rem;
-    height: 3rem;
-    border-width: 0.4rem;
-    border-color: red;
+
+  .view-builder-table th, .view-builder-table td {
+    font-size: 1rem;
   }
-  
-  .spinner-border span {
-    visibility: hidden;
-  }
-  
-  /* Error message styling */
-  .alert-danger {
-    background-color: #f8d7da;
-    color: red;
-    font-weight: 600;
-  }
-  
-  /* Alert for no builders found */
-  .alert-warning {
-    background-color: #fff3cd;
-    color: #856404;
-    font-weight: 600;
-  }
-  
-  /* Table Styling */
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .table th, .table td {
-    padding: 1rem;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
-  
-  .table th {
-    background-color: red;
-    color: white;
-    font-weight: 700;
-  }
-  
-  .table td {
-    background-color: #f9f9f9;
-  }
-  
-  /* Table row hover effect */
-  .table-hover tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Table image styling */
-  .img-thumbnail {
-    max-width: 50px;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  /* Responsive table handling */
-  @media (max-width: 768px) {
-    .table th, .table td {
-      font-size: 0.9rem;
-    }
-  }
-  
+}

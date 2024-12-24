@@ -34,20 +34,29 @@ const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 }) => 
 
   // Handle image selection
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];  // Only the first file will be taken (single image)
-
-    if (selectedImage) {
-      // Check file size against the maxSize prop
-      if (selectedImage.size > maxSize) {
-        setError(`File size exceeds the limit of ${maxSize / (1024 * 1024)}MB. Please select a smaller image.`);
-        setImage(null); // Clear the selected image
+    const selectedFile = e.target.files[0];
+  
+    if (selectedFile) {
+      // Check the file type (MIME type) against allowed image types
+      const allowedTypes = ['image/jpeg', 'image/png'];
+      if (!allowedTypes.includes(selectedFile.type)) {
+        setError("Invalid file type. Please select an image file.");
+        setImage(null);
         return;
-      } else {
-        setError(""); // Clear error if the file is valid
-        setImage(selectedImage);  // Set the selected image
       }
+  
+      // Check file size against the maxSize prop (optional)
+      if (selectedFile.size > maxSize) {
+        setError(`File size exceeds the limit of ${maxSize / (1024 * 1024)}MB. Please select a smaller image.`);
+        setImage(null); 
+        return;
+      }
+  
+      setError(""); 
+      setImage(selectedFile);
     }
   };
+  
 
   // Handle image upload
   const handleUpload = async () => {
@@ -55,8 +64,8 @@ const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 }) => 
       setUploading(true);
       const uploadedUrl = await uploadToAzure(image); 
       if (uploadedUrl) {
-        setImageUrl(uploadedUrl);  // Store the uploaded image URL
-        updateMasterLayoutPlan([uploadedUrl]);  // Update the parent component with the URL
+        setImageUrl(uploadedUrl);  
+        updateMasterLayoutPlan([uploadedUrl]); 
       }
       setUploading(false);
     }
@@ -100,7 +109,7 @@ const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 }) => 
         </button>
       </div>
 
-      {imageUrl && <div>Uploaded Image URL: {imageUrl}</div>}
+      
     </section>
   );
 };

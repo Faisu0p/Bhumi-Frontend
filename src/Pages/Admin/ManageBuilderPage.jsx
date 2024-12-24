@@ -57,35 +57,41 @@ const ManageBuilderPage = () => {
       console.error('Error verifying builder:', error);
     }
   };
-  
-
-  
 
   return (
-    <div className="manage-page">
-      <h1>Manage Builders</h1>
-      <div className="builder-selection">
-        <select
-          value={selectedBuilder}
-          onChange={handleBuilderChange}
-          className="builder-dropdown"
-        >
-          <option value="">Select a builder</option>
-          {builders.map((builder) => (
-            <option key={builder.Builder_id} value={builder.Builder_id}>
-              {builder.FullName} (ID: {builder.Builder_id})
-            </option>
-          ))}
-        </select>
-        <button onClick={handleVerify} className="verify-button">
-          Verify
-        </button>
+    <div className="manage-builder-page">
+      <div className="manage-builder-form-container">
+        <h1 className="manage-builder-title">Manage Builders</h1>
+        <div className="manage-builder-selection-container">
+          {/* Label above the dropdown */}
+          <label htmlFor="builderSelect" className="manage-builder-selection-label">
+            Select a builder to verify
+          </label>
+          <select
+            id="builderSelect"
+            value={selectedBuilder}
+            onChange={handleBuilderChange}
+            className="manage-builder-selection-dropdown"
+          >
+            <option value="">Select a builder</option>
+            {builders.map((builder) => (
+              <option key={builder.Builder_id} value={builder.Builder_id}>
+                {builder.FullName}
+              </option>
+            ))}
+          </select>
+          <button onClick={handleVerify} className="manage-builder-verify-button">
+            Verify
+          </button>
+        </div>
+        {verificationMessage && (
+          <div className="manage-builder-verification-message">{verificationMessage}</div>
+        )}
       </div>
-      {verificationMessage && (
-        <div className="verification-message">{verificationMessage}</div>
-      )}
     </div>
   );
+  
+  
 };
 
 export default ManageBuilderPage;

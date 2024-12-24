@@ -1,104 +1,132 @@
-/* General page styling */
-.manage-page {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 3rem; /* Increased padding */
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+/* Custom styles for ManageBuilderPage */
+
+/* General layout for the manage builder page */
+.manage-builder-page {
+  padding: 2rem;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 100vh;
+  flex-direction: column;
+  text-align: center; /* Center all text inside the page */
 }
 
-/* Header styling */
-.manage-page h1 {
-  text-align: center;
-  color: red;
-  font-size: 3rem; /* Increased font size */
+/* Title styling */
+.manage-builder-title {
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 3rem; /* Increased margin */
+  color: black;
+  margin-bottom: 2rem;
+  text-align: center; /* Center the title horizontally */
+  width: 100%; /* Make sure it's full width for proper centering */
 }
 
-/* Builder selection container styling */
-.builder-selection {
+/* White box container for the form and content */
+.manage-builder-form-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto; /* Centers horizontally with space from top and bottom */
+  text-align: left;
+}
+
+/* Label styling */
+.manage-builder-selection-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.8rem;
+  display: block;
+  text-align: center; /* Center text inside the label */
+}
+
+/* Container for selecting builder */
+.manage-builder-selection-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.5rem; /* Increased gap between elements */
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center; /* Ensure form elements are centered horizontally */
 }
 
-/* Dropdown for selecting builder */
-.builder-dropdown {
-  padding: 1rem; /* Increased padding */
-  width: 80%;
-  max-width: 500px; /* Increased max width */
-  border: 2px solid red;
-  border-radius: 5px;
-  font-size: 1.2rem; /* Increased font size */
-  background-color: white; /* White background for clarity */
-  color: rgb(0, 0, 0); /* Red text for consistency */
-  appearance: none; /* Remove default dropdown arrow */
-  -webkit-appearance: none; /* Remove default dropdown arrow in Safari */
-  -moz-appearance: none; /* Remove default dropdown arrow in Firefox */
-  transition: border-color 0.3s ease;
+/* Dropdown selection styling */
+.manage-builder-selection-dropdown {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 300px; /* Align the dropdown width to the label */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out;
 }
 
-/* Custom dropdown arrow */
-.builder-dropdown::after {
-  content: ' ▼';
-  font-size: 1.5rem;
-  color: red; /* Red arrow for consistency */
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
+.manage-builder-selection-dropdown:focus {
+  border-color: #d90429;
+  outline: none;
 }
 
-/* Button for verifying builder */
-.verify-button {
-  padding: 1rem 2rem; /* Increased padding */
+/* Button styling */
+.manage-builder-verify-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
   background-color: red;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 1.2rem; /* Increased font size */
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  width: 100%;
+  max-width: 320px;
 }
 
-/* Button hover effect */
-.verify-button:hover {
-  background-color: darkred;
+.manage-builder-verify-button:hover {
+  background-color: #b90320;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Verification message styling */
-.verification-message {
-  margin-top: 3rem; /* Increased margin */
-  text-align: center;
-  font-size: 1.5rem; /* Increased font size */
-  font-weight: bold;
+/* Styling for the verification message */
+.manage-builder-verification-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px; /* Align the width to match the dropdown and button */
+  text-align: center; /* Center text inside the message */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-left: auto; /* Center the message horizontally */
+  margin-right: auto; /* Center the message horizontally */
 }
 
-/* Verification message for success or error */
-.verification-message.success {
-  color: green;
-}
 
-.verification-message.error {
-  color: red;
+/* Add spacing between form elements */
+.manage-builder-form-container > * {
+  margin-bottom: 1.5rem;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .manage-page {
-    padding: 2rem; /* Increased padding */
+  .manage-builder-page {
+    padding: 1.5rem;
   }
 
-  .builder-dropdown {
-    width: 100%;
-    font-size: 1.3rem; /* Increased font size */
+  .manage-builder-selection-dropdown {
+    max-width: 100%;
   }
 
-  .verify-button {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.3rem; /* Increased font size */
+  .manage-builder-verify-button {
+    max-width: 100%;
+  }
+
+  .manage-builder-form-container {
+    padding: 1.5rem;
   }
 }
