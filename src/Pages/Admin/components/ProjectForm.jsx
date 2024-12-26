@@ -6,33 +6,45 @@ import BuilderDropdown from './BuilderDropdown';
 const ProjectForm = ({ onNext }) => {
 
   const [projectData, setProjectData] = useState({
-    projectName: 'New ',
-    builderId: '1',
-    launchDate: '12-12-2012',
-    city: 'New ',
-    locality: 'New ',
-    sublocality: 'New ',
-    companyName: 'New ',
-    shortCode: 'New ',
-    deliveryStatus: 'New ',
-    deliveryDate: '12-12-2020',
-    reraNumber: 'New ',
-    totalTowers: '12',
-    totalResidentialUnits: '12',
-    totalCommercialUnits: '12',
-    projectType: 'New ',
-    sectorBriefing: 'New ',
-    projectBriefing: 'New ',
+    projectName: '',
+    builderId: '',
+    launchDate: '',
+    city: '',
+    locality: '',
+    sublocality: '',
+    companyName: '',
+    shortCode: '',
+    deliveryStatus: '',
+    deliveryDate: '',
+    reraNumber: '',
+    totalTowers: '',
+    totalResidentialUnits: '',
+    totalCommercialUnits: '',
+    projectType: '',
+    sectorBriefing: '',
+    projectBriefing: '',
     projectIsVerified: false,
-    projectMedia: 'New ',
-    state: 'New ',
-    completeAddress: 'New ',
-    landmark: 'New ',
-    pinCode: '12345',
+    projectMedia: '',
+    state: '',
+    completeAddress: '',
+    landmark: '',
+    pinCode: '',
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
+    // Pincode Validation for India (6 digits, starting with a non-zero digit)
+    if (name === 'pincode') {
+      const indiaPincodePattern = /^[1-9]{1}[0-9]{5}$/;  // Indian pincode (6 digits, starts with non-zero digit)
+      
+      if (!indiaPincodePattern.test(value)) {
+        alert('Please enter a valid 6-digit Indian pincode.');
+        return;  // Prevent updating the pincode if invalid
+      }
+    }
+
+
     if (name === 'deliveryDate') {
       const launchDate = new Date(projectData.launchDate);
       const deliveryDate = new Date(value);
@@ -76,7 +88,7 @@ const ProjectForm = ({ onNext }) => {
     <form onSubmit={handleSubmit} className="project-form-container">
       <h2 className="project-form-title">Project Details</h2>
 
-      <label className="project-form-label">Enter Project Name</label>
+      <label className="project-form-label">Enter Project Name <span className="required-asterisk">*</span></label>
       <input
         type="text"
         name="projectName"
@@ -84,23 +96,26 @@ const ProjectForm = ({ onNext }) => {
         onChange={handleChange}
         placeholder="Project Name"
         required
+        maxLength={50}
         className="project-form-input"
       />
 
-      <label className="project-form-label">Select Builder</label>
+      <label className="project-form-label">Select Builder <span className="required-asterisk">*</span></label>
       <BuilderDropdown
         projectDetails={projectData}
         handleInputChange={handleChange}
-        className="project-form-dropdown"
+        required={true}
       />
 
-      <label className="project-form-label">Enter Launch Date</label>
+      <label className="project-form-label">Enter Launch Date <span className="required-asterisk">*</span></label>
       <input
         type="date"
         name="launchDate"
         value={projectData.launchDate}
         onChange={handleChange}
         className="project-form-input"
+        onKeyDown={(e) => e.preventDefault()}
+        required
       />
 
       <label className="project-form-label">Enter State</label>
@@ -147,61 +162,78 @@ const ProjectForm = ({ onNext }) => {
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Complete Address</label>
+      <label className="project-form-label">Enter Complete Address <span className="required-asterisk">*</span></label>
       <input
         type="text"
         name="completeAddress"
         value={projectData.completeAddress}
         onChange={handleChange}
+        required
         placeholder="Complete Address"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Landmark</label>
+      <label className="project-form-label">Enter Landmark <span className="required-asterisk">*</span></label>
       <input
         type="text"
         name="landmark"
         value={projectData.landmark}
         onChange={handleChange}
+        required
         placeholder="Landmark"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Pin Code</label>
+      <label className="project-form-label">Enter Pin Code <span className="required-asterisk">*</span></label>
       <input
         type="number"
         name="pinCode"
         value={projectData.pinCode}
-        onChange={handleChange}
+        onChange={(e) => {
+          const value = e.target.value;
+
+          // Custom validation to enforce the max limit of 6 digits
+          if (value.length > 6) {
+            alert("Enter a Valid PinCode");
+            return; // Prevent further execution if value exceeds 6 digits
+          }
+
+          // Call the original handleChange function if value is valid
+          handleChange(e);
+        }}
         placeholder="Pin Code"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Company Name</label>
+
+      <label className="project-form-label">Enter Company Name <span className="required-asterisk">*</span></label>
       <input
         type="text"
         name="companyName"
         value={projectData.companyName}
         onChange={handleChange}
+        required
         placeholder="Company Name"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Short Code</label>
+      <label className="project-form-label">Enter Short Name of Project <span className="required-asterisk">*</span></label>
       <input
         type="text"
         name="shortCode"
         value={projectData.shortCode}
         onChange={handleChange}
-        placeholder="Short Code"
+        required
+        placeholder="Short Code/Nick Name of Project"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Select Project Status</label>
+      <label className="project-form-label">Select Project Status <span className="required-asterisk">*</span></label>
       <select
         name="deliveryStatus"
         value={projectData.deliveryStatus}
         onChange={handleChange}
+        required
         className="project-form-select"
       >
         <option value="">Select Project Status</option>
@@ -211,37 +243,43 @@ const ProjectForm = ({ onNext }) => {
 
       {projectData.deliveryStatus && (
         <div className="project-form-date-container">
+          
           <label className="project-form-label">
             {projectData.deliveryStatus === 'Completed'
               ? 'Enter Completion Date'
               : 'Expected Completion Date'}
           </label>
+          
           <input
             type="date"
             name="deliveryDate"
             value={projectData.deliveryDate}
             onChange={handleChange}
+            required
             placeholder={projectData.deliveryStatus === 'Completed' ? 'Enter Completion Date' : 'Expected Completion Date'}
             className="project-form-input"
+            onKeyDown={(e) => e.preventDefault()}
           />
         </div>
       )}
 
-      <label className="project-form-label">Enter RERA Number</label>
+      <label className="project-form-label">Enter RERA Number <span className="required-asterisk">*</span></label>
       <input
         type="text"
         name="reraNumber"
         value={projectData.reraNumber}
         onChange={handleChange}
+        required
         placeholder="RERA Number"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Select Project Type</label>
+      <label className="project-form-label">Select Project Type <span className="required-asterisk">*</span></label>
       <select
         name="projectType"
         value={projectData.projectType}
         onChange={handleChange}
+        required
         className="project-form-select"
       >
         <option value="">Select Project Type</option>
@@ -250,24 +288,47 @@ const ProjectForm = ({ onNext }) => {
         <option value="Mixed">Mixed</option>
       </select>
 
-      <label className="project-form-label">Enter Total Towers</label>
+      <label className="project-form-label">Enter Total Towers <span className="required-asterisk">*</span></label>
       <input
         type="number"
         name="totalTowers"
         value={projectData.totalTowers}
-        onChange={handleChange}
+        required
+        onChange={(e) => {
+          const value = e.target.value;
+
+          // Custom validation to enforce the max limit of 200
+          if (value > 200) {
+            alert("Total Towers cannot exceed 200.");
+            return; // Prevent further execution if value is invalid
+          }
+
+          // Call the original handleChange function if value is valid
+          handleChange(e);
+        }}
         placeholder="Total Towers"
         min="0"
+        max="200"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Total Residential Units</label>
+
+      <label className="project-form-label">Enter Total Residential Units <span className="required-asterisk">*</span></label>
       <input
         type="number"
         name="totalResidentialUnits"
         value={projectData.totalResidentialUnits}
-        onChange={handleChange}
+        onChange={(e) => {
+          const value = e.target.value;
+          // Custom validation for Total Residential Units
+          if (value > 200) {
+            alert("Total Residential Units cannot exceed 200.");
+            return; // Prevent further execution if value is invalid
+          }
+          handleChange(e); // Call the original handleChange if value is valid
+        }}
         placeholder="Total Residential Units"
+        required
         min="0"
         className="project-form-input"
       />
@@ -277,26 +338,37 @@ const ProjectForm = ({ onNext }) => {
         type="number"
         name="totalCommercialUnits"
         value={projectData.totalCommercialUnits}
-        onChange={handleChange}
+        onChange={(e) => {
+          const value = e.target.value;
+          // Custom validation for Total Commercial Units
+          if (value > 200) {
+            alert("Total Commercial Units cannot exceed 200.");
+            return; // Prevent further execution if value is invalid
+          }
+          handleChange(e); // Call the original handleChange if value is valid
+        }}
         placeholder="Total Commercial Units"
         min="0"
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Sector Briefing</label>
+
+      <label className="project-form-label">Enter Sector Briefing <span className="required-asterisk">*</span></label>
       <textarea
         name="sectorBriefing"
         value={projectData.sectorBriefing}
         onChange={handleChange}
         placeholder="Sector Briefing"
+        required
         className="project-form-textarea"
       />
 
-      <label className="project-form-label">Enter Project Briefing</label>
+      <label className="project-form-label">Enter Project Briefing <span className="required-asterisk">*</span></label>
       <textarea
         name="projectBriefing"
         value={projectData.projectBriefing}
         onChange={handleChange}
+        required
         placeholder="Project Briefing"
         className="project-form-textarea"
       />

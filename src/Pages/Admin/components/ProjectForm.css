@@ -15,6 +15,45 @@
   margin-bottom: 2rem;  /* Adjust space below the title */
 }
 
+.required-asterisk {
+  color: red;
+}
+
+/* Style for the date container to ensure it aligns well with other form elements */
+.project-form-date-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1.5rem;  /* Consistent margin with other form fields */
+}
+
+/* Label styling inside the date container to match the other labels */
+.project-form-date-container .project-form-label {
+  font-size: 1.3rem;  /* Match label size */
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.6rem;  /* Match the margin from other labels */
+  text-align: left; /* Ensure the label aligns left */
+}
+
+/* Style for the date input field */
+.project-form-date-container input[type="date"] {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;  
+  font-size: 1.1rem; 
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+/* Focus style for date input field */
+.project-form-date-container input[type="date"]:focus {
+  border-color: #d90429;  /* Focus border color */
+  outline: none;  /* Remove default outline */
+}
+
 
 
 

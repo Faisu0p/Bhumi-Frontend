@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getVerifiedBuilders } from "../apis/builderApi";
+import '../ProjectAddPage.css';
 
 const BuilderDropdown = ({ projectDetails, handleInputChange }) => {
   const [builders, setBuilders] = useState([]);
@@ -41,20 +42,21 @@ const BuilderDropdown = ({ projectDetails, handleInputChange }) => {
   return (
     <div className="form-group">
       <select
-        className="form-control"
+        className="project-form-select"  // Use the same class as other inputs
         name="builderId"
-        value={projectDetails?.builderId || ""}  // Ensure projectDetails is defined
-        onChange={handleInputChange} // Use the parent-provided function
+        value={projectDetails?.builderId || ""}
+        onChange={handleInputChange}
+        required
       >
         <option value="">Select Builder</option>
         {builders.map((builder) => (
-          <option key={builder.Builder_id} value={builder.Builder_id}> {/* Updated key and value */}
-            {builder.FullName} {/* Display builder's full name */}
+          <option key={builder.Builder_id} value={builder.Builder_id}>
+            {builder.FullName}
           </option>
         ))}
       </select>
     </div>
-  );
+  );  
 };
 
 export default BuilderDropdown;
