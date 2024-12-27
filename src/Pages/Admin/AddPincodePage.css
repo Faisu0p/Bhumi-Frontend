@@ -1,0 +1,91 @@
+/* General Container Styling */
+.add-pincode-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-pincode-title {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Error and Success Messages */
+.add-pincode-error {
+  color: #d9534f;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.add-pincode-success {
+  color: #5bc0de;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Form Styling */
+.add-pincode-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-pincode-field {
+  margin-bottom: 20px;
+}
+
+.add-pincode-label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.add-pincode-select,
+.add-pincode-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white; /* White background for input fields */
+  font-size: 16px;
+  color: #333; /* Set text color to dark to ensure readability */
+}
+
+/* Focused input fields */
+.add-pincode-select:focus,
+.add-pincode-input:focus {
+  border-color: #d9534f; /* Red theme */
+  outline: none;
+  background-color: #fff; /* Ensures white background on focus */
+}
+
+/* Button Styling */
+.add-pincode-button {
+  padding: 12px;
+  background-color: #d9534f; /* Red theme */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-pincode-button:hover {
+  background-color: #c9302c;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .add-pincode-container {
+    padding: 15px;
+  }
+
+  .add-pincode-title {
+    font-size: 20px;
+  }
+}

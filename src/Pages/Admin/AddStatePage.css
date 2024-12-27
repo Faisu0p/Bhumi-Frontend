@@ -1,0 +1,79 @@
+/* Container for the whole page */
+.state-page-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styles */
+  .state-page-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Form styles */
+  .state-page-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Input container */
+  .state-page-input-container {
+    margin-bottom: 15px;
+  }
+  
+  /* Label styles */
+  .state-page-label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  /* Input styles */
+  .state-page-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: white;
+    color: #333;
+    transition: border-color 0.3s ease;
+  }
+  
+  .state-page-input:focus {
+    border-color: #e74c3c;  /* Red focus state */
+  }
+  
+  /* Button styles */
+  .state-page-button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #e74c3c; /* Red button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .state-page-button:hover {
+    background-color: #c0392b;  /* Darker red on hover */
+  }
+  
+  /* Message styles */
+  .state-page-message {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    color: #e74c3c;  /* Red message color for error */
+  }
+  

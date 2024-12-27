@@ -53,18 +53,26 @@ const Header = () => {
                 </div>
               </li>
 
-             
+              {/* Location Dropdown */}
+              <li className="nav-item">
+                <div className="nav-link">Location</div>
+                <div className="dropdown-menu">
+                  <Link to="/add-state" className="dropdown-item">Add State</Link>
+                  <Link to="/add-city" className="dropdown-item">Add City</Link>
+                  <Link to="/add-locality" className="dropdown-item">Add Locality</Link>
+                  <Link to="/add-sublocality" className="dropdown-item">Add Sublocality</Link>
+                  <Link to="/add-pincode" className="dropdown-item">Add Pincode</Link>
+                </div>
+              </li>
 
               {/* Other Links */}
-              <li className="nav-item">
-                <Link className="nav-link" to="/add-location">Location</Link>
-              </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/view-role">View Role</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/view-property">View Property</Link>
-              </li>
+              </li> */}
+              
             </ul>
           </div>
         </div>

@@ -1,0 +1,90 @@
+/* General Container Styling */
+.add-sublocality-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-sublocality-title {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Error and Success Messages */
+.add-sublocality-error {
+  color: #d9534f;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.add-sublocality-success {
+  color: #5bc0de;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Form Styling */
+.add-sublocality-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-sublocality-field {
+  margin-bottom: 20px;
+}
+
+.add-sublocality-label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.add-sublocality-select,
+.add-sublocality-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white; /* Updated to white background */
+  font-size: 16px;
+}
+
+/* Focused input fields */
+.add-sublocality-select:focus,
+.add-sublocality-input:focus {
+  border-color: #d9534f; /* Red theme */
+  outline: none;
+  background-color: #fff; /* Ensures white background on focus */
+}
+
+/* Button Styling */
+.add-sublocality-button {
+  padding: 12px;
+  background-color: #d9534f; /* Red theme */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-sublocality-button:hover {
+  background-color: #c9302c;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .add-sublocality-container {
+    padding: 15px;
+  }
+
+  .add-sublocality-title {
+    font-size: 20px;
+  }
+}

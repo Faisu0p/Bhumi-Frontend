@@ -1,0 +1,73 @@
+/* AddCityPage.css */
+
+.add-city-page-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-city-page-title {
+    text-align: center;
+    color: #d32f2f;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .add-city-page-input-container {
+    margin-bottom: 20px;
+  }
+  
+  .add-city-page-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .add-city-page-select,
+  .add-city-page-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d32f2f; /* Red border */
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #ffffff; /* White background */
+    color: #333; /* Dark text for readability */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .add-city-page-select:focus,
+  .add-city-page-input:focus {
+    outline: none;
+    border-color: #b71c1c; /* Darker red on focus */
+    box-shadow: 0 0 5px rgba(211, 47, 47, 0.5); /* Red glow effect on focus */
+  }
+  
+  .add-city-page-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #d32f2f; /* Red background */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .add-city-page-button:hover {
+    background-color: #c62828; /* Darker red on hover */
+  }
+  
+  .add-city-page-message {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #d32f2f; /* Red text for error/success messages */
+  }
+  

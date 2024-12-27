@@ -1,114 +1,84 @@
 import axios from 'axios';
 
-// Base API URL (adjust as needed)
-const BASE_API_URL = 'http://localhost:8021/api/locations';
+// Base URL for your backend API
+const BASE_URL = 'http://localhost:8021/api/locations';  // Update this to your backend URL
 
-// Add a new state
+// Function to add a state
 export const addState = async (stateName) => {
   try {
-    const response = await axios.post(`${BASE_API_URL}/add`, { type: 'state', name: stateName });
-    return response.data;  // Assuming backend returns { message, id }
+    const response = await axios.post(`${BASE_URL}/add-state`, { stateName });
+    return response.data;  // Return the success message
   } catch (error) {
-    console.error('Error adding state:', error);
-    throw new Error('Failed to add state. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to add state');
   }
 };
 
-// Add a new city
+// Function to add a city
 export const addCity = async (cityName, stateId) => {
   try {
-    const response = await axios.post(`${BASE_API_URL}/add`, { type: 'city', name: cityName, parentId: stateId });
-    return response.data;  // Assuming backend returns { message, id }
+    const response = await axios.post(`${BASE_URL}/add-city`, { cityName, stateId });
+    return response.data;  // Return the success message
   } catch (error) {
-    console.error('Error adding city:', error);
-    throw new Error('Failed to add city. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to add city');
   }
 };
 
-// Add a new locality
+// Function to add a locality
 export const addLocality = async (localityName, cityId) => {
   try {
-    const response = await axios.post(`${BASE_API_URL}/add`, { type: 'locality', name: localityName, parentId: cityId });
-    return response.data;  // Assuming backend returns { message, id }
+    const response = await axios.post(`${BASE_URL}/add-locality`, { localityName, cityId });
+    return response.data;  // Return the success message
   } catch (error) {
-    console.error('Error adding locality:', error);
-    throw new Error('Failed to add locality. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to add locality');
   }
 };
 
-// Add a new sublocality
-export const addSublocality = async (sublocalityName, localityId) => {
+// Function to add a sublocality
+export const addSubLocality = async (subLocalityName, localityId) => {
   try {
-    const response = await axios.post(`${BASE_API_URL}/add`, { type: 'sublocality', name: sublocalityName, parentId: localityId });
-    return response.data;  // Assuming backend returns { message, id }
+    const response = await axios.post(`${BASE_URL}/add-sublocality`, { subLocalityName, localityId });
+    return response.data;  // Return the success message
   } catch (error) {
-    console.error('Error adding sublocality:', error);
-    throw new Error('Failed to add sublocality. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to add sublocality');
   }
 };
 
-// Add a new pincode
+// Function to add a pincode
 export const addPincode = async (pincode, localityId) => {
   try {
-    const response = await axios.post(`${BASE_API_URL}/add`, { type: 'pincode', name: pincode, parentId: localityId });
-    return response.data;  // Assuming backend returns { message, id }
+    const response = await axios.post(`${BASE_URL}/add-pincode`, { pincode, localityId });
+    return response.data;  // Return the success message
   } catch (error) {
-    console.error('Error adding pincode:', error);
-    throw new Error('Failed to add pincode. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to add pincode');
   }
 };
 
-// Fetch all states
+// Function to fetch all states (id and name)
 export const getStates = async () => {
   try {
-    const response = await axios.get(`${BASE_API_URL}/states`);
-    return response.data;  // Assuming backend returns an array of states
+    const response = await axios.get(`${BASE_URL}/states`);
+    return response.data;  // Return the list of states
   } catch (error) {
-    console.error('Error fetching states:', error);
-    throw new Error('Failed to fetch states. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to fetch states');
   }
 };
 
-// Fetch cities by state
-export const getCitiesByState = async (stateId) => {
+// Function to fetch all cities (id and name)
+export const getCities = async () => {
   try {
-    const response = await axios.get(`${BASE_API_URL}/cities`, { params: { parentId: stateId } });
-    return response.data;  // Assuming backend returns an array of cities
+    const response = await axios.get(`${BASE_URL}/cities`);
+    return response.data;  // Return the list of cities
   } catch (error) {
-    console.error('Error fetching cities:', error);
-    throw new Error('Failed to fetch cities. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to fetch cities');
   }
 };
 
-// Fetch localities by city
-export const getLocalitiesByCity = async (cityId) => {
+// Function to fetch all localities (id and name)
+export const getLocalities = async () => {
   try {
-    const response = await axios.get(`${BASE_API_URL}/localities`, { params: { parentId: cityId } });
-    return response.data;  // Assuming backend returns an array of localities
+    const response = await axios.get(`${BASE_URL}/localities`);
+    return response.data;  // Return the list of localities
   } catch (error) {
-    console.error('Error fetching localities:', error);
-    throw new Error('Failed to fetch localities. Please try again later.');
-  }
-};
-
-// Fetch sublocalities by locality
-export const getSublocalitiesByLocality = async (localityId) => {
-  try {
-    const response = await axios.get(`${BASE_API_URL}/sublocalities`, { params: { parentId: localityId } });
-    return response.data;  // Assuming backend returns an array of sublocalities
-  } catch (error) {
-    console.error('Error fetching sublocalities:', error);
-    throw new Error('Failed to fetch sublocalities. Please try again later.');
-  }
-};
-
-// Fetch pincodes by locality
-export const getPincodesByLocality = async (localityId) => {
-  try {
-    const response = await axios.get(`${BASE_API_URL}/pincodes`, { params: { parentId: localityId } });
-    return response.data;  // Assuming backend returns an array of pincodes
-  } catch (error) {
-    console.error('Error fetching pincodes:', error);
-    throw new Error('Failed to fetch pincodes. Please try again later.');
+    throw new Error(error.response?.data?.error || 'Failed to fetch localities');
   }
 };

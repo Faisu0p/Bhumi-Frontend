@@ -17,7 +17,11 @@ import Header from './Pages/Admin/components/Header';
 import ViewProjectPage from './Pages/Admin/ViewProjectPage';
 import ViewBuilderPage from './Pages/Admin/ViewBuilderPage';
 import ManageProjectPage from './Pages/Admin/ManageProjectPage';
-import LocationForm from './Pages/Admin/LocationForm';
+import AddStatePage from './Pages/Admin/AddStatePage';
+import AddCityPage from './Pages/Admin/AddCityPage';
+import AddLocalityPage from './Pages/Admin/AddLocalityPage';
+import AddSublocalityPage from './Pages/Admin/AddSublocalityPage';
+import AddPincodePage from './Pages/Admin/AddPincodePage';
 
 function LayoutWithHeader({ children }) {
   return (
@@ -48,8 +52,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/view-builder" element={<LayoutWithHeader><ViewBuilderPage /></LayoutWithHeader>} />
         <Route path="/view-project" element={<LayoutWithHeader><ViewProjectPage /></LayoutWithHeader>} />
         <Route path="/manage-project" element={<LayoutWithHeader><ManageProjectPage /></LayoutWithHeader>} />
-        <Route path="/add-location" element={<LayoutWithHeader><LocationForm /></LayoutWithHeader>} />
-        
+        <Route path="/add-state" element={<LayoutWithHeader><AddStatePage /></LayoutWithHeader>} />
+        <Route path="/add-city" element={<LayoutWithHeader><AddCityPage /></LayoutWithHeader>} />
+        <Route path="/add-locality" element={<LayoutWithHeader><AddLocalityPage /></LayoutWithHeader>} />
+        <Route path="/add-sublocality" element={<LayoutWithHeader><AddSublocalityPage /></LayoutWithHeader>} />
+        <Route path="/add-pincode" element={<LayoutWithHeader><AddPincodePage /></LayoutWithHeader>} />
         
       </Routes>
     </Router>

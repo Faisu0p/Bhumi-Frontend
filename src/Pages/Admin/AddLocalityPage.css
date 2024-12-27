@@ -1,0 +1,89 @@
+.add-location-page {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .page-title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .location-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: #e60000; /* Red theme */
+    box-shadow: 0 0 5px rgba(230, 0, 0, 0.3);
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #e60000;  /* Red theme */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #c20000;  /* Darker red on hover */
+  }
+  
+  .message {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #28a745;  /* Green color for success */
+  }
+  
+  .message.error {
+    color: #dc3545;  /* Red color for error */
+  }
+  
+  select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  select:focus {
+    border-color: #e60000;  /* Red theme */
+    box-shadow: 0 0 5px rgba(230, 0, 0, 0.3);
+  }
+  
