@@ -1,4 +1,5 @@
 import React from 'react';
+import './UnitDetailForm.css';
 
 const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
   const handleFieldChange = (e) => {
@@ -7,12 +8,13 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
   };
 
   return (
-    <div className="unit-detail-form">
-      <h4>Unit Detail {index + 1}</h4>
+    <div className="unit-detail-form-container">
+      <h4 className="unit-detail-form-heading">Unit Detail {index + 1}</h4>
 
       {/* Space Type */}
       <select
         name="spaceType"
+        className="unit-detail-form-select"
         value={unitDetailData.spaceType || ''}
         onChange={handleFieldChange}
       >
@@ -29,11 +31,11 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
         <option value="Storage">Storage</option>
       </select>
 
-
       {/* Unit Size */}
       <input
         type="number"
         name="unitSize"
+        className="unit-detail-form-input"
         value={unitDetailData.unitSize || ''}
         onChange={handleFieldChange}
         placeholder="Unit Size (sq. ft.)"
@@ -42,6 +44,7 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
       {/* Furnished Status */}
       <select
         name="unitFurnishedStatus"
+        className="unit-detail-form-select"
         value={unitDetailData.unitFurnishedStatus || ''}
         onChange={handleFieldChange}
       >

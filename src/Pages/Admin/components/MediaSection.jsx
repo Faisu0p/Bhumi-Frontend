@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BlobServiceClient } from "@azure/storage-blob";
 
-const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 }) => {  // Default size is 5MB
+const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 , previewStyle }) => {  // Default size is 5MB
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -40,7 +40,7 @@ const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 }) => 
       // Check the file type (MIME type) against allowed image types
       const allowedTypes = ['image/jpeg', 'image/png'];
       if (!allowedTypes.includes(selectedFile.type)) {
-        setError("Invalid file type. Please select an image file.");
+        setError("Invalid file type. Please select an image file (jpg or png).");
         setImage(null);
         return;
       }
@@ -94,6 +94,7 @@ const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 }) => 
               height: "100px",
               objectFit: "cover",
               margin: "5px",
+              ...previewStyle
             }}
           />
         </div>

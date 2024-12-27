@@ -17,6 +17,7 @@ import Header from './Pages/Admin/components/Header';
 import ViewProjectPage from './Pages/Admin/ViewProjectPage';
 import ViewBuilderPage from './Pages/Admin/ViewBuilderPage';
 import ManageProjectPage from './Pages/Admin/ManageProjectPage';
+import LocationForm from './Pages/Admin/LocationForm';
 
 function LayoutWithHeader({ children }) {
   return (
@@ -47,6 +48,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/view-builder" element={<LayoutWithHeader><ViewBuilderPage /></LayoutWithHeader>} />
         <Route path="/view-project" element={<LayoutWithHeader><ViewProjectPage /></LayoutWithHeader>} />
         <Route path="/manage-project" element={<LayoutWithHeader><ManageProjectPage /></LayoutWithHeader>} />
+        <Route path="/add-location" element={<LayoutWithHeader><LocationForm /></LayoutWithHeader>} />
         
         
       </Routes>

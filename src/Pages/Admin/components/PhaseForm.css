@@ -1,28 +1,207 @@
 /* PhaseForm.css */
-.phase {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
+
+.phase-form {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff; /* White background */
   border-radius: 8px;
 }
 
-input, select, textarea {
-  width: 100%;
-  margin: 8px 0;
-  padding: 8px;
-  border-radius: 5px;
+.phase-form-heading{
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: black; /* Red color for the heading */
 }
 
-button {
-  padding: 10px 15px;
-  background-color: #007bff;
+.required-asterisk {
+  color: red;
+}
+
+.phase-form-btn {
+  background-color: red; /* Red background */
   color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.phase-form-btn:hover {
+  background-color: #c62828; /* Darker red on hover */
+}
+
+.phase-form-phase {
+  background-color: #fff; /* White background for each phase */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.phase-form-label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333; /* Dark text color for labels */
+  text-align: left;
+}
+
+/* For input[type="date"] */
+.phase-form input[type="date"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white; /* White background for date inputs */
+  color: #333; /* Dark text color for visibility */
+  font-size: 14px;
+}
+
+/* When the input is focused */
+.phase-form input[type="date"]:focus {
+  border-color: #d32f2f; /* Red border on focus */
+  outline: none;
+  color: #000; /* Ensure the text color is black */
+}
+
+/* For the date picker popup, styling is limited, but you can try these */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: #000; /* Black background for the date picker icon */
+  color: #fff; /* White color for the date picker icon */
+}
+
+
+.phase-form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white; /* White background for inputs */
+  color: #333; /* Dark text color for visibility */
+}
+
+.phase-form-input:focus {
+  border-color: #d32f2f; /* Red border on focus */
+  outline: none;
+}
+
+.phase-form-heading {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.phase-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white; /* White background for select */
+  color: #333; /* Dark text color for visibility */
+}
+
+.phase-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: vertical;
+  background-color: white; /* White background for textarea */
+  color: #333; /* Dark text color for visibility */
+}
+
+.phase-form input[type="date"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white; /* White background for date inputs */
+  color: #333; /* Dark text color for visibility */
+}
+
+.phase-form input[type="number"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white; /* White background for number inputs */
+  color: #333; /* Dark text color for visibility */
+}
+
+.phase-form input[type="text"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white; /* White background for text inputs */
+  color: #333; /* Dark text color for visibility */
+}
+
+.phase-form .phase-form-btn {
+  display: inline-block;
   margin-top: 10px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.phase-form .phase-form-btn:last-child {
+  margin-top: 20px;
 }
+
+.phase-form .phase-form-phase h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.phase-form .phase-form-phase .phase-form-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.phase-form .phase-form-phase input[type="text"],
+.phase-form .phase-form-phase select,
+.phase-form .phase-form-phase textarea {
+  margin-bottom: 10px;
+}
+
+.phase-form .phase-form-phase .phase-form-btn {
+  margin-top: 10px;
+}
+
+
+.phase-form-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  align-items: center; /* Center the buttons horizontally */
+}
+
+.phase-form-buttons button {
+  width: 200px; /* Adjust button width */
+  padding: 12px 20px; /* Increase padding for larger buttons */
+  font-size: 16px; /* Increase font size */
+  margin-bottom: 10px; /* Space between buttons */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+}
+
+.phase-form-buttons button:first-child {
+  background-color: red; /* Different background for "Add Phase" */
+}
+
+.phase-form-buttons button:last-child {
+  background-color: #d32f2f; /* Red background for "Next" */
+}
+
+.phase-form-buttons button:hover {
+  background-color: #c62828; /* Darker red for "Next" button on hover */
+}
+
+
+

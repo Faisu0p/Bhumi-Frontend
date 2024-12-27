@@ -6,29 +6,29 @@ import BuilderDropdown from './BuilderDropdown';
 const ProjectForm = ({ onNext }) => {
 
   const [projectData, setProjectData] = useState({
-    projectName: '',
-    builderId: '',
+    projectName: '1',
+    builderId: '1',
     launchDate: '',
-    city: '',
-    locality: '',
-    sublocality: '',
-    companyName: '',
-    shortCode: '',
-    deliveryStatus: '',
-    deliveryDate: '',
-    reraNumber: '',
-    totalTowers: '',
-    totalResidentialUnits: '',
-    totalCommercialUnits: '',
-    projectType: '',
-    sectorBriefing: '',
-    projectBriefing: '',
+    city: '1',
+    locality: '1',
+    sublocality: '1',
+    companyName: '1',
+    shortCode: '1',
+    deliveryStatus: 'Completed',
+    deliveryDate: '2024-12-3',
+    reraNumber: '1',
+    totalTowers: '1',
+    totalResidentialUnits: '1',
+    totalCommercialUnits: '1',
+    projectType: '1',
+    sectorBriefing: '1',
+    projectBriefing: '1',
     projectIsVerified: false,
-    projectMedia: '',
-    state: '',
-    completeAddress: '',
-    landmark: '',
-    pinCode: '',
+    projectMedia: '1',
+    state: '1',
+    completeAddress: '1',
+    landmark: '1',
+    pinCode: '110025',
   });
 
   const handleChange = (e) => {
@@ -373,14 +373,24 @@ const ProjectForm = ({ onNext }) => {
         className="project-form-textarea"
       />
 
-      <label className="project-form-label">Add the Project Media here</label>
-      <MediaSection updateMasterLayoutPlan={updateMediaUrl} maxSize={500 * 1024} />
+      <label className="project-form-label">Add Project Master Layout/Numbering Plan <span className="required-asterisk">*</span></label>
+      <MediaSection 
+        updateMasterLayoutPlan={updateMediaUrl} 
+        maxSize={5 * 1024 * 1024}  // 5 MB max size
+        previewStyle={{ 
+          objectFit: "contain", 
+          width: "100%",       
+          maxWidth: "600px",    
+          height: "auto"        
+        }} 
+      />
       <input
         type="url"
         name="projectMedia"
         value={projectData.projectMedia}
         onChange={handleChange}
         placeholder="Project Media URL"
+        required
         readOnly
         className="project-form-input"
       />
