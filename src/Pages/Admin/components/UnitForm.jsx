@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import UnitDetailForm from './UnitDetailForm';
 import './UnitForm.css';
+import MediaSection from './MediaSection'; // Adjust the path if necessary
+
 
 const UnitForm = ({ onUnitChange, unit }) => {
   const [unitDetails, setUnitDetails] = useState(unit.unitDetails || []);
   const [category, setCategory] = useState(unit.unitCategory || '');
   const [unitType, setUnitType] = useState(unit.unitType || '');
+
+  const updateMediaUrl = (url) => {
+    onUnitChange('unitLayout', url); // Update the unitLayout field with the image URL
+  };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -81,7 +88,7 @@ const UnitForm = ({ onUnitChange, unit }) => {
             required
           >
             <option value="">Select Unit Type</option>
-            <option value="Apartment">Apartment</option>
+            <option value="Service Apartment">Service Apartment</option>
             <option value="Flat">Flat</option>
             <option value="Duplex">Duplex</option>
             <option value="Penthouse">Penthouse</option>
@@ -201,11 +208,23 @@ const UnitForm = ({ onUnitChange, unit }) => {
         placeholder="Carpet Area (sq. ft.)"
       />
 
-
       {/* Unit Layout Textarea */}
       <label className="unit-form-label" htmlFor="unitLayout">
-        Enter Unit Layout <span className="required-asterisk">*</span>
+        Add Unit Layout <span className="required-asterisk">*</span>
       </label>
+
+      {/* Media Section for uploading unit layout image */}
+      <MediaSection
+        updateMasterLayoutPlan={updateMediaUrl}
+        maxSize={5 * 1024 * 1024}  // 5 MB max size
+        previewStyle={{
+          objectFit: "contain",
+          width: "100%",
+          maxWidth: "600px",
+          height: "auto"
+        }}
+      />
+
       <textarea
         name="unitLayout"
         id="unitLayout"

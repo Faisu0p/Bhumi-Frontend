@@ -273,15 +273,15 @@ const PhaseForm = ({ onNext }) => {
         </div>
       ))}
 
-<div className="phase-form-buttons">
-  <button type="button" className="phase-form-btn" onClick={handleAddPhase}>
-    Add Phase
-  </button>
+      <div className="phase-form-buttons">
+        <button type="button" className="phase-form-btn" onClick={handleAddPhase}>
+          Add Phase
+        </button>
 
-  <button type="button" className="phase-form-btn" onClick={handleNext}>
-    Next
-  </button>
-</div>
+        <button type="button" className="phase-form-btn" onClick={handleNext}>
+          Next
+        </button>
+      </div>
 
     </form>
   );
