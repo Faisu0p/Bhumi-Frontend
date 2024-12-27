@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import logo from "../../../Media/Images/logo.png";
 
 const Header = () => {
   return (
@@ -10,7 +11,7 @@ const Header = () => {
           {/* Logo */}
           <a className="navbar-brand" href="admin">
             <img 
-              src="https://s3-alpha-sig.figma.com/img/74aa/e3e8/cdd0d4f7b802b64bbf4005a3c9908832?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aMzf2zLAbhwBsYJBa2OXtGUfsRntDJ7D8eNvTXBuCvyrUcXavZHmaHSWPgwAKd5s9qCIhRMV401cezeQqEmRB7gYCairTplgZuJg7E1H1kldKq6f~J3cFu0dRwhz5A8eGyrqsyCFGOI8jppC3u-RrpNzuuKIdUawQkeaB~wpMc33Rf0ZMMrl8mbTN~bsSlreqeRvwzOfpLrlHgzAnDbXCNEIqHp96w5g5I2BU7yykbjGvt-hYt0UU~WLl5Ir5IfymR7bYPl0kCRezq1~o8Ip45WXf7Wim-BdAMLwjKTww4PvudboHGSSfg-TwAGBoUJADkLq4xnvk1pRxRFnvfv7hA__" 
+              src={logo}
               alt="Logo" 
               className="logo-img" 
             />

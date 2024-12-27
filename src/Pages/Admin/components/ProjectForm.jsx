@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './ProjectForm.css';
 import MediaSection from './MediaSection';
 import BuilderDropdown from './BuilderDropdown';
+import LocationsDropdown from './LocationsDropdown';
 
 const ProjectForm = ({ onNext }) => {
 
@@ -9,9 +10,9 @@ const ProjectForm = ({ onNext }) => {
     projectName: '1',
     builderId: '1',
     launchDate: '',
-    city: '1',
-    locality: '1',
-    sublocality: '1',
+    city: '',
+    locality: '',
+    sublocality: '',
     companyName: '1',
     shortCode: '1',
     deliveryStatus: 'Completed',
@@ -25,11 +26,23 @@ const ProjectForm = ({ onNext }) => {
     projectBriefing: '1',
     projectIsVerified: false,
     projectMedia: '1',
-    state: '1',
+    state: '',
     completeAddress: '1',
     landmark: '1',
-    pinCode: '110025',
+    pinCode: '',
   });
+
+  const handleLocationChange = (newLocationData) => {
+    setProjectData((prev) => ({
+      ...prev,
+      state: newLocationData.state,          // Update the state
+      city: newLocationData.city,            // Update the city
+      locality: newLocationData.locality,    // Update the locality
+      sublocality: newLocationData.sublocality, // Update the sublocality
+    }));
+  };
+  
+  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -118,7 +131,13 @@ const ProjectForm = ({ onNext }) => {
         required
       />
 
-      <label className="project-form-label">Enter State</label>
+            {/* Locations Dropdown Component */}
+            <LocationsDropdown
+        locationData={projectData}
+        onLocationChange={handleLocationChange}
+      />
+
+      {/* <label className="project-form-label">Enter State</label>
       <input
         type="text"
         name="state"
@@ -162,6 +181,27 @@ const ProjectForm = ({ onNext }) => {
         className="project-form-input"
       />
 
+      <label className="project-form-label">Enter Pin Code <span className="required-asterisk">*</span></label>
+        <input
+          type="number"
+          name="pinCode"
+          value={projectData.pinCode}
+          onChange={(e) => {
+            const value = e.target.value;
+
+            // Custom validation to enforce the max limit of 6 digits
+            if (value.length > 6) {
+              alert("Enter a Valid PinCode");
+              return; // Prevent further execution if value exceeds 6 digits
+            }
+
+            // Call the original handleChange function if value is valid
+            handleChange(e);
+          }}
+          placeholder="Pin Code"
+          className="project-form-input"
+        /> */}
+
       <label className="project-form-label">Enter Complete Address <span className="required-asterisk">*</span></label>
       <input
         type="text"
@@ -184,26 +224,7 @@ const ProjectForm = ({ onNext }) => {
         className="project-form-input"
       />
 
-      <label className="project-form-label">Enter Pin Code <span className="required-asterisk">*</span></label>
-      <input
-        type="number"
-        name="pinCode"
-        value={projectData.pinCode}
-        onChange={(e) => {
-          const value = e.target.value;
 
-          // Custom validation to enforce the max limit of 6 digits
-          if (value.length > 6) {
-            alert("Enter a Valid PinCode");
-            return; // Prevent further execution if value exceeds 6 digits
-          }
-
-          // Call the original handleChange function if value is valid
-          handleChange(e);
-        }}
-        placeholder="Pin Code"
-        className="project-form-input"
-      />
 
 
       <label className="project-form-label">Enter Company Name <span className="required-asterisk">*</span></label>
