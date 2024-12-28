@@ -39,6 +39,8 @@
 
 /* Label and Input Styles */
 .builder-form-control {
+  background-color: white; /* Set background color to white */
+  color: black; /* Set text color to black */
   border-radius: 8px;
   padding: 1rem 1.5rem;
   margin-bottom: 1.5rem;
@@ -66,13 +68,15 @@
 /* Input group for years in real estate */
 .builder-input-group {
   display: flex;
-  align-items: center;
+  align-items: center; /* Vertically align items */
   gap: 0.75rem;
+  width: 100%; /* Ensures input and span align correctly */
 }
 
 .builder-input-group input[type="number"] {
   -moz-appearance: textfield; /* Remove increment/decrement buttons */
   appearance: textfield;
+  width: 100%; /* Ensure the input fills the available space */
 }
 
 .builder-input-group input[type="number"]::-webkit-inner-spin-button,
@@ -84,9 +88,12 @@
 .builder-input-group-text {
   background-color: red;
   color: #fff;
+  margin-top: -1.45rem;
   border-radius: 0 8px 8px 0;
   padding: 1rem 1.5rem;
   font-size: 1.2rem;
+  text-align: center; /* Ensure text is centered */
+  line-height: 1; /* Ensure the span height matches the input field height */
 }
 
 /* Button Styling */
@@ -125,6 +132,8 @@
 
 /* Textarea styling */
 textarea.builder-form-control {
+  background-color: white; /* Set background color to white */
+  color: black; /* Set text color to black */
   border-radius: 8px;
   padding: 1rem;
   min-height: 150px;
