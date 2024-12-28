@@ -11,7 +11,8 @@ const BuilderAddPage = () => {
     builderLogo: null,
     yearsInRealEstate: 0,
     shortDescription: "",
-    listOfProjects: "",
+    state: "",
+    builderLogoRectangle: "",
   });
 
   const handleChange = (e) => {
@@ -41,6 +42,10 @@ const BuilderAddPage = () => {
       builderLogo: Array.isArray(formData.builderLogo)
         ? formData.builderLogo[0]
         : formData.builderLogo,
+
+      builderLogoRectangle: Array.isArray(formData.builderLogoRectangle)
+      ? formData.builderLogoRectangle[0]
+      : formData.builderLogoRectangle,
     };
 
     try {
@@ -54,10 +59,11 @@ const BuilderAddPage = () => {
         city: "",
         builderCompleteName: "",
         builderShortName: "",
-        builderLogo: null,
+        builderLogo: "",
         yearsInRealEstate: 0,
         shortDescription: "",
-        listOfProjects: "",
+        state: "",
+        builderLogoRectangle: "",
       });
     } catch (error) {
       console.error("Error submitting builder data:", error);
@@ -70,6 +76,20 @@ const BuilderAddPage = () => {
       <div className="builder-card builder-shadow builder-form-card">
         <h2 className="builder-text-center builder-text-danger">Builder Information Form</h2>
         <form onSubmit={handleSubmit}>
+
+          {/* State Input */}
+          <div className="builder-form-group">
+            <label htmlFor="state" className="builder-form-label">Enter State</label>
+            <input
+              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              required
+              className="builder-form-control"
+              placeholder="e.g., Delhi"
+            />
+          </div>
           {/* City Input */}
           <div className="builder-form-group">
             <label htmlFor="city" className="builder-form-label">Enter City</label>
@@ -114,13 +134,13 @@ const BuilderAddPage = () => {
 
           {/* Media Section for uploading image */}
           <div className="builder-form-group">
-            <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo</label>
+            <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo Square</label>
             <MediaSection updateMasterLayoutPlan={updatebuilderLogo} maxSize={100 * 1024} /> 
           </div>
 
           {/* Builder Logo URL Input */}
           <div className="builder-form-group">
-            <label htmlFor="builderLogo" className="builder-form-label">Enter Builder Logo URL</label>
+            <label htmlFor="builderLogo" className="builder-form-label">Builder Logo Square URL</label>
             <input
               type="text"
               id="builderLogo"
@@ -131,6 +151,27 @@ const BuilderAddPage = () => {
               placeholder="e.g., https://example.com/logo.jpg"
             />
           </div>
+
+          {/* Media Section for uploading Builder Logo Rectangle */}
+          <div className="builder-form-group">
+            <label htmlFor="builderLogoRectangle" className="builder-form-label">Upload Builder Logo Rectangle</label>
+            <MediaSection updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} maxSize={100 * 1024} /> 
+          </div>
+
+          {/* Builder Logo Rectangle URL Input */}
+          <div className="builder-form-group">
+            <label htmlFor="builderLogoRectangle" className="builder-form-label">Builder Logo Rectangle URL</label>
+            <input
+              type="text"
+              id="builderLogoRectangle"
+              name="builderLogoRectangle"
+              value={formData.builderLogoRectangle}
+              onChange={handleChange}
+              className="builder-form-control"
+              placeholder="e.g., https://example.com/logo-rectangle.jpg"
+            />
+          </div>
+
 
           {/* Years in Real Estate */}
           <div className="builder-form-group">
