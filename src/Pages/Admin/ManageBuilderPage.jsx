@@ -65,7 +65,7 @@ const ManageBuilderPage = () => {
         <div className="manage-builder-selection-container">
           {/* Label above the dropdown */}
           <label htmlFor="builderSelect" className="manage-builder-selection-label">
-            Select a builder to verify
+            Select a builder to verify or reject
           </label>
           <select
             id="builderSelect"

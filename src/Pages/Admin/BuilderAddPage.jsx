@@ -114,7 +114,7 @@ const BuilderAddPage = () => {
               onChange={handleChange}
               required
               className="builder-form-control"
-              placeholder="e.g., Sharma Builders Pvt. Ltd."
+              placeholder="e.g., Bhumi Builders Pvt. Ltd."
             />
           </div>
 
@@ -128,14 +128,26 @@ const BuilderAddPage = () => {
               onChange={handleChange}
               required
               className="builder-form-control"
-              placeholder="e.g., Sharma Builders"
+              placeholder="e.g., Bhumi Builders"
             />
           </div>
 
-          {/* Media Section for uploading image */}
+          {/* Media Section for uploading Builder Logo Square */}
           <div className="builder-form-group">
             <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo Square</label>
-            <MediaSection updateMasterLayoutPlan={updatebuilderLogo} maxSize={100 * 1024} /> 
+            <MediaSection 
+            updateMasterLayoutPlan={updatebuilderLogo} 
+            maxSize={1024 * 1024}
+            previewStyle={{
+              objectFit: "contain",
+              width: "100%",       
+              maxWidth: "250px",   
+              height: "auto",      
+              maxHeight: "250px",  
+              margin: "0 auto",    
+              display: "block"     
+            }}
+              /> 
           </div>
 
           {/* Builder Logo URL Input */}
@@ -155,7 +167,19 @@ const BuilderAddPage = () => {
           {/* Media Section for uploading Builder Logo Rectangle */}
           <div className="builder-form-group">
             <label htmlFor="builderLogoRectangle" className="builder-form-label">Upload Builder Logo Rectangle</label>
-            <MediaSection updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} maxSize={100 * 1024} /> 
+            <MediaSection 
+            updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} 
+            maxSize={1024 * 1024}
+            previewStyle={{
+              objectFit: "contain",
+              width: "100%",          
+              maxWidth: "250px",      
+              height: "auto",         
+              maxHeight: "150px",     
+              margin: "0 auto",       
+              display: "block"   
+            }}
+             /> 
           </div>
 
           {/* Builder Logo Rectangle URL Input */}
@@ -181,15 +205,16 @@ const BuilderAddPage = () => {
                 type="number"
                 id="yearsInRealEstate"
                 name="yearsInRealEstate"
-                value={formData.yearsInRealEstate}
+                value={formData.yearsInRealEstate || ""}
                 onChange={handleNumberChange}
                 onBlur={(e) => {
                   if (formData.yearsInRealEstate === "") {
-                    setFormData({ ...formData, yearsInRealEstate: 0 });
+                    setFormData({ ...formData, yearsInRealEstate: "" });
                   }
                 }}
                 required
                 min="0"
+                max="100"
                 className="builder-form-control"
                 placeholder="e.g., 10"
               />
