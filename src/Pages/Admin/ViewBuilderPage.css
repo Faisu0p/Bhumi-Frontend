@@ -64,11 +64,41 @@
 }
 
 /* Logo styling */
-.view-builder-logo {
+
+/* Square logo styling */
+.view-builder-logo-square {
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+  height: 50px; 
+  object-fit: cover; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.view-builder-logo-square:hover {
+  transform: scale(1.1); 
+}
+
+/* Rectangle logo styling */
+.view-builder-logo-rectangle {
+  width: 80px; 
+  height: 50px; 
+  object-fit: contain; 
+  border: 1px solid #ddd;
+  border-radius: 4px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.view-builder-logo-rectangle:hover {
+  transform: scale(1.1); 
+}
+
+/* Table cell alignment for logos */
+.view-builder-table td img {
+  display: block;
+  margin: 0 auto;
 }
 
 /* Loading spinner styling */
@@ -83,7 +113,7 @@
 .view-builder-alert-error {
   font-size: 1.2rem;
   color: #fff;
-  background-color: #b90320; /* Dark red error background */
+  background-color: #b90320;
   padding: 1.5rem;
   border-radius: 8px;
   text-align: center;
@@ -106,5 +136,11 @@
 
   .view-builder-table th, .view-builder-table td {
     font-size: 1rem;
+  }
+
+  .view-builder-logo-square,
+  .view-builder-logo-rectangle {
+    width: 40px; 
+    height: 40px; 
   }
 }

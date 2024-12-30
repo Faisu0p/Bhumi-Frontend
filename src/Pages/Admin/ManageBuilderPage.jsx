@@ -129,6 +129,7 @@ const handleReject = async () => {
             onChange={handleBuilderChange}
             options={builderOptions}
             placeholder="Search for a builder..."
+            className='manage-builder-select'
           />
           
           <button onClick={handleVerify} className="manage-builder-verify-button">

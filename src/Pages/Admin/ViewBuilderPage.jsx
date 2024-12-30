@@ -56,11 +56,14 @@ const ViewBuilderPage = () => {
               <th>ID</th>
               <th>Full Name</th>
               <th>Short Name</th>
+              <th>State</th>
               <th>City</th>
               <th>Experience</th>
               <th>Projects</th>
               <th>Description</th>
+              <th>approvalStatus</th>
               <th>Logo</th>
+              <th>Builder_logo_rectangle</th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +72,7 @@ const ViewBuilderPage = () => {
                 <td>{builder.Builder_id}</td>
                 <td>{builder.FullName}</td>
                 <td>{builder.NickName}</td>
+                <td>{builder.State}</td>
                 <td>{builder.City}</td>
                 <td>{builder.Years_of_experience}</td>
                 <td>
@@ -77,12 +81,24 @@ const ViewBuilderPage = () => {
                     : builder.listOfProjects || "No Projects"}
                 </td>
                 <td>{builder.Short_Description}</td>
+                <td>{builder.approvalStatus}</td>
+                <td>
+                  {builder.Builder_logo_rectangle ? (
+                    <img
+                      src={builder.Builder_logo_rectangle}
+                      alt={`${builder.NickName} logo`}
+                      className="view-builder-logo-rectangle"
+                    />
+                  ) : (
+                    "No Logo"
+                  )}
+                </td>
                 <td>
                   {builder.Builder_logo ? (
                     <img
                       src={builder.Builder_logo}
                       alt={`${builder.NickName} logo`}
-                      className="view-builder-logo"
+                      className="view-builder-logo-square"
                     />
                   ) : (
                     "No Logo"

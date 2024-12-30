@@ -58,67 +58,78 @@
   align-items: center;
 }
 
+
 /* React-Select dropdown styling */
-.manage-builder-selection-container .react-select__control {
-  padding: 1rem 1.5rem;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+.manage-builder-select {
   width: 100%;
   max-width: 320px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease-in-out;
-}
-
-.manage-builder-selection-container .react-select__control:focus {
-  border-color: #d90429;
-  outline: none;
-}
-
-/* Placeholder text styling */
-.manage-builder-selection-container .react-select__placeholder {
-  color: #aaa;
   font-size: 1.2rem;
-  font-weight: 400;
 }
 
-/* Dropdown menu styling */
-.manage-builder-selection-container .react-select__menu {
-  background-color: #fff;
+.manage-builder-select .react-select__control {
+  padding: 0.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  font-size: 1.2rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Option styling */
-.manage-builder-selection-container .react-select__option {
-  padding: 1rem 1.5rem;
+.manage-builder-select .react-select__control:hover {
+  border-color: #b90320;
+}
+
+.manage-builder-select .react-select__control--is-focused {
+  border-color: #d90429;
+  box-shadow: 0 0 5px rgba(217, 4, 41, 0.5);
+}
+
+.manage-builder-select .react-select__menu {
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.manage-builder-select .react-select__option {
+  padding: 0.8rem 1rem;
   font-size: 1.2rem;
   color: #333;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.manage-builder-selection-container .react-select__option:hover {
-  background-color: #f0f0f0;
+.manage-builder-select .react-select__option:hover {
+  background-color: #f5f5f5;
 }
 
-/* Selected option styling */
-.manage-builder-selection-container .react-select__single-value {
-  color: #333;
-  font-weight: 700;
+.manage-builder-select .react-select__option--is-focused {
+  background-color: #f5f5f5;
 }
 
-/* Focused/active option styling */
-.manage-builder-selection-container .react-select__option--is-focused {
+.manage-builder-select .react-select__option--is-selected {
   background-color: #d90429;
   color: white;
 }
 
-.manage-builder-selection-container .react-select__option--is-selected {
-  background-color: #b90320;
-  color: white;
+.manage-builder-select .react-select__placeholder {
+  color: #aaa;
+  font-size: 1.2rem;
 }
+
+.manage-builder-select .react-select__indicator-separator {
+  display: none;
+}
+
+.manage-builder-select .react-select__dropdown-indicator {
+  color: #333;
+  transition: color 0.2s ease-in-out;
+}
+
+.manage-builder-select .react-select__dropdown-indicator:hover {
+  color: #d90429;
+}
+
+
+
 
 /* Button styling */
 .manage-builder-verify-button {
