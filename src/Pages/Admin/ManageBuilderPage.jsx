@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getBuilders, verifyBuilder, getBuilderById } from './apis/builderApi'; // Import the updated API functions
+import { getBuilders, verifyBuilder, getBuilderById, rejectBuilder } from './apis/builderApi'; // Import the updated API functions
 import Select from 'react-select'; // Import react-select
 import './ManageBuilderPage.css';
 
@@ -76,6 +76,36 @@ const ManageBuilderPage = () => {
     }
   };
 
+  // Handle rejection of selected builder
+const handleReject = async () => {
+  if (!selectedBuilder) {
+    setVerificationMessage('Please select a builder');
+    return;
+  }
+
+  try {
+    const selectedBuilderObj = builders.find(builder => builder.Builder_id === selectedBuilder.value);
+
+    if (selectedBuilderObj) {
+      const response = await rejectBuilder({
+        builderId: selectedBuilderObj.Builder_id,  // Ensure this matches the field expected by the backend (builderId)
+      });
+
+      console.log("Response from rejectBuilder:", response);
+
+      if (response && response.message) {
+        setVerificationMessage(response.message);
+      } else {
+        setVerificationMessage('Unexpected response format from server');
+      }
+    }
+  } catch (error) {
+    setVerificationMessage('An error occurred while rejecting the builder');
+    console.error('Error rejecting builder:', error);
+  }
+};
+
+
   // Map builders to the format that react-select expects
   const builderOptions = builders.map((builder) => ({
     value: builder.Builder_id,
@@ -104,6 +134,9 @@ const ManageBuilderPage = () => {
           <button onClick={handleVerify} className="manage-builder-verify-button">
             Verify
           </button>
+          <button onClick={handleReject} className="manage-builder-verify-button">
+            Reject
+          </button>
         </div>
 
         {verificationMessage && (
@@ -112,9 +145,10 @@ const ManageBuilderPage = () => {
 
         {/* Display builder details if a builder is selected */}
         {builderDetails && (
-          <div className="builder-details-container">
+          <div className="manage-builder-details-container">
             <h3>Builder Details</h3>
             <p><strong>Builder Id:</strong> {builderDetails.Builder_id}</p>
+            <p><strong>Approval Status:</strong> {builderDetails.approvalStatus}</p>
             <p><strong>Full Name:</strong> {builderDetails.FullName}</p>
             <p><strong>Nick Name:</strong> {builderDetails.NickName}</p>
             <p><strong>State:</strong> {builderDetails.State}</p>
