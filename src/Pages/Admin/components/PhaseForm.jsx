@@ -19,7 +19,7 @@ const PhaseForm = ({ onNext }) => {
   // Handle adding a new phase
   const handleAddPhase = () => {
     const newPhase = {
-      phaseNumber: '',
+      phaseNumber: phases.length + 1,
       reraNumber: '',
       phaseStatus: '',
       deliveryDate: '',
@@ -89,6 +89,7 @@ const PhaseForm = ({ onNext }) => {
 
     if (!allValid) {
       alert('Please fill in all required fields for all phases.');
+      console.log(phases);
       return;
     }
 
@@ -113,7 +114,7 @@ const PhaseForm = ({ onNext }) => {
             type="text"
             name="phaseNumber"
             id={`phaseNumber-${index}`}
-            value={index + 1}
+            value={phases[index].phaseNumber}
             onChange={(e) => handlePhaseChange(e, index)}
             className="phase-form-input"
             placeholder="Phase Number"

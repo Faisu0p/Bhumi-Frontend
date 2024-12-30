@@ -35,12 +35,14 @@ const ProjectForm = ({ onNext }) => {
   const handleLocationChange = (newLocationData) => {
     setProjectData((prev) => ({
       ...prev,
-      state: newLocationData.state,          // Update the state
-      city: newLocationData.city,            // Update the city
-      locality: newLocationData.locality,    // Update the locality
-      sublocality: newLocationData.sublocality, // Update the sublocality
+      state: newLocationData.state.name,          // Use the name, not the object
+      city: newLocationData.city.name,            // Use the name, not the object
+      locality: newLocationData.locality.name,    // Use the name, not the object
+      sublocality: newLocationData.sublocality.name, // Use the name, not the object
+      pincode: newLocationData.pincode,           // Ensure pincode is a string
     }));
   };
+  
   
   
 
@@ -48,14 +50,14 @@ const ProjectForm = ({ onNext }) => {
     const { name, value, type, checked } = e.target;
 
     // Pincode Validation for India (6 digits, starting with a non-zero digit)
-    if (name === 'pincode') {
-      const indiaPincodePattern = /^[1-9]{1}[0-9]{5}$/;  // Indian pincode (6 digits, starts with non-zero digit)
+    // if (name === 'pincode') {
+    //   const indiaPincodePattern = /^[1-9]{1}[0-9]{5}$/;  
       
-      if (!indiaPincodePattern.test(value)) {
-        alert('Please enter a valid 6-digit Indian pincode.');
-        return;  // Prevent updating the pincode if invalid
-      }
-    }
+    //   if (!indiaPincodePattern.test(value)) {
+    //     alert('Please enter a valid 6-digit Indian pincode.');
+    //     return; 
+    //   }
+    // }
 
 
     if (name === 'deliveryDate') {
@@ -131,8 +133,8 @@ const ProjectForm = ({ onNext }) => {
         required
       />
 
-            {/* Locations Dropdown Component */}
-            <LocationsDropdown
+      {/* Locations Dropdown Component */}
+      <LocationsDropdown
         locationData={projectData}
         onLocationChange={handleLocationChange}
       />

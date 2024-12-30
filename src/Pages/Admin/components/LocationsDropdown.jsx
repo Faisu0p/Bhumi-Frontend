@@ -14,33 +14,10 @@ const LocationsDropdown = ({ onLocationChange }) => {
   const [selectedSublocality, setSelectedSublocality] = useState('');
   const [selectedPincode, setSelectedPincode] = useState('');
 
-  // Handle selection change and pass data to parent component with names
-  const handleSelectionChange = () => {
-    const stateName = states.find(state => state.id === selectedState)?.name || 'Unknown State';
-    const cityName = cities.find(city => city.id === selectedCity)?.name || 'Unknown City';
-    const localityName = localities.find(locality => locality.id === selectedLocality)?.name || 'Unknown Locality';
-    const sublocalityName = sublocalities.find(sublocality => sublocality.id === selectedSublocality)?.name || 'Unknown Sublocality';
-
-    console.log('Selected Locations:', {
-      state: { id: selectedState, name: stateName },
-      city: { id: selectedCity, name: cityName },
-      locality: { id: selectedLocality, name: localityName },
-      sublocality: { id: selectedSublocality, name: sublocalityName }
-    });
-
-    onLocationChange({
-      state: { id: selectedState, name: stateName },
-      city: { id: selectedCity, name: cityName },
-      locality: { id: selectedLocality, name: localityName },
-      sublocality: { id: selectedSublocality, name: sublocalityName }
-    });
-  };
-
   // Fetch all states
   useEffect(() => {
     axios.get('http://localhost:8021/api/project-locations/states')
       .then((response) => {
-        console.log('States:', response.data); // Check the API response
         setStates(response.data);
       })
       .catch((err) => console.error('Failed to fetch states:', err));
@@ -51,7 +28,6 @@ const LocationsDropdown = ({ onLocationChange }) => {
     if (selectedState) {
       axios.get(`http://localhost:8021/api/project-locations/cities/${selectedState}`)
         .then((response) => {
-          console.log('Cities:', response.data); // Check the API response
           setCities(response.data);
         })
         .catch((err) => console.error('Failed to fetch cities:', err));
@@ -63,7 +39,6 @@ const LocationsDropdown = ({ onLocationChange }) => {
     if (selectedCity) {
       axios.get(`http://localhost:8021/api/project-locations/localities/${selectedCity}`)
         .then((response) => {
-          console.log('Localities:', response.data); // Check the API response
           setLocalities(response.data);
         })
         .catch((err) => console.error('Failed to fetch localities:', err));
@@ -75,7 +50,6 @@ const LocationsDropdown = ({ onLocationChange }) => {
     if (selectedLocality) {
       axios.get(`http://localhost:8021/api/project-locations/sublocalities/${selectedLocality}`)
         .then((response) => {
-          console.log('Sublocalities:', response.data); // Check the API response
           setSublocalities(response.data);
         })
         .catch((err) => console.error('Failed to fetch sublocalities:', err));
@@ -86,15 +60,62 @@ const LocationsDropdown = ({ onLocationChange }) => {
   useEffect(() => {
     if (selectedLocality) {
       axios.get(`http://localhost:8021/api/project-locations/pincodes/${selectedLocality}`)
-        .then((response) => setPincodes(response.data))
+        .then((response) => {
+          setPincodes(response.data);
+        })
         .catch((err) => console.error('Failed to fetch pincodes:', err));
     }
   }, [selectedLocality]);
 
-  // Trigger selection change when any field changes
+  // Handle selection change and pass data to parent component with names
+  const handleSelectionChange = () => {
+    console.log('Current Selections:', {
+      selectedState,
+      selectedCity,
+      selectedLocality,
+      selectedSublocality,
+      selectedPincode
+    });
+  
+    // Convert selected values to numbers
+    const selectedStateNum = Number(selectedState);
+    const selectedCityNum = Number(selectedCity);
+    const selectedLocalityNum = Number(selectedLocality);
+    const selectedSublocalityNum = Number(selectedSublocality);
+    const selectedPincodeNum = Number(selectedPincode);
+  
+    const stateName = states.find(state => state.id === selectedStateNum)?.name || 'Unknown State';
+    const cityName = cities.find(city => city.id === selectedCityNum)?.name || 'Unknown City';
+    const localityName = localities.find(locality => locality.id === selectedLocalityNum)?.name || 'Unknown Locality';
+    const sublocalityName = sublocalities.find(sublocality => sublocality.id === selectedSublocalityNum)?.name || 'Unknown Sublocality';
+    const pincodeName = pincodes.find(pincode => pincode.id === selectedPincodeNum)?.pincode || 'Unknown Pincode';
+  
+    console.log('Final Selected Data:', {
+      state: { id: selectedStateNum, name: stateName },
+      city: { id: selectedCityNum, name: cityName },
+      locality: { id: selectedLocalityNum, name: localityName },
+      sublocality: { id: selectedSublocalityNum, name: sublocalityName },
+      pincode: { id: selectedPincodeNum, pincode: pincodeName }
+    });
+  
+    // Send the data to parent component
+    onLocationChange({
+      state: { id: selectedStateNum, name: stateName },
+      city: { id: selectedCityNum, name: cityName },
+      locality: { id: selectedLocalityNum, name: localityName },
+      sublocality: { id: selectedSublocalityNum, name: sublocalityName },
+      pincode: { id: selectedPincodeNum, pincode: pincodeName }
+    });
+  };
+  
+  
+
+  // Trigger selection change when all fields are selected
   useEffect(() => {
-    handleSelectionChange();
-  }, [selectedState, selectedCity, selectedLocality, selectedSublocality]);
+    if (selectedState && selectedCity && selectedLocality && selectedSublocality && selectedPincode) {
+      handleSelectionChange();
+    }
+  }, [selectedState, selectedCity, selectedLocality, selectedSublocality, selectedPincode]);
 
   return (
     <div>
@@ -103,7 +124,9 @@ const LocationsDropdown = ({ onLocationChange }) => {
       {/* State Dropdown */}
       <select
         value={selectedState}
-        onChange={(e) => setSelectedState(e.target.value)}
+        onChange={(e) => {
+          setSelectedState(e.target.value);
+        }}
       >
         <option value="">Select State</option>
         {states.map((state) => (
@@ -116,7 +139,9 @@ const LocationsDropdown = ({ onLocationChange }) => {
       {/* City Dropdown */}
       <select
         value={selectedCity}
-        onChange={(e) => setSelectedCity(e.target.value)}
+        onChange={(e) => {
+          setSelectedCity(e.target.value);
+        }}
         disabled={!selectedState}
       >
         <option value="">Select City</option>
@@ -130,7 +155,9 @@ const LocationsDropdown = ({ onLocationChange }) => {
       {/* Locality Dropdown */}
       <select
         value={selectedLocality}
-        onChange={(e) => setSelectedLocality(e.target.value)}
+        onChange={(e) => {
+          setSelectedLocality(e.target.value);
+        }}
         disabled={!selectedCity}
       >
         <option value="">Select Locality</option>
@@ -144,8 +171,10 @@ const LocationsDropdown = ({ onLocationChange }) => {
       {/* Sublocality Dropdown */}
       <select
         value={selectedSublocality}
-        onChange={(e) => setSelectedSublocality(e.target.value)}
-        disabled={!selectedLocality}
+        onChange={(e) => {
+          setSelectedSublocality(e.target.value);
+        }}
+        disabled={!selectedLocality} // Only disabled if locality is not selected
       >
         <option value="">Select Sublocality</option>
         {sublocalities.map((sublocality) => (
@@ -158,13 +187,15 @@ const LocationsDropdown = ({ onLocationChange }) => {
       {/* Pincode Dropdown */}
       <select
         value={selectedPincode}
-        onChange={(e) => setSelectedPincode(e.target.value)}
-        disabled={!selectedSublocality}
+        onChange={(e) => {
+          setSelectedPincode(e.target.value);
+        }}
+        disabled={!selectedLocality} // Only disabled if locality is not selected
       >
         <option value="">Select Pincode</option>
         {pincodes.map((pincode) => (
           <option key={pincode.id} value={pincode.id}>
-            {pincode.code}
+            {pincode.pincode}
           </option>
         ))}
       </select>
