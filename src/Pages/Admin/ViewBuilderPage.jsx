@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { getAllBuildersInfo } from "./apis/builderApi";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './ViewBuilderPage.css'
+import './ViewBuilderPage.css';
 
 const ViewBuilderPage = () => {
   const [builders, setBuilders] = useState([]);
+  const [filteredBuilders, setFilteredBuilders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [cityFilter, setCityFilter] = useState(""); // Search term for city
+  const [nameFilter, setNameFilter] = useState(""); // Search term for full name
 
   useEffect(() => {
     const fetchBuilders = async () => {
       try {
         const response = await getAllBuildersInfo();
         if (response.data) {
-          setBuilders(response.data); // Ensure you get the correct data from the response
+          setBuilders(response.data); // Set all builders
+          setFilteredBuilders(response.data); // Initialize filtered builders
         }
         setLoading(false);
       } catch (err) {
@@ -23,6 +27,16 @@ const ViewBuilderPage = () => {
     };
     fetchBuilders();
   }, []);
+
+  useEffect(() => {
+    // Filter builders dynamically based on city and full name
+    const filtered = builders.filter(
+      (builder) =>
+        builder.City.toLowerCase().includes(cityFilter.toLowerCase()) &&
+        builder.FullName.toLowerCase().includes(nameFilter.toLowerCase())
+    );
+    setFilteredBuilders(filtered);
+  }, [cityFilter, nameFilter, builders]);
 
   if (loading) {
     return (
@@ -54,10 +68,34 @@ const ViewBuilderPage = () => {
           <thead className="view-builder-thead">
             <tr>
               <th>ID</th>
-              <th>Full Name</th>
+              <th>
+                {/* Full Name Heading with Input */}
+                <div className="view-builder-name-heading">
+                  <span>Full Name</span>
+                  <input
+                    type="text"
+                    placeholder="Search by Full Name"
+                    value={nameFilter}
+                    onChange={(e) => setNameFilter(e.target.value)}
+                    className="view-builder-name-input"
+                  />
+                </div>
+              </th>
               <th>Short Name</th>
               <th>State</th>
-              <th>City</th>
+              <th>
+                {/* City Heading with Input */}
+                <div className="view-builder-city-heading">
+                  <span>City</span>
+                  <input
+                    type="text"
+                    placeholder="Search by City"
+                    value={cityFilter}
+                    onChange={(e) => setCityFilter(e.target.value)}
+                    className="view-builder-city-input"
+                  />
+                </div>
+              </th>
               <th>Experience</th>
               <th>Projects</th>
               <th>Description</th>
@@ -67,7 +105,7 @@ const ViewBuilderPage = () => {
             </tr>
           </thead>
           <tbody>
-            {builders.map((builder) => (
+            {filteredBuilders.map((builder) => (
               <tr key={builder.Builder_id}>
                 <td>{builder.Builder_id}</td>
                 <td>{builder.FullName}</td>
@@ -111,7 +149,6 @@ const ViewBuilderPage = () => {
       )}
     </div>
   );
-  
 };
 
 export default ViewBuilderPage;

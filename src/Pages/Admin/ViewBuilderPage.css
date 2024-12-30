@@ -9,9 +9,9 @@
 
 /* Title styling for the page */
 .view-builder-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: black; /* Red color for title */
+  font-size: 2rem; /* Adjusted for consistency */
+  font-weight: 600; /* Reduced weight for uniformity */
+  color: #333; /* Standardized color */
   margin-bottom: 3rem;
   text-align: center;
   text-transform: uppercase;
@@ -19,10 +19,10 @@
 
 /* No builders found message styling */
 .view-builder-alert-no-builders {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Standardized font size */
   color: #d90429; /* Red color for text */
   background-color: #f8d7da; /* Light red background */
-  padding: 1.5rem;
+  padding: 1rem; /* Adjusted padding */
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
@@ -41,11 +41,40 @@
 .view-builder-table th {
   background-color: red; /* Red background */
   color: white; /* White text for contrast */
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.2rem; /* Adjusted padding */
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 1rem; /* Standardized font size */
   border-radius: 8px 8px 0 0; /* Rounded top corners */
   text-transform: uppercase;
+  position: relative; /* Ensure search input is positioned correctly */
+}
+
+/* Search input styling */
+.view-builder-city-input,
+.view-builder-name-input {
+  margin-top: 0.5rem;
+  width: 90%;
+  padding: 0.6rem; /* Adjusted padding */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem; /* Standardized font size */
+  outline: none;
+  color: #333;
+  background-color: white;
+}
+
+.view-builder-city-input:focus,
+.view-builder-name-input:focus {
+  border-color: red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* Align input fields under headers */
+.view-builder-city-heading,
+.view-builder-name-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* Body row styling for table */
@@ -56,6 +85,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Add subtle shadow */
+  font-size: 1rem; /* Standardized font size */
 }
 
 .view-builder-table tr:hover td {
@@ -68,31 +98,31 @@
 /* Square logo styling */
 .view-builder-logo-square {
   width: 50px;
-  height: 50px; 
-  object-fit: cover; 
+  height: 50px;
+  object-fit: cover;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s ease-in-out; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .view-builder-logo-square:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 /* Rectangle logo styling */
 .view-builder-logo-rectangle {
-  width: 80px; 
-  height: 50px; 
-  object-fit: contain; 
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
   border: 1px solid #ddd;
-  border-radius: 4px; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s ease-in-out; 
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .view-builder-logo-rectangle:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 /* Table cell alignment for logos */
@@ -111,10 +141,10 @@
 
 /* Error message styling */
 .view-builder-alert-error {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Standardized font size */
   color: #fff;
   background-color: #b90320;
-  padding: 1.5rem;
+  padding: 1rem; /* Adjusted padding */
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -135,12 +165,17 @@
   }
 
   .view-builder-table th, .view-builder-table td {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Reduced font size for smaller screens */
   }
 
   .view-builder-logo-square,
   .view-builder-logo-rectangle {
-    width: 40px; 
-    height: 40px; 
+    width: 40px;
+    height: 40px;
+  }
+
+  .view-builder-city-input,
+  .view-builder-name-input {
+    font-size: 0.9rem; /* Adjusted for smaller screens */
   }
 }
