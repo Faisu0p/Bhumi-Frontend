@@ -75,6 +75,51 @@
   outline: none;
 }
 
+/* Placeholder text styling */
+.manage-builder-selection-container .react-select__placeholder {
+  color: #aaa;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+/* Dropdown menu styling */
+.manage-builder-selection-container .react-select__menu {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+}
+
+/* Option styling */
+.manage-builder-selection-container .react-select__option {
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.manage-builder-selection-container .react-select__option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Selected option styling */
+.manage-builder-selection-container .react-select__single-value {
+  color: #333;
+  font-weight: 700;
+}
+
+/* Focused/active option styling */
+.manage-builder-selection-container .react-select__option--is-focused {
+  background-color: #d90429;
+  color: white;
+}
+
+.manage-builder-selection-container .react-select__option--is-selected {
+  background-color: #b90320;
+  color: white;
+}
+
 /* Button styling */
 .manage-builder-verify-button {
   padding: 1rem 1.5rem;
