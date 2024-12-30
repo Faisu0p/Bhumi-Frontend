@@ -46,6 +46,7 @@
   color: #333;
   margin-bottom: 0.8rem;
   display: block;
+  text-align: center;
 }
 
 /* Container for selecting builder */
@@ -57,8 +58,8 @@
   align-items: center;
 }
 
-/* Dropdown selection styling */
-.manage-builder-selection-dropdown {
+/* React-Select dropdown styling */
+.manage-builder-selection-container .react-select__control {
   padding: 1rem 1.5rem;
   font-size: 1.2rem;
   border-radius: 8px;
@@ -69,7 +70,7 @@
   transition: border-color 0.3s ease-in-out;
 }
 
-.manage-builder-selection-dropdown:focus {
+.manage-builder-selection-container .react-select__control:focus {
   border-color: #d90429;
   outline: none;
 }
@@ -110,6 +111,17 @@
   margin-right: auto;
 }
 
+/* Container for builder details */
+.manage-builder-details-container {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.manage-builder-details-container p {
+  margin-bottom: 1rem;
+}
+
 /* Add spacing between form elements */
 .manage-builder-form-container > * {
   margin-bottom: 1.5rem;
@@ -121,7 +133,7 @@
     padding: 1.5rem;
   }
 
-  .manage-builder-selection-dropdown {
+  .manage-builder-selection-container .react-select__control {
     max-width: 100%;
   }
 
@@ -131,5 +143,9 @@
 
   .manage-builder-form-container {
     padding: 2rem;
+  }
+
+  .manage-builder-title {
+    font-size: 2rem;
   }
 }
