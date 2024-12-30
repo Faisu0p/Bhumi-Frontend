@@ -35,11 +35,11 @@ const ProjectForm = ({ onNext }) => {
   const handleLocationChange = (newLocationData) => {
     setProjectData((prev) => ({
       ...prev,
-      state: newLocationData.state.name,          // Use the name, not the object
-      city: newLocationData.city.name,            // Use the name, not the object
-      locality: newLocationData.locality.name,    // Use the name, not the object
-      sublocality: newLocationData.sublocality.name, // Use the name, not the object
-      pincode: newLocationData.pincode,           // Ensure pincode is a string
+      state: newLocationData.state.name,          
+      city: newLocationData.city.name,            
+      locality: newLocationData.locality.name,    
+      sublocality: newLocationData.sublocality.name, 
+      pincode: newLocationData.pincode,           
     }));
   };
   
