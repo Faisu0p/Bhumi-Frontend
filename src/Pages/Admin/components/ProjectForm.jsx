@@ -39,7 +39,7 @@ const ProjectForm = ({ onNext }) => {
       city: newLocationData.city.name,            
       locality: newLocationData.locality.name,    
       sublocality: newLocationData.sublocality.name, 
-      pincode: newLocationData.pincode,           
+      pinCode: newLocationData.pincode.pincode,           
     }));
   };
   
