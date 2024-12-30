@@ -1,0 +1,56 @@
+/* Container for the dropdowns */
+.project-dropdown-locations-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .required-asterisk {
+    color: red;
+  }
+  
+  /* General label styling */
+  .project-dropdown-locations-label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.6rem;
+    text-align: left;  /* Ensure label text aligns to the left */
+  }
+  
+  /* Container for each dropdown */
+  .project-dropdown-locations-form-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;  /* Ensure full width */
+  }
+  
+  /* Styling for form elements like select */
+  .project-dropdown-locations-select {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.3rem;  /* Add a slight gap between the label and the input */
+  }
+  
+  /* Focus styles for the select fields */
+  .project-dropdown-locations-select:focus {
+    border-color: #d90429;
+    outline: none;
+  }
+  
+  /* Adjustments for responsiveness */
+  @media (max-width: 768px) {
+    .project-dropdown-locations-container {
+      padding: 1.5rem;
+    }
+  }
+  
