@@ -46,3 +46,10 @@ export const getVerifiedBuilders = async () => {
   const data = await response.json();
   return data;
 };
+
+// Get builder details by Builder_id
+export const getBuilderById = async (builderId) => {
+  const response = await fetch(`${BASE_URL}/builder/${builderId}`);
+  const data = await response.json();
+  return data;
+};
