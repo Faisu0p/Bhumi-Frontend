@@ -10,6 +10,7 @@ const ProjectAddPage = () => {
   const [projectData, setProjectData] = useState({});
   const [phases, setPhases] = useState([]);
   const [amenities, setAmenities] = useState([]);
+  const steps = ['Project Details', 'Phases', 'Amenities', 'Submit'];
 
   const handleNextStep = (data, setter) => {
     setter(data);
@@ -80,14 +81,35 @@ const ProjectAddPage = () => {
 
   return (
     <div className="project-add-container">
-      {step === 1 && <ProjectForm onNext={(data) => handleNextStep(data, setProjectData)} />}
-      {step === 2 && <PhaseForm onNext={(data) => handleNextStep(data, setPhases)} />}
-      {step === 3 && <AmenityForm onNext={(data) => handleNextStep(data, setAmenities)} amenities={amenities} />}
-      {step === 4 && (
-        <button onClick={handleSubmit} className="project-add-submit-button">
-          Submit Project
-        </button>
-      )}
+      {/* Progress Bar */}
+      <div className="project-add-progress-bar">
+        {steps.map((label, index) => (
+          <React.Fragment key={index}>
+            <div className={`project-add-progress-step ${step > index ? 'active' : ''}`}>
+              <span className="project-add-progress-label">{label}</span>
+            </div>
+            {index < steps.length - 1 && (
+              <div
+                className={`project-add-progress-line ${
+                  step > index + 1 ? 'active' : ''
+                }`}
+              ></div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+
+      {/* Form Content */}
+      <div className="project-add-form-content">
+        {step === 1 && <ProjectForm onNext={(data) => handleNextStep(data, setProjectData)} />}
+        {step === 2 && <PhaseForm onNext={(data) => handleNextStep(data, setPhases)} />}
+        {step === 3 && <AmenityForm onNext={(data) => handleNextStep(data, setAmenities)} amenities={amenities} />}
+        {step === 4 && (
+          <button onClick={handleSubmit} className="project-add-submit-button">
+            Submit Project
+          </button>
+        )}
+      </div>
     </div>
   );
 };

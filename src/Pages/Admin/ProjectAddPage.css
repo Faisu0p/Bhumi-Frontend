@@ -1,75 +1,87 @@
-/* Styles for Project Add Page */
-
-/* General container for the page */
+/* Main Container */
 .project-add-container {
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: flex-start; /* Aligns items at the top */
   padding: 2rem;
   background-color: #f7f7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Change from flex-start to center */
-  flex-direction: column;
-  min-height: 100vh; /* Ensures the container takes full height */
-  text-align: center;
+  min-height: 100vh;
 }
 
-/* Title styling */
-.project-add-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-/* White box container for the form */
-.project-add-form-container {
+/* Form Content Container */
+.project-add-form-content {
   background-color: #fff;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 3rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 700px;
-  margin: 2rem auto;
-  text-align: left;
+  margin-left: 2rem; /* Adds space between the form and the progress bar */
 }
 
-/* Spacing between form sections */
-.project-add-form-container > * {
-  margin-bottom: 1.5rem;
+/* Progress Bar Container */
+.project-add-progress-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 2rem; /* Adds space between the form and the progress bar */
+  gap: 1rem; /* Keeps spacing between the steps */
 }
 
-/* Button styling */
-.project-add-submit-button {
-  padding: 1rem 2.5rem;
-  font-size: 1.2rem;
-  background-color: #d90429;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  width: 100%;
-  max-width: 320px;
-  margin-top: 1.5rem;
+/* Individual Step */
+.project-add-progress-step {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  width: 200px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  background-color: #ccc;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease-in-out;
 }
 
-.project-add-submit-button:hover {
-  background-color: #b90320;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+.project-add-progress-step.active {
+  background-color: #d90429; /* Red theme for active steps */
+  color: #fff;
 }
 
-/* Responsive styling */
+/* Connecting Line */
+.project-add-progress-line {
+  width: 5px;
+  height: 50px;
+  background-color: #ccc;
+  margin-left: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.project-add-progress-line.active {
+  background-color: #d90429; /* Red theme for active lines */
+}
+
+/* Step Label */
+.project-add-progress-label {
+  margin-left: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Adjustments for Responsiveness */
 @media (max-width: 768px) {
   .project-add-container {
+    flex-direction: column; /* Stacks the progress bar and form vertically on smaller screens */
     padding: 1.5rem;
   }
 
-  .project-add-form-container {
-    width: 100%;
-    padding: 1.5rem;
+  .project-add-progress-bar {
+    align-items: center; /* Centers the progress bar steps on smaller screens */
+    margin-bottom: 1.5rem; /* Adds space below the progress bar */
   }
 
-  .project-add-submit-button {
-    max-width: 100%;
+  .project-add-form-content {
+    padding: 2rem; /* Reduce padding for smaller screens */
   }
 }
