@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AmenityForm.css';
 
-const AmenityForm = ({ onNext, amenities }) => {
+const AmenityForm = ({ onNext, amenities, onPrevious}) => {
   const [amenityData, setAmenityData] = useState({
 
     // Basic Amenities
@@ -250,6 +250,7 @@ const AmenityForm = ({ onNext, amenities }) => {
           ))}
         </div>
       ))}
+      <button type="button" className="amenity-form-submit-btn" onClick={onPrevious}>Previous</button>
       <button type="submit" className="amenity-form-submit-btn">Next</button>
     </form>
   );

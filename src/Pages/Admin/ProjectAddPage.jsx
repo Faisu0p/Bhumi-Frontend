@@ -17,6 +17,10 @@ const ProjectAddPage = () => {
     setStep(step + 1);
   };
 
+  const handlePreviousStep = () => {
+    setStep(step - 1);
+  };
+
   const handleSubmit = async () => {
     const projectSubmissionData = {
       projectName: projectData.projectName,
@@ -101,9 +105,9 @@ const ProjectAddPage = () => {
 
       {/* Form Content */}
       <div className="project-add-form-content">
-        {step === 1 && <ProjectForm onNext={(data) => handleNextStep(data, setProjectData)} />}
-        {step === 2 && <PhaseForm onNext={(data) => handleNextStep(data, setPhases)} />}
-        {step === 3 && <AmenityForm onNext={(data) => handleNextStep(data, setAmenities)} amenities={amenities} />}
+        {step === 1 && <ProjectForm onNext={(data) => handleNextStep(data, setProjectData)} onPrevious={handlePreviousStep} />}
+        {step === 2 && <PhaseForm onNext={(data) => handleNextStep(data, setPhases)} onPrevious={handlePreviousStep} />}
+        {step === 3 && <AmenityForm onNext={(data) => handleNextStep(data, setAmenities)} amenities={amenities} onPrevious={handlePreviousStep} />}
         {step === 4 && (
           <button onClick={handleSubmit} className="project-add-submit-button">
             Submit Project

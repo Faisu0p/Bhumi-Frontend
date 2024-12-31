@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './PhaseForm.css';
 import UnitForm from './UnitForm';
 
-const PhaseForm = ({ onNext }) => {
+const PhaseForm = ({ onNext, onPrevious }) => {
   const [phases, setPhases] = useState([]);
 
   // Handle phase field changes
@@ -219,9 +219,6 @@ const PhaseForm = ({ onNext }) => {
             max="200"
           />
 
-
-
-
           {/* Phase Description */}
           <label className="phase-form-label" htmlFor={`phaseDescription-${index}`}>
             Enter Phase Description <span className="required-asterisk">*</span>
@@ -238,7 +235,6 @@ const PhaseForm = ({ onNext }) => {
 
           {/* Units */}
           {/* <h4 className="phase-form-heading">Units</h4> */}
-
 
           {phase.units.map((unit, unitIndex) => (
             <div key={unitIndex} >
@@ -279,11 +275,15 @@ const PhaseForm = ({ onNext }) => {
           Add Phase
         </button>
 
+        {/* Previous Button */}
+        <button type="button" className="phase-form-btn" onClick={onPrevious}>
+          Previous
+        </button>
+
         <button type="button" className="phase-form-btn" onClick={handleNext}>
           Next
         </button>
       </div>
-
     </form>
   );
 };
