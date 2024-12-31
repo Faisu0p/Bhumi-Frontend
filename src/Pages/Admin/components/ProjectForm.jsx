@@ -49,17 +49,6 @@ const ProjectForm = ({ onNext }) => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    // Pincode Validation for India (6 digits, starting with a non-zero digit)
-    // if (name === 'pincode') {
-    //   const indiaPincodePattern = /^[1-9]{1}[0-9]{5}$/;  
-      
-    //   if (!indiaPincodePattern.test(value)) {
-    //     alert('Please enter a valid 6-digit Indian pincode.');
-    //     return; 
-    //   }
-    // }
-
-
     if (name === 'deliveryDate') {
       const launchDate = new Date(projectData.launchDate);
       const deliveryDate = new Date(value);
@@ -138,71 +127,6 @@ const ProjectForm = ({ onNext }) => {
         locationData={projectData}
         onLocationChange={handleLocationChange}
       />
-
-      {/* <label className="project-form-label">Enter State</label>
-      <input
-        type="text"
-        name="state"
-        value={projectData.state}
-        onChange={handleChange}
-        placeholder="State"
-        className="project-form-input"
-      />
-
-      <label className="project-form-label">Select City</label>
-      <select
-        name="city"
-        value={projectData.city}
-        onChange={handleChange}
-        className="project-form-select"
-      >
-        <option value="">Select City</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Gurgaon">Gurgaon</option>
-        <option value="Noida">Noida</option>
-        <option value="Greater Noida">Greater Noida</option>
-      </select>
-
-      <label className="project-form-label">Enter Locality</label>
-      <input
-        type="text"
-        name="locality"
-        value={projectData.locality}
-        onChange={handleChange}
-        placeholder="Locality"
-        className="project-form-input"
-      />
-
-      <label className="project-form-label">Enter Sublocality</label>
-      <input
-        type="text"
-        name="sublocality"
-        value={projectData.sublocality}
-        onChange={handleChange}
-        placeholder="Sublocality"
-        className="project-form-input"
-      />
-
-      <label className="project-form-label">Enter Pin Code <span className="required-asterisk">*</span></label>
-        <input
-          type="number"
-          name="pinCode"
-          value={projectData.pinCode}
-          onChange={(e) => {
-            const value = e.target.value;
-
-            // Custom validation to enforce the max limit of 6 digits
-            if (value.length > 6) {
-              alert("Enter a Valid PinCode");
-              return; // Prevent further execution if value exceeds 6 digits
-            }
-
-            // Call the original handleChange function if value is valid
-            handleChange(e);
-          }}
-          placeholder="Pin Code"
-          className="project-form-input"
-        /> */}
 
       <label className="project-form-label">Enter Complete Address <span className="required-asterisk">*</span></label>
       <input

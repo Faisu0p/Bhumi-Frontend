@@ -123,97 +123,97 @@ const UnitForm = ({ onUnitChange, unit }) => {
         </>
       )}
 
-{/* Super Area Input */}
-<label className="unit-form-label" htmlFor="superArea">
-  Enter Super Area (sq. ft.) <span className="required-asterisk">*</span>
-</label>
-<input
-  type="number"
-  name="superArea"
-  id="superArea"
-  className="unit-form-input"
-  value={unit.superArea || ''}
-  onChange={(e) => {
-    const value = Number(e.target.value);
+      {/* Super Area Input */}
+      <label className="unit-form-label" htmlFor="superArea">
+        Enter Super Area (sq. ft.) <span className="required-asterisk">*</span>
+      </label>
+      <input
+        type="number"
+        name="superArea"
+        id="superArea"
+        className="unit-form-input"
+        value={unit.superArea || ''}
+        onChange={(e) => {
+          const value = Number(e.target.value);
 
-    if (value < 0) {
-      alert("Super Area cannot be less than 0.");
-      return;
-    }
-    if (value > 900000) {
-      alert("Super Area cannot exceed 900,000.");
-      return;
-    }
+          if (value < 0) {
+            alert("Super Area cannot be less than 0.");
+            return;
+          }
+          if (value > 900000) {
+            alert("Super Area cannot exceed 900,000.");
+            return;
+          }
 
-    handleChange(e);
-  }}
-  required
-  placeholder="Super Area (sq. ft.)"
-/>
+          handleChange(e);
+        }}
+        required
+        placeholder="Super Area (sq. ft.)"
+      />
 
-{/* Built-up Area Input */}
-<label className="unit-form-label" htmlFor="buildUpArea">
-  Enter Built-up Area (sq. ft.) <span className="required-asterisk">*</span>
-</label>
-<input
-  type="number"
-  name="buildUpArea"
-  id="buildUpArea"
-  className="unit-form-input"
-  value={unit.buildUpArea || ''}
-  onChange={(e) => {
-    const value = Number(e.target.value);
+      {/* Built-up Area Input */}
+      <label className="unit-form-label" htmlFor="buildUpArea">
+        Enter Built-up Area (sq. ft.) <span className="required-asterisk">*</span>
+      </label>
+      <input
+        type="number"
+        name="buildUpArea"
+        id="buildUpArea"
+        className="unit-form-input"
+        value={unit.buildUpArea || ''}
+        onChange={(e) => {
+          const value = Number(e.target.value);
 
-    if (value < 0) {
-      alert("Built-up Area cannot be less than 0.");
-      return;
-    }
-    if (value > 900000) {
-      alert("Built-up Area cannot exceed 900,000.");
-      return;
-    }
-    if (value >= unit.superArea) {
-      alert("Built-up Area must be less than Super Area.");
-      return;
-    }
+          if (value < 0) {
+            alert("Built-up Area cannot be less than 0.");
+            return;
+          }
+          if (value > 900000) {
+            alert("Built-up Area cannot exceed 900,000.");
+            return;
+          }
+          if (value >= unit.superArea) {
+            alert("Built-up Area must be less than Super Area.");
+            return;
+          }
 
-    handleChange(e);
-  }}
-  required
-  placeholder="Built-up Area (sq. ft.)"
-/>
+          handleChange(e);
+        }}
+        required
+        placeholder="Built-up Area (sq. ft.)"
+      />
 
-{/* Carpet Area Input */}
-<label className="unit-form-label" htmlFor="carpetArea">
-  Enter Carpet Area (sq. ft.) <span className="required-asterisk">*</span>
-</label>
-<input
-  type="number"
-  name="carpetArea"
-  id="carpetArea"
-  className="unit-form-input"
-  value={unit.carpetArea || ''}
-  onChange={(e) => {
-    const value = Number(e.target.value);
+      {/* Carpet Area Input */}
+      <label className="unit-form-label" htmlFor="carpetArea">
+        Enter Carpet Area (sq. ft.) <span className="required-asterisk">*</span>
+      </label>
+      <input
+        type="number"
+        name="carpetArea"
+        id="carpetArea"
+        className="unit-form-input"
+        value={unit.carpetArea || ''}
+        onChange={(e) => {
+          const value = Number(e.target.value);
 
-    if (value < 0) {
-      alert("Carpet Area cannot be less than 0.");
-      return;
-    }
-    if (value > 900000) {
-      alert("Carpet Area cannot exceed 900,000.");
-      return;
-    }
-    if (value >= unit.buildUpArea) {
-      alert("Carpet Area must be less than Built-up Area.");
-      return;
-    }
+          if (value < 0) {
+            alert("Carpet Area cannot be less than 0.");
+            return;
+          }
+          if (value > 900000) {
+            alert("Carpet Area cannot exceed 900,000.");
+            return;
+          }
+          if (value >= unit.buildUpArea) {
+            alert("Carpet Area must be less than Built-up Area.");
+            return;
+          }
 
-    handleChange(e);
-  }}
-  required
-  placeholder="Carpet Area (sq. ft.)"
-/>
+          handleChange(e);
+        }}
+        required
+        placeholder="Carpet Area (sq. ft.)"
+      />
 
 
       {/* Unit Layout Textarea */}
@@ -246,7 +246,7 @@ const UnitForm = ({ onUnitChange, unit }) => {
       {/* Unit Details */}
       <h4 className="unit-form-heading">Unit Details</h4>
       {unitDetails.map((detail, index) => (
-        <div key={index} className="unit-detail-container">
+        <div key={index}>
           <UnitDetailForm
             key={index}
             index={index}

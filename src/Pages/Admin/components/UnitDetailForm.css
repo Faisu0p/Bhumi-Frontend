@@ -1,45 +1,50 @@
-/* UnitDetailForm.css */
-
 .unit-detail-form-container {
-    margin-bottom: 20px;
-  }
-  
-  .unit-detail-form-heading {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #d32f2f; /* Red color for the heading */
-  }
-  
-  .unit-detail-form-select,
-  .unit-detail-form-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: white;
-    color: #333;
-  }
-  
-  .unit-detail-form-select {
-    margin-bottom: 15px;
-  }
-  
-  .unit-detail-form-input {
-    margin-bottom: 15px;
-  }
-  
-  .unit-detail-form-btn {
-    background-color: #d32f2f; /* Red background */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .unit-detail-form-btn:hover {
-    background-color: #c62828; /* Darker red on hover */
-  }
-  
+  margin-bottom: 20px;
+}
+
+.unit-detail-form-heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #d32f2f; /* Red color for the heading */
+}
+
+/* Label styling */
+.unit-detail-form-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.unit-detail-form-select,
+.unit-detail-form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+}
+
+.unit-detail-form-select {
+  margin-bottom: 15px;
+}
+
+.unit-detail-form-input {
+  margin-bottom: 15px;
+}
+
+.unit-detail-form-btn {
+  background-color: #d32f2f; /* Red background */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.unit-detail-form-btn:hover {
+  background-color: #c62828; /* Darker red on hover */
+}

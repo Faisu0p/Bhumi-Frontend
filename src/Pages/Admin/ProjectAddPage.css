@@ -26,6 +26,10 @@
   align-items: flex-start;
   margin-right: 2rem; /* Adds space between the form and the progress bar */
   gap: 1rem; /* Keeps spacing between the steps */
+  
+  position: sticky; /* Makes the progress bar sticky */
+  top: 2rem; /* Keeps it sticky within the viewport with a gap from the top */
+  z-index: 10; /* Ensures it's above other content */
 }
 
 /* Individual Step */
@@ -45,7 +49,7 @@
 }
 
 .project-add-progress-step.active {
-  background-color: #d90429; /* Red theme for active steps */
+  background-color: red; /* Red theme for active steps */
   color: #fff;
 }
 

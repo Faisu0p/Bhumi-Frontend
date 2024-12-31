@@ -231,26 +231,26 @@ const AmenityForm = ({ onNext, amenities }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Amenities</h2>
+    <form onSubmit={handleSubmit} className="amenity-form-container">
+      <h2 className="amenity-form-heading">Amenities</h2>
       {Object.keys(categorizedAmenities).map((category, index) => (
-        <div key={index} className={`amenity-category-${index}`}>
-          <h3 className={`amenity-category-title-${index}`}>{category}</h3>
+        <div key={index} className="amenity-form-category">
+          <h3 className="amenity-form-category-title">{category}</h3>
           {categorizedAmenities[category].map((key) => (
-            <label key={key} className={`amenity-checkbox-${key}`}>
+            <label key={key} className="amenity-form-checkbox-label">
               {key.replace(/([A-Z])/g, ' $1').toUpperCase()}
               <input
                 type="checkbox"
                 name={key}
                 checked={amenityData[key]}
                 onChange={handleChange}
-                className={`amenity-input-${key}`}
+                className="amenity-form-checkbox"
               />
             </label>
           ))}
         </div>
       ))}
-      <button type="submit" className="submit-button">Next</button>
+      <button type="submit" className="amenity-form-submit-btn">Next</button>
     </form>
   );
 };

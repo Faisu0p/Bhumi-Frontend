@@ -12,13 +12,16 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
       <h4 className="unit-detail-form-heading">Unit Detail {index + 1}</h4>
 
       {/* Space Type */}
+      <label htmlFor="spaceType" className="unit-detail-form-label">
+        Select Room Type
+      </label>
       <select
         name="spaceType"
         className="unit-detail-form-select"
         value={unitDetailData.spaceType || ''}
         onChange={handleFieldChange}
       >
-        <option value="">Select Space Type</option>
+        <option value="">Select Room Type</option>
         <option value="Living Room">Living Room</option>
         <option value="Dining Room">Dining Room</option>
         <option value="Kitchen">Kitchen</option>
@@ -32,6 +35,9 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
       </select>
 
       {/* Unit Size */}
+      <label htmlFor="unitSize" className="unit-detail-form-label">
+        Enter Total Area (sq. ft.)
+      </label>
       <input
         type="number"
         name="unitSize"
@@ -42,6 +48,9 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
       />
 
       {/* Furnished Status */}
+      <label htmlFor="unitFurnishedStatus" className="unit-detail-form-label">
+        Select Furnished Status
+      </label>
       <select
         name="unitFurnishedStatus"
         className="unit-detail-form-select"
