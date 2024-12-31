@@ -1,25 +1,33 @@
-/* UnitForm.css */
-
+/* General container styling */
 .unit-form-container {
   font-family: Arial, sans-serif;
   margin: 20px;
   padding: 20px;
-  background-color: #fff;
+  background-color: #fff; /* White background */
   border-radius: 8px;
 }
 
+/* Headings */
 .unit-form-heading {
-  font-size: 24px;
+  font-size: 24px; /* Consistent with phase-form headings */
   margin-bottom: 20px;
-  color: #d32f2f; /* Red color for the heading */
+  color: black; /* Red color for headings */
 }
 
+.unit-form-definition {
+  font-size: 16px; /* Slightly smaller for secondary text */
+  margin-bottom: 20px; 
+  color: #757575; /* Grey for readability */
+  line-height: 1.5;
+}
+
+/* Labels */
 .unit-form-label {
-  font-size: 14px;
+  font-size: 14px; /* Label font size */
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
-  color: #333; /* Dark text color for labels */
+  color: #333; /* Dark text color */
   text-align: left;
 }
 
@@ -28,6 +36,7 @@
   margin-left: 2px;
 }
 
+/* Inputs, selects, and textareas */
 .unit-form-select,
 .unit-form-input,
 .unit-form-textarea {
@@ -36,7 +45,7 @@
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 14px; /* Adjust for consistency */
   background-color: white;
   color: #333;
 }
@@ -45,12 +54,14 @@
   resize: vertical;
 }
 
+/* Buttons */
 .unit-form-btn {
   background-color: #d32f2f; /* Red background */
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  font-size: 16px; /* Larger font for emphasis */
   cursor: pointer;
 }
 
@@ -58,7 +69,7 @@
   background-color: #c62828; /* Darker red on hover */
 }
 
-/* Add styling for inputs and select elements when they are focused */
+/* Focus styling */
 .unit-form-select:focus,
 .unit-form-input:focus,
 .unit-form-textarea:focus {
@@ -66,11 +77,33 @@
   border-color: #d32f2f; /* Red border on focus */
 }
 
-.unit-form-input,
-.unit-form-textarea {
-  font-size: 16px;
+/* Media section preview styling */
+.media-preview {
+  object-fit: contain;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin-bottom: 15px;
 }
 
-.unit-form-select {
-  font-size: 16px;
+/* Styling for dynamic unit details */
+.unit-detail-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.unit-detail-container .unit-form-btn {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.remove-unit-detail-btn {
+  background-color: #f44336; /* Red for remove button */
+}
+
+.remove-unit-detail-btn:hover {
+  background-color: #d32f2f; /* Darker red on hover */
 }

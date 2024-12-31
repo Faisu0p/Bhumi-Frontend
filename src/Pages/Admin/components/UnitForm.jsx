@@ -55,6 +55,8 @@ const UnitForm = ({ onUnitChange, unit }) => {
   return (
     <div className="unit-form-container">
       <h4 className="unit-form-heading">Unit Information</h4>
+      <h4 className="unit-form-definition">A Unit is a piece of property you can buy, sell, or rent. 
+        It could be a plot of land, an apartment, a studio, or something similar.</h4>
 
       {/* Category Dropdown */}
       <label className="unit-form-label" htmlFor="unitCategory">
@@ -121,92 +123,98 @@ const UnitForm = ({ onUnitChange, unit }) => {
         </>
       )}
 
-      {/* Super Area Input */}
-      <label className="unit-form-label" htmlFor="superArea">
-        Enter Super Area (sq. ft.) <span className="required-asterisk">*</span>
-      </label>
-      <input
-        type="number"
-        name="superArea"
-        id="superArea"
-        className="unit-form-input"
-        value={unit.superArea || ''}
-        onChange={(e) => {
-          const value = e.target.value;
-          
-          // Custom validation for Super Area
-          if (value < 0) {
-            alert("Super Area cannot be less than 0.");
-            return;
-          }
-          if (value > 900000) {
-            alert("Super Area cannot exceed 900,000.");
-            return;
-          }
+{/* Super Area Input */}
+<label className="unit-form-label" htmlFor="superArea">
+  Enter Super Area (sq. ft.) <span className="required-asterisk">*</span>
+</label>
+<input
+  type="number"
+  name="superArea"
+  id="superArea"
+  className="unit-form-input"
+  value={unit.superArea || ''}
+  onChange={(e) => {
+    const value = Number(e.target.value);
 
-          handleChange(e); // Proceed with the original handleChange if the value is valid
-        }}
-        required
-        placeholder="Super Area (sq. ft.)"
-      />
+    if (value < 0) {
+      alert("Super Area cannot be less than 0.");
+      return;
+    }
+    if (value > 900000) {
+      alert("Super Area cannot exceed 900,000.");
+      return;
+    }
 
-      {/* Built-up Area Input */}
-      <label className="unit-form-label" htmlFor="buildUpArea">
-        Enter Built-up Area (sq. ft.) <span className="required-asterisk">*</span>
-      </label>
-      <input
-        type="number"
-        name="buildUpArea"
-        id="buildUpArea"
-        className="unit-form-input"
-        value={unit.buildUpArea || ''}
-        onChange={(e) => {
-          const value = e.target.value;
+    handleChange(e);
+  }}
+  required
+  placeholder="Super Area (sq. ft.)"
+/>
 
-          // Custom validation for Built-up Area
-          if (value < 0) {
-            alert("Built-up Area cannot be less than 0.");
-            return;
-          }
-          if (value > 900000) {
-            alert("Built-up Area cannot exceed 900,000.");
-            return;
-          }
+{/* Built-up Area Input */}
+<label className="unit-form-label" htmlFor="buildUpArea">
+  Enter Built-up Area (sq. ft.) <span className="required-asterisk">*</span>
+</label>
+<input
+  type="number"
+  name="buildUpArea"
+  id="buildUpArea"
+  className="unit-form-input"
+  value={unit.buildUpArea || ''}
+  onChange={(e) => {
+    const value = Number(e.target.value);
 
-          handleChange(e); // Proceed with the original handleChange if the value is valid
-        }}
-        required
-        placeholder="Built-up Area (sq. ft.)"
-      />
+    if (value < 0) {
+      alert("Built-up Area cannot be less than 0.");
+      return;
+    }
+    if (value > 900000) {
+      alert("Built-up Area cannot exceed 900,000.");
+      return;
+    }
+    if (value >= unit.superArea) {
+      alert("Built-up Area must be less than Super Area.");
+      return;
+    }
 
-      {/* Carpet Area Input */}
-      <label className="unit-form-label" htmlFor="carpetArea">
-        Enter Carpet Area (sq. ft.) <span className="required-asterisk">*</span>
-      </label>
-      <input
-        type="number"
-        name="carpetArea"
-        id="carpetArea"
-        className="unit-form-input"
-        value={unit.carpetArea || ''}
-        onChange={(e) => {
-          const value = e.target.value;
+    handleChange(e);
+  }}
+  required
+  placeholder="Built-up Area (sq. ft.)"
+/>
 
-          // Custom validation for Carpet Area
-          if (value < 0) {
-            alert("Carpet Area cannot be less than 0.");
-            return;
-          }
-          if (value > 900000) {
-            alert("Carpet Area cannot exceed 900,000.");
-            return;
-          }
+{/* Carpet Area Input */}
+<label className="unit-form-label" htmlFor="carpetArea">
+  Enter Carpet Area (sq. ft.) <span className="required-asterisk">*</span>
+</label>
+<input
+  type="number"
+  name="carpetArea"
+  id="carpetArea"
+  className="unit-form-input"
+  value={unit.carpetArea || ''}
+  onChange={(e) => {
+    const value = Number(e.target.value);
 
-          handleChange(e); // Proceed with the original handleChange if the value is valid
-        }}
-        required
-        placeholder="Carpet Area (sq. ft.)"
-      />
+    if (value < 0) {
+      alert("Carpet Area cannot be less than 0.");
+      return;
+    }
+    if (value > 900000) {
+      alert("Carpet Area cannot exceed 900,000.");
+      return;
+    }
+    if (value >= unit.buildUpArea) {
+      alert("Carpet Area must be less than Built-up Area.");
+      return;
+    }
+
+    handleChange(e);
+  }}
+  required
+  placeholder="Carpet Area (sq. ft.)"
+/>
+
 
       {/* Unit Layout Textarea */}
       <label className="unit-form-label" htmlFor="unitLayout">

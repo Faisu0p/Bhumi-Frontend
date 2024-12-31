@@ -237,11 +237,11 @@ const PhaseForm = ({ onNext }) => {
           />
 
           {/* Units */}
-          <h4 className="phase-form-heading">Units</h4>
+          {/* <h4 className="phase-form-heading">Units</h4> */}
 
 
           {phase.units.map((unit, unitIndex) => (
-            <div key={unitIndex} className="unit-form-container">
+            <div key={unitIndex} >
               <UnitForm
                 unit={unit}
                 onUnitChange={(field, value) =>
