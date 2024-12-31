@@ -3,82 +3,112 @@ import './AmenityForm.css';
 
 const AmenityForm = ({ onNext, amenities }) => {
   const [amenityData, setAmenityData] = useState({
-    waterSupply: false,
-    powerBackup: false,
-    adequateParkingCoveredUncovered: false,
-    gatedSecurityWithCctvSurveillance: false,
-    highSpeedElevators: false,
-    fireSafetySystems: false,
-    landscapedGardensParks: false,
-    joggingAndCyclingTracks: false,
-    indoorGamesRoom: false,
-    sportsFacilities: false,
-    multipurposeHallForEvents: false,
-    rainwaterHarvesting: false,
-    solarPowerPanels: false,
-    sewageTreatmentPlant: false,
-    organicWasteComposting: false,
-    energyEfficientLightingInCommonAreas: false,
+
+    // Basic Amenities
+    waterSupply: true,
+    powerBackup: true,
+    adequateParkingCoveredUncovered: true,
+    gatedSecurityWithCctvSurveillance: true,
+    highSpeedElevators: true,
+    fireSafetySystems: true,
+
+    // Lifestyle & Recreation Amenities
+    landscapedGardensParks: true,
+    joggingAndCyclingTracks: true,
+    indoorGamesRoom: true,
+    sportsFacilities: true,
+    multipurposeHallForEvents: true,
+
+    // Green & Sustainable Features
+    rainwaterHarvesting: true,
+    solarPowerPanels: true,
+    sewageTreatmentPlant: true,
+    organicWasteComposting: true,
+    energyEfficientLightingInCommonAreas: true,
+
+    // Advanced Safety & Technology Features
     videoDoorPhones: false,
     digitalSmartLocks: false,
     wiFiConnectivityInCommonAreas: false,
     intercomFacility: false,
     earthquakeResistantDesign: false,
-    shoppingArcadeConvenienceStore: false,
-    pharmacyClinic: false,
-    cafeteriaRestaurant: false,
-    visitorParking: false,
-    dedicatedServiceElevators: false,
+
+    // Convenience Features
+    shoppingArcadeConvenienceStore: true,
+    pharmacyClinic: true,
+    cafeteriaRestaurant: true,
+    visitorParking: true,
+    dedicatedServiceElevators: true,
+
+    // Premium/High-end Features
     infinityPool: false,
     skyLoungeTerraceGarden: false,
     privateTheaterMediaRoom: false,
     businessCenterCoWorkingSpaces: false,
+
+    // Community-oriented Features
     petFriendlyZones: false,
     amphitheaterOpenAirSeating: false,
     templePrayerRoom: false,
     seniorCitizenArea: false,
     communityLibrary: false,
     barbecuePicnicZones: false,
-    spaAndSauna: false,
-    meditationYogaDeck: false,
-    openGymFitnessStationsInThePark: false,
-    walkingReflexologyPath: false,
-    healthCheckUpKiosk: false,
+
+    // Health & Wellness Amenities
+    spaAndSauna: true,
+    meditationYogaDeck: true,
+    openGymFitnessStationsInThePark: true,
+    walkingReflexologyPath: true,
+    healthCheckUpKiosk: true,
+
+    // Technology & Automation Amenities
     electricVehicleEvChargingStations: false,
     smartHomeAutomationFeatures: false,
     automatedParkingSystems: false,
     smartWasteManagementSystem: false,
     appBasedVisitorManagementSystem: false,
+
+    // Luxury Lifestyle Features
     exclusivePrivatePoolsForPenthouses: false,
     helipad: false,
     wineCellarOrTastingLounge: false,
     golfSimulatorPuttingGreen: false,
+
+    // Work & Study Amenities
     servicedApartmentsForGuests: false,
     dedicatedWorkFromHomeCabins: false,
     soundproofStudyPodsForStudents: false,
     conferenceRoomsWithAvFacilities: false,
     elearningZoneForKids: false,
     artAndCraftStudioForHobbies: false,
+
+    // Sports & Adventure Amenities
     cricketNets: false,
     skatingRink: false,
     futsalCourt: false,
     archeryRange: false,
     outdoorAdventureActivities: false,
+
+    // Social & Cultural Amenities
     artGalleryOrExhibitionHall: false,
     culturalAmphitheater: false,
     danceAndMusicStudios: false,
     cookingClassZoneOrOpenKitchen: false,
     eventPlazaForFestivals: false,
+
+    // Specialized Premium Amenities
     skywalkOrObservationDeck: false,
     waterfrontWithBoatingFacilities: false,
     privateCabanasOrGazebos: false,
     luxuryConciergeServices: false,
-    rooftopSolarObservatory: false,
-    emergencyPanicButtonsInCommonAreas: false,
-    physicallyDisabledFriendlyPathwaysAndFacilities: false,
-    dedicatedSpaceForAmbulanceParking: false,
-    dedicatedDeliveryLockersForEcommerceParcels: false,
-    droneDeliveryLandingZones: false,
+
+    // Security and Accessibility Features
+    rooftopSolarObservatory: true,
+    emergencyPanicButtonsInCommonAreas: true,
+    physicallyDisabledFriendlyPathwaysAndFacilities: true,
+    dedicatedSpaceForAmbulanceParking: true,
+    dedicatedDeliveryLockersForEcommerceParcels: true,
+    droneDeliveryLandingZones: true,
   });
 
   const handleChange = (e) => {
