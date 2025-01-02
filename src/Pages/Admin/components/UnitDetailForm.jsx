@@ -47,6 +47,32 @@ const UnitDetailForm = ({ index, onChange, unitDetailData }) => {
         placeholder="Unit Size (sq. ft.)"
       />
 
+      {/* Unit Length */}
+      <label htmlFor="unitLength" className="unit-detail-form-label">
+        Enter Length (sq. ft.)
+      </label>
+      <input
+        type="number"
+        name="unitLength"
+        className="unit-detail-form-input"
+        value={unitDetailData.unitLength || ''}
+        onChange={handleFieldChange}
+        placeholder="Unit Length (sq. ft.)"
+      />
+
+      {/* Unit Bredth */}
+      <label htmlFor="unitBredth" className="unit-detail-form-label">
+        Enter Bredth (sq. ft.)
+      </label>
+      <input
+        type="number"
+        name="unitBredth"
+        className="unit-detail-form-input"
+        value={unitDetailData.unitBredth || ''}
+        onChange={handleFieldChange}
+        placeholder="Unit Bredth (sq. ft.)"
+      />
+
       {/* Furnished Status */}
       <label htmlFor="unitFurnishedStatus" className="unit-detail-form-label">
         Select Furnished Status

@@ -66,6 +66,8 @@ const ProjectAddPage = () => {
           unitLayout: unit.unitLayout,
           unitDetails: unit.unitDetails.map(detail => ({
             unitSize: detail.unitSize,
+            unitLength: detail.unitLength,
+            unitBredth: detail.unitBredth,
             unitFurnishedStatus: detail.unitFurnishedStatus,
             spaceType: detail.spaceType
           }))
