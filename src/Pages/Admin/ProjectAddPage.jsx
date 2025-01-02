@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProjectForm from './components/ProjectForm';
 import PhaseForm from './components/PhaseForm';
 import AmenityForm from './components/AmenityForm';
+import ReviewPage from './components/ReviewPage'; // Import ReviewPage
 import { createProject } from './apis/projectApi';
 import './ProjectAddPage.css';
 
@@ -10,7 +11,7 @@ const ProjectAddPage = () => {
   const [projectData, setProjectData] = useState({});
   const [phases, setPhases] = useState([]);
   const [amenities, setAmenities] = useState([]);
-  const steps = ['Project Details', 'Phases', 'Amenities', 'Submit'];
+  const steps = ['Project Details', 'Phases', 'Amenities', 'Review', 'Submit']; // Changed 'Hello World' to 'Review'
 
   const handleNextStep = (data, setter) => {
     setter(data);
@@ -95,11 +96,7 @@ const ProjectAddPage = () => {
               <span className="project-add-progress-label">{label}</span>
             </div>
             {index < steps.length - 1 && (
-              <div
-                className={`project-add-progress-line ${
-                  step > index + 1 ? 'active' : ''
-                }`}
-              ></div>
+              <div className={`project-add-progress-line ${step > index + 1 ? 'active' : ''}`}></div>
             )}
           </React.Fragment>
         ))}
@@ -110,7 +107,8 @@ const ProjectAddPage = () => {
         {step === 1 && <ProjectForm onNext={(data) => handleNextStep(data, setProjectData)} onPrevious={handlePreviousStep} />}
         {step === 2 && <PhaseForm onNext={(data) => handleNextStep(data, setPhases)} onPrevious={handlePreviousStep} />}
         {step === 3 && <AmenityForm onNext={(data) => handleNextStep(data, setAmenities)} amenities={amenities} onPrevious={handlePreviousStep} />}
-        {step === 4 && (
+        {step === 4 && <ReviewPage data={projectData} />} {/* Review Page as a new step */}
+        {step === 5 && (
           <button onClick={handleSubmit} className="project-add-submit-button">
             Submit Project
           </button>
