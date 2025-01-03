@@ -28,6 +28,10 @@ html {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
+.required-asterisk {
+  color: red;
+}
+
 /* Form heading */
 .builder-text-center {
   text-align: center;
@@ -39,25 +43,24 @@ html {
   margin-bottom: 3rem;
 }
 
-/* Label and Input Styles */
+/* Simplified Label and Input Styles */
 .builder-form-control {
   background-color: #fff;
   color: #333;
-  border: 1px solid #ddd;
-  border-radius: 1rem;
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 1.5rem;
+  border: 1px solid #ccc; 
+  border-radius: 0.5rem; 
+  padding: 1rem; 
   width: 100%;
-  font-size: 1.4rem;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-size: 1.4rem; 
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .builder-form-control:focus {
-  border-color: #d90429;
-  outline: none;
-  box-shadow: 0 0 10px rgba(217, 4, 41, 0.3);
+  border-color: #007bff; 
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  outline: none; 
 }
+
 
 .builder-form-label {
   display: block;

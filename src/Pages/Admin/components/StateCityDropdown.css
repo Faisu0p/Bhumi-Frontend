@@ -1,0 +1,43 @@
+/* Set root font size */
+html {
+    font-size: 62.5%;
+  }
+  .required-asterisk {
+    color: red;
+  }
+  
+  /* Container styles */
+  .builder-location-dropdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Dropdown container styles */
+  .builder-location-dropdown-dropdown-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Label styles */
+  .builder-location-dropdown-label {
+    font-size: 1.6rem; 
+    margin-bottom: 0.5rem; 
+  }
+  
+  /* Dropdown styles */
+  .builder-location-dropdown-dropdown {
+    padding: 0.8rem; 
+    font-size: 1.4rem; 
+    border: 0.1rem solid #ccc; 
+    border-radius: 0.4rem; 
+    background-color: white; 
+    color: #333;
+  }
+  
+  .builder-location-dropdown-dropdown:disabled {
+    background-color: #f0f0f0;
+    color: #aaa;
+    cursor: not-allowed;
+  }
+  

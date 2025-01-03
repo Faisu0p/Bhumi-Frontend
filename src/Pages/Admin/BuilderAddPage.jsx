@@ -38,6 +38,17 @@ const BuilderAddPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+      // Manually validate the builderLogo field
+  if (!formData.builderLogo) {
+    alert("Builder Square Logo URL is required!");
+    return;
+  }
+
+  if (!formData.builderLogoRectangle) {
+    alert("Builder Rectangular Logo URL is required!");
+    return;
+  }
+
     const updatedFormData = {
       ...formData,
       builderLogo: Array.isArray(formData.builderLogo)
@@ -96,7 +107,7 @@ const BuilderAddPage = () => {
 
           {/* Builder Complete Name Input */}
           <div className="builder-form-group">
-            <label htmlFor="builderCompleteName" className="builder-form-label">Enter Builder Complete Name</label>
+            <label htmlFor="builderCompleteName" className="builder-form-label">Enter Builder Complete Name <span className="required-asterisk">*</span></label>
             <input
               type="text"
               name="builderCompleteName"
@@ -110,7 +121,7 @@ const BuilderAddPage = () => {
 
           {/* Builder Short Name Input */}
           <div className="builder-form-group">
-            <label htmlFor="builderShortName" className="builder-form-label">Enter Builder's Nick/Short Name</label>
+            <label htmlFor="builderShortName" className="builder-form-label">Enter Builder's Nick/Short Name <span className="required-asterisk">*</span></label>
             <input
               type="text"
               name="builderShortName"
@@ -120,11 +131,12 @@ const BuilderAddPage = () => {
               className="builder-form-control"
               placeholder="e.g., Bhumi Builders"
             />
+
           </div>
 
           {/* Media Section for uploading Builder Logo Square */}
           <div className="builder-form-group">
-            <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo Square</label>
+            <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo Square <span className="required-asterisk">*</span></label>
             <MediaSection 
             updateMasterLayoutPlan={updatebuilderLogo} 
             maxSize={1024 * 1024}
@@ -142,13 +154,13 @@ const BuilderAddPage = () => {
 
           {/* Builder Logo URL Input */}
           <div className="builder-form-group">
-            <label htmlFor="builderLogo" className="builder-form-label">Builder Logo Square URL</label>
             <input
               type="text"
               id="builderLogo"
               name="builderLogo"
               value={formData.builderLogo}
-              onChange={handleChange}
+              onChange={handleChange} 
+              readOnly
               className="builder-form-control"
               placeholder="e.g., https://example.com/logo.jpg"
             />
@@ -156,7 +168,7 @@ const BuilderAddPage = () => {
 
           {/* Media Section for uploading Builder Logo Rectangle */}
           <div className="builder-form-group">
-            <label htmlFor="builderLogoRectangle" className="builder-form-label">Upload Builder Logo Rectangle</label>
+            <label htmlFor="builderLogoRectangle" className="builder-form-label">Upload Builder Logo Rectangle <span className="required-asterisk">*</span></label>
             <MediaSection 
             updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} 
             maxSize={1024 * 1024}
@@ -174,13 +186,13 @@ const BuilderAddPage = () => {
 
           {/* Builder Logo Rectangle URL Input */}
           <div className="builder-form-group">
-            <label htmlFor="builderLogoRectangle" className="builder-form-label">Builder Logo Rectangle URL</label>
             <input
               type="text"
               id="builderLogoRectangle"
               name="builderLogoRectangle"
               value={formData.builderLogoRectangle}
               onChange={handleChange}
+              readOnly
               className="builder-form-control"
               placeholder="e.g., https://example.com/logo-rectangle.jpg"
             />
@@ -189,7 +201,7 @@ const BuilderAddPage = () => {
 
           {/* Years in Real Estate */}
           <div className="builder-form-group">
-            <label htmlFor="yearsInRealEstate" className="builder-form-label">Enter Years in Real Estate</label>
+            <label htmlFor="yearsInRealEstate" className="builder-form-label">Enter Years in Real Estate <span className="required-asterisk">*</span></label>
             <div className="builder-input-group">
               <input
                 type="number"
@@ -214,7 +226,7 @@ const BuilderAddPage = () => {
 
           {/* Short Description */}
           <div className="builder-form-group">
-            <label htmlFor="shortDescription" className="builder-form-label">Enter Short Description</label>
+            <label htmlFor="shortDescription" className="builder-form-label">Enter Short Description <span className="required-asterisk">*</span></label>
             <textarea
               name="shortDescription"
               value={formData.shortDescription}

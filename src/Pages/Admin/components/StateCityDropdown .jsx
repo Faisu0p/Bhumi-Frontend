@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './StateCityDropdown.css';
 
 const StateAndCity = ({ onLocationChange }) => { // Receiving function as prop
   const [states, setStates] = useState([]);
@@ -35,37 +36,37 @@ const StateAndCity = ({ onLocationChange }) => { // Receiving function as prop
     const stateId = Number(e.target.value); // Ensure stateId is a number
     setSelectedState(stateId); // Update selected state
     setSelectedCity(''); // Reset city when state changes
-  
+
     // Pass the state name to parent (not the id)
     const stateName = states.find(state => state.id === stateId)?.name || 'Unknown State';
     onLocationChange({ state: stateName, city: null });
   };
-  
+
   const handleCityChange = (e) => {
     const cityId = Number(e.target.value); // Convert cityId to a number to avoid type mismatch
     setSelectedCity(cityId); // Update selected city
-  
+
     // Find the city by id and get its name
     const cityName = cities.find(city => city.id === cityId)?.name || 'Unknown City';
-  
+
     // Pass the city name to parent (not the id)
     onLocationChange({
       state: states.find(state => state.id === selectedState)?.name || 'Unknown State',
       city: cityName
     });
   };
-  
 
   return (
-    <div className="state-city-container">
+    <div className="builder-location-dropdown-container">
       {/* State Dropdown */}
-      <div className="dropdown-container">
-        <label htmlFor="state" className="label">State</label>
+      <div className="builder-location-dropdown-dropdown-container">
+        <label htmlFor="state" className="builder-location-dropdown-label">Select State <span className="required-asterisk">*</span></label>
         <select
           id="state"
           value={selectedState}
           onChange={handleStateChange}
-          className="dropdown"
+          className="builder-location-dropdown-dropdown"
+          required
         >
           <option value="">Select State</option>
           {states.map((state) => (
@@ -77,14 +78,15 @@ const StateAndCity = ({ onLocationChange }) => { // Receiving function as prop
       </div>
 
       {/* City Dropdown */}
-      <div className="dropdown-container">
-        <label htmlFor="city" className="label">City</label>
+      <div className="builder-location-dropdown-dropdown-container">
+        <label htmlFor="city" className="builder-location-dropdown-label">Select City <span className="required-asterisk">*</span></label>
         <select
           id="city"
           value={selectedCity}
           onChange={handleCityChange}
           disabled={!selectedState} // Disable city dropdown if no state is selected
-          className="dropdown"
+          className="builder-location-dropdown-dropdown"
+          required
         >
           <option value="">Select City</option>
           {cities.length === 0 ? (
