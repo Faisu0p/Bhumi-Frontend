@@ -84,14 +84,12 @@ const BuilderAddPage = () => {
   return (
     <div className="builder-container builder-flex-center builder-page">
       <div className="builder-card builder-shadow builder-form-card">
-        <h2 className="builder-text-center builder-text-danger">Builder Information Form</h2>
+        <h2 className="builder-text-center builder-text-danger">Add Builder</h2>
         <form onSubmit={handleSubmit}>
-
 
 
           {/* State and City Input */}
           <div className="builder-form-group">
-            <label className="builder-form-label">Select State and City</label>
             <StateCityDropdown onLocationChange={handleLocationChange} />
           </div>
 

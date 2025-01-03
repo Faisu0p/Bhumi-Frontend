@@ -1,28 +1,31 @@
-/* Custom styles for BuilderAddPage */
+/* Set root font size to 10px so 1rem equals 10px */
+html {
+  font-size: 62.5%; /* 16px * 62.5% = 10px */
+}
 
-/* General page styles */
+/* General page layout */
 .builder-page {
   min-height: 100vh;
-  background-color: #f9fafb;
-  padding: 3rem 2rem;
+  background-color: #f4f6f9;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
 /* Form card container */
 .builder-form-card {
-  max-width: 800px;
+  max-width: 80rem; /* 800px */
   width: 100%;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  padding: 3rem;
-  transition: box-shadow 0.3s ease;
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
 .builder-form-card:hover {
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 /* Form heading */
@@ -31,90 +34,85 @@
 }
 
 .builder-text-danger {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: black; /* Bold red theme */
-  margin-bottom: 2rem;
+  font-size: 2.8rem !important;
+  color: #333;
+  margin-bottom: 3rem;
 }
 
 /* Label and Input Styles */
 .builder-form-control {
-  background-color: white; /* Set background color to white */
-  color: black; /* Set text color to black */
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem;
+  background-color: #fff;
+  color: #333;
   border: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
   width: 100%;
-  transition: border-color 0.3s ease-in-out;
-  font-size: 1.2rem; /* Increased font size for better readability */
+  font-size: 1.4rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .builder-form-control:focus {
   border-color: #d90429;
   outline: none;
+  box-shadow: 0 0 10px rgba(217, 4, 41, 0.3);
 }
 
-/* Label styles */
 .builder-form-label {
   display: block;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   color: #333;
-  font-size: 1.3rem; /* Increased font size for emphasis */
+  font-size: 1.6rem;
 }
 
 /* Input group for years in real estate */
 .builder-input-group {
   display: flex;
-  align-items: center; /* Vertically align items */
-  gap: 0.75rem;
-  width: 100%; /* Ensures input and span align correctly */
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 .builder-input-group input[type="number"] {
-  -moz-appearance: textfield; /* Remove increment/decrement buttons */
+  -moz-appearance: textfield;
   appearance: textfield;
-  width: 100%; /* Ensure the input fills the available space */
-}
-
-.builder-input-group input[type="number"]::-webkit-inner-spin-button,
-.builder-input-group input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none; /* Remove increment/decrement buttons */
-  margin: 0;
+  width: 100%;
 }
 
 .builder-input-group-text {
-  background-color: red;
+  background-color: #d90429;
   color: #fff;
-  margin-top: -1.45rem;
-  border-radius: 0 8px 8px 0;
   padding: 1rem 1.5rem;
-  font-size: 1.2rem;
-  text-align: center; /* Ensure text is centered */
-  line-height: 1; /* Ensure the span height matches the input field height */
+  font-size: 1.3rem;
+  border-radius: 0 0.8rem 0.8rem 0;
+  text-align: center;
+  line-height: 1.2;
 }
 
 /* Button Styling */
 .builder-btn {
   display: block;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 1.4rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 1rem;
   font-weight: bold;
-  background-color: red;
+  background-color: #d90429;
   color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
-  font-size: 1.2rem; /* Increased button font size */
+  font-size: 1.4rem;
 }
 
 .builder-btn:hover {
   background-color: #b90320;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.builder-btn:focus {
+  outline: none;
 }
 
 /* Flex container for form submission */
@@ -127,43 +125,79 @@
 
 /* Form group adjustments */
 .builder-form-group {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 /* Textarea styling */
 textarea.builder-form-control {
-  background-color: white; /* Set background color to white */
-  color: black; /* Set text color to black */
-  border-radius: 8px;
-  padding: 1rem;
-  min-height: 150px;
-  font-size: 1.2rem; /* Increased font size */
+  background-color: #fff;
+  color: #333;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  min-height: 15rem;
+  font-size: 1.4rem;
   resize: vertical;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for media section */
-.builder-form-label {
-  font-size: 1.3rem; /* Increased font size for better emphasis */
-  color: #444;
-  margin-bottom: 0.8rem;
+/* Styling for Media Section */
+.builder-form-group {
+  margin-bottom: 2.5rem;
+}
+
+.builder-media-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f6f9;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.builder-media-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.builder-media-preview:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 76.8rem) {
   .builder-form-card {
     padding: 2rem;
   }
 
   .builder-form-control {
-    padding: 0.9rem 1.2rem;
-    font-size: 1.1rem;
+    padding: 1rem 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .builder-btn {
+    padding: 1.5rem 1.8rem;
+  }
+
+  .builder-text-danger {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .builder-form-card {
+    padding: 1.5rem;
+  }
+
+  .builder-form-control {
+    padding: 1rem;
+    font-size: 1.2rem;
   }
 
   .builder-btn {
     padding: 1.2rem 1.5rem;
-  }
-
-  .builder-text-danger {
-    font-size: 2rem;
   }
 }
