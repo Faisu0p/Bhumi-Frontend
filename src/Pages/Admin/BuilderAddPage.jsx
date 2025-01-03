@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createBuilder } from "./apis/builderApi";
 import MediaSection from "./components/MediaSection";
+import StateCityDropdown from "./components/StateCityDropdown ";
 import './BuilderAddPage.css';
 
 const BuilderAddPage = () => {
@@ -71,38 +72,29 @@ const BuilderAddPage = () => {
     }
   };
 
+    // Function to handle state and city changes
+    const handleLocationChange = ({ state, city }) => {
+      setFormData((prevData) => ({
+        ...prevData,
+        state: state || prevData.state,  // Only update state if a state is selected
+        city: city || prevData.city,      // Only update city if a city is selected
+      }));
+    };
+
   return (
     <div className="builder-container builder-flex-center builder-page">
       <div className="builder-card builder-shadow builder-form-card">
         <h2 className="builder-text-center builder-text-danger">Builder Information Form</h2>
         <form onSubmit={handleSubmit}>
 
-          {/* State Input */}
+
+
+          {/* State and City Input */}
           <div className="builder-form-group">
-            <label htmlFor="state" className="builder-form-label">Enter State</label>
-            <input
-              type="text"
-              name="state"
-              value={formData.state}
-              onChange={handleChange}
-              required
-              className="builder-form-control"
-              placeholder="e.g., Delhi"
-            />
+            <label className="builder-form-label">Select State and City</label>
+            <StateCityDropdown onLocationChange={handleLocationChange} />
           </div>
-          {/* City Input */}
-          <div className="builder-form-group">
-            <label htmlFor="city" className="builder-form-label">Enter City</label>
-            <input
-              type="text"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              required
-              className="builder-form-control"
-              placeholder="e.g., New Delhi"
-            />
-          </div>
+
 
           {/* Builder Complete Name Input */}
           <div className="builder-form-group">

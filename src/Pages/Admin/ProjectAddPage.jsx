@@ -11,7 +11,7 @@ const ProjectAddPage = () => {
   const [projectData, setProjectData] = useState({});
   const [phases, setPhases] = useState([]);
   const [amenities, setAmenities] = useState([]);
-  const steps = ['Project Details', 'Phases', 'Amenities', 'Review', 'Submit']; // Changed 'Hello World' to 'Review'
+  const steps = ['Project Details', 'Phases', 'Amenities', 'Review', 'Submit'];
 
   const handleNextStep = (data, setter) => {
     setter(data);
