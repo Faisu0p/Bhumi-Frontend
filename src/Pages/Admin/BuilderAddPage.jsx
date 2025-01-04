@@ -137,7 +137,7 @@ const BuilderAddPage = () => {
           {/* Media Section for uploading Builder Logo Square */}
           <div className="builder-form-group">
             <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo Square <span className="required-asterisk">*</span></label>
-            <MediaSection 
+            {/* <MediaSection 
             updateMasterLayoutPlan={updatebuilderLogo} 
             maxSize={1024 * 1024}
             previewStyle={{
@@ -149,7 +149,21 @@ const BuilderAddPage = () => {
               margin: "0 auto",    
               display: "block"     
             }}
-              /> 
+              />  */}
+
+<MediaSection 
+  updateMasterLayoutPlan={updatebuilderLogo} 
+  maxSize={1 * 1024 * 1024} // 1MB max size
+  previewStyle={{
+    objectFit: "contain",
+    width: "150px",
+    height: "150px",
+  }}
+  allowedTypes={["image/png"]}
+  labelText="Select Your Logo" // Custom label text
+  fileLabelText="Max Size 1 MB | Png | Square" // Custom No file chosen text
+/>
+
           </div>
 
           {/* Builder Logo URL Input */}
@@ -169,7 +183,7 @@ const BuilderAddPage = () => {
           {/* Media Section for uploading Builder Logo Rectangle */}
           <div className="builder-form-group">
             <label htmlFor="builderLogoRectangle" className="builder-form-label">Upload Builder Logo Rectangle <span className="required-asterisk">*</span></label>
-            <MediaSection 
+            {/* <MediaSection 
             updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} 
             maxSize={1024 * 1024}
             previewStyle={{
@@ -181,7 +195,21 @@ const BuilderAddPage = () => {
               margin: "0 auto",       
               display: "block"   
             }}
-             /> 
+             />  */}
+
+<MediaSection 
+  updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} 
+  maxSize={1 * 1024 * 1024} // 1MB max size
+  previewStyle={{
+    objectFit: "contain",
+    width: "150px",
+    height: "150px",
+  }}
+  allowedTypes={["image/png"]}
+  labelText="Select Your Logo" // Custom label text
+  fileLabelText="No logo selected" // Custom No file chosen text
+/>
+
           </div>
 
           {/* Builder Logo Rectangle URL Input */}

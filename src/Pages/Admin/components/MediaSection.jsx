@@ -6,6 +6,8 @@ const MediaSection = ({
   maxSize = 5 * 1024 * 1024, // Default max file size is 5MB
   previewStyle = {}, // Default preview style
   allowedTypes = ["image/jpeg", "image/png"], // Default allowed types
+  labelText = "Choose File", // Default label text
+  fileLabelText = "No file chosen", // Default file label text
 }) => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -99,7 +101,7 @@ const MediaSection = ({
             display: "inline-block",
           }}
         >
-          Choose File
+          {labelText} {/* Choose File label */}
         </label>
         <div
           style={{
@@ -113,7 +115,7 @@ const MediaSection = ({
             border: "1px solid #ccc",
           }}
         >
-          {image ? image.name : "No file chosen"}
+          {image ? image.name : fileLabelText} {/* Customizable No File Chosen text */}
         </div>
       </div>
 
