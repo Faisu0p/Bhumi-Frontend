@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { BlobServiceClient } from "@azure/storage-blob";
 
-const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 , previewStyle }) => {  // Default size is 5MB
+const MediaSection = ({
+  updateMasterLayoutPlan,
+  maxSize = 5 * 1024 * 1024, // Default max file size is 5MB
+  previewStyle = {}, // Default preview style
+  allowedTypes = ["image/jpeg", "image/png"], // Default allowed types
+}) => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const uniqueId = React.useId(); // Generates a unique ID for each instance
 
-  // Function to upload the image to Azure Blob Storage
   const uploadToAzure = async (file) => {
     const accountName = "bhoomistorage2024";
-    const containerName = "newbhumidata"; 
+    const containerName = "newbhumidata";
     const blobSasToken =
       "sp=racwdli&st=2024-12-04T14:25:54Z&se=2025-12-04T22:25:54Z&sv=2022-11-02&sr=c&sig=yY3GKRKA9mX8N4BtwK%2F0t5v%2B%2BkgiPaAMQX%2FMDUmY6is%3D";
 
@@ -32,60 +37,106 @@ const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 , prev
     }
   };
 
-  // Handle image selection
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
-  
+
     if (selectedFile) {
-      // Check the file type (MIME type) against allowed image types
-      const allowedTypes = ['image/jpeg', 'image/png'];
       if (!allowedTypes.includes(selectedFile.type)) {
-        setError("Invalid file type. Please select an image file (jpg or png).");
+        setError(`Invalid file type. Allowed types: ${allowedTypes.join(", ")}.`);
         setImage(null);
         return;
       }
-  
-      // Check file size against the maxSize prop (optional)
+
       if (selectedFile.size > maxSize) {
-        setError(`File size exceeds the limit of ${maxSize / (1024 * 1024)}MB. Please select a smaller image.`);
-        setImage(null); 
+        setError(`File size exceeds ${(maxSize / (1024 * 1024)).toFixed(1)}MB.`);
+        setImage(null);
         return;
       }
-  
-      setError(""); 
+
+      setError("");
       setImage(selectedFile);
     }
   };
-  
 
-  // Handle image upload
   const handleUpload = async () => {
     if (image) {
       setUploading(true);
-      const uploadedUrl = await uploadToAzure(image); 
+      const uploadedUrl = await uploadToAzure(image);
       if (uploadedUrl) {
-        setImageUrl(uploadedUrl);  
-        updateMasterLayoutPlan([uploadedUrl]); 
+        setImageUrl(uploadedUrl);
+        updateMasterLayoutPlan([uploadedUrl]);
       }
       setUploading(false);
     }
   };
 
   return (
-    <section className="form-section">
-      <div className="input-group">
+    <section
+      className="media-component-form-section"
+      style={{
+        padding: "20px",
+        border: "1px solid #ddd",
+        borderRadius: "8px",
+        backgroundColor: "#f9f9f9",
+      }}
+    >
+      <div className="media-component-input-group" style={{ marginBottom: "15px" }}>
         <input
           type="file"
-          id="imageUpload"
-          accept="image/*"
-          onChange={handleImageChange}  // Single image selection
+          id={`media-component-imageUpload-${uniqueId}`}
+          accept={allowedTypes.join(",")}
+          onChange={handleImageChange}
+          style={{ display: "none" }}
         />
+        <label
+          htmlFor={`media-component-imageUpload-${uniqueId}`}
+          style={{
+            cursor: "pointer",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            display: "inline-block",
+          }}
+        >
+          Choose File
+        </label>
+        <div
+          style={{
+            display: "inline-block",
+            marginLeft: "10px",
+            padding: "8px 12px",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "5px",
+            color: image ? "#333" : "#888",
+            fontStyle: image ? "normal" : "italic",
+            border: "1px solid #ccc",
+          }}
+        >
+          {image ? image.name : "No file chosen"}
+        </div>
       </div>
 
-      {error && <div style={{ color: "red" }}>{error}</div>}
+      {error && (
+        <div
+          className="media-component-error"
+          style={{ color: "red", marginBottom: "15px" }}
+        >
+          {error}
+        </div>
+      )}
 
       {image && !error && (
-        <div className="image-preview">
+        <div
+          className="media-component-image-preview"
+          style={{
+            marginBottom: "15px",
+            border: "1px solid #ddd",
+            borderRadius: "4px",
+            padding: "10px",
+            display: "inline-block",
+          }}
+        >
           <img
             src={URL.createObjectURL(image)}
             alt="Selected"
@@ -93,24 +144,29 @@ const MediaSection = ({ updateMasterLayoutPlan, maxSize = 5 * 1024 * 1024 , prev
               width: "100px",
               height: "100px",
               objectFit: "cover",
-              margin: "5px",
-              ...previewStyle
+              ...previewStyle,
             }}
           />
         </div>
       )}
 
-      <div className="input-group">
+      <div className="media-component-input-group">
         <button
           onClick={handleUpload}
           disabled={uploading || !image}
-          style={{ marginTop: "10px", backgroundColor: "red", color: "white" }}
+          style={{
+            marginTop: "10px",
+            backgroundColor: uploading ? "#ccc" : "red",
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            cursor: uploading || !image ? "not-allowed" : "pointer",
+            border: "none",
+          }}
         >
           {uploading ? "Uploading..." : "Upload"}
         </button>
       </div>
-
-      
     </section>
   );
 };
