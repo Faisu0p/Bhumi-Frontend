@@ -16,6 +16,14 @@ const BuilderAddPage = () => {
     builderLogoRectangle: "",
   });
 
+  // Add this state for unique keys
+  const [mediaSectionKeys, setMediaSectionKeys] = useState({
+    builderLogo: Date.now(), // Unique key for the square logo MediaSection
+    builderLogoRectangle: Date.now() + 1, // Unique key for the rectangular logo MediaSection
+  });
+
+
+
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     if (type === "file") {
@@ -81,6 +89,11 @@ const BuilderAddPage = () => {
       console.error("Error submitting builder data:", error);
       alert("There was an error submitting the builder information.");
     }
+
+    setMediaSectionKeys({
+      builderLogo: Date.now(),
+      builderLogoRectangle: Date.now() + 1,
+    });
   };
 
     // Function to handle state and city changes
@@ -137,32 +150,27 @@ const BuilderAddPage = () => {
           {/* Media Section for uploading Builder Logo Square */}
           <div className="builder-form-group">
             <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo Square <span className="required-asterisk">*</span></label>
-            {/* <MediaSection 
-            updateMasterLayoutPlan={updatebuilderLogo} 
-            maxSize={1024 * 1024}
-            previewStyle={{
-              objectFit: "contain",
-              width: "100%",       
-              maxWidth: "250px",   
-              height: "auto",      
-              maxHeight: "250px",  
-              margin: "0 auto",    
-              display: "block"     
-            }}
-              />  */}
 
-<MediaSection 
-  updateMasterLayoutPlan={updatebuilderLogo} 
-  maxSize={1 * 1024 * 1024} // 1MB max size
-  previewStyle={{
-    objectFit: "contain",
-    width: "150px",
-    height: "150px",
-  }}
-  allowedTypes={["image/png"]}
-  labelText="Select Your Logo" // Custom label text
-  fileLabelText="Max Size 1 MB | Png | Square" // Custom No file chosen text
-/>
+            <MediaSection
+            key={mediaSectionKeys.builderLogo} // Unique key for the square logo MediaSection
+              updateMasterLayoutPlan={updatebuilderLogo}
+              maxSize={1024 * 1024} 
+              previewStyle={{
+                objectFit: "contain",  
+                width: "100%",        
+                maxWidth: "250px",     
+                height: "auto",       
+                maxHeight: "250px",    
+                margin: "0 auto",      
+                display: "block"       
+              }}
+              allowedTypes={["image/png"]}
+              labelText="Select Your Logo"
+              fileLabelText="Max Size: 1 MB | PNG | Square (500x500)"
+              requiredWidth={500}
+              requiredHeight={500}
+            />
+
 
           </div>
 
@@ -183,32 +191,28 @@ const BuilderAddPage = () => {
           {/* Media Section for uploading Builder Logo Rectangle */}
           <div className="builder-form-group">
             <label htmlFor="builderLogoRectangle" className="builder-form-label">Upload Builder Logo Rectangle <span className="required-asterisk">*</span></label>
-            {/* <MediaSection 
-            updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} 
-            maxSize={1024 * 1024}
-            previewStyle={{
-              objectFit: "contain",
-              width: "100%",          
-              maxWidth: "250px",      
-              height: "auto",         
-              maxHeight: "150px",     
-              margin: "0 auto",       
-              display: "block"   
-            }}
-             />  */}
 
-<MediaSection 
-  updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })} 
-  maxSize={1 * 1024 * 1024} // 1MB max size
-  previewStyle={{
-    objectFit: "contain",
-    width: "150px",
-    height: "150px",
-  }}
-  allowedTypes={["image/png"]}
-  labelText="Select Your Logo" // Custom label text
-  fileLabelText="No logo selected" // Custom No file chosen text
-/>
+            <MediaSection
+            key={mediaSectionKeys.builderLogoRectangle} // Unique key for the rectangular logo MediaSection
+              updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })}
+              maxSize={1024 * 1024}
+              previewStyle={{
+                objectFit: "contain",     
+                width: "100%",            
+                maxWidth: "300px",        
+                height: "auto",           
+                maxHeight: "300px",       
+                margin: "0 auto",         
+                display: "block"          
+              }}
+              allowedTypes={["image/png"]}
+              labelText="Select Your Logo"
+              fileLabelText="Max Size: 1 MB | PNG | Rectangle (1200x600)"
+              requiredWidth={1200}
+              requiredHeight={600}
+            />
+
+
 
           </div>
 

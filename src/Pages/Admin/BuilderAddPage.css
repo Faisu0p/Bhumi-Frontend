@@ -84,7 +84,7 @@ html {
 }
 
 .builder-input-group-text {
-  background-color: #d90429;
+  background-color: red;
   color: #fff;
   padding: 1rem 1.5rem;
   font-size: 1.3rem;
@@ -101,7 +101,7 @@ html {
   border: none;
   border-radius: 1rem;
   font-weight: bold;
-  background-color: #d90429;
+  background-color: red;
   color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;

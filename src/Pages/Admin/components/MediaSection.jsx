@@ -8,6 +8,8 @@ const MediaSection = ({
   allowedTypes = ["image/jpeg", "image/png"], // Default allowed types
   labelText = "Choose File", // Default label text
   fileLabelText = "No file chosen", // Default file label text
+  requiredWidth = 150, // Default required width
+  requiredHeight = 150, // Default required height
 }) => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -39,6 +41,7 @@ const MediaSection = ({
     }
   };
 
+  // Handle image selection
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
 
@@ -55,11 +58,27 @@ const MediaSection = ({
         return;
       }
 
-      setError("");
-      setImage(selectedFile);
+      // Check the image dimensions
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        img.onload = () => {
+          if (img.width !== requiredWidth || img.height !== requiredHeight) {
+            setError(`Image must be ${requiredWidth}px by ${requiredHeight}px. Please upload a different image.`);
+            setImage(null);
+          } else {
+            setError("");  // Clear error if dimensions are correct
+            setImage(selectedFile);  // Set the selected image if valid
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(selectedFile); // Convert image file to base64 to load and get dimensions
     }
   };
 
+  // Handle image upload
   const handleUpload = async () => {
     if (image) {
       setUploading(true);
@@ -94,7 +113,7 @@ const MediaSection = ({
           htmlFor={`media-component-imageUpload-${uniqueId}`}
           style={{
             cursor: "pointer",
-            backgroundColor: "#007bff",
+            backgroundColor: "red",
             color: "#fff",
             padding: "10px 20px",
             borderRadius: "5px",
