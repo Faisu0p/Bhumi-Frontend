@@ -77,34 +77,33 @@ const ManageBuilderPage = () => {
   };
 
   // Handle rejection of selected builder
-const handleReject = async () => {
-  if (!selectedBuilder) {
-    setVerificationMessage('Please select a builder');
-    return;
-  }
-
-  try {
-    const selectedBuilderObj = builders.find(builder => builder.Builder_id === selectedBuilder.value);
-
-    if (selectedBuilderObj) {
-      const response = await rejectBuilder({
-        builderId: selectedBuilderObj.Builder_id,  // Ensure this matches the field expected by the backend (builderId)
-      });
-
-      console.log("Response from rejectBuilder:", response);
-
-      if (response && response.message) {
-        setVerificationMessage(response.message);
-      } else {
-        setVerificationMessage('Unexpected response format from server');
-      }
+  const handleReject = async () => {
+    if (!selectedBuilder) {
+      setVerificationMessage('Please select a builder');
+      return;
     }
-  } catch (error) {
-    setVerificationMessage('An error occurred while rejecting the builder');
-    console.error('Error rejecting builder:', error);
-  }
-};
 
+    try {
+      const selectedBuilderObj = builders.find(builder => builder.Builder_id === selectedBuilder.value);
+
+      if (selectedBuilderObj) {
+        const response = await rejectBuilder({
+          builderId: selectedBuilderObj.Builder_id,  // Ensure this matches the field expected by the backend (builderId)
+        });
+
+        console.log("Response from rejectBuilder:", response);
+
+        if (response && response.message) {
+          setVerificationMessage(response.message);
+        } else {
+          setVerificationMessage('Unexpected response format from server');
+        }
+      }
+    } catch (error) {
+      setVerificationMessage('An error occurred while rejecting the builder');
+      console.error('Error rejecting builder:', error);
+    }
+  };
 
   // Map builders to the format that react-select expects
   const builderOptions = builders.map((builder) => ({
@@ -131,13 +130,6 @@ const handleReject = async () => {
             placeholder="Search for a builder..."
             className='manage-builder-select'
           />
-          
-          <button onClick={handleVerify} className="manage-builder-verify-button">
-            Verify
-          </button>
-          <button onClick={handleReject} className="manage-builder-verify-button">
-            Reject
-          </button>
         </div>
 
         {verificationMessage && (
@@ -158,6 +150,18 @@ const handleReject = async () => {
             <p><strong>Short Description:</strong> {builderDetails.Short_Description}</p>
             <p><strong>Builder Logo (square):</strong> <img src={builderDetails.Builder_logo} alt="Builder Logo" style={{ maxWidth: '100px', maxHeight: '100px' }} /></p>
             <p><strong>Builder Logo (Rectangle):</strong> <img src={builderDetails.Builder_logo_rectangle} alt="Builder Logo Rectangle" style={{ maxWidth: '200px', maxHeight: '100px' }} /></p>
+          </div>
+        )}
+
+        {/* Buttons placed below builder details */}
+        {builderDetails && (
+          <div className="manage-builder-action-buttons">
+            <button onClick={handleVerify} className="manage-builder-verify-button">
+              Approve
+            </button>
+            <button onClick={handleReject} className="manage-builder-verify-button">
+              Reject
+            </button>
           </div>
         )}
       </div>
