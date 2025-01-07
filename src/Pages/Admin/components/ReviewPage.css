@@ -1,0 +1,79 @@
+html {
+    font-size: 62.5%; /* 16px * 62.5% = 10px */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .review-project-submission-container {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 0.8rem;
+  }
+  
+  .review-project-submission-title {
+    text-align: center;
+    font-size: 2.6rem; /* 24px */
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .review-project-submission-section-title {
+    font-size: 2rem; /* 20px */
+    color: #4a90e2;
+    margin-top: 3rem;
+    border-bottom: 0.2rem solid #4a90e2;
+    padding-bottom: 0.5rem;
+  }
+  
+  .review-project-submission-details,
+  .review-project-submission-phase,
+  .review-project-submission-amenity {
+    margin-bottom: 2rem;
+  }
+  
+  .review-project-submission-detail,
+  .review-project-submission-phase-detail,
+  .review-project-submission-unit-detail,
+  .review-project-submission-amenity-detail {
+    font-size: 1.6rem; /* 16px */
+    color: #555;
+  }
+  
+  .review-project-submission-detail strong,
+  .review-project-submission-phase-detail strong,
+  .review-project-submission-unit-detail strong,
+  .review-project-submission-amenity-detail strong {
+    color: #333;
+  }
+  
+  .review-project-submission-units {
+    padding-left: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .review-project-submission-units-title {
+    font-size: 1.8rem; /* 18px */
+    color: #4a90e2;
+  }
+  
+  .review-project-submission-unit {
+    margin-bottom: 1.5rem;
+  }
+  
+  .review-project-submission-submit-button {
+    display: block;
+    width: 100%;
+    padding: 1.2rem;
+    margin-top: 3rem;
+    font-size: 1.8rem; /* 18px */
+    color: #fff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .review-project-submission-submit-button:hover {
+    background-color: #357ab7;
+  }
+  
