@@ -321,16 +321,28 @@ const ProjectForm = ({ onNext }) => {
       />
 
       <label className="project-form-label">Add Project Master Layout/Numbering Plan <span className="required-asterisk">*</span></label>
-      <MediaSection 
-        updateMasterLayoutPlan={updateMediaUrl} 
-        maxSize={5 * 1024 * 1024}  // 5 MB max size
-        previewStyle={{ 
-          objectFit: "contain", 
-          width: "100%",       
-          maxWidth: "600px",    
-          height: "auto"        
-        }} 
+
+      <MediaSection
+      // key={mediaSectionKeys.updateMediaUrl} // Unique key for the square logo MediaSection
+        updateMasterLayoutPlan={updateMediaUrl}
+        maxSize={1024 * 1024} 
+        previewStyle={{
+          objectFit: "contain",  
+          width: "100%",        
+          maxWidth: "250px",     
+          height: "auto",       
+          maxHeight: "250px",    
+          margin: "0 auto",      
+          display: "block"       
+        }}
+        allowedTypes={["image/png"]}
+        labelText="Select Your Logo"
+        fileLabelText="Max Size: 1 MB | PNG | Square (500x500)"
+        requiredWidth={500}
+        requiredHeight={500}
       />
+
+
       <input
         type="url"
         name="projectMedia"

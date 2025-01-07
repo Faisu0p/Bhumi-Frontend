@@ -118,6 +118,7 @@ const AmenityForm = ({ onNext, amenities, onPrevious}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Amenities Data called",amenityData);
     onNext([...amenities, amenityData]);
   };
 

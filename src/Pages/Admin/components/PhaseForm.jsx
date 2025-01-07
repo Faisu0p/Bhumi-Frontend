@@ -74,6 +74,7 @@ const PhaseForm = ({ onNext, onPrevious }) => {
 
   // Handle form submission
   const handleNext = () => {
+    console.log("Phases Data Called",phases);
     // Validation: Check if all required fields are filled
     const allValid = phases.every((phase) => {
       return (

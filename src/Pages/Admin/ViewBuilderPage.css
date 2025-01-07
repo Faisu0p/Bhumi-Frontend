@@ -1,4 +1,8 @@
 /* Custom styles for ViewBuilderPage */
+html {
+  font-size: 62.5%; /* 16px * 62.5% = 10px */
+  font-family: 'Arial', sans-serif;
+}
 
 /* Container for the entire builder view */
 .view-builder-container {
@@ -9,12 +13,10 @@
 
 /* Title styling for the page */
 .view-builder-title {
-  font-size: 2rem; /* Adjusted for consistency */
-  font-weight: 600; /* Reduced weight for uniformity */
-  color: #333; /* Standardized color */
+  font-size: 2.8rem;
+  color: #333;
   margin-bottom: 3rem;
   text-align: center;
-  text-transform: uppercase;
 }
 
 /* No builders found message styling */

@@ -11,7 +11,7 @@ const ProjectAddPage = () => {
   const [projectData, setProjectData] = useState({});
   const [phases, setPhases] = useState([]);
   const [amenities, setAmenities] = useState([]);
-  const steps = ['Project Details', 'Phases', 'Amenities', 'Review', 'Submit'];
+  const steps = ['Project Details', 'Phases', 'Amenities', 'Review'];
 
   const handleNextStep = (data, setter) => {
     setter(data);
@@ -92,27 +92,30 @@ const ProjectAddPage = () => {
       <div className="project-add-progress-bar">
         {steps.map((label, index) => (
           <React.Fragment key={index}>
-            <div className={`project-add-progress-step ${step > index ? 'active' : ''}`}>
+            <div
+              className={`project-add-progress-step 
+                ${step > index ? 'completed' : ''} 
+                ${step === index + 1 ? 'active' : ''}`}
+            >
               <span className="project-add-progress-label">{label}</span>
             </div>
             {index < steps.length - 1 && (
-              <div className={`project-add-progress-line ${step > index + 1 ? 'active' : ''}`}></div>
+              <div
+                className={`project-add-progress-line 
+                  ${step > index ? 'active' : ''}`}
+              ></div>
             )}
           </React.Fragment>
         ))}
       </div>
+
 
       {/* Form Content */}
       <div className="project-add-form-content">
         {step === 1 && <ProjectForm onNext={(data) => handleNextStep(data, setProjectData)} onPrevious={handlePreviousStep} />}
         {step === 2 && <PhaseForm onNext={(data) => handleNextStep(data, setPhases)} onPrevious={handlePreviousStep} />}
         {step === 3 && <AmenityForm onNext={(data) => handleNextStep(data, setAmenities)} amenities={amenities} onPrevious={handlePreviousStep} />}
-        {step === 4 && <ReviewPage data={projectData} />} {/* Review Page as a new step */}
-        {step === 5 && (
-          <button onClick={handleSubmit} className="project-add-submit-button">
-            Submit Project
-          </button>
-        )}
+        {step === 4 && <ReviewPage data={projectData} phases={phases} amenities={amenities} onSubmit={handleSubmit} />} {/* Pass handleSubmit to ReviewPage */}
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 /* Main Container */
 .project-add-container {
   display: flex;
-  justify-content: center; /* Centers the content horizontally */
-  align-items: flex-start; /* Aligns items at the top */
+  justify-content: center;
+  align-items: flex-start;
   padding: 2rem;
   background-color: #f7f7f7;
   min-height: 100vh;
@@ -16,7 +16,7 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 700px;
-  margin-left: 2rem; /* Adds space between the form and the progress bar */
+  margin-left: 2rem;
 }
 
 /* Progress Bar Container */
@@ -24,68 +24,115 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-right: 2rem; /* Adds space between the form and the progress bar */
-  gap: 1rem; /* Keeps spacing between the steps */
-  
-  position: sticky; /* Makes the progress bar sticky */
-  top: 2rem; /* Keeps it sticky within the viewport with a gap from the top */
-  z-index: 10; /* Ensures it's above other content */
+  margin-right: 2rem;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 2rem;
 }
 
 /* Individual Step */
 .project-add-progress-step {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   position: relative;
-  width: 200px;
-  padding: 10px 15px;
-  border-radius: 50px;
-  background-color: #ccc;
-  color: #fff;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  color: #555;
+  font-size: 1rem;
+  font-weight: 500;
   transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 8px;
 }
 
 .project-add-progress-step.active {
-  background-color: red; /* Red theme for active steps */
+  background-color: #dc3545; /* Red for active */
   color: #fff;
+}
+
+.project-add-progress-step.completed {
+  background-color: #dc3545; /* Red for completed */
+  color: #fff;
+}
+
+/* Step Icon */
+.project-add-progress-step::before {
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #dc3545;
+  margin-right: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #dc3545;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.project-add-progress-step.completed::before {
+  background-color: #fff;
+  color: #dc3545;
+  content: "\2713"; /* Unicode checkmark */
+}
+
+.project-add-progress-step.active::before {
+  background-color: #fff;
+  color: #dc3545;
+  border: 2px solid #fff;
 }
 
 /* Connecting Line */
 .project-add-progress-line {
-  width: 5px;
+  width: 4px;
   height: 50px;
   background-color: #ccc;
-  margin-left: 10px;
+  margin-left: 18px;
   transition: background-color 0.3s ease-in-out;
 }
 
 .project-add-progress-line.active {
-  background-color: #d90429; /* Red theme for active lines */
+  background-color: #dc3545; /* Red for active */
 }
 
 /* Step Label */
 .project-add-progress-label {
-  margin-left: 10px;
-  font-weight: bold;
-  color: #333;
+  color: inherit;
 }
 
-/* Adjustments for Responsiveness */
+/* Improved Responsiveness */
 @media (max-width: 768px) {
   .project-add-container {
-    flex-direction: column; /* Stacks the progress bar and form vertically on smaller screens */
+    flex-direction: column;
     padding: 1.5rem;
   }
 
   .project-add-progress-bar {
-    align-items: center; /* Centers the progress bar steps on smaller screens */
-    margin-bottom: 1.5rem; /* Adds space below the progress bar */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
   }
 
-  .project-add-form-content {
-    padding: 2rem; /* Reduce padding for smaller screens */
+  .project-add-progress-step {
+    flex: 1;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .project-add-progress-line {
+    width: 100%;
+    height: 4px;
+    margin-left: 0;
   }
 }
