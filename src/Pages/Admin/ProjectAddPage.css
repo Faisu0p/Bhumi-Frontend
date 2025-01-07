@@ -52,12 +52,12 @@
 }
 
 .project-add-progress-step.active {
-  background-color: #dc3545; /* Red for active */
+  background-color: red; /* Red for active */
   color: #fff;
 }
 
 .project-add-progress-step.completed {
-  background-color: #dc3545; /* Red for completed */
+  background-color: red; /* Red for completed */
   color: #fff;
 }
 
@@ -71,23 +71,23 @@
   height: 30px;
   border-radius: 50%;
   background-color: #fff;
-  border: 2px solid #dc3545;
+  border: 2px solid red;
   margin-right: 15px;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #dc3545;
+  color: red;
   transition: background-color 0.3s ease-in-out;
 }
 
 .project-add-progress-step.completed::before {
   background-color: #fff;
-  color: #dc3545;
+  color: red;
   content: "\2713"; /* Unicode checkmark */
 }
 
 .project-add-progress-step.active::before {
   background-color: #fff;
-  color: #dc3545;
+  color: red;
   border: 2px solid #fff;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .project-add-progress-line.active {
-  background-color: #dc3545; /* Red for active */
+  background-color: red; /* Red for active */
 }
 
 /* Step Label */
