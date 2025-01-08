@@ -144,8 +144,8 @@ const ManageBuilderPage = () => {
             <p><strong>Approval Status:</strong> {builderDetails.approvalStatus}</p>
             <p><strong>Full Name:</strong> {builderDetails.FullName}</p>
             <p><strong>Nick Name:</strong> {builderDetails.NickName}</p>
-            <p><strong>State:</strong> {builderDetails.State}</p>
-            <p><strong>City:</strong> {builderDetails.City}</p>
+            <p><strong>State:</strong> {builderDetails.State_Name}</p>
+            <p><strong>City:</strong> {builderDetails.City_Name}</p>
             <p><strong>Years of Experience:</strong> {builderDetails.Years_of_experience}</p>
             <p><strong>Short Description:</strong> {builderDetails.Short_Description}</p>
             <p><strong>Builder Logo (square):</strong> <img src={builderDetails.Builder_logo} alt="Builder Logo" style={{ maxWidth: '100px', maxHeight: '100px' }} /></p>
