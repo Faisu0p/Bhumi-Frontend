@@ -6,23 +6,19 @@ import './BuilderAddPage.css';
 
 const BuilderAddPage = () => {
   const [formData, setFormData] = useState({
-    city: "",
-    builderCompleteName: "",
-    builderShortName: "",
+    citiesAndStates: [], // Holds array of {state, city} pairs
+    builderCompleteName: "1",
+    builderShortName: "1",
     builderLogo: null,
     yearsInRealEstate: 0,
-    shortDescription: "",
-    state: "",
-    builderLogoRectangle: "",
+    shortDescription: "1",
+    builderLogoRectangle: "1",
   });
 
-  // Add this state for unique keys
   const [mediaSectionKeys, setMediaSectionKeys] = useState({
     builderLogo: Date.now(), // Unique key for the square logo MediaSection
     builderLogoRectangle: Date.now() + 1, // Unique key for the rectangular logo MediaSection
   });
-
-
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -38,7 +34,6 @@ const BuilderAddPage = () => {
     setFormData({ ...formData, [name]: value === "" ? "" : Math.max(0, Number(value)) });
   };
 
-  // Function to update builderLogo with the uploaded image URL
   const updatebuilderLogo = (url) => {
     setFormData({ ...formData, builderLogo: url });
   };
@@ -46,16 +41,16 @@ const BuilderAddPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-      // Manually validate the builderLogo field
-  if (!formData.builderLogo) {
-    alert("Builder Square Logo URL is required!");
-    return;
-  }
+    // Manually validate the builderLogo field
+    if (!formData.builderLogo) {
+      alert("Builder Square Logo URL is required!");
+      return;
+    }
 
-  if (!formData.builderLogoRectangle) {
-    alert("Builder Rectangular Logo URL is required!");
-    return;
-  }
+    if (!formData.builderLogoRectangle) {
+      alert("Builder Rectangular Logo URL is required!");
+      return;
+    }
 
     const updatedFormData = {
       ...formData,
@@ -64,8 +59,8 @@ const BuilderAddPage = () => {
         : formData.builderLogo,
 
       builderLogoRectangle: Array.isArray(formData.builderLogoRectangle)
-      ? formData.builderLogoRectangle[0]
-      : formData.builderLogoRectangle,
+        ? formData.builderLogoRectangle[0]
+        : formData.builderLogoRectangle,
     };
 
     try {
@@ -76,13 +71,12 @@ const BuilderAddPage = () => {
 
       // Reset form data after successful submission
       setFormData({
-        city: "",
+        citiesAndStates: [], // Reset cities and states
         builderCompleteName: "",
         builderShortName: "",
         builderLogo: "",
         yearsInRealEstate: 0,
         shortDescription: "",
-        state: "",
         builderLogoRectangle: "",
       });
     } catch (error) {
@@ -96,14 +90,32 @@ const BuilderAddPage = () => {
     });
   };
 
-    // Function to handle state and city changes
-    const handleLocationChange = ({ state, city }) => {
-      setFormData((prevData) => ({
-        ...prevData,
-        state: state || prevData.state,  // Only update state if a state is selected
-        city: city || prevData.city,      // Only update city if a city is selected
-      }));
-    };
+  // Function to handle state and city changes
+  const handleLocationChange = (formattedCitiesAndStates) => {
+    setFormData((prevData) => {
+      // Track cities that have already been added
+      const citiesAlreadyAdded = new Set(prevData.citiesAndStates.map((location) => location.city));
+  
+      // Filter out cities that have already been added in previous selections
+      const updatedCitiesAndStates = [
+        ...prevData.citiesAndStates,
+        ...formattedCitiesAndStates.filter((newLocation) => {
+          if (!citiesAlreadyAdded.has(newLocation.city)) {
+            citiesAlreadyAdded.add(newLocation.city);  // Add city to the set
+            return true;
+          }
+          return false;
+        }),
+      ];
+  
+      return { ...prevData, citiesAndStates: updatedCitiesAndStates };
+    });
+  };
+  
+  
+  
+  
+  
 
   return (
     <div className="builder-container builder-flex-center builder-page">
@@ -111,12 +123,10 @@ const BuilderAddPage = () => {
         <h2 className="builder-text-center builder-text-danger">Add Builder</h2>
         <form onSubmit={handleSubmit}>
 
-
           {/* State and City Input */}
           <div className="builder-form-group">
             <StateCityDropdown onLocationChange={handleLocationChange} />
           </div>
-
 
           {/* Builder Complete Name Input */}
           <div className="builder-form-group">
@@ -144,15 +154,13 @@ const BuilderAddPage = () => {
               className="builder-form-control"
               placeholder="e.g., Bhumi Builders"
             />
-
           </div>
 
           {/* Media Section for uploading Builder Logo Square */}
           <div className="builder-form-group">
             <label htmlFor="masterLayoutPlan" className="builder-form-label">Upload Builder Logo Square <span className="required-asterisk">*</span></label>
-
             <MediaSection
-            key={mediaSectionKeys.builderLogo} // Unique key for the square logo MediaSection
+              key={mediaSectionKeys.builderLogo} // Unique key for the square logo MediaSection
               updateMasterLayoutPlan={updatebuilderLogo}
               maxSize={1024 * 1024} 
               previewStyle={{
@@ -170,8 +178,6 @@ const BuilderAddPage = () => {
               requiredWidth={500}
               requiredHeight={500}
             />
-
-
           </div>
 
           {/* Builder Logo URL Input */}
@@ -191,9 +197,8 @@ const BuilderAddPage = () => {
           {/* Media Section for uploading Builder Logo Rectangle */}
           <div className="builder-form-group">
             <label htmlFor="builderLogoRectangle" className="builder-form-label">Upload Builder Logo Rectangle <span className="required-asterisk">*</span></label>
-
             <MediaSection
-            key={mediaSectionKeys.builderLogoRectangle} // Unique key for the rectangular logo MediaSection
+              key={mediaSectionKeys.builderLogoRectangle} // Unique key for the rectangular logo MediaSection
               updateMasterLayoutPlan={(url) => setFormData({ ...formData, builderLogoRectangle: url })}
               maxSize={1024 * 1024}
               previewStyle={{
@@ -211,9 +216,6 @@ const BuilderAddPage = () => {
               requiredWidth={1200}
               requiredHeight={600}
             />
-
-
-
           </div>
 
           {/* Builder Logo Rectangle URL Input */}
@@ -229,7 +231,6 @@ const BuilderAddPage = () => {
               placeholder="e.g., https://example.com/logo-rectangle.jpg"
             />
           </div>
-
 
           {/* Years in Real Estate */}
           <div className="builder-form-group">
