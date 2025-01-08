@@ -32,7 +32,7 @@ const ViewBuilderPage = () => {
     // Filter builders dynamically based on city and full name
     const filtered = builders.filter(
       (builder) =>
-        builder.City.toLowerCase().includes(cityFilter.toLowerCase()) &&
+        builder.City_Name.toLowerCase().includes(cityFilter.toLowerCase()) &&
         builder.FullName.toLowerCase().includes(nameFilter.toLowerCase())
     );
     setFilteredBuilders(filtered);
@@ -110,8 +110,8 @@ const ViewBuilderPage = () => {
                 <td>{builder.Builder_id}</td>
                 <td>{builder.FullName}</td>
                 <td>{builder.NickName}</td>
-                <td>{builder.State}</td>
-                <td>{builder.City}</td>
+                <td>{builder.State_Name}</td> {/* Updated to State_Name */}
+                <td>{builder.City_Name}</td> {/* Updated to City_Name */}
                 <td>{builder.Years_of_experience}</td>
                 <td>
                   {Array.isArray(builder.listOfProjects)
