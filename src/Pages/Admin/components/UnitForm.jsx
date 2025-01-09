@@ -8,6 +8,8 @@ const UnitForm = ({ onUnitChange, unit }) => {
   const [unitDetails, setUnitDetails] = useState(unit.unitDetails || []);
   const [category, setCategory] = useState(unit.unitCategory || '');
   const [unitType, setUnitType] = useState(unit.unitType || '');
+  const [unitFriendlyName, setUnitFriendlyName] = useState('');
+  const [unitFurnishedStatus, setUnitFurnishedStatus] = useState('');
 
   const updateMediaUrl = (url) => {
     onUnitChange('unitLayout', url); // Update the unitLayout field with the image URL
@@ -32,6 +34,20 @@ const UnitForm = ({ onUnitChange, unit }) => {
     setUnitType(value);
     onUnitChange('unitType', value); // Send updated unitType to parent
   };
+
+  const handleUnitFriendlyNameChange = (e) => {
+    const value = e.target.value;
+    setUnitFriendlyName(value);
+    onUnitChange('unitFriendlyName', value); // Notify parent
+  };
+  
+
+  const handleUnitFurnishedStatusChange = (e) => {
+    const value = e.target.value;
+    setUnitFurnishedStatus(value);
+    onUnitChange('unitFurnishedStatus', value); // Notify parent
+  };
+  
 
   const handleUnitDetailChange = (index, name, value) => {
     const updatedDetails = [...unitDetails];
@@ -122,6 +138,37 @@ const UnitForm = ({ onUnitChange, unit }) => {
           </select>
         </>
       )}
+
+<label htmlFor="unitFriendlyName" className="unit-form-label">
+    Enter Unit Friendly Name <span className="required-asterisk">*</span>
+  </label>
+  <input
+    id="unitFriendlyName"
+    type="text"
+    value={unitFriendlyName}
+    onChange={handleUnitFriendlyNameChange}
+    className="unit-form-input"
+    required
+    placeholder="Unit Friendly Name"
+  />
+
+<label htmlFor="unitFurnishedStatus" className="unit-form-label">
+    Select Furnished Status <span className="required-asterisk">*</span>
+  </label>
+  <select
+    id="unitFurnishedStatus"
+    value={unitFurnishedStatus}
+    onChange={handleUnitFurnishedStatusChange}
+    className="unit-form-input"
+    required
+  >
+    <option value="" disabled hidden>
+      Select Furnished Status
+    </option>
+    <option value="Fully Furnished">Fully Furnished</option>
+    <option value="Semi Furnished">Semi Furnished</option>
+    <option value="Unfurnished">Unfurnished</option>
+  </select>
 
       {/* Super Area Input */}
       <label className="unit-form-label" htmlFor="superArea">
