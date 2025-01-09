@@ -7,30 +7,74 @@ import LocationsDropdown from './LocationsDropdown';
 const ProjectForm = ({ onNext }) => {
 
   const [projectData, setProjectData] = useState({
-    projectName: '103',
-    builderId: '1',
-    launchDate: '1',
-    city: '1',
-    locality: '1',
-    sublocality: '1',
-    companyName: '1',
-    shortCode: '1',
-    deliveryStatus: '1',
-    deliveryDate: '1',
-    reraNumber: '1',
-    totalTowers: '1',
-    totalResidentialUnits: '1',
-    totalCommercialUnits: '1',
-    projectType: '1',
-    sectorBriefing: '1',
-    projectBriefing: '1',
+    projectName: '',
+    builderId: '',
+    launchDate: '',
+    city: '',
+    locality: '',
+    sublocality: '',
+    companyName: '',
+    shortCode: '',
+    deliveryStatus: '',
+    deliveryDate: '',
+    reraNumber: '',
+    totalTowers: '',
+    totalResidentialUnits: '',
+    totalCommercialUnits: '',
+    projectType: '',
+    sectorBriefing: '',
+    projectBriefing: '',
     projectIsVerified: false,
-    projectMedia: '1',
-    state: '1',
-    completeAddress: '1',
-    landmark: '1',
-    pinCode: '1',
+    projectMedia: '',
+    state: '',
+    completeAddress: '',
+    landmark: '',
+    pinCode: '',
   });
+
+{/* Secret key to auto-fill the form */}
+  const secretKey = '001'; // Define your secret key
+
+  const predefinedData = {
+    projectName: '001',
+    builderId: '2',
+    launchDate: '2025-01-01',
+    city: 'New York',
+    locality: 'Manhattan',
+    sublocality: 'Downtown',
+    companyName: 'ABC Builders',
+    shortCode: 'ABCD123',
+    deliveryStatus: 'Under Construction',
+    deliveryDate: '2025-12-01',
+    reraNumber: 'RERA123456',
+    totalTowers: '5',
+    totalResidentialUnits: '500',
+    totalCommercialUnits: '100',
+    projectType: 'Residential',
+    sectorBriefing: 'Residential development with amenities',
+    projectBriefing: 'A large-scale residential project in the heart of the city.',
+    projectIsVerified: false,
+    projectMedia: 'http://example.com/media-url',
+    state: 'New York',
+    completeAddress: '123 Main St, Downtown, New York',
+    landmark: 'Near Central Park',
+    pinCode: '10001',
+  };
+
+  const handleProjectNameChange = (e) => {
+    const value = e.target.value;
+    setProjectData((prev) => ({ ...prev, projectName: value }));
+
+    // If the secret key is entered, auto-fill the rest of the form
+    if (value === secretKey) {
+      setProjectData((prev) => ({
+        ...prev,
+        ...predefinedData,
+      }));
+    }
+  }; //Secret key to auto-fill the form ends here
+
+
 
   const handleLocationChange = (newLocationData) => {
     setProjectData((prev) => ({
@@ -97,7 +141,7 @@ const ProjectForm = ({ onNext }) => {
         type="text"
         name="projectName"
         value={projectData.projectName}
-        onChange={handleChange}
+        onChange={handleProjectNameChange} // Secret key to auto-fill the form
         placeholder="Project Name"
         required
         maxLength={50}
