@@ -7,12 +7,12 @@ import './BuilderAddPage.css';
 const BuilderAddPage = () => {
   const [formData, setFormData] = useState({
     citiesAndStates: [], // Holds array of {state, city} pairs
-    builderCompleteName: "1",
-    builderShortName: "1",
+    builderCompleteName: "",
+    builderShortName: "",
     builderLogo: null,
     yearsInRealEstate: 0,
-    shortDescription: "1",
-    builderLogoRectangle: "1",
+    shortDescription: "",
+    builderLogoRectangle: "",
   });
 
   const [mediaSectionKeys, setMediaSectionKeys] = useState({

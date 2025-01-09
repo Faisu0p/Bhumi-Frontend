@@ -40,4 +40,34 @@ html {
     color: #aaa;
     cursor: not-allowed;
   }
+
+  /* Scrollbar styling for WebKit browsers (Chrome, Edge, Safari) */
+.builder-location-dropdown-dropdown::-webkit-scrollbar {
+  width: 0.8rem; /* Width of the scrollbar */
+}
+
+.builder-location-dropdown-dropdown::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Light gray background for the scrollbar track */
+  border-radius: 0.4rem; /* Match dropdown corners */
+}
+
+.builder-location-dropdown-dropdown::-webkit-scrollbar-thumb {
+  background: #ccc; /* Color of the scrollbar thumb */
+  border-radius: 0.4rem; /* Rounded scrollbar thumb */
+}
+
+.builder-location-dropdown-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Darker thumb on hover */
+}
+
+/* Scrollbar styling for Firefox */
+.builder-location-dropdown-dropdown {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #ccc #f0f0f0; /* Thumb and track colors */
+}
+
+/* Scrollbar styling for Edge/IE */
+.builder-location-dropdown-dropdown::-ms-scrollbar {
+  width: 0.8rem;
+}
   
