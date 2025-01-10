@@ -12,10 +12,11 @@ const UnitForm = ({ onUnitChange, unit }) => {
   const [unitFurnishedStatus, setUnitFurnishedStatus] = useState('');
 
   const updateMediaUrl = (url) => {
-    onUnitChange('unitLayout', url); // Update the unitLayout field with the image URL
+    const updatedUrl = Array.isArray(url) ? url[0] : url; // Use the first URL if it's an array
+    onUnitChange('unitLayout', updatedUrl); // Update the unitLayout field with the single URL
   };
   
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     onUnitChange(name, value);
@@ -269,7 +270,7 @@ const UnitForm = ({ onUnitChange, unit }) => {
       </label>
 
       {/* Media Section for uploading unit layout image */}
-      <MediaSection
+      {/* <MediaSection
         updateMasterLayoutPlan={updateMediaUrl}
         maxSize={5 * 1024 * 1024}  // 5 MB max size
         previewStyle={{
@@ -278,6 +279,26 @@ const UnitForm = ({ onUnitChange, unit }) => {
           maxWidth: "600px",
           height: "auto"
         }}
+      /> */}
+
+      <MediaSection
+        // key={mediaSectionKeys.updateMediaUrl} // Unique key for the master layout plan MediaSection
+        updateMasterLayoutPlan={updateMediaUrl}
+        maxSize={1024 * 1024} // Max file size of 1 MB
+        previewStyle={{
+          objectFit: "contain",  
+          width: "100%",        
+          maxWidth: "150px",   // Adjusted for wider display (landscape)
+          height: "auto",       
+          maxHeight: "150px",   // Adjusted for a taller display (landscape)
+          margin: "0 auto",      
+          display: "block"       
+        }}
+        allowedTypes={["image/png", "image/jpeg"]} // Allow both PNG and JPEG formats
+        labelText="Select Your Master Layout Plan"
+        fileLabelText="Max Size: 1 MB | PNG, JPEG | Landscape (150x150)px"
+        requiredWidth={150}  // Required width for the layout plan
+        requiredHeight={150} // Required height for the layout plan
       />
 
       <textarea
