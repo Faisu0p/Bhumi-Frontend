@@ -14,6 +14,7 @@ const ProjectAddPage = () => {
   const steps = ['Project Details', 'Phases', 'Amenities', 'Review'];
 
   const handleNextStep = (data, setter) => {
+    console.log("Data from previous step:", data);
     setter(data);
     setStep(step + 1);
   };
