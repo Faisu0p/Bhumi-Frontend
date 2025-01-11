@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './PhaseForm.css';
 import UnitForm from './UnitForm';
 
-const PhaseForm = ({ onNext, onPrevious }) => {
-  const [phases, setPhases] = useState([]);
+const PhaseForm = ({ onNext, onPrevious, data }) => {
+  const [phases, setPhases] = useState(data || []);
+  
 
   // Handle phase field changes
   const handlePhaseChange = (e, phaseIndex) => {

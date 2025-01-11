@@ -4,9 +4,9 @@ import MediaSection from './MediaSection';
 import BuilderDropdown from './BuilderDropdown';
 import LocationsDropdown from './LocationsDropdown';
 
-const ProjectForm = ({ onNext }) => {
+const ProjectForm = ({ onNext, data }) => {
 
-  const [projectData, setProjectData] = useState({
+  const [projectData, setProjectData] = useState(data || {
     projectName: '',
     builderId: '',
     launchDate: '',
