@@ -1,132 +1,130 @@
-/* Custom styles for ManageProjectPage */
+/* ManageProjectPage.css */
 
 /* General layout for the manage project page */
 .manage-project-page {
+  padding: 2.5rem; /* Match Builder Add Page padding */
+  background: linear-gradient(145deg, #ffffff, #f1f1f1); /* Match Builder Add Page gradient */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally */
+  justify-content: flex-start;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Title styling */
+.manage-project-title {
+  font-size: 2.8rem; /* Match Builder Add Page title font-size */
+  color: #333; /* Match Builder Add Page title color */
+  margin-bottom: 3rem; /* Consistent spacing */
+  text-align: center;
+  width: 100%;
+}
+
+/* White box container for the form and content */
+.manage-project-form-container {
+  background-color: #fff;
+  border-radius: 1.5rem; /* Match Builder Add Page border-radius */
+  padding: 2.5rem; /* Match Builder Add Page padding */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Match Builder Add Page shadow */
+  width: 100%;
+  max-width: 80rem; /* Match Builder Add Page max-width */
+  margin: 2rem auto;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.manage-project-form-container:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Label styling */
+.manage-project-selection-label {
+  font-size: 1.6rem; /* Match Builder Add Page label font-size */
+  color: #333;
+  margin-bottom: 1rem; /* Consistent spacing */
+  text-align: left;
+}
+
+/* Container for selecting project */
+.manage-project-selection-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Match Builder Add Page spacing */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dropdown selection styling */
+.manage-project-selection-dropdown {
+  width: 100%;
+  max-width: 32rem; /* Match Builder Add Page field width */
+  padding: 1rem; /* Match Builder Add Page input padding */
+  font-size: 1.4rem; /* Match Builder Add Page input font-size */
+  border-radius: 1rem; /* Match Builder Add Page input border-radius */
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manage-project-selection-dropdown:focus {
+  border-color: #007bff; /* Match Builder Add Page focus color */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Button styling */
+.manage-project-verify-button {
+  width: 100%;
+  max-width: 32rem; /* Match Builder Add Page button width */
+  padding: 1.4rem; /* Match Builder Add Page button padding */
+  font-size: 1.6rem; /* Match Builder Add Page button font-size */
+  background-color: red; /* Match Builder Add Page button color */
+  color: white;
+  border: none;
+  border-radius: 1rem; /* Match Builder Add Page button border-radius */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Match Builder Add Page button shadow */
+}
+
+.manage-project-verify-button:hover {
+  background-color: #b90320; /* Match Builder Add Page button hover color */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the verification message */
+.manage-project-verification-message {
+  margin-top: 2rem; /* Consistent spacing */
+  padding: 1.5rem; /* Match Builder Add Page message padding */
+  font-size: 1.4rem; /* Match Builder Add Page message font-size */
+  color: #333;
+  background-color: #f1f1f1; /* Match Builder Add Page background */
+  border: 1px solid #ddd;
+  border-radius: 1rem; /* Match Builder Add Page message border-radius */
+  width: 100%;
+  max-width: 32rem; /* Match Builder Add Page width */
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Add spacing between form elements */
+.manage-project-form-container > * {
+  margin-bottom: 2rem; /* Match Builder Add Page spacing */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .manage-project-page {
     padding: 2rem;
-    background-color: #f7f7f7;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 100vh;
-    flex-direction: column;
-    text-align: center; /* Center all text inside the page */
   }
-  
-  /* Title styling */
-  .manage-project-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: black;
-    margin-bottom: 2rem;
-    text-align: center; /* Center the title horizontally */
-    width: 100%; /* Make sure it's full width for proper centering */
-  }
-  
-  /* White box container for the form and content */
+
   .manage-project-form-container {
-    background-color: #fff;
-    border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin: 2rem auto; /* Centers horizontally with space from top and bottom */
-    text-align: left;
   }
-  
-  /* Label styling */
-  .manage-project-selection-label {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 0.8rem;
-    display: block;
-    text-align: center; /* Center text inside the label */
-  }
-  
-  /* Container for selecting project */
-  .manage-project-selection-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: center; /* Ensure form elements are centered horizontally */
-  }
-  
-  /* Dropdown selection styling */
-  .manage-project-selection-dropdown {
-    padding: 0.8rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    width: 100%;
-    max-width: 300px; /* Align the dropdown width to the label */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  .manage-project-selection-dropdown:focus {
-    border-color: #d90429;
-    outline: none;
-  }
-  
-  /* Button styling */
-  .manage-project-verify-button {
-    padding: 1rem 2.5rem;
-    font-size: 1.2rem;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    width: 100%;
-    max-width: 320px;
-  }
-  
-  .manage-project-verify-button:hover {
-    background-color: #b90320;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Styling for the verification message */
+
+  .manage-project-selection-dropdown,
+  .manage-project-verify-button,
   .manage-project-verification-message {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    font-size: 1rem;
-    color: #333;
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 300px; /* Align the width to match the dropdown and button */
-    text-align: center; /* Center text inside the message */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: auto; /* Center the message horizontally */
-    margin-right: auto; /* Center the message horizontally */
+    max-width: 100%;
   }
-  
-  /* Add spacing between form elements */
-  .manage-project-form-container > * {
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    .manage-project-page {
-      padding: 1.5rem;
-    }
-  
-    .manage-project-selection-dropdown {
-      max-width: 100%;
-    }
-  
-    .manage-project-verify-button {
-      max-width: 100%;
-    }
-  
-    .manage-project-form-container {
-      padding: 1.5rem;
-    }
-  }
-  
+}

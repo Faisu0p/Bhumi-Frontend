@@ -1,89 +1,95 @@
+/* AddLocationPage.css */
+
 .add-location-page {
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .page-title {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  
-  .location-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-label {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 8px;
-    display: block;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .form-control:focus {
-    border-color: #e60000; /* Red theme */
-    box-shadow: 0 0 5px rgba(230, 0, 0, 0.3);
-  }
-  
-  .btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #e60000;  /* Red theme */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #c20000;  /* Darker red on hover */
-  }
-  
-  .message {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 16px;
-    color: #28a745;  /* Green color for success */
-  }
-  
-  .message.error {
-    color: #dc3545;  /* Red color for error */
-  }
-  
-  select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  select:focus {
-    border-color: #e60000;  /* Red theme */
-    box-shadow: 0 0 5px rgba(230, 0, 0, 0.3);
-  }
-  
+  padding: 2.5rem; /* Match Builder Add Page padding */
+  max-width: 80rem; /* Match Builder Add Page max-width */
+  margin: 0 auto;
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  border-radius: 1.5rem; /* Match Builder Add Page border-radius */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Match Builder Add Page box-shadow */
+  transition: all 0.3s ease-in-out;
+}
+
+.add-location-page:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styles */
+.page-title {
+  color: #333; /* Match Builder Add Page title color */
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.8rem; /* Match Builder Add Page font-size */
+}
+
+/* Form styling */
+.location-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 2.5rem; /* Match Builder Add Page spacing */
+}
+
+/* Label styling */
+.form-label {
+  font-size: 1.6rem; /* Match Builder Add Page label font-size */
+  color: #333;
+  margin-bottom: 1rem; /* Match Builder Add Page spacing */
+  display: block;
+}
+
+/* Input and select styles */
+.form-control, 
+select {
+  width: 100%;
+  padding: 1rem; /* Match Builder Add Page input padding */
+  margin-top: 0.5rem;
+  border-radius: 0.5rem; /* Match Builder Add Page border-radius */
+  border: 1px solid #ccc;
+  font-size: 1.4rem; /* Match Builder Add Page font-size */
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff; /* Match Builder Add Page background color */
+  color: #333;
+}
+
+.form-control:focus, 
+select:focus {
+  border-color: #007bff; /* Match Builder Add Page focus color */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Match Builder Add Page focus shadow */
+  outline: none;
+}
+
+/* Button styling */
+.btn {
+  width: 100%;
+  padding: 1.4rem; /* Match Builder Add Page button padding */
+  background-color: red; /* Match Builder Add Page button color */
+  color: #fff;
+  border: none;
+  border-radius: 1rem; /* Match Builder Add Page button border-radius */
+  font-size: 1.4rem; /* Match Builder Add Page button font-size */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Match Builder Add Page button shadow */
+}
+
+.btn:hover {
+  background-color: #b90320; /* Match Builder Add Page button hover color */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Message styles */
+.message {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.4rem; /* Match Builder Add Page font-size */
+  color: #28a745; /* Success message color */
+}
+
+.message.error {
+  color: red; /* Match Builder Add Page error message color */
+}

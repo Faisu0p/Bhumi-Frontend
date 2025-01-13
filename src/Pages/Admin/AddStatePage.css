@@ -1,79 +1,86 @@
 /* Container for the whole page */
 .state-page-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title styles */
-  .state-page-title {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  /* Form styles */
-  .state-page-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Input container */
-  .state-page-input-container {
-    margin-bottom: 15px;
-  }
-  
-  /* Label styles */
-  .state-page-label {
-    display: block;
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  /* Input styles */
-  .state-page-input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    background-color: white;
-    color: #333;
-    transition: border-color 0.3s ease;
-  }
-  
-  .state-page-input:focus {
-    border-color: #e74c3c;  /* Red focus state */
-  }
-  
-  /* Button styles */
-  .state-page-button {
-    padding: 12px;
-    font-size: 16px;
-    background-color: #e74c3c; /* Red button */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .state-page-button:hover {
-    background-color: #c0392b;  /* Darker red on hover */
-  }
-  
-  /* Message styles */
-  .state-page-message {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 20px;
-    color: #e74c3c;  /* Red message color for error */
-  }
-  
+  width: 100%;
+  max-width: 80rem; /* Match Builder Add Page max-width */
+  margin: 0 auto;
+  padding: 2.5rem; /* Match Builder Add Page padding */
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  border-radius: 1.5rem; /* Match Builder Add Page border-radius */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Match hover shadow */
+  transition: all 0.3s ease-in-out;
+}
+
+.state-page-container:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styles */
+.state-page-title {
+  text-align: center;
+  font-size: 2.8rem; /* Match Builder Add Page heading */
+  margin-bottom: 3rem;
+  color: #333;
+}
+
+/* Form styles */
+.state-page-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input container */
+.state-page-input-container {
+  margin-bottom: 2.5rem; /* Match Builder Add Page spacing */
+}
+
+/* Label styles */
+.state-page-label {
+  display: block;
+  font-size: 1.6rem; /* Match Builder Add Page label font-size */
+  color: #333;
+  margin-bottom: 1rem; /* Match Builder Add Page spacing */
+}
+
+/* Input styles */
+.state-page-input {
+  width: 100%;
+  padding: 1rem; /* Match Builder Add Page input padding */
+  font-size: 1.4rem; /* Match Builder Add Page input font-size */
+  border: 1px solid #ccc;
+  border-radius: 0.5rem; /* Match Builder Add Page input border-radius */
+  background-color: white;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.state-page-input:focus {
+  border-color: #007bff; /* Match Builder Add Page focus color */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Button styles */
+.state-page-button {
+  padding: 1.4rem; /* Match Builder Add Page button padding */
+  font-size: 1.4rem; /* Match Builder Add Page button font-size */
+  background-color: red; /* Match Builder Add Page button color */
+  color: white;
+  border: none;
+  border-radius: 1rem; /* Match Builder Add Page button border-radius */
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Match Builder Add Page button shadow */
+  transition: all 0.3s ease-in-out;
+}
+
+.state-page-button:hover {
+  background-color: #b90320; /* Match Builder Add Page hover color */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Message styles */
+.state-page-message {
+  text-align: center;
+  font-size: 1.4rem; /* Match Builder Add Page font-size */
+  margin-top: 2rem;
+  color: red; /* Match Builder Add Page message color */
+}

@@ -1,31 +1,41 @@
+/* AddPincodePage.css */
+
 /* General Container Styling */
 .add-pincode-container {
-  max-width: 600px;
+  max-width: 80rem; /* Match Builder Add Page max-width */
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem; /* Match Builder Add Page padding */
+  background: linear-gradient(145deg, #ffffff, #f1f1f1); /* Match Builder Add Page gradient */
+  border-radius: 1.5rem; /* Match Builder Add Page border-radius */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Match Builder Add Page box-shadow */
+  transition: all 0.3s ease-in-out;
 }
 
+.add-pincode-container:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Title Styling */
 .add-pincode-title {
   text-align: center;
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 20px;
+  color: #333; /* Match Builder Add Page title color */
+  font-size: 2.8rem; /* Match Builder Add Page title font-size */
+  margin-bottom: 3rem; /* Match Builder Add Page spacing */
 }
 
 /* Error and Success Messages */
 .add-pincode-error {
-  color: #d9534f;
+  color: red; /* Match Builder Add Page error color */
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 2rem; /* Match Builder Add Page spacing */
+  font-size: 1.4rem; /* Match Builder Add Page font-size */
 }
 
 .add-pincode-success {
-  color: #5bc0de;
+  color: #28a745; /* Green for success messages */
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
 }
 
 /* Form Styling */
@@ -34,58 +44,64 @@
   flex-direction: column;
 }
 
+/* Form Fields */
 .add-pincode-field {
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem; /* Match Builder Add Page spacing */
 }
 
 .add-pincode-label {
-  font-size: 16px;
+  font-size: 1.6rem; /* Match Builder Add Page label font-size */
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 1rem; /* Match Builder Add Page spacing */
 }
 
+/* Input and Select Styling */
 .add-pincode-select,
 .add-pincode-input {
   width: 100%;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 1rem; /* Match Builder Add Page input padding */
+  border-radius: 0.5rem; /* Match Builder Add Page border-radius */
   border: 1px solid #ccc;
-  background-color: white; /* White background for input fields */
-  font-size: 16px;
-  color: #333; /* Set text color to dark to ensure readability */
+  font-size: 1.4rem; /* Match Builder Add Page font-size */
+  background-color: #fff; /* Match Builder Add Page input background */
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Focused input fields */
 .add-pincode-select:focus,
 .add-pincode-input:focus {
-  border-color: #d9534f; /* Red theme */
+  border-color: #007bff; /* Match Builder Add Page focus color */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
-  background-color: #fff; /* Ensures white background on focus */
 }
 
 /* Button Styling */
 .add-pincode-button {
-  padding: 12px;
-  background-color: #d9534f; /* Red theme */
+  width: 100%;
+  padding: 1.4rem; /* Match Builder Add Page button padding */
+  background-color: red; /* Match Builder Add Page button color */
   color: white;
-  font-size: 16px;
+  font-size: 1.4rem; /* Match Builder Add Page button font-size */
+  font-weight: bold;
   border: none;
-  border-radius: 4px;
+  border-radius: 1rem; /* Match Builder Add Page button border-radius */
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Match Builder Add Page button shadow */
 }
 
 .add-pincode-button:hover {
-  background-color: #c9302c;
+  background-color: #b90320; /* Match Builder Add Page button hover color */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsiveness */
 @media (max-width: 600px) {
   .add-pincode-container {
-    padding: 15px;
+    padding: 2rem; /* Adjust for smaller screens */
   }
 
   .add-pincode-title {
-    font-size: 20px;
+    font-size: 2.4rem; /* Adjust title font size for smaller screens */
   }
 }
