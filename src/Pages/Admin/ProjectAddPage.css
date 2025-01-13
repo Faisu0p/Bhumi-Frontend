@@ -91,18 +91,35 @@
   border: 2px solid #fff;
 }
 
-/* Connecting Line */
+/* Connecting Line with Arrow */
 .project-add-progress-line {
   width: 4px;
   height: 50px;
   background-color: #ccc;
-  margin-left: 18px;
+  position: relative;
+  margin: 0 auto; /* Center the line horizontally */
   transition: background-color 0.3s ease-in-out;
 }
 
 .project-add-progress-line.active {
   background-color: red; /* Red for active */
 }
+
+.project-add-progress-line::after {
+  content: "";
+  position: absolute;
+  bottom: -6px; /* Position the arrow at the bottom of the line */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 12px solid red; /* Color of the arrow */
+}
+
+
+
 
 /* Step Label */
 .project-add-progress-label {
