@@ -1,0 +1,34 @@
+/* BuilderEditPage.css */
+
+.builder-edit-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .builder-edit-page h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  .builder-edit-page p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    text-align: center;
+    max-width: 600px;
+    margin-bottom: 10px;
+  }
+  
+  .builder-edit-page p:last-child {
+    font-weight: bold;
+    color: #e74c3c;
+  }
+  

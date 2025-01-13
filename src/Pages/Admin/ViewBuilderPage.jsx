@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Add this at the top
 import { getAllBuildersInfo } from "./apis/builderApi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './ViewBuilderPage.css';
@@ -10,6 +11,8 @@ const ViewBuilderPage = () => {
   const [error, setError] = useState(null);
   const [cityFilter, setCityFilter] = useState(""); // Search term for city
   const [nameFilter, setNameFilter] = useState(""); // Search term for full name
+  const navigate = useNavigate(); // Add this line inside the component
+
 
   useEffect(() => {
     const fetchBuilders = async () => {
@@ -107,7 +110,17 @@ const ViewBuilderPage = () => {
           <tbody>
             {filteredBuilders.map((builder) => (
               <tr key={builder.Builder_id}>
-                <td>{builder.Builder_id}</td>
+
+                <td>
+                  {builder.Builder_id}
+                  <button
+                    className="btn btn-warning mt-2" 
+                    onClick={() => navigate(`/edit-builder/${builder.Builder_id}`)}
+                  >
+                    Edit
+                  </button>
+                </td>
+
                 <td>{builder.FullName}</td>
                 <td>{builder.NickName}</td>
                 <td>{builder.State_Name}</td> {/* Updated to State_Name */}

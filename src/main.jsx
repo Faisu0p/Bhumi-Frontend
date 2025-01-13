@@ -22,6 +22,7 @@ import AddCityPage from './Pages/Admin/AddCityPage';
 import AddLocalityPage from './Pages/Admin/AddLocalityPage';
 import AddSublocalityPage from './Pages/Admin/AddSublocalityPage';
 import AddPincodePage from './Pages/Admin/AddPincodePage';
+import BuilderEditPage from './Pages/Admin/BuilderEditPage';
 
 function LayoutWithHeader({ children }) {
   return (
@@ -49,6 +50,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/add-builder" element={<LayoutWithHeader><BuilderAddPage /></LayoutWithHeader>} />
         <Route path="/add-project" element={<LayoutWithHeader><ProjectAddPage /></LayoutWithHeader>} />
         <Route path="/manage-builder" element={<LayoutWithHeader><ManageBuilderPage /></LayoutWithHeader>} />
+        <Route path="/edit-builder/:id" element={<BuilderEditPage />} /> {/* Edit Builder Page */}
         <Route path="/view-builder" element={<LayoutWithHeader><ViewBuilderPage /></LayoutWithHeader>} />
         <Route path="/view-project" element={<LayoutWithHeader><ViewProjectPage /></LayoutWithHeader>} />
         <Route path="/manage-project" element={<LayoutWithHeader><ManageProjectPage /></LayoutWithHeader>} />
