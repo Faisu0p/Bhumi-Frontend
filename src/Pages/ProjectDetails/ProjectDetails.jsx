@@ -11,7 +11,7 @@ function ProjectDetails() {
 
   useEffect(() => {
     // Fetch project data based on the ID
-    axios.get(`http://localhost:5000/api/projects/${id}`)
+    axios.get(`http://localhost:8021/api/projects/${id}`)
       .then((response) => {
         setProjectData(response.data);  // Set fetched data
         setLoading(false);  // Stop loading
