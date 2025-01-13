@@ -1,31 +1,35 @@
+/* Set 1rem = 10px */
+html {
+  font-size: 62.5%;  /* 1rem = 10px */
+}
+
 /* General container styling */
 .unit-form-container {
   font-family: Arial, sans-serif;
-  margin: 20px;
-  padding: 20px;
+  margin: 2rem;  /* 20px */
+  padding: 2rem;  /* 20px */
   background-color: #fff; /* White background */
-  border-radius: 8px;
+  border-radius: 0.8rem;  /* 8px */;
 }
 
 /* Headings */
 .unit-form-heading {
-  font-size: 24px; /* Consistent with phase-form headings */
-  margin-bottom: 20px;
+  font-size: 2.8rem; /* 24px */
+  margin-bottom: 2rem;  /* 20px */
   color: black; /* Red color for headings */
 }
 
 .unit-form-definition {
-  font-size: 16px; /* Slightly smaller for secondary text */
-  margin-bottom: 20px; 
+  font-size: 1.6rem; /* 16px */
+  margin-bottom: 2rem;  /* 20px */
   color: #757575; /* Grey for readability */
   line-height: 1.5;
 }
 
 /* Labels */
 .unit-form-label {
-  font-size: 14px; /* Label font size */
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: 1.6rem; /* 14px */
+  margin-bottom: 0.5rem;  /* 5px */
   display: block;
   color: #333; /* Dark text color */
   text-align: left;
@@ -33,7 +37,7 @@
 
 .required-asterisk {
   color: red;
-  margin-left: 2px;
+  margin-left: 0.2rem;  /* 2px */
 }
 
 /* Inputs, selects, and textareas */
@@ -41,11 +45,11 @@
 .unit-form-input,
 .unit-form-textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
+  padding: 1rem;  /* 10px */
+  margin-bottom: 1.5rem;  /* 15px */
   border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px; /* Adjust for consistency */
+  border-radius: 0.5rem;  /* 5px */
+  font-size: 1.4rem; /* 14px */
   background-color: white;
   color: #333;
 }
@@ -56,12 +60,12 @@
 
 /* Buttons */
 .unit-form-btn {
-  background-color: #d32f2f; /* Red background */
+  background-color: red; /* Red background */
   color: white;
-  padding: 10px 20px;
+  padding: 1rem 2rem;  /* 10px 20px */
   border: none;
-  border-radius: 5px;
-  font-size: 16px; /* Larger font for emphasis */
+  border-radius: 0.5rem;  /* 5px */
+  font-size: 1.6rem; /* 16px */
   cursor: pointer;
 }
 
@@ -81,23 +85,23 @@
 .media-preview {
   object-fit: contain;
   width: 100%;
-  max-width: 600px;
+  max-width: 60rem;  /* 600px */
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;  /* 15px */
 }
 
 /* Styling for dynamic unit details */
 .unit-detail-container {
-  margin-bottom: 20px;
-  padding: 15px;
+  margin-bottom: 2rem;  /* 20px */
+  padding: 1.5rem;  /* 15px */
   background-color: #f9f9f9;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 0.8rem;  /* 8px */
 }
 
 .unit-detail-container .unit-form-btn {
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 1rem;  /* 10px */
+  font-size: 1.4rem; /* 14px */
 }
 
 .remove-unit-detail-btn {

@@ -3,90 +3,111 @@ html {
   font-family: 'Arial', sans-serif;
 }
 
+/* General container styling */
 .review-project-submission-container {
-  padding: 2rem;
+  padding: 3rem;
   background-color: #f9f9f9;
-  border-radius: 0.8rem;
+  border-radius: 1rem;  /* Rounded corners */
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1); /* Soft shadow for better depth */
+  max-width: 90rem; /* Max width for container */
+  margin: 3rem auto;  /* Center the container */
 }
 
+/* Title Styling */
 .review-project-submission-title {
   text-align: center;
-  font-size: 2.6rem; /* 24px */
-  margin-bottom: 2rem;
+  font-size: 2.8rem;  /* Slightly larger font size for emphasis */
+  margin-bottom: 2.5rem;
   color: #333;
 }
 
+/* Section Titles */
 .review-project-submission-section-title {
-  font-size: 2rem; /* 20px */
-  color: red;
-  margin-top: 3rem;
-  border-bottom: 0.2rem solid red;
-  padding-bottom: 0.5rem;
+  font-size: 2.2rem; /* 24px */
+  color: #d32f2f;  /* Red color */
+  margin-top: 4rem;
+  border-bottom: 0.2rem solid #d32f2f;
+  padding-bottom: 1rem;
+  font-weight: 600;
 }
 
+/* Content Sections Styling */
 .review-project-submission-details,
 .review-project-submission-phase,
 .review-project-submission-amenity {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
+/* Detail items with slight spacing */
 .review-project-submission-detail,
 .review-project-submission-phase-detail,
 .review-project-submission-unit-detail,
 .review-project-submission-amenity-detail {
-  font-size: 1.6rem; /* 16px */
+  font-size: 1.6rem;  /* 16px */
   color: #555;
+  line-height: 1.6;  /* Improved line height for better readability */
 }
 
+/* Labels for details */
 .review-project-submission-detail-label,
 .review-project-submission-phase-label,
 .review-project-submission-unit-detail-label,
 .review-project-submission-amenity-label {
   color: #333;
-  font-weight: bold;
+  font-weight: 600;
+  margin-bottom: 0.8rem; /* Space between label and detail */
 }
 
+/* Units Styling */
 .review-project-submission-units {
   padding-left: 2rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .review-project-submission-units-title {
-  font-size: 1.8rem; /* 18px */
-  color: red;
+  font-size: 2rem;  /* 20px */
+  color: #d32f2f;
+  font-weight: 600;
 }
 
 .review-project-submission-unit {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .review-project-submission-unit-details {
-  padding-left: 2rem;
+  padding-left: 3rem;  /* Increased indentation */
   margin-top: 1rem;
 }
 
 .review-project-submission-unit-details-title {
-  font-size: 1.8rem; /* 18px */
-  color: red;
-  margin-bottom: 1rem;
-}
-
-.review-project-submission-unit-detail-item {
+  font-size: 2rem; /* 20px */
+  color: #d32f2f;
   margin-bottom: 1.2rem;
+  font-weight: 600;
 }
 
+/* Unit item details */
+.review-project-submission-unit-detail-item {
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;  /* 16px */
+  color: #555;
+}
+
+/* Submit Button Styling */
 .review-project-submission-submit-button {
   display: block;
   width: 100%;
-  padding: 1.2rem;
-  margin-top: 3rem;
-  font-size: 1.8rem; /* 18px */
+  padding: 1.5rem;
+  margin-top: 4rem;
+  font-size: 1.8rem;  /* 18px */
   color: #fff;
   background-color: red;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  text-align: center;
   transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
 .review-project-submission-submit-button:hover {

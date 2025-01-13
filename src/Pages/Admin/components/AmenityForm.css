@@ -1,55 +1,60 @@
+/* Set 1rem = 10px */
+html {
+  font-size: 62.5%;  /* 1rem = 10px */
+}
+
 /* General Form Styling */
 .amenity-form-container {
   font-family: Arial, sans-serif;
-  margin: 30px auto;
-  padding: 30px;
-  max-width: 900px;
+  margin: 3rem auto;  /* 30px */
+  padding: 3rem;  /* 30px */
+  max-width: 90rem;  /* 900px */
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.8rem;  /* 8px */
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 /* Form Heading */
 .amenity-form-heading {
-  font-size: 2.5rem;
-  color: #d32f2f; /* Red for emphasis */
-  margin-bottom: 20px;
+  font-size: 2.8rem;  /* 25px */
+  color: black; /* Red for emphasis */
+  margin-bottom: 2rem;  /* 20px */
   text-align: center;
 }
 
 /* Category Title Styling */
 .amenity-form-category-title {
-  font-size: 1.8rem;
+  font-size: 1.8rem;  /* 18px */
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;  /* 10px */
   text-transform: uppercase;
-  letter-spacing: 1px;
-  border-bottom: 2px solid #d32f2f;
-  padding-bottom: 5px;
+  letter-spacing: 0.1rem;  /* 1px */
+  border-bottom: 0.2rem solid #d32f2f;  /* 2px */
+  padding-bottom: 0.5rem;  /* 5px */
 }
 
 /* Category Group Styling */
 .amenity-form-category {
-  margin-bottom: 30px;
+  margin-bottom: 3rem;  /* 30px */
 }
 
 /* Label Styling for Amenities */
 .amenity-form-checkbox-label {
-  font-size: 1.2rem;
+  font-size: 1.2rem;  /* 12px */
   color: #333;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;  /* 10px */
   line-height: 1.5;
 }
 
 /* Styling for Checkboxes */
 .amenity-form-checkbox {
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
+  margin-right: 1rem;  /* 10px */
+  width: 2rem;  /* 20px */
+  height: 2rem;  /* 20px */
   background-color: white;
-  border: 2px solid #d32f2f;
-  border-radius: 4px;
+  border: 0.2rem solid #d32f2f;  /* 2px */
+  border-radius: 0.4rem;  /* 4px */
   position: relative;
   cursor: pointer;
   vertical-align: middle;
@@ -65,31 +70,32 @@
 
 /* Checkbox Focus State */
 .amenity-form-checkbox:focus {
-  outline: 3px solid #c62828;
+  outline: 0.3rem solid #c62828;  /* 3px */
 }
 
 /* Fixing the Tick Mark Orientation */
 .amenity-form-checkbox:checked::before {
   content: '';
   position: absolute;
-  top: 2px;
-  left: 6px;
-  width: 6px;
-  height: 12px;
+  top: 0.2rem;  /* 2px */
+  left: 0.6rem;  /* 6px */
+  width: 0.6rem;  /* 6px */
+  height: 1.2rem;  /* 12px */
   border: solid white;
-  border-width: 0 2px 2px 0;
+  border-width: 0 0.2rem 0.2rem 0;  /* 2px */
   transform: rotate(45deg); /* Correctly orient the checkmark */
 }
 
 /* Submit Button */
 .amenity-form-submit-btn {
-  background-color: #d32f2f; /* Red button */
+  background-color: red; /* Red button */
   color: white;
-  padding: 15px 30px;
-  font-size: 1.3rem;
+  padding: 1.5rem 3rem;  /* 15px 30px */
+  font-size: 1.6rem;  /* 13px */
   border: none;
-  border-radius: 5px;
+  border-radius: 0.5rem;  /* 5px */
   width: 100%;
+  margin-bottom: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -99,25 +105,25 @@
 }
 
 /* Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 76.8rem) {
   .amenity-form-container {
-    padding: 20px;
-    margin: 15px;
+    padding: 2rem;  /* 20px */
+    margin: 1.5rem;  /* 15px */
   }
 
   .amenity-form-heading {
-    font-size: 2rem; /* Adjust font size for small screens */
+    font-size: 2rem;  /* 20px */
   }
 
   .amenity-form-category-title {
-    font-size: 1.5rem;
+    font-size: 1.5rem;  /* 15px */
   }
 
   .amenity-form-checkbox-label {
-    font-size: 1rem;
+    font-size: 1rem;  /* 10px */
   }
 
   .amenity-form-submit-btn {
-    font-size: 1.2rem;
+    font-size: 1.2rem;  /* 12px */
   }
 }

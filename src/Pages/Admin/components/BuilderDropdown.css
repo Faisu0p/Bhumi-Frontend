@@ -1,0 +1,33 @@
+/* Set 1rem = 10px */
+html {
+    font-size: 62.5%;  /* 1rem = 10px */
+  }
+  
+  /* General form group styling */
+  .form-group {
+    margin-bottom: 1.5rem;  /* Space between form elements */
+  }
+  
+  /* Styling for the select dropdown */
+  .project-form-select {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    font-size: 1.4rem;  /* Matches builder-form-control */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.3rem;  /* Space between label and input */
+  }
+  
+  /* Focus styles for the select field */
+  .project-form-select:focus {
+    border-color: #d90429;
+    outline: none;
+  }
+  
+  .required-asterisk {
+    color: red;
+  }
+  

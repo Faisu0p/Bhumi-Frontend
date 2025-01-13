@@ -1,3 +1,8 @@
+/* Set 1rem = 10px */
+html {
+  font-size: 62.5%;  /* 1rem = 10px */
+}
+
 /* Container for the dropdowns */
 .project-dropdown-locations-container {
     display: flex;
@@ -13,8 +18,7 @@
   
   /* General label styling */
   .project-dropdown-locations-label {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.6rem;
     color: #333;
     margin-bottom: 0.6rem;
     text-align: left;  /* Ensure label text aligns to the left */
@@ -35,7 +39,7 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     width: 100%;
     box-sizing: border-box;
     margin-top: 0.3rem;  /* Add a slight gap between the label and the input */

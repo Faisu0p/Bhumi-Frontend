@@ -89,6 +89,7 @@ const ProjectAddPage = () => {
 
   return (
     <div className="project-add-container">
+      
       {/* Progress Bar */}
       <div className="project-add-progress-bar">
         {steps.map((label, index) => (
@@ -113,36 +114,36 @@ const ProjectAddPage = () => {
 
       {/* Form Content */}
       <div className="project-add-form-content">
-  {step === 1 && (
-    <ProjectForm
-      data={projectData} // Pass existing project data
-      onNext={(data) => handleNextStep(data, setProjectData)}
-      onPrevious={handlePreviousStep}
-    />
-  )}
-  {step === 2 && (
-    <PhaseForm
-      data={phases} // Pass existing phases data
-      onNext={(data) => handleNextStep(data, setPhases)}
-      onPrevious={handlePreviousStep}
-    />
-  )}
-  {step === 3 && (
-    <AmenityForm
-      amenities={amenities} // Pass existing amenities data
-      onNext={(data) => handleNextStep(data, setAmenities)}
-      onPrevious={handlePreviousStep}
-    />
-  )}
-  {step === 4 && (
-    <ReviewPage
-      data={projectData}
-      phases={phases}
-      amenities={amenities}
-      onSubmit={handleSubmit}
-    />
-  )}
-</div>
+        {step === 1 && (
+          <ProjectForm
+            data={projectData} // Pass existing project data
+            onNext={(data) => handleNextStep(data, setProjectData)}
+            onPrevious={handlePreviousStep}
+          />
+        )}
+        {step === 2 && (
+          <PhaseForm
+            data={phases} // Pass existing phases data
+            onNext={(data) => handleNextStep(data, setPhases)}
+            onPrevious={handlePreviousStep}
+          />
+        )}
+        {step === 3 && (
+          <AmenityForm
+            amenities={amenities} // Pass existing amenities data
+            onNext={(data) => handleNextStep(data, setAmenities)}
+            onPrevious={handlePreviousStep}
+          />
+        )}
+        {step === 4 && (
+          <ReviewPage
+            data={projectData}
+            phases={phases}
+            amenities={amenities}
+            onSubmit={handleSubmit}
+          />
+        )}
+      </div>
 
     </div>
   );
