@@ -50,7 +50,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/add-builder" element={<LayoutWithHeader><BuilderAddPage /></LayoutWithHeader>} />
         <Route path="/add-project" element={<LayoutWithHeader><ProjectAddPage /></LayoutWithHeader>} />
         <Route path="/manage-builder" element={<LayoutWithHeader><ManageBuilderPage /></LayoutWithHeader>} />
-        <Route path="/edit-builder/:id" element={<BuilderEditPage />} /> {/* Edit Builder Page */}
+        <Route path="/edit-builder/:id" element={<LayoutWithHeader><BuilderEditPage /></LayoutWithHeader>} /> {/* Edit Builder Page */}
         <Route path="/view-builder" element={<LayoutWithHeader><ViewBuilderPage /></LayoutWithHeader>} />
         <Route path="/view-project" element={<LayoutWithHeader><ViewProjectPage /></LayoutWithHeader>} />
         <Route path="/manage-project" element={<LayoutWithHeader><ManageProjectPage /></LayoutWithHeader>} />

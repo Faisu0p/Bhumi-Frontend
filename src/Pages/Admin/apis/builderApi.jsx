@@ -67,3 +67,17 @@ export const getBuilderById = async (builderId) => {
   const data = await response.json();
   return data;
 };
+
+// Edit an existing builder
+export const editBuilder = async (builderId, builderData) => {
+  const response = await fetch(`${BASE_URL}/builder/${builderId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(builderData),
+  });
+  const data = await response.json();
+  return data;
+};
+
