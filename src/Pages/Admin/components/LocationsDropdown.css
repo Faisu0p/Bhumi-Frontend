@@ -51,10 +51,6 @@ html {
     outline: none;
   }
   
-  /* Adjustments for responsiveness */
-  @media (max-width: 768px) {
-    .project-dropdown-locations-container {
-      padding: 1.5rem;
-    }
-  }
+  
+  
   

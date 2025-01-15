@@ -6,8 +6,6 @@ html {
 /* General container styling */
 .unit-form-container {
   font-family: Arial, sans-serif;
-  margin: 2rem;  /* 20px */
-  padding: 2rem;  /* 20px */
   background-color: #fff; /* White background */
   border-radius: 0.8rem;  /* 8px */;
 }

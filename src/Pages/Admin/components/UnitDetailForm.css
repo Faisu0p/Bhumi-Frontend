@@ -41,7 +41,7 @@ html {
 }
 
 .unit-detail-form-btn {
-  background-color: #d32f2f; /* Red background */
+  background-color: red; /* Red background */
   color: white;
   padding: 1rem 2rem;  /* 10px 20px */
   border: none;

@@ -118,38 +118,61 @@
   border-top: 12px solid red; /* Color of the arrow */
 }
 
-
-
-
 /* Step Label */
 .project-add-progress-label {
   color: inherit;
 }
 
-/* Improved Responsiveness */
+
+
+
 @media (max-width: 768px) {
   .project-add-container {
     flex-direction: column;
     padding: 1.5rem;
+    justify-content: center; /* Centers the form container vertically */
+    align-items: center; /* Centers the form container horizontally */
+  }
+
+  .project-add-form-content {
+    margin-left: 0; /* Remove left margin */
+    margin-right: 0; /* Remove right margin */
+    max-width: 90%; /* Ensure the form doesn't take up full width on small screens */
   }
 
   .project-add-progress-bar {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
+    justify-content: center; /* Center the progress bar */
+    margin-bottom: 5rem; /* Added more gap below the progress bar */
+    padding: 0.8rem;
+    gap: 0.5rem; /* Reduced gap for better fit */
+    position: relative;
   }
 
   .project-add-progress-step {
     flex: 1;
     padding: 0.5rem;
     text-align: center;
+    font-size: 0.9rem; /* Smaller font size for mobile */
   }
 
   .project-add-progress-line {
     width: 100%;
     height: 4px;
     margin-left: 0;
+    margin-right: 0;
+  }
+
+  .project-add-progress-line::after {
+    /* Remove arrow for mobile view */
+    display: none;
+  }
+
+  .project-add-progress-step::before {
+    width: 25px; /* Smaller icon for mobile */
+    height: 25px; /* Smaller icon for mobile */
+    font-size: 1rem; /* Smaller font size for mobile */
   }
 }
+
