@@ -6,36 +6,28 @@ import logo from "../../../Media/Images/logo.png";
 const Header = () => {
   return (
     <header className="header-container">
-      <nav className="navbar navbar-expand-lg navbar-dark">
+      <nav className="navbar">
         <div className="navbar-wrapper">
           {/* Logo */}
           <a className="navbar-brand" href="admin">
-            <img 
-              src={logo}
-              alt="Logo" 
-              className="logo-img" 
-            />
+            <img src={logo} alt="Logo" className="logo-img" />
           </a>
 
           {/* Toggle button for mobile view */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <div className="navbar-toggler" onClick={() => {
+            const navbar = document.getElementById("navbarNav");
+            navbar.classList.toggle("show");
+          }}>
+            <span className="toggler-icon"></span>
+            <span className="toggler-icon"></span>
+            <span className="toggler-icon"></span>
+          </div>
 
           {/* Navbar links */}
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-links ms-auto">
-
-               {/* Builder Dropdown */}
-               <li className="nav-item">
+          <div className="navbar-links" id="navbarNav">
+            <ul>
+              {/* Builder Dropdown */}
+              <li className="nav-item">
                 <div className="nav-link">Builder</div>
                 <div className="dropdown-menu">
                   <Link to="/add-builder" className="dropdown-item">Add Builder</Link>
@@ -43,7 +35,7 @@ const Header = () => {
                   <Link to="/view-builder" className="dropdown-item">View Builder</Link>
                 </div>
               </li>
-              
+
               {/* Project Dropdown */}
               <li className="nav-item">
                 <div className="nav-link">Project</div>
@@ -65,15 +57,6 @@ const Header = () => {
                   <Link to="/add-pincode" className="dropdown-item">Add Pincode</Link>
                 </div>
               </li>
-
-              {/* Other Links */}
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/view-role">View Role</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/view-property">View Property</Link>
-              </li> */}
-              
             </ul>
           </div>
         </div>
