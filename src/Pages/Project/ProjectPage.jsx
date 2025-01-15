@@ -66,7 +66,6 @@ const ProjectPage = () => {
           <div className="tiles-project-left">
             <Tiles searchQuery={searchQuery} selectedLocation={selectedLocation} /> {/* Pass filters */}
           </div>
-          <div className="tiles-project-right">RIGHT</div>
         </div>
       </div>
     </div>

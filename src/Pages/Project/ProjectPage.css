@@ -332,14 +332,7 @@ body {
   width: 100%;
 }
 
-/* Right Section */
-.tiles-project-right {
-  flex: 0 0 auto; /* Right section takes only as much space as needed */
-  align-self: flex-start; /* Align it to the top */
-  background-color: #f0f0f0; /* Optional background color */
-  padding: 1rem;
-  width: 20%; /* You can adjust this to fit your design */
-}
+
 
 
 
